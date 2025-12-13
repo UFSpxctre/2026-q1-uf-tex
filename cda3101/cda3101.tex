@@ -47,5 +47,30 @@ Because tasks are completed sequentially due to the \textit{shared bus}, this is
 
 \textit{Von Neumann architecture} is the foundation of most modern computing systems. This includes personal computers, embedded systems, servers, mobile devices, and gaming consoles.
 
+\subsection*{Harvard Architecture}
+
+\textbf{Harvard Architecture} is a computer deisgn model where program instructions and data are stored in separate memory units accessed through independent buses.
+\medskip
+
+\textbf{Buses} - used as signal pathways.
+
+\begin{itemize}
+    \item \textbf{Data Bus} - carries data between main components.
+    \item \textbf{Data Address Bus} - carries the address of data between main components.
+    \item \textbf{Instruction Bus} - carries instructions between main components.
+    \item \textbf{Instruction Address Bus} - carries address of instructions between main components.
+\end{itemize}
+
+Having individual buses instead of the same bus mitigates the \textit{Von Neumann bottleneck}, since execution of instructions can be performed asynchronously.
+\medskip
+
+\textbf{Applications}
+
+\begin{itemize}
+    \item \textbf{Digital Signal Processors (DSPs)} - audio/video processing, telecommunications, radar systems, and image processing.
+    \item \textbf{Microcontrollers (MCUs)} - embeedded systems.
+    \item \textbf{Network Processors} - routers, switches, and network security appliances.
+    \item \textbf{Automotive Systems} - Engine control units, advanced driver-assistance systems, infotainment systems.
+\end{itemize}
 
 \end{document}
