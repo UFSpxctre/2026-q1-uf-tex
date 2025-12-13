@@ -61,7 +61,7 @@ Because tasks are completed sequentially due to the \textit{shared bus}, this is
     \item \textbf{Instruction Address Bus} - carries address of instructions between main components.
 \end{itemize}
 
-Having individual buses instead of the same bus mitigates the \textit{Von Neumann bottleneck}, since execution of instructions can be performed asynchronously.
+Having individual buses instead of the same bus mitigates the \textit{Von Neumann bottleneck}, since execution of instructions can be performed in parallel.
 \medskip
 
 \textbf{Applications}
@@ -71,6 +71,43 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
     \item \textbf{Microcontrollers (MCUs)} - embeedded systems.
     \item \textbf{Network Processors} - routers, switches, and network security appliances.
     \item \textbf{Automotive Systems} - Engine control units, advanced driver-assistance systems, infotainment systems.
+\end{itemize}
+
+\subsection*{Flynn's Taxonomy}
+
+\textbf{Flynn's Taxonomy} classifies computer architectures according to how many \textit{processes} they can process simultaneously.
+
+\begin{itemize}
+    \item \textbf{Single-Instruction, Single-Data (SISD)} - Uniprocessor machine capable of executable a single instruction operating on a single data stream.
+        \begin{itemize}
+            \item Instructions processed in a sequential manner.
+            \item Computers called \textbf{sequential computers}.
+            \item Speed of processing element is \textit{dependent} by the \textit{rate at which the computer can transfer information internally}.
+        \end{itemize}
+    \item \textbf{Single-Instruction, Multiple-Data (SIMD)} - Multiprocessor machine capable of executing the same instruction on all the CPUs but operating on different data streams.
+        \begin{itemize}
+            \item Well suited to \textit{scientific computing}.
+            \item Involve lots of vector and matrix operations.
+        \end{itemize}
+    \item \textbf{Multiple-Instruction, Single-Data (MISD)} - Multiprocessor machine capable of executing differnet instructions on different PEs but all of them operating on the same dataset.
+        \begin{itemize}
+            \item Not useful in most applications.
+        \end{itemize}
+    \item \textbf{Multiple-Instruction, Multiple-Data (MIMD)} - Multiprocessor machine capable of executing multiple instructions on multiple data sets.
+        \begin{itemize}
+            \item Each PE has separate instruction and data streams.
+            \item Very satile applicability.
+            \item \textbf{Asynchronous}, \textit{SIMD} and \textit{MISD}.
+            \item Generally considered superior to other models \textit{(when applicable)}.
+        \end{itemize}
+
+        Can be classified into two models:
+        \begin{itemize}
+            \item \textbf{Shared-Memory (tightly coupled)} - All processors use the same global memory, through which communication occurs.\\
+                They are \textbf{easy} to program but \textbf{hard} to scale and vulnerable to failure.
+            \item \textbf{Distributed Memory (loosely coupled)} - Each processor has its own local memory. Communication occurs through an \textit{interconnection network}.\\
+                More complicated to program but \textit{scalable} and \textit{fault-tolerant}.
+        \end{itemize}
 \end{itemize}
 
 \end{document}
