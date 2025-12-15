@@ -68,7 +68,7 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 
 \begin{itemize}
     \item \textbf{Digital Signal Processors (DSPs)} - audio/video processing, telecommunications, radar systems, and image processing.
-    \item \textbf{Microcontrollers (MCUs)} - embeedded systems.
+    \item \textbf{Microcontrollers (MCUs)} - embedded systems.
     \item \textbf{Network Processors} - routers, switches, and network security appliances.
     \item \textbf{Automotive Systems} - Engine control units, advanced driver-assistance systems, infotainment systems.
 \end{itemize}
@@ -82,33 +82,35 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
         \begin{itemize}
             \item Instructions processed in a sequential manner.
             \item Computers called \textbf{sequential computers}.
-            \item Speed of processing element is \textit{dependent} by the \textit{rate at which the computer can transfer information internally}.
+            \item Speed of processing element is \textit{dependent} by the \textit{rate} at which the computer can transfer information internally.
         \end{itemize}
     \item \textbf{Single-Instruction, Multiple-Data (SIMD)} - Multiprocessor machine capable of executing the same instruction on all the CPUs but operating on different data streams.
         \begin{itemize}
             \item Well suited to \textit{scientific computing}.
-            \item Involve lots of vector and matrix operations.
+            \item Involves lots of vector and matrix operations.
         \end{itemize}
-    \item \textbf{Multiple-Instruction, Single-Data (MISD)} - Multiprocessor machine capable of executing differnet instructions on different PEs but all of them operating on the same dataset.
+    \item \textbf{Multiple-Instruction, Single-Data (MISD)} - Multiprocessor machine capable of executing different instructions on different PEs but all of them operating on the same dataset.
         \begin{itemize}
             \item Not useful in most applications.
         \end{itemize}
     \item \textbf{Multiple-Instruction, Multiple-Data (MIMD)} - Multiprocessor machine capable of executing multiple instructions on multiple data sets.
         \begin{itemize}
             \item Each PE has separate instruction and data streams.
-            \item Very satile applicability.
-            \item \textbf{Asynchronous}, \textit{SIMD} and \textit{MISD}.
+            \item Versatile applicability.
+            \item \textbf{Asynchronous}, unlike \textit{SIMD} and \textit{MISD}.
             \item Generally considered superior to other models \textit{(when applicable)}.
         \end{itemize}
 
         Can be classified into two models:
         \begin{itemize}
             \item \textbf{Shared-Memory (tightly coupled)} - All processors use the same global memory, through which communication occurs.\\
-                They are \textbf{easy} to program but \textbf{hard} to scale and vulnerable to failure.
+                They are \textit{easy} to program but \textit{hard} to scale and vulnerable to failure.
             \item \textbf{Distributed Memory (loosely coupled)} - Each processor has its own local memory. Communication occurs through an \textit{interconnection network}.\\
                 More complicated to program but \textit{scalable} and \textit{fault-tolerant}.
         \end{itemize}
 \end{itemize}
+
+\section*{Chapter 2 - Data Representation}
 
 \subsection*{Number Systems \textit{(Reiteration)}}
 
@@ -130,15 +132,49 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 
 \begin{itemize}
     \item Also called the \textbf{base-8} system.
-    \item Used for representing file permissions in \textit{Unix/Linux operating systems}.
+    \item Used for representing file permissions in \textit{Unix/Linux} operating systems.
 \end{itemize}
 
 \textbf{Hexadecimal System}
 
 \begin{itemize}
-    \item Digits formed using 16 digits including A, B, C, D, E, and F.
+    \item Digits formed using 16 digits including \texttt{A}, \texttt{B}, \texttt{C}, \texttt{D}, \texttt{E}, and \texttt{F}.
     \item Also called the \textbf{base-16} system.
     \item Used for handling memory address.
 \end{itemize}
+
+\subsection*{Character Encoding Systems}
+
+\textbf{Character encoding} is the process of converting characters into a format that computers can parse and store.
+\medskip
+
+\textbf{American Standard Code for Information Interchange (ASCII)}
+    \begin{itemize}
+        \item \textit{7-bit encoding}, limited to English characters and a basic set of symbols.
+        \item \textit{Non-printable system codes} between 0 and 31.
+        \item Lower ASCII between 32 and 127.
+        \item Higher ASCII between 128 and 255.
+    \end{itemize}
+
+\textbf{Unicode}
+    \begin{itemize}
+        \item Universal encoding technique; can be used for any language or letter for any device.
+        \item Used without generating data corruption in a variety of systems.
+        \item Defines \textbf{code points}; they \textit{don't} define how code points are stored as sequence of bytes; that's where \textit{UTF} comes into play.
+        \item \textbf{Unicode Transformation Formats (UTFs)} - Standardized methods for encoding Unicode characters into a sequence of bytes.
+            \begin{itemize}
+                \item \textbf{UTF-16} - Uses \textit{16-bit} code units.
+                    \begin{itemize}
+                        \item Character '\texttt{B}' (\texttt{U+0042}) - stored as \texttt{00 42}.
+                        \item Used internally by operating systems and programming environments for string storage and text manipulation.
+                    \end{itemize}
+                \item \textbf{UTF-8} - Uses 1 to 4 \textit{8-bit} code units.
+                    \begin{itemize}
+                        \item Can encode all valid Unicode character code points.
+                        \item Code points for \textit{lower} values are encoded with \textit{fewer} bytes.
+                        \item \textbf{Backwards compatible} with \textit{ASCII}; Unicode characters encoded in \textit{UTF-8} that are \textit{one-to-one} with \textit{ASCII} are encoded using a single byte with an identical binary value.
+                    \end{itemize}
+            \end{itemize}
+    \end{itemize}
 
 \end{document}
