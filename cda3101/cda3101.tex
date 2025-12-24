@@ -1,12 +1,17 @@
-\title{CDA3101}
-\author{Ian Zou}
-
 \documentclass[12pt, letterpaper]{article}
 \setlength{\parindent}{0pt}
+
+\usepackage[bottom=0.5cm, top=0.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{hyperref}
+
+\title{CDA3101}
+\author{Ian Zou}
 
 \begin{document}
 
 \maketitle
+
+These notes are mainly adapted from \href{https://www.geeksforgeeks.org/computer-organization-architecture/computer-organization-and-architecture-tutorials/}{Computer Organization and Architecture (GeeksForGeeks)}. Some information may be supplemented from other sources.
 
 \section*{Chapter 1 - Basic Computer Structure}
 
@@ -177,9 +182,9 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
             \end{itemize}
     \end{itemize}
 
-\subsection*{Digital Logic & Circuits}
+\section*{Chapter 3 - Digital Logic \& Circuits}
 
-\textbf{Digital Electronics} - branch of electronic systems that use discrete ignals to represent and process information.
+\subsection*{Digital Electronics and Logic Gate}
 
 \begin{itemize}
     \item \textbf{Analog System} - Process continuous signals.
@@ -203,5 +208,25 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
             \item Systems include \textbf{counters}, \textbf{memory devices}, and \textbf{state machines}.
         \end{itemize}
 \end{itemize}
+
+\section*{Chapter 4 - Register Transfer \& Micro-Operations}
+
+\subsection*{Register Transfer Language (RTL)}
+
+% TODO: This section is very unfinished! In my opinion, GeeksforGeeks does not do a great job at explaining what RTL is.
+
+\textbf{Register Transfer Language (RTL)} - design abstraction used to describe the behavior and structure of digital circuits, focused on \textit{transfer of data} between registers and \textit{operations performed} on data.
+\medskip
+
+\begin{itemize}
+    \item \textbf{Register Transfer Operations} - Performed on the data stored in the registers.
+        \begin{itemize}
+            \item \textbf{Simple Transfer (\texttt{R2 <- R1})} - Contents of \texttt{R1} copied into \texttt{R2} \textit{(unconditional)}.
+            \item \textbf{Conditional Transfer(\texttt{P: R2 <- R1})} - If \texttt{P = 1}, then the  content of \texttt{R1} is transferred to \texttt{R2} \textit{(unidirectional)}.
+            \item \textbf{Simultaneous Operations (\texttt{P: R2 <- R1, R1 <- R2})} - 2 or more simultaneous operations are separated by a \textit{comma}, performed on the same clock.
+        \end{itemize}
+\end{itemize}
+
+% TODO: RTL symbol table
 
 \end{document}
