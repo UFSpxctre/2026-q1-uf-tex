@@ -229,4 +229,35 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 
 % TODO: RTL symbol table
 
+\subsection*{Data Transfer}
+
+\textbf{Computer Bus} - Communication system used to transfer data between components.
+\begin{itemize}
+    \item Minimizes number of connections by centralizing communication over shared pathways.
+    \item Consists of \textit{physical connections} like wires, circuits, or cables.
+    \item Components like CPU, memory, and input/output devices are connected through a bus.
+\end{itemize}
+
+\begin{enumerate}
+    \item \textbf{Address Bus} (\textit{Unidirectional})
+        \begin{itemize}
+            \item Transports \textit{memory addresses}.
+            \item Size of address bus determines how many unique memory locations can be addressed.
+            \item \textit{Example}: 4-bit address bus can address $ 2^4 = 16 $ bytes of memory.
+        \end{itemize}
+    \item \textbf{Data Bus} (\textit{Bidirectional})
+        \begin{itemize}
+            \item Transports \textit{data}, used for transferring data from microprocessor to input/output devices or memory.
+            \item Size of data bus determine how much data can be transmitted at one time.
+            \item \textit{Example}: 16-bit bus can transmit 16 bits at a time.
+        \end{itemize}
+    \item \textbf{Control Bus} (\textit{Bidirectional})
+        \begin{itemize}
+            \item Transports \textit{control information} between devices, such as orders and synchronization signals.
+            \item Transmits \textit{response signals} from the hardware.
+        \end{itemize}
+\end{enumerate}
+
+% TODO:Types of buses table
+
 \end{document}
