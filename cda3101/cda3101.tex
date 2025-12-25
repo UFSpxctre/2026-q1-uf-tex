@@ -226,15 +226,25 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 \medskip
 
 \begin{itemize}
-    \item \textbf{Register Transfer Operations} - Performed on the data stored in the registers.
+    \item \textbf{Register Transfer Operations} - Performed on the data stored in registers.
         \begin{itemize}
             \item \textbf{Simple Transfer (\texttt{R2 <- R1})} - Contents of \texttt{R1} copied into \texttt{R2} \textit{(unconditional)}.
             \item \textbf{Conditional Transfer(\texttt{P: R2 <- R1})} - If \texttt{P = 1}, then the  content of \texttt{R1} is transferred to \texttt{R2} \textit{(unidirectional)}.
             \item \textbf{Simultaneous Operations (\texttt{P: R2 <- R1, R1 <- R2})} - 2 or more simultaneous operations are separated by a \textit{comma}, performed on the same clock.
         \end{itemize}
+    \item \textbf{Arithmetic Micro-Operations} - Fundamental operations performed directly on data stored in registers.
+        \begin{itemize}
+            \item \textbf{Addition (\texttt{R3 <- R1 + R2})} - \texttt{R1} added to \texttt{R2} and stored into \texttt{R3}.
+            \item \textbf{Subtraction (\texttt{R3 <- R1 - R2})} - \texttt{R2} subtracted from \texttt{R1} and stored into \texttt{R3}.
+            \item \textbf{Increment (\texttt{R1 <- R1 + 1})} - \texttt{R1} register value incremented by 1.
+            \item \textbf{Decrement (\texttt{R1 <- R1 - 1})} - \texttt{R1} register value decremented by 1.
+            \item \textbf{1's Complement (\texttt{R1 <- $ \overline{\texttt{R1}} $})} - Complement of the value inside \texttt{R1} is taken.
+            \item \textbf{2's Complement / Negation (\texttt{R1 <- $ \overline{R1} $ + 1})} - Complement of the value inside \texttt{R1} is taken, and then \texttt{1} is added.
+        \end{itemize}
 \end{itemize}
 
 % TODO: RTL symbol table
+% TODO: Arithmetic Micro-Operations table
 
 \subsection*{Data Transfer}
 
