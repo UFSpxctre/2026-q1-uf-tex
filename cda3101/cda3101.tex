@@ -225,14 +225,25 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 \textbf{Register Transfer Language (RTL)} - design abstraction used to describe the behavior and structure of digital circuits, focused on \textit{transfer of data} between registers and \textit{operations performed} on data.
 \medskip
 
+\subsection*{Micro-Operations}
+\textbf{Micro-operations} are \textit{functional/atomic} operations of a processor performed on data stored directly in the registers.
+\medskip
+
+How do micro-operations work?
+\begin{enumerate}
+    \item \textbf{Load} operation to move values into registers.
+    \item Micro-operation is performed on the registers \textit{(e.g. \textbf{add})}.
+    \item \textbf{Store} operation to save the result into memory.
+\end{enumerate}
+
 \begin{itemize}
-    \item \textbf{Register Transfer Operations} - Performed on the data stored in registers.
+    \item \textbf{Register Transfer Micro-Operations} - Moving data between, in, or out of registers.
         \begin{itemize}
             \item \textbf{Simple Transfer (\texttt{R2 <- R1})} - Contents of \texttt{R1} copied into \texttt{R2} \textit{(unconditional)}.
             \item \textbf{Conditional Transfer(\texttt{P: R2 <- R1})} - If \texttt{P = 1}, then the  content of \texttt{R1} is transferred to \texttt{R2} \textit{(unidirectional)}.
             \item \textbf{Simultaneous Operations (\texttt{P: R2 <- R1, R1 <- R2})} - 2 or more simultaneous operations are separated by a \textit{comma}, performed on the same clock.
         \end{itemize}
-    \item \textbf{Arithmetic Micro-Operations} - Fundamental operations performed directly on data stored in registers.
+    \item \textbf{Arithmetic Micro-Operations}
         \begin{itemize}
             \item \textbf{Addition (\texttt{R3 <- R1 + R2})} - \texttt{R1} added to \texttt{R2} and stored into \texttt{R3}.
             \item \textbf{Subtraction (\texttt{R3 <- R1 - R2})} - \texttt{R2} subtracted from \texttt{R1} and stored into \texttt{R3}.
@@ -240,6 +251,14 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
             \item \textbf{Decrement (\texttt{R1 <- R1 - 1})} - \texttt{R1} register value decremented by 1.
             \item \textbf{1's Complement (\texttt{R1 <- $ \overline{\texttt{R1}} $})} - Complement of the value inside \texttt{R1} is taken.
             \item \textbf{2's Complement / Negation (\texttt{R1 <- $ \overline{R1} $ + 1})} - Complement of the value inside \texttt{R1} is taken, and then \texttt{1} is added.
+        \end{itemize}
+    \item \textbf{Logic Micro-Operations}
+        \begin{itemize}
+            \item TODO!
+        \end{itemize}
+    \item \textbf{Shift Micro-Operations}
+        \begin{itemize}
+            \item TODO!
         \end{itemize}
 \end{itemize}
 
