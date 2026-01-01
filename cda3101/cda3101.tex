@@ -1,6 +1,7 @@
 \documentclass[12pt, letterpaper]{article}
 \setlength{\parindent}{0pt}
 
+\usepackage{xcolor}
 \usepackage[bottom=0.5cm, top=0.5cm, left=1.5cm, right=1.5cm]{geometry}
 \usepackage{hyperref}
 
@@ -295,5 +296,47 @@ How do micro-operations work?
 \end{enumerate}
 
 % TODO:Types of buses table
+
+\section*{Chapter 5 - Instruction Set Architecture (ISA) \& Control Flow}
+
+\subsection*{Instruction Format}
+
+\textbf{Instruction Format} - defines how instructions are represented in computer memory.
+
+\begin{itemize}
+    \item \textbf{Opcode} - Specifies the operation to be performed by the CPU.
+    \item \textbf{Operands} - Contain data or \textit{addresses} to data.
+    \item \textbf{Addressing Mode} - Specifies how to interpret or locate \textit{operand}.
+\end{itemize}
+
+\textit{Instruction formats} are classified depending on how many address fields they have.
+
+\begin{itemize}
+    \item \textbf{Zero Address Instructions}
+        \begin{itemize}
+            \item Do not specify \textit{operands}.
+            \item Operate on data stored in registers or memory locatoins implicitly defined by instruction.
+            \item \textit{Example: Stack-based computers (which do not use the address field)}.
+        \end{itemize}
+    \item \textbf{One Address Instructions}
+        \begin{itemize}
+            \item Specify one \textit{operand}.
+            \item Result may be stored in the same or different location.
+        \end{itemize}
+    \item \textbf{Two Address Instructions}
+        \begin{itemize}
+            \item Specify two \textit{operands}.
+            \item Result may be stored in the same or different location.
+            \item \textit{Example: Commercial computers.}
+        \end{itemize}
+    \item \textbf{Three Address Instructions} \\ \textcolor{gray}{TODO - It's just more of the same slop as the other two, omitted...}
+\end{itemize}
+
+CPU organization typically consists of three types based on the number of address fields:
+\begin{itemize}
+    \item \textbf{Single Accumulator Organization} - One special register (\textbf{accumulator}, typically \texttt{\%rax} register in x86 assembly) to store and process data for operations.
+    \item \textbf{General Register Organization} - Several general-purpose registers to hold \textit{operands} for operations.
+    \item \textbf{Stack Organization} - Works with a stack, processing data using the top elements without directly specifying \textit{operands}.
+\end{itemize}
 
 \end{document}
