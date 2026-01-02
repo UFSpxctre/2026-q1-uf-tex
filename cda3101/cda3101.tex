@@ -329,7 +329,7 @@ How do micro-operations work?
             \item Result may be stored in the same or different location.
             \item \textit{Example: Commercial computers.}
         \end{itemize}
-    \item \textbf{Three Address Instructions} \\ \textcolor{gray}{TODO - It's just more of the same slop as the other two, omitted...}
+    \item \textbf{Three Address Instructions} \textcolor{gray}{(TODO: It's just more of the same slop as the other two, omitted...)}
 \end{itemize}
 
 CPU organization typically consists of three types based on the number of address fields:
@@ -337,6 +337,50 @@ CPU organization typically consists of three types based on the number of addres
     \item \textbf{Single Accumulator Organization} - One special register (\textbf{accumulator}, typically \texttt{\%rax} register in x86 assembly) to store and process data for operations.
     \item \textbf{General Register Organization} - Several general-purpose registers to hold \textit{operands} for operations.
     \item \textbf{Stack Organization} - Works with a stack, processing data using the top elements without directly specifying \textit{operands}.
+\end{itemize}
+
+\subsection*{Addressing Modes}
+
+\textbf{Addressing modes} - techniques used by CPU to identify the location of the \textit{operands} needed for an instruction.
+
+\begin{itemize}
+    \item \textbf{Implicit Addressing (Implied)}
+        \begin{itemize}
+            \item Does not mention the \textit{operand} directly.
+            \item Used by special instructions such as \texttt{CLA}, \texttt{PUSH}, or \texttt{RET}; the \textit{operand} is automatically known for the instruction itself.
+        \end{itemize}
+    \item \textbf{Immediate Addressing}
+        \begin{itemize}
+            \item \textit{Operand} is part of the instruction itself.
+            \item Value is known while writing the program.
+            \item \textit{Example:} \texttt{mov rax, 5}. \texttt{5} is the \textit{immediate value} moved into the \texttt{rax} register.
+        \end{itemize}
+    \item \textbf{Direct Addressing}
+        \begin{itemize}
+            \item Instruction includes \textit{memory address} of \textit{operand}.
+            \item \textit{Example:} \texttt{load rax, 1000} \\ \texttt{1000} is the \textit{memory address} loaded into the \texttt{rax} register.
+        \end{itemize}
+    \item \textbf{Indirect Addressing}
+        \begin{itemize}
+            \item Instruction includes \textit{memory address} of register or memory location that holds the actual address of the \textit{operand}.
+            \item \textit{Example:} \texttt{load r1, r2} \\ The \textit{memory address} stored in \texttt{r2} is loaded into the \texttt{r1} register.
+        \end{itemize}
+    \item \textbf{Register Addressing}
+        \begin{itemize}
+            \item \textit{Operand} located in a CPU register specified by the instruction.
+            \item \textit{Example:} \texttt{mov rax, r2} \\ The value at the register \texttt{r2} is moved into the \texttt{rax} register.
+        \end{itemize}
+    \item \textbf{Register Indirect Addressing}
+        \begin{itemize}
+            \item Memory address of \textit{operand} located in a CPU register specified by the instruction.
+            \item \textit{Example:} \texttt{mov rax, [r2]} \\ The memory address at the register \texttt{r2} is dereferenced, and the value is moved into the \texttt{rax} register.
+        \end{itemize}
+    \item \textbf{Displacement Addressing} \textcolor{gray}{(TODO)}
+    \item \textbf{Stack Addressing}
+        \begin{itemize}
+            \item \textit{Operand} implicitly taken from top of the stack.
+            \item \textit{Example:} \texttt{push}, \texttt{pop}
+        \end{itemize}
 \end{itemize}
 
 \end{document}
