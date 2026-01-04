@@ -28,27 +28,27 @@ These notes are mainly adapted from \href{https://www.geeksforgeeks.org/computer
 \textbf{Von Neumann Architecture} is a computer design where instructions and data are stored in the same memory space.
 
 \begin{itemize}
-    \item \textbf{Fixed Program Computers} - Specific function, immutability (cannot be reprogrammed).
-    \item \textbf{Stored Program Computers} - Versatile, programmed to carry out many different tasks; applications are stored on them.
+    \item \textbf{Fixed Program Computers}: Specific function, immutability (cannot be reprogrammed).
+    \item \textbf{Stored Program Computers}: Versatile, programmed to carry out many different tasks; applications are stored on them.
 \end{itemize}
 
 3 components make up a \textit{Von Neumann computer}:
 \begin{itemize}
-    \item \textbf{CPU (Central Processing Unit)} - Handles instructions from programs, processes data, stores information, and produces results.
+    \item \textbf{CPU (Central Processing Unit)}: Handles instructions from programs, processes data, stores information, and produces results.
         \begin{itemize}
-            \item \textbf{CU (Control Unit)} - Manages how the processor works by sending control signals, controls input and output operations, and fetches the instructions from memory for execution.
-            \item \textbf{ALU (Arithmetic and Logic Unit)} - Performs arithmetic operations like \textit{addition} and \textit{subtraction}, logical comparisons such as \textit{comparisons}, and tasks like shifting bits.
-            \item \textbf{Registers} - Fastest type of memory located inside the CPU. They temporarily store information that the processor is currently working on. % TODO: Add different types of registers
-            \item \textbf{Bus} - Communication system that transfers data, addresses, and control signals between the CPU, memory, and I/O devices. In \textit{Von Neumann architecture}, a single bus is shared for both data and instructions.
+            \item \textbf{CU (Control Unit)}: Manages how the processor works by sending control signals, controls input and output operations, and fetches the instructions from memory for execution.
+            \item \textbf{ALU (Arithmetic and Logic Unit)}: Performs arithmetic operations like \textit{addition} and \textit{subtraction}, logical comparisons such as \textit{comparisons}, and tasks like shifting bits.
+            \item \textbf{Registers}: Fastest type of memory located inside the CPU. They temporarily store information that the processor is currently working on. % TODO: Add different types of registers
+            \item \textbf{Bus}: Communication system that transfers data, addresses, and control signals between the CPU, memory, and I/O devices. In \textit{Von Neumann architecture}, a single bus is shared for both data and instructions.
         \end{itemize}
 \end{itemize}
 
 \textbf{Key Characteristics}
 
 \begin{enumerate}
-    \item \textbf{Single Memory} - Data and program instructions stored in the same memory.
-    \item \textbf{Shared Bus} - Single bus used for transferring data addresses, and control signals.
-    \item \textbf{Sequential Execution} - Instructions are executed one at a time in a sequential manner.
+    \item \textbf{Single Memory}: Data and program instructions stored in the same memory.
+    \item \textbf{Shared Bus}: Single bus used for transferring data addresses, and control signals.
+    \item \textbf{Sequential Execution}: Instructions are executed one at a time in a sequential manner.
 \end{enumerate}
 
 \textbf{Von Neumann Bottleneck}
@@ -65,13 +65,13 @@ Because tasks are completed sequentially due to the \textit{shared bus}, this is
 \textbf{Harvard Architecture} is a computer deisgn model where program instructions and data are stored in separate memory units accessed through independent buses.
 \medskip
 
-\textbf{Buses} - used as signal pathways.
+\textbf{Buses}: used as signal pathways.
 
 \begin{itemize}
-    \item \textbf{Data Bus} - carries data between main components.
-    \item \textbf{Data Address Bus} - carries the address of data between main components.
-    \item \textbf{Instruction Bus} - carries instructions between main components.
-    \item \textbf{Instruction Address Bus} - carries address of instructions between main components.
+    \item \textbf{Data Bus}: carries data between main components.
+    \item \textbf{Data Address Bus}: carries the address of data between main components.
+    \item \textbf{Instruction Bus}: carries instructions between main components.
+    \item \textbf{Instruction Address Bus}: carries address of instructions between main components.
 \end{itemize}
 
 Having individual buses instead of the same bus mitigates the \textit{Von Neumann bottleneck}, since execution of instructions can be performed in parallel.
@@ -80,10 +80,10 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 \textbf{Applications}
 
 \begin{itemize}
-    \item \textbf{Digital Signal Processors (DSPs)} - audio/video processing, telecommunications, radar systems, and image processing.
-    \item \textbf{Microcontrollers (MCUs)} - embedded systems.
-    \item \textbf{Network Processors} - routers, switches, and network security appliances.
-    \item \textbf{Automotive Systems} - Engine control units, advanced driver-assistance systems, infotainment systems.
+    \item \textbf{Digital Signal Processors (DSPs)}: audio/video processing, telecommunications, radar systems, and image processing.
+    \item \textbf{Microcontrollers (MCUs)}: embedded systems.
+    \item \textbf{Network Processors}: routers, switches, and network security appliances.
+    \item \textbf{Automotive Systems}: Engine control units, advanced driver-assistance systems, infotainment systems.
 \end{itemize}
 
 \subsection*{Flynn's Taxonomy}
@@ -91,22 +91,22 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 \textbf{Flynn's Taxonomy} classifies computer architectures according to how many \textit{processes} they can process simultaneously.
 
 \begin{itemize}
-    \item \textbf{Single-Instruction, Single-Data (SISD)} - Uniprocessor machine capable of executable a single instruction operating on a single data stream.
+    \item \textbf{Single-Instruction, Single-Data (SISD)}: Uniprocessor machine capable of executable a single instruction operating on a single data stream.
         \begin{itemize}
             \item Instructions processed in a sequential manner.
             \item Computers called \textbf{sequential computers}.
             \item Speed of processing element is \textit{dependent} by the \textit{rate} at which the computer can transfer information internally.
         \end{itemize}
-    \item \textbf{Single-Instruction, Multiple-Data (SIMD)} - Multiprocessor machine capable of executing the same instruction on all the CPUs but operating on different data streams.
+    \item \textbf{Single-Instruction, Multiple-Data (SIMD)}: Multiprocessor machine capable of executing the same instruction on all the CPUs but operating on different data streams.
         \begin{itemize}
             \item Well suited to \textit{scientific computing}.
             \item Involves lots of vector and matrix operations.
         \end{itemize}
-    \item \textbf{Multiple-Instruction, Single-Data (MISD)} - Multiprocessor machine capable of executing different instructions on different PEs but all of them operating on the same dataset.
+    \item \textbf{Multiple-Instruction, Single-Data (MISD)}: Multiprocessor machine capable of executing different instructions on different PEs but all of them operating on the same dataset.
         \begin{itemize}
             \item Not useful in most applications.
         \end{itemize}
-    \item \textbf{Multiple-Instruction, Multiple-Data (MIMD)} - Multiprocessor machine capable of executing multiple instructions on multiple data sets.
+    \item \textbf{Multiple-Instruction, Multiple-Data (MIMD)}: Multiprocessor machine capable of executing multiple instructions on multiple data sets.
         \begin{itemize}
             \item Each PE has separate instruction and data streams.
             \item Versatile applicability.
@@ -116,9 +116,9 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 
         Can be classified into two models:
         \begin{itemize}
-            \item \textbf{Shared-Memory (tightly coupled)} - All processors use the same global memory, through which communication occurs.\\
+            \item \textbf{Shared-Memory (tightly coupled)}: All processors use the same global memory, through which communication occurs.\\
                 They are \textit{easy} to program but \textit{hard} to scale and vulnerable to failure.
-            \item \textbf{Distributed Memory (loosely coupled)} - Each processor has its own local memory. Communication occurs through an \textit{interconnection network}.\\
+            \item \textbf{Distributed Memory (loosely coupled)}: Each processor has its own local memory. Communication occurs through an \textit{interconnection network}.\\
                 More complicated to program but \textit{scalable} and \textit{fault-tolerant}.
         \end{itemize}
 \end{itemize}
@@ -174,14 +174,14 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
         \item Universal encoding technique; can be used for any language or letter for any device.
         \item Used without generating data corruption in a variety of systems.
         \item Defines \textbf{code points}; they \textit{don't} define how code points are stored as sequence of bytes; that's where \textit{UTF} comes into play.
-        \item \textbf{Unicode Transformation Formats (UTFs)} - Standardized methods for encoding Unicode characters into a sequence of bytes.
+        \item \textbf{Unicode Transformation Formats (UTFs)}: Standardized methods for encoding Unicode characters into a sequence of bytes.
             \begin{itemize}
-                \item \textbf{UTF-16} - Uses \textit{16-bit} code units.
+                \item \textbf{UTF-16}: Uses \textit{16-bit} code units.
                     \begin{itemize}
-                        \item Character '\texttt{B}' (\texttt{U+0042}) - stored as \texttt{00 42}.
+                        \item Character '\texttt{B}' (\texttt{U+0042}): stored as \texttt{00 42}.
                         \item Used internally by operating systems and programming environments for string storage and text manipulation.
                     \end{itemize}
-                \item \textbf{UTF-8} - Uses 1 to 4 \textit{8-bit} code units.
+                \item \textbf{UTF-8}: Uses 1 to 4 \textit{8-bit} code units.
                     \begin{itemize}
                         \item Can encode all valid Unicode character code points.
                         \item Code points for \textit{lower} values are encoded with \textit{fewer} bytes.
@@ -195,21 +195,21 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 \subsection*{Digital Electronics and Logic Gate}
 
 \begin{itemize}
-    \item \textbf{Analog System} - Process continuous signals.
-    \item \textbf{Digital System} - Wroks with discrete signals, often represented in binary. Stable and immune to noise interference.
+    \item \textbf{Analog System}: Process continuous signals.
+    \item \textbf{Digital System}: Wroks with discrete signals, often represented in binary. Stable and immune to noise interference.
 \end{itemize}
 
-\textbf{Logic Design} - process of creating and implementing digital circuits using \textit{logic gates} to perform specific functions.
+\textbf{Logic Design}: process of creating and implementing digital circuits using \textit{logic gates} to perform specific functions.
 \medskip
 % TODO: Add some information about logic gates (maybe a table with images)
 
 \begin{itemize}
-    \item \textbf{Combinational Logic Circuits} - Output depends solely on the current inputs.
+    \item \textbf{Combinational Logic Circuits}: Output depends solely on the current inputs.
         \begin{itemize}
             \item Do not store any past information.
             \item Output is only a function of the inputs at that specific moment.
         \end{itemize}
-    \item \textbf{Sequential Logic Circuits} - Have memory elements that store previous states.
+    \item \textbf{Sequential Logic Circuits}: Have memory elements that store previous states.
         \begin{itemize}
             \item Depends on \textit{both} current inputs \textit{and} inputs received over time.
             \item Examples include \textbf{flip-flops} and \textbf{registers}.
@@ -223,7 +223,7 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 
 % TODO: This section is very unfinished! In my opinion, GeeksforGeeks does not do a great job at explaining what RTL is.
 
-\textbf{Register Transfer Language (RTL)} - design abstraction used to describe the behavior and structure of digital circuits, focused on \textit{transfer of data} between registers and \textit{operations performed} on data.
+\textbf{Register Transfer Language (RTL)}: design abstraction used to describe the behavior and structure of digital circuits, focused on \textit{transfer of data} between registers and \textit{operations performed} on data.
 \medskip
 
 \subsection*{Micro-Operations}
@@ -238,20 +238,20 @@ How do micro-operations work?
 \end{enumerate}
 
 \begin{itemize}
-    \item \textbf{Register Transfer Micro-Operations} - Moving data between, in, or out of registers.
+    \item \textbf{Register Transfer Micro-Operations}: Moving data between, in, or out of registers.
         \begin{itemize}
-            \item \textbf{Simple Transfer (\texttt{R2 <- R1})} - Contents of \texttt{R1} copied into \texttt{R2} \textit{(unconditional)}.
-            \item \textbf{Conditional Transfer(\texttt{P: R2 <- R1})} - If \texttt{P = 1}, then the  content of \texttt{R1} is transferred to \texttt{R2} \textit{(unidirectional)}.
-            \item \textbf{Simultaneous Operations (\texttt{P: R2 <- R1, R1 <- R2})} - 2 or more simultaneous operations are separated by a \textit{comma}, performed on the same clock.
+            \item \textbf{Simple Transfer (\texttt{R2 <- R1})}: Contents of \texttt{R1} copied into \texttt{R2} \textit{(unconditional)}.
+            \item \textbf{Conditional Transfer(\texttt{P: R2 <- R1})}: If \texttt{P = 1}, then the  content of \texttt{R1} is transferred to \texttt{R2} \textit{(unidirectional)}.
+            \item \textbf{Simultaneous Operations (\texttt{P: R2 <- R1, R1 <- R2})}: 2 or more simultaneous operations are separated by a \textit{comma}, performed on the same clock.
         \end{itemize}
     \item \textbf{Arithmetic Micro-Operations}
         \begin{itemize}
-            \item \textbf{Addition (\texttt{R3 <- R1 + R2})} - \texttt{R1} added to \texttt{R2} and stored into \texttt{R3}.
-            \item \textbf{Subtraction (\texttt{R3 <- R1 - R2})} - \texttt{R2} subtracted from \texttt{R1} and stored into \texttt{R3}.
-            \item \textbf{Increment (\texttt{R1 <- R1 + 1})} - \texttt{R1} register value incremented by 1.
-            \item \textbf{Decrement (\texttt{R1 <- R1 - 1})} - \texttt{R1} register value decremented by 1.
-            \item \textbf{1's Complement (\texttt{R1 <- $ \overline{\texttt{R1}} $})} - Complement of the value inside \texttt{R1} is taken.
-            \item \textbf{2's Complement / Negation (\texttt{R1 <- $ \overline{R1} $ + 1})} - Complement of the value inside \texttt{R1} is taken, and then \texttt{1} is added.
+            \item \textbf{Addition (\texttt{R3 <- R1 + R2})}: \texttt{R1} added to \texttt{R2} and stored into \texttt{R3}.
+            \item \textbf{Subtraction (\texttt{R3 <- R1: R2})}: \texttt{R2} subtracted from \texttt{R1} and stored into \texttt{R3}.
+            \item \textbf{Increment (\texttt{R1 <- R1 + 1})}: \texttt{R1} register value incremented by 1.
+            \item \textbf{Decrement (\texttt{R1 <- R1: 1})}: \texttt{R1} register value decremented by 1.
+            \item \textbf{1's Complement (\texttt{R1 <- $ \overline{\texttt{R1}} $})}: Complement of the value inside \texttt{R1} is taken.
+            \item \textbf{2's Complement / Negation (\texttt{R1 <- $ \overline{R1} $ + 1})}: Complement of the value inside \texttt{R1} is taken, and then \texttt{1} is added.
         \end{itemize}
     \item \textbf{Logic Micro-Operations}
         \begin{itemize}
@@ -268,7 +268,7 @@ How do micro-operations work?
 
 \subsection*{Data Transfer}
 
-\textbf{Computer Bus} - Communication system used to transfer data between components.
+\textbf{Computer Bus}: Communication system used to transfer data between components.
 \begin{itemize}
     \item Minimizes number of connections by centralizing communication over shared pathways.
     \item Consists of \textit{physical connections} like wires, circuits, or cables.
@@ -301,12 +301,12 @@ How do micro-operations work?
 
 \subsection*{Instruction Format}
 
-\textbf{Instruction Format} - defines how instructions are represented in computer memory.
+\textbf{Instruction Format}: defines how instructions are represented in computer memory.
 
 \begin{itemize}
-    \item \textbf{Opcode} - Specifies the operation to be performed by the CPU.
-    \item \textbf{Operands} - Contain data or \textit{addresses} to data.
-    \item \textbf{Addressing Mode} - Specifies how to interpret or locate \textit{operand}.
+    \item \textbf{Opcode}: Specifies the operation to be performed by the CPU.
+    \item \textbf{Operands}: Contain data or \textit{addresses} to data.
+    \item \textbf{Addressing Mode}: Specifies how to interpret or locate \textit{operand}.
 \end{itemize}
 
 \textit{Instruction formats} are classified depending on how many address fields they have.
@@ -334,14 +334,14 @@ How do micro-operations work?
 
 CPU organization typically consists of three types based on the number of address fields:
 \begin{itemize}
-    \item \textbf{Single Accumulator Organization} - One special register (\textbf{accumulator}, typically \texttt{\%rax} register in x86 assembly) to store and process data for operations.
-    \item \textbf{General Register Organization} - Several general-purpose registers to hold \textit{operands} for operations.
-    \item \textbf{Stack Organization} - Works with a stack, processing data using the top elements without directly specifying \textit{operands}.
+    \item \textbf{Single Accumulator Organization}: One special register (\textbf{accumulator}, typically \texttt{\%rax} register in x86 assembly) to store and process data for operations.
+    \item \textbf{General Register Organization}: Several general-purpose registers to hold \textit{operands} for operations.
+    \item \textbf{Stack Organization}: Works with a stack, processing data using the top elements without directly specifying \textit{operands}.
 \end{itemize}
 
 \subsection*{Addressing Modes}
 
-\textbf{Addressing modes} - techniques used by CPU to identify the location of the \textit{operands} needed for an instruction.
+\textbf{Addressing modes}: techniques used by CPU to identify the location of the \textit{operands} needed for an instruction.
 
 \begin{itemize}
     \item \textbf{Implicit Addressing (Implied)}
@@ -389,11 +389,11 @@ CPU organization typically consists of three types based on the number of addres
     \item \textbf{Instruction Set Architecture (ISA)}
         \begin{itemize}
             \item Language of the CPU that tells it what operations it can perform.
-            \item \textbf{MIPS} - Divides instructions into three main types.
+            \item \textbf{MIPS}: Divides instructions into three main types.
                 \begin{enumerate}
-                    \item Arithmetic/Logic Instructions - basic operations on data stored in registers.
-                    \item Data Transfer Instructions - move data between memory and registers.
-                    \item Branch/Jump Instructions - control execution flow.
+                    \item Arithmetic/Logic Instructions: basic operations on data stored in registers.
+                    \item Data Transfer Instructions: move data between memory and registers.
+                    \item Branch/Jump Instructions: control execution flow.
                 \end{enumerate}
                 \begin{itemize}
                     \item 32-bit ISA.
