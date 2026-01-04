@@ -196,7 +196,7 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 
 \begin{itemize}
     \item \textbf{Analog System}: Process continuous signals.
-    \item \textbf{Digital System}: Wroks with discrete signals, often represented in binary. Stable and immune to noise interference.
+    \item \textbf{Digital System}: Works with discrete signals, often represented in binary. Stable and immune to noise interference.
 \end{itemize}
 
 \textbf{Logic Design}: process of creating and implementing digital circuits using \textit{logic gates} to perform specific functions.
@@ -403,6 +403,27 @@ CPU organization typically consists of three types based on the number of addres
         \begin{itemize}
             \item Specific components that handle the calculations, such as ALU and cache.
             \item Processors can have the same ISA but different microarchitecture.
+        \end{itemize}
+\end{itemize}
+
+\textbf{RISC} and \textbf{CISC} are two different ISAs of designing computer processors.
+
+\begin{itemize}
+    \item \textbf{Reduced Instruction Set Architecture (RISC)}: Simplifies processor design by using a small, uniform set of instructions.
+        \begin{itemize}
+            \item Each instruction performs a basic instruction.
+            \item Designed to execute in a single clock cycle.
+            \item Uniform instruction size optimizes for pipelining.
+            \item More general-purpose registers.
+            \item Simple addressing modes.
+        \end{itemize}
+    \item \textbf{Complex Instruction Set Architecture (CISC)}: Reduces the number of instructions a program needs by using a large set of complex. variable-length instructions.
+        \begin{itemize}
+            \item Each instruction can perform multiple operations.
+            \item May take multiple clock cycles.
+            \item Instructions are larger than one-word size.
+            \item Less number of general-purpose registers.
+            \item Complex addressing modes.
         \end{itemize}
 \end{itemize}
 
