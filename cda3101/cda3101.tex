@@ -40,6 +40,12 @@ These notes are mainly adapted from \href{https://www.geeksforgeeks.org/computer
             \item \textbf{ALU (Arithmetic and Logic Unit)}: Performs arithmetic operations like \textit{addition} and \textit{subtraction}, logical comparisons such as \textit{comparisons}, and tasks like shifting bits.
             \item \textbf{Registers}: Fastest type of memory located inside the CPU. They temporarily store information that the processor is currently working on. % TODO: Add different types of registers
             \item \textbf{Bus}: Communication system that transfers data, addresses, and control signals between the CPU, memory, and I/O devices. In \textit{Von Neumann architecture}, a single bus is shared for both data and instructions.
+            \item \textbf{Clock Cycle}: Fundamental unit of time; a single "tick".
+                \begin{itemize}
+                    \item Key aspect for synchronization of CPU operations.
+                    \item Simple instructions may be executed in one cycle; complex instructions might take multiple cycles to execute.
+                    \item Measured in \textit{Hz}.
+                \end{itemize}
         \end{itemize}
 \end{itemize}
 
@@ -226,7 +232,7 @@ Having individual buses instead of the same bus mitigates the \textit{Von Neuman
 \textbf{Register Transfer Language (RTL)}: design abstraction used to describe the behavior and structure of digital circuits, focused on \textit{transfer of data} between registers and \textit{operations performed} on data.
 \medskip
 
-\subsection*{Micro-Operations}
+\subsection*{Micro-Operations} \label{microoperations}
 \textbf{Micro-operations} are \textit{functional/atomic} operations of a processor performed on data stored directly in the registers.
 \medskip
 
@@ -428,5 +434,10 @@ CPU organization typically consists of three types based on the number of addres
 \end{itemize}
 
 % TODO: Table of ISAs
+
+\section*{Chapter 6 - Computer Arithmetic}
+
+\subsection*{Arithmetic Logic Unit (ALU)}
+The \textbf{arithmetic logic unit (ALU)} and the \textbf{data path} are core components of the CPU that work together to \nameref{microoperations}{micro-operations} on data stored in the CPU registers.
 
 \end{document}
