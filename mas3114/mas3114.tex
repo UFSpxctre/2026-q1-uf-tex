@@ -1,0 +1,165 @@
+\documentclass[12pt, letterpaper]{article}
+\setlength{\parindent}{0pt}
+
+\usepackage{xcolor}
+\usepackage[bottom=0.5cm, top=0.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue,
+    filecolor = magenta,
+    urlcolor = cyan,
+}
+
+\title{MAS3114}
+\author{Ian Zou}
+
+\begin{document}
+
+\maketitle
+
+\part*{Unit 1 - Linear Systems \& Matrices}
+
+\section*{Lecture 1}
+
+\subsection*{Linear Equations}
+
+A \textbf{linear equation} is in the form:
+
+\medskip
+{\centering
+
+$ a_1 x_1 + a_2 x_2 + . . . + a_n x_n = b_1 $
+
+}
+\medskip
+
+Where $ x_1, x_2, ..., x_n $ are variables, $ a_1, a_2, ..., a_n $ and $ b $ are scalars, and $ n $ is a positive integer.
+
+\medskip
+
+Examples of linear equations include:
+\begin{itemize}
+    \item $ 5x_1 + 4x_2 = 0 $
+    \item $ \sqrt{5}x_1 + 4x_2 = 0 $
+\end{itemize}
+
+The following are \textit{NOT} linear equations:
+\begin{itemize}
+    \item $ 5\sqrt{x_1} + 4x_2 = 0 $
+    \item $ 5\sqrt{x_1} + 4x_2 = 0 $
+\end{itemize}
+
+\subsection*{Linear Systems}
+
+A \textbf{system of linear equations} (\textbf{linear system}) is a collection of one or more linear equations.
+\medskip
+
+The following is a linear system:
+
+\medskip
+{\centering
+
+$ 2x_1 + x_2 + x_3 = 1 $
+$ x_1 - 2x_2 - x_3 = 2 $
+
+}
+\medskip
+
+A linear system is:
+
+\begin{itemize}
+    \item \textbf{Consistent}: has \textit{1} solution or \textit{infinitely many} solutions.
+    \item \textbf{Inconsistent}: has \textit{no} solutions.
+\end{itemize}
+
+Two linear systems are \textbf{equivalent} if they have the same solution set.
+\medskip
+
+\subsection*{Matrix Notation}
+
+Used to represent a linear system.
+\medskip
+
+The following is an example of a $ 3 \times 3 $ \textbf{coefficient matrix}:
+
+\medskip
+{\centering
+
+$ A = \begin{bmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33}
+\end{bmatrix}  $
+
+}
+\medskip
+
+The \textbf{size} of a matrix is the number of rows and columns. Any $ m \times n $ matrix is a 2-D array of numbers.
+
+\begin{enumerate}
+    \item \textit{Example}: Solve the system.
+
+        {\centering
+
+            $ x_1 - x_2 = -4 $
+
+            $ x_1 + 2x_2 = 2 $
+
+        }
+
+        \bigskip
+
+        \textit{Naive Solution}: We get the singular equation by subtracting the equations: % TODO: clarify 
+
+        {\centering
+
+            $ 3x_2 = 6 $
+
+            $ x_2 = 2 $
+
+        }
+
+        \medskip
+
+        We can plug it back into one of the equations to solve for $ x_1 $:
+
+        {\centering
+
+            $ x_1 + 2(2) = 2 $
+
+            $ x_1 = -2 $
+
+        }
+
+        \medskip
+
+        Thus, the solution set is:
+
+        {\centering
+
+            $\begin{bmatrix}
+                -2 \\
+                 2 \\
+            \end{bmatrix}$
+
+        }
+
+\end{enumerate}
+
+\subsection*{Elementary Row Operations}
+
+\begin{enumerate}
+    \item \textbf{Interchange}: Interchange two rows.
+    \item \textbf{Scaling}: Multiply every entry in a row by a nonzero constant.
+    \item \textbf{Replacement/Row Addition}: Add a multiple of one row to another row.
+\end{enumerate}
+
+Two matrices are \textbf{row equivalent} if there is a sequence of elementary row operations that transform one matrix into the other.
+\medskip
+
+% TODO: echelon forms
+
+\end{document}
