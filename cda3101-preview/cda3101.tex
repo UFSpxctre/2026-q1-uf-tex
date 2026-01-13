@@ -1,0 +1,443 @@
+\documentclass[12pt, letterpaper]{article}
+\setlength{\parindent}{0pt}
+
+\usepackage{xcolor}
+\usepackage[bottom=0.5cm, top=0.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue,
+    filecolor = magenta,
+    urlcolor = cyan,
+}
+
+\title{CDA3101}
+\author{Ian Zou}
+
+\begin{document}
+
+\maketitle
+
+These notes are mainly adapted from \href{https://www.geeksforgeeks.org/computer-organization-architecture/computer-organization-and-architecture-tutorials/}{Computer Organization and Architecture (GeeksForGeeks)}. Some information may be supplemented from other sources.
+
+\section*{Chapter 1 - Basic Computer Structure}
+
+\subsection*{Von Neumann Architecture}
+
+\textbf{Von Neumann Architecture} is a computer design where instructions and data are stored in the same memory space.
+
+\begin{itemize}
+    \item \textbf{Fixed Program Computers}: Specific function, immutability (cannot be reprogrammed).
+    \item \textbf{Stored Program Computers}: Versatile, programmed to carry out many different tasks; applications are stored on them.
+\end{itemize}
+
+3 components make up a \textit{Von Neumann computer}:
+\begin{itemize}
+    \item \textbf{CPU (Central Processing Unit)}: Handles instructions from programs, processes data, stores information, and produces results.
+        \begin{itemize}
+            \item \textbf{CU (Control Unit)}: Manages how the processor works by sending control signals, controls input and output operations, and fetches the instructions from memory for execution.
+            \item \textbf{ALU (Arithmetic and Logic Unit)}: Performs arithmetic operations like \textit{addition} and \textit{subtraction}, logical comparisons such as \textit{comparisons}, and tasks like shifting bits.
+            \item \textbf{Registers}: Fastest type of memory located inside the CPU. They temporarily store information that the processor is currently working on. % TODO: Add different types of registers
+            \item \textbf{Bus}: Communication system that transfers data, addresses, and control signals between the CPU, memory, and I/O devices. In \textit{Von Neumann architecture}, a single bus is shared for both data and instructions.
+            \item \textbf{Clock Cycle}: Fundamental unit of time; a single "tick".
+                \begin{itemize}
+                    \item Key aspect for synchronization of CPU operations.
+                    \item Simple instructions may be executed in one cycle; complex instructions might take multiple cycles to execute.
+                    \item Measured in \textit{Hz}.
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Key Characteristics}
+
+\begin{enumerate}
+    \item \textbf{Single Memory}: Data and program instructions stored in the same memory.
+    \item \textbf{Shared Bus}: Single bus used for transferring data addresses, and control signals.
+    \item \textbf{Sequential Execution}: Instructions are executed one at a time in a sequential manner.
+\end{enumerate}
+
+\textbf{Von Neumann Bottleneck}
+
+Because tasks are completed sequentially due to the \textit{shared bus}, this is an innate architectural bottleneck of the design of \textit{Von Neumann architecture}, which hold back the competence of the CPU.
+\medskip
+
+\textbf{Applications}
+
+\textit{Von Neumann architecture} is the foundation of most modern computing systems. This includes personal computers, embedded systems, servers, mobile devices, and gaming consoles.
+
+\subsection*{Harvard Architecture}
+
+\textbf{Harvard Architecture} is a computer deisgn model where program instructions and data are stored in separate memory units accessed through independent buses.
+\medskip
+
+\textbf{Buses}: used as signal pathways.
+
+\begin{itemize}
+    \item \textbf{Data Bus}: carries data between main components.
+    \item \textbf{Data Address Bus}: carries the address of data between main components.
+    \item \textbf{Instruction Bus}: carries instructions between main components.
+    \item \textbf{Instruction Address Bus}: carries address of instructions between main components.
+\end{itemize}
+
+Having individual buses instead of the same bus mitigates the \textit{Von Neumann bottleneck}, since execution of instructions can be performed in parallel.
+\medskip
+
+\textbf{Applications}
+
+\begin{itemize}
+    \item \textbf{Digital Signal Processors (DSPs)}: audio/video processing, telecommunications, radar systems, and image processing.
+    \item \textbf{Microcontrollers (MCUs)}: embedded systems.
+    \item \textbf{Network Processors}: routers, switches, and network security appliances.
+    \item \textbf{Automotive Systems}: Engine control units, advanced driver-assistance systems, infotainment systems.
+\end{itemize}
+
+\subsection*{Flynn's Taxonomy}
+
+\textbf{Flynn's Taxonomy} classifies computer architectures according to how many \textit{processes} they can process simultaneously.
+
+\begin{itemize}
+    \item \textbf{Single-Instruction, Single-Data (SISD)}: Uniprocessor machine capable of executable a single instruction operating on a single data stream.
+        \begin{itemize}
+            \item Instructions processed in a sequential manner.
+            \item Computers called \textbf{sequential computers}.
+            \item Speed of processing element is \textit{dependent} by the \textit{rate} at which the computer can transfer information internally.
+        \end{itemize}
+    \item \textbf{Single-Instruction, Multiple-Data (SIMD)}: Multiprocessor machine capable of executing the same instruction on all the CPUs but operating on different data streams.
+        \begin{itemize}
+            \item Well suited to \textit{scientific computing}.
+            \item Involves lots of vector and matrix operations.
+        \end{itemize}
+    \item \textbf{Multiple-Instruction, Single-Data (MISD)}: Multiprocessor machine capable of executing different instructions on different PEs but all of them operating on the same dataset.
+        \begin{itemize}
+            \item Not useful in most applications.
+        \end{itemize}
+    \item \textbf{Multiple-Instruction, Multiple-Data (MIMD)}: Multiprocessor machine capable of executing multiple instructions on multiple data sets.
+        \begin{itemize}
+            \item Each PE has separate instruction and data streams.
+            \item Versatile applicability.
+            \item \textbf{Asynchronous}, unlike \textit{SIMD} and \textit{MISD}.
+            \item Generally considered superior to other models \textit{(when applicable)}.
+        \end{itemize}
+
+        Can be classified into two models:
+        \begin{itemize}
+            \item \textbf{Shared-Memory (tightly coupled)}: All processors use the same global memory, through which communication occurs.\\
+                They are \textit{easy} to program but \textit{hard} to scale and vulnerable to failure.
+            \item \textbf{Distributed Memory (loosely coupled)}: Each processor has its own local memory. Communication occurs through an \textit{interconnection network}.\\
+                More complicated to program but \textit{scalable} and \textit{fault-tolerant}.
+        \end{itemize}
+\end{itemize}
+
+\section*{Chapter 2 - Data Representation}
+
+\subsection*{Number Systems \textit{(Reiteration)}}
+
+\textbf{Decimal System}
+
+\begin{itemize}
+    \item The standard system for denoting numbers in a \textit{human-readable} format.
+    \item Also called the \textbf{base-10} system.
+\end{itemize}
+
+\textbf{Binary System}
+
+\begin{itemize}
+    \item Useful in electronic devices and compute systems because of easy performability.
+    \item Also called the \textbf{base-2} system.
+\end{itemize}
+
+\textbf{Octal System}
+
+\begin{itemize}
+    \item Also called the \textbf{base-8} system.
+    \item Used for representing file permissions in \textit{Unix/Linux} operating systems.
+\end{itemize}
+
+\textbf{Hexadecimal System}
+
+\begin{itemize}
+    \item Digits formed using 16 digits including \texttt{A}, \texttt{B}, \texttt{C}, \texttt{D}, \texttt{E}, and \texttt{F}.
+    \item Also called the \textbf{base-16} system.
+    \item Used for handling memory address.
+\end{itemize}
+
+\subsection*{Character Encoding Systems}
+
+\textbf{Character encoding} is the process of converting characters into a format that computers can parse and store.
+\medskip
+
+\textbf{American Standard Code for Information Interchange (ASCII)}
+    \begin{itemize}
+        \item \textit{7-bit encoding}, limited to English characters and a basic set of symbols.
+        \item \textit{Non-printable system codes} between 0 and 31.
+        \item Lower ASCII between 32 and 127.
+        \item Higher ASCII between 128 and 255.
+    \end{itemize}
+
+\textbf{Unicode}
+    \begin{itemize}
+        \item Universal encoding technique; can be used for any language or letter for any device.
+        \item Used without generating data corruption in a variety of systems.
+        \item Defines \textbf{code points}; they \textit{don't} define how code points are stored as sequence of bytes; that's where \textit{UTF} comes into play.
+        \item \textbf{Unicode Transformation Formats (UTFs)}: Standardized methods for encoding Unicode characters into a sequence of bytes.
+            \begin{itemize}
+                \item \textbf{UTF-16}: Uses \textit{16-bit} code units.
+                    \begin{itemize}
+                        \item Character '\texttt{B}' (\texttt{U+0042}): stored as \texttt{00 42}.
+                        \item Used internally by operating systems and programming environments for string storage and text manipulation.
+                    \end{itemize}
+                \item \textbf{UTF-8}: Uses 1 to 4 \textit{8-bit} code units.
+                    \begin{itemize}
+                        \item Can encode all valid Unicode character code points.
+                        \item Code points for \textit{lower} values are encoded with \textit{fewer} bytes.
+                        \item \textbf{Backwards compatible} with \textit{ASCII}; Unicode characters encoded in \textit{UTF-8} that are \textit{one-to-one} with \textit{ASCII} are encoded using a single byte with an identical binary value.
+                    \end{itemize}
+            \end{itemize}
+    \end{itemize}
+
+\section*{Chapter 3 - Digital Logic \& Circuits}
+
+\subsection*{Digital Electronics and Logic Gate}
+
+\begin{itemize}
+    \item \textbf{Analog System}: Process continuous signals.
+    \item \textbf{Digital System}: Works with discrete signals, often represented in binary. Stable and immune to noise interference.
+\end{itemize}
+
+\textbf{Logic Design}: process of creating and implementing digital circuits using \textit{logic gates} to perform specific functions.
+\medskip
+% TODO: Add some information about logic gates (maybe a table with images)
+
+\begin{itemize}
+    \item \textbf{Combinational Logic Circuits}: Output depends solely on the current inputs.
+        \begin{itemize}
+            \item Do not store any past information.
+            \item Output is only a function of the inputs at that specific moment.
+        \end{itemize}
+    \item \textbf{Sequential Logic Circuits}: Have memory elements that store previous states.
+        \begin{itemize}
+            \item Depends on \textit{both} current inputs \textit{and} inputs received over time.
+            \item Examples include \textbf{flip-flops} and \textbf{registers}.
+            \item Systems include \textbf{counters}, \textbf{memory devices}, and \textbf{state machines}.
+        \end{itemize}
+\end{itemize}
+
+\section*{Chapter 4 - Register Transfer \& Micro-Operations}
+
+\subsection*{Register Transfer Language (RTL)}
+
+% TODO: This section is very unfinished! In my opinion, GeeksforGeeks does not do a great job at explaining what RTL is.
+
+\textbf{Register Transfer Language (RTL)}: design abstraction used to describe the behavior and structure of digital circuits, focused on \textit{transfer of data} between registers and \textit{operations performed} on data.
+\medskip
+
+\subsection*{Micro-Operations} \label{microoperations}
+\textbf{Micro-operations} are \textit{functional/atomic} operations of a processor performed on data stored directly in the registers.
+\medskip
+
+How do micro-operations work?
+\begin{enumerate}
+    \item \textbf{Load} operation to move values into registers.
+    \item Micro-operation is performed on the registers \textit{(e.g. \textbf{add})}.
+    \item \textbf{Store} operation to save the result into memory.
+\end{enumerate}
+
+\begin{itemize}
+    \item \textbf{Register Transfer Micro-Operations}: Moving data between, in, or out of registers.
+        \begin{itemize}
+            \item \textbf{Simple Transfer (\texttt{R2 <- R1})}: Contents of \texttt{R1} copied into \texttt{R2} \textit{(unconditional)}.
+            \item \textbf{Conditional Transfer(\texttt{P: R2 <- R1})}: If \texttt{P = 1}, then the  content of \texttt{R1} is transferred to \texttt{R2} \textit{(unidirectional)}.
+            \item \textbf{Simultaneous Operations (\texttt{P: R2 <- R1, R1 <- R2})}: 2 or more simultaneous operations are separated by a \textit{comma}, performed on the same clock.
+        \end{itemize}
+    \item \textbf{Arithmetic Micro-Operations}
+        \begin{itemize}
+            \item \textbf{Addition (\texttt{R3 <- R1 + R2})}: \texttt{R1} added to \texttt{R2} and stored into \texttt{R3}.
+            \item \textbf{Subtraction (\texttt{R3 <- R1: R2})}: \texttt{R2} subtracted from \texttt{R1} and stored into \texttt{R3}.
+            \item \textbf{Increment (\texttt{R1 <- R1 + 1})}: \texttt{R1} register value incremented by 1.
+            \item \textbf{Decrement (\texttt{R1 <- R1: 1})}: \texttt{R1} register value decremented by 1.
+            \item \textbf{1's Complement (\texttt{R1 <- $ \overline{\texttt{R1}} $})}: Complement of the value inside \texttt{R1} is taken.
+            \item \textbf{2's Complement / Negation (\texttt{R1 <- $ \overline{R1} $ + 1})}: Complement of the value inside \texttt{R1} is taken, and then \texttt{1} is added.
+        \end{itemize}
+    \item \textbf{Logic Micro-Operations}
+        \begin{itemize}
+            \item TODO!
+        \end{itemize}
+    \item \textbf{Shift Micro-Operations}
+        \begin{itemize}
+            \item TODO!
+        \end{itemize}
+\end{itemize}
+
+% TODO: RTL symbol table
+% TODO: Arithmetic Micro-Operations table
+
+\subsection*{Data Transfer}
+
+\textbf{Computer Bus}: Communication system used to transfer data between components.
+\begin{itemize}
+    \item Minimizes number of connections by centralizing communication over shared pathways.
+    \item Consists of \textit{physical connections} like wires, circuits, or cables.
+    \item Components like CPU, memory, and input/output devices are connected through a bus.
+\end{itemize}
+
+\begin{enumerate}
+    \item \textbf{Address Bus} (\textit{Unidirectional})
+        \begin{itemize}
+            \item Transports \textit{memory addresses}.
+            \item Size of address bus determines how many unique memory locations can be addressed.
+            \item \textit{Example}: 4-bit address bus can address $ 2^4 = 16 $ bytes of memory.
+        \end{itemize}
+    \item \textbf{Data Bus} (\textit{Bidirectional})
+        \begin{itemize}
+            \item Transports \textit{data}, used for transferring data from microprocessor to input/output devices or memory.
+            \item Size of data bus determine how much data can be transmitted at one time.
+            \item \textit{Example}: 16-bit bus can transmit 16 bits at a time.
+        \end{itemize}
+    \item \textbf{Control Bus} (\textit{Bidirectional})
+        \begin{itemize}
+            \item Transports \textit{control information} between devices, such as orders and synchronization signals.
+            \item Transmits \textit{response signals} from the hardware.
+        \end{itemize}
+\end{enumerate}
+
+% TODO:Types of buses table
+
+\section*{Chapter 5 - Instruction Set Architecture (ISA) \& Control Flow}
+
+\subsection*{Instruction Format}
+
+\textbf{Instruction Format}: defines how instructions are represented in computer memory.
+
+\begin{itemize}
+    \item \textbf{Opcode}: Specifies the operation to be performed by the CPU.
+    \item \textbf{Operands}: Contain data or \textit{addresses} to data.
+    \item \textbf{Addressing Mode}: Specifies how to interpret or locate \textit{operand}.
+\end{itemize}
+
+\textit{Instruction formats} are classified depending on how many address fields they have.
+
+\begin{itemize}
+    \item \textbf{Zero Address Instructions}
+        \begin{itemize}
+            \item Do not specify \textit{operands}.
+            \item Operate on data stored in registers or memory locatoins implicitly defined by instruction.
+            \item \textit{Example: Stack-based computers (which do not use the address field)}.
+        \end{itemize}
+    \item \textbf{One Address Instructions}
+        \begin{itemize}
+            \item Specify one \textit{operand}.
+            \item Result may be stored in the same or different location.
+        \end{itemize}
+    \item \textbf{Two Address Instructions}
+        \begin{itemize}
+            \item Specify two \textit{operands}.
+            \item Result may be stored in the same or different location.
+            \item \textit{Example: Commercial computers.}
+        \end{itemize}
+    \item \textbf{Three Address Instructions} \textcolor{gray}{(TODO: It's just more of the same slop as the other two, omitted...)}
+\end{itemize}
+
+CPU organization typically consists of three types based on the number of address fields:
+\begin{itemize}
+    \item \textbf{Single Accumulator Organization}: One special register (\textbf{accumulator}, typically \texttt{\%rax} register in x86 assembly) to store and process data for operations.
+    \item \textbf{General Register Organization}: Several general-purpose registers to hold \textit{operands} for operations.
+    \item \textbf{Stack Organization}: Works with a stack, processing data using the top elements without directly specifying \textit{operands}.
+\end{itemize}
+
+\subsection*{Addressing Modes}
+
+\textbf{Addressing modes}: techniques used by CPU to identify the location of the \textit{operands} needed for an instruction.
+
+\begin{itemize}
+    \item \textbf{Implicit Addressing (Implied)}
+        \begin{itemize}
+            \item Does not mention the \textit{operand} directly.
+            \item Used by special instructions such as \texttt{CLA}, \texttt{PUSH}, or \texttt{RET}; the \textit{operand} is automatically known for the instruction itself.
+        \end{itemize}
+    \item \textbf{Immediate Addressing}
+        \begin{itemize}
+            \item \textit{Operand} is part of the instruction itself.
+            \item Value is known while writing the program.
+            \item \textit{Example:} \texttt{mov rax, 5}. \texttt{5} is the \textit{immediate value} moved into the \texttt{rax} register.
+        \end{itemize}
+    \item \textbf{Direct Addressing}
+        \begin{itemize}
+            \item Instruction includes \textit{memory address} of \textit{operand}.
+            \item \textit{Example:} \texttt{load rax, 1000} \\ \texttt{1000} is the \textit{memory address} loaded into the \texttt{rax} register.
+        \end{itemize}
+    \item \textbf{Indirect Addressing}
+        \begin{itemize}
+            \item Instruction includes \textit{memory address} of register or memory location that holds the actual address of the \textit{operand}.
+            \item \textit{Example:} \texttt{load r1, r2} \\ The \textit{memory address} stored in \texttt{r2} is loaded into the \texttt{r1} register.
+        \end{itemize}
+    \item \textbf{Register Addressing}
+        \begin{itemize}
+            \item \textit{Operand} located in a CPU register specified by the instruction.
+            \item \textit{Example:} \texttt{mov rax, r2} \\ The value at the register \texttt{r2} is moved into the \texttt{rax} register.
+        \end{itemize}
+    \item \textbf{Register Indirect Addressing}
+        \begin{itemize}
+            \item Memory address of \textit{operand} located in a CPU register specified by the instruction.
+            \item \textit{Example:} \texttt{mov rax, [r2]} \\ The memory address at the register \texttt{r2} is dereferenced, and the value is moved into the \texttt{rax} register.
+        \end{itemize}
+    \item \textbf{Displacement Addressing} \textcolor{gray}{(TODO)}
+    \item \textbf{Stack Addressing}
+        \begin{itemize}
+            \item \textit{Operand} implicitly taken from top of the stack.
+            \item \textit{Example:} \texttt{push}, \texttt{pop}
+        \end{itemize}
+\end{itemize}
+
+\subsection*{Instruction Set Architecture \& Microarchitecture}
+
+\begin{itemize}
+    \item \textbf{Instruction Set Architecture (ISA)}
+        \begin{itemize}
+            \item Language of the CPU that tells it what operations it can perform.
+            \item \textbf{MIPS}: Divides instructions into three main types.
+                \begin{enumerate}
+                    \item Arithmetic/Logic Instructions: basic operations on data stored in registers.
+                    \item Data Transfer Instructions: move data between memory and registers.
+                    \item Branch/Jump Instructions: control execution flow.
+                \end{enumerate}
+                \begin{itemize}
+                    \item 32-bit ISA.
+                \end{itemize}
+        \end{itemize}
+    \item \textbf{Microarchitecture}
+        \begin{itemize}
+            \item Specific components that handle the calculations, such as ALU and cache.
+            \item Processors can have the same ISA but different microarchitecture.
+        \end{itemize}
+\end{itemize}
+
+\textbf{RISC} and \textbf{CISC} are two different ISAs of designing computer processors.
+
+\begin{itemize}
+    \item \textbf{Reduced Instruction Set Architecture (RISC)}: Simplifies processor design by using a small, uniform set of instructions.
+        \begin{itemize}
+            \item Each instruction performs a basic instruction.
+            \item Designed to execute in a single clock cycle.
+            \item Uniform instruction size optimizes for pipelining.
+            \item More general-purpose registers.
+            \item Simple addressing modes.
+        \end{itemize}
+    \item \textbf{Complex Instruction Set Architecture (CISC)}: Reduces the number of instructions a program needs by using a large set of complex. variable-length instructions.
+        \begin{itemize}
+            \item Each instruction can perform multiple operations.
+            \item May take multiple clock cycles.
+            \item Instructions are larger than one-word size.
+            \item Less number of general-purpose registers.
+            \item Complex addressing modes.
+        \end{itemize}
+\end{itemize}
+
+% TODO: Table of ISAs
+
+\section*{Chapter 6 - Computer Arithmetic}
+
+\subsection*{Arithmetic Logic Unit (ALU)}
+The \textbf{arithmetic logic unit (ALU)} and the \textbf{data path} are core components of the CPU that work together to \nameref{microoperations}{micro-operations} on data stored in the CPU registers.
+
+\end{document}
