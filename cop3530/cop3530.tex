@@ -30,11 +30,17 @@
 
 An \textbf{algorithm} is a step-by-step procedure for solving a problem.
 
-\section*{Algorithm vs. Program}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Algorithm}          & \textbf{Program}                                  \\ \hline
+Design-focused              & Implementation-focused                            \\ \hline
+Implementation-independent  & The implementation                                \\ \hline
+Theory                      & Practice                                          \\ \hline
+\end{tabular}
+\end{center}
 
-% TODO: table of a program vs algorithm
-
-\section*{Benchmarking Algorithms}
+\section*{Benchmarking}
 
 Not all algorithms perform equally; there are some algorithms that are much more efficient than other \textit{naive} algorithms.
 
@@ -104,26 +110,26 @@ Instead, we measure in terms of their \textit{growth rate}; as the load increase
         \end{itemize}
     \item \textbf{Big-$\Theta$}: Upper + Lower Bound
         \begin{itemize}
-            \item $ If T(n) = O(g(n)) $ and $ T(n) = \Omega(g(n)) $
+            \item If $ T(n) = O(g(n)) $ and $ T(n) = \Omega(g(n)) $
             \item $ g(n) $ is a tight upper and lower bound on the growth rate of $ T(n) $.
         \end{itemize}
 \end{itemize}
 
 \subsubsection*{Common Growth Rates}
 \begin{itemize}
-    \item \textbf{Constant Growth Rate} ($ O(1) $)
+    \item \textbf{Constant Growth Rate} $ O(1) $
         \begin{itemize}
             \item Processing time is \textit{independent} of input $ n $.
         \end{itemize}
-    \item \textbf{Linear Growth Rate} ($ O(n) $)
+    \item \textbf{Linear Growth Rate} $ O(n) $
         \begin{itemize}
             \item Processing time scales linearly with input $ n $.
         \end{itemize}
-    \item \textbf{Quadratic Growth Rate} ($ O(n^2) $)
+    \item \textbf{Quadratic Growth Rate} $ O(n^2) $
         \begin{itemize}
             \item Processing time incrases in proportion to the square of input $ n $.
         \end{itemize}
-    \item \textbf{Logarithmic Growth Rate} ($ O(\log(n)) $)
+    \item \textbf{Logarithmic Growth Rate} $ O(\log(n)) $
         \begin{itemize}
             \item Processing time incrases in proportion to the $ \log(n) $.
         \end{itemize}
