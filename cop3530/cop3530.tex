@@ -1,0 +1,132 @@
+\documentclass[12pt, letterpaper]{article}
+\setlength{\parindent}{0pt}
+
+\usepackage{xcolor}
+\usepackage[bottom=0.5cm, top=0.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue,
+    filecolor = magenta,
+    urlcolor = cyan,
+}
+
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+
+\title{COP3530}
+\author{Ian Zou}
+
+\begin{document}
+
+\maketitle
+
+\part{Algorithm Analysis}
+
+\section*{What is an Algorithm?}
+
+An \textbf{algorithm} is a step-by-step procedure for solving a problem.
+
+\section*{Algorithm vs. Program}
+
+% TODO: table of a program vs algorithm
+
+\section*{Benchmarking Algorithms}
+
+Not all algorithms perform equally; there are some algorithms that are much more efficient than other \textit{naive} algorithms.
+
+\section*{Measuring Performance}
+
+We can measure an algorithm's performance in a plethora of ways:
+
+\begin{itemize}
+    \item Time
+    \item Space
+    \item Energy Consumption
+    \item Error Rates (Approximation Algorithms)
+\end{itemize}
+
+\subsection*{Approach 1 - Timing}
+
+Simply mark the time of the algorithm's start and end, and take the \textit{delta time} to find out how long the algorithm took. For example, in C you could use the \texttt{timespec} struct, or in C++ you could use \texttt{std::clock}.
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Pros}     & \textbf{Cons}                                     \\ \hline
+Easy to measure   & Machine-dependent                                 \\ \hline
+Easy to interpret & Compiler-dependent                                \\ \hline
+                  & Implementation-dependent                          \\ \hline
+                  & Unpredictable for small inputs                    \\ \hline
+                  & Input dependence not captured                     \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection*{Approach 2 - Counting}
+
+Count the number of times each operation will be performed by interpretting the code.
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Pros}               & \textbf{Cons}                         \\ \hline
+Machine-independent         & All operations are equal              \\ \hline
+Captures input dependence   & Tedious to compute                    \\ \hline
+                            & Implementation-dependent              \\ \hline
+                            & Time not captured                     \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection*{Approach 3 - Asymptotic Behavior / Order of Growth}
+
+We cannot always measure algorithms in absolute units (such as seconds for time). Different hardware may result in different times taken for an algorithm to complete, and to compare two results with extraneous factors is meaningless.
+
+Instead, we measure in terms of their \textit{growth rate}; as the load increases, how much mores resources will we need to complete the algorithm?
+
+\subsubsection*{Time Complexity}
+
+\textbf{Time complexity} describes the asymptotic growth rate of the algorithm's time required as the input increases.
+
+\subsubsection*{Big-O Notation}
+\begin{itemize}
+    \item \textbf{Big-O}: Upper Bound
+        \begin{itemize}
+            \item If there exists two positive constants $ n_0$ and $ c $ such that $ T(n) \leq c \cdot f(n) $ for all $ n \geq n_0 $.
+            \item $ f(n) $ is an upper bound on the performance (growth rate of $ T(n) $).
+        \end{itemize}
+    \item \textbf{Big-$\Omega$}: Lower Bound
+        \begin{itemize}
+            \item If there exists two positive constants $ n_0$ and $ c $ such that $ T(n) \geq c \cdot g(n) $ for all $ n \geq n_0 $.
+            \item $ g(n) $ is a lower bound on the growth rate of $ T(n) $.
+        \end{itemize}
+    \item \textbf{Big-$\Theta$}: Upper + Lower Bound
+        \begin{itemize}
+            \item $ If T(n) = O(g(n)) $ and $ T(n) = \Omega(g(n)) $
+            \item $ g(n) $ is a tight upper and lower bound on the growth rate of $ T(n) $.
+        \end{itemize}
+\end{itemize}
+
+\subsubsection*{Common Growth Rates}
+\begin{itemize}
+    \item \textbf{Constant Growth Rate} ($ O(1) $)
+        \begin{itemize}
+            \item Processing time is \textit{independent} of input $ n $.
+        \end{itemize}
+    \item \textbf{Linear Growth Rate} ($ O(n) $)
+        \begin{itemize}
+            \item Processing time scales linearly with input $ n $.
+        \end{itemize}
+    \item \textbf{Quadratic Growth Rate} ($ O(n^2) $)
+        \begin{itemize}
+            \item Processing time incrases in proportion to the square of input $ n $.
+        \end{itemize}
+    \item \textbf{Logarithmic Growth Rate} ($ O(\log(n)) $)
+        \begin{itemize}
+            \item Processing time incrases in proportion to the $ \log(n) $.
+        \end{itemize}
+\end{itemize}
+
+\end{document}
