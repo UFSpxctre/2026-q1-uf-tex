@@ -395,6 +395,7 @@ CPU organization typically consists of three types based on the number of addres
     \item \textbf{Instruction Set Architecture (ISA)}
         \begin{itemize}
             \item Language of the CPU that tells it what operations it can perform.
+            \item \textbf{Accumulator Architecture}: Simple architecture focused on one special register: the \textbf{accumulator}.
             \item \textbf{MIPS}: Divides instructions into three main types.
                 \begin{enumerate}
                     \item Arithmetic/Logic Instructions: basic operations on data stored in registers.
@@ -439,5 +440,44 @@ CPU organization typically consists of three types based on the number of addres
 
 \subsection*{Arithmetic Logic Unit (ALU)}
 The \textbf{arithmetic logic unit (ALU)} and the \textbf{data path} are core components of the CPU that work together to \nameref{microoperations}{micro-operations} on data stored in the CPU registers.
+
+\section*{Chapter 7 - Memory Organization}
+
+\subsection*{Memory}
+
+\textbf{Memory} is an essential part of the system, enabling the CPU to execute programs efficiently.
+
+\begin{itemize}
+    \item \textbf{Memory Cell}: The "atom" of computers. Stores 1 bit of data with a unique address.
+    \item \textbf{Word}: Group of bits, usually known as a \textbf{byte}.
+\end{itemize}
+
+Different types of memory are classified based on their speed and purpose:
+
+\begin{itemize}
+    \item \textbf{Primary Memory}: Direct access by CPU. Super fast but limited in capacity.
+    \item \textbf{Secondary Memory}: Used for long-term storage. Trades capacity for speed.
+\end{itemize}
+
+\subsection*{Random Access Memory (RAM)}
+
+\textbf{RAM} is the computer's main source of memory, used for ephemeral storage that is lost on power-off.
+
+\begin{itemize}
+    \item \textbf{SRAM (Static RAM)}: Fast, used in cache, retains data while powered.
+    \item \textbf{DRAM (Dynamic RAM)}: Slower, requires periodic refresh.
+\end{itemize}
+
+% TODO: elaborate on RAM
+
+\subsection*{Read Only Memory (ROM)}
+
+\textbf{ROM} is non-volatile memory that stores essential instructions permanently.
+
+% TODO: elaborate on ROM
+
+\subsection*{Secondary Memory}
+
+This type of memory includes devices such as hard drives, solid state drives, and portable USB sticks. These devices are usually much slower than primary memory devices, and thus are not viable for real-time direct CPU access.
 
 \end{document}
