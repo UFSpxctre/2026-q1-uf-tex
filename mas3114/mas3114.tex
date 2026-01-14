@@ -162,6 +162,75 @@ Two matrices are \textbf{row equivalent} if there is a sequence of elementary ro
 
 \subsection*{Echelon Forms}
 
-% TODO: echelon forms
+\textbf{Row Echelon Forms} help us determine whether a matrix is \textit{consistent}.
+
+\begin{itemize}
+    \item \textbf{Row Echelon Form (REF)}: Leading entries of each row are \textbf{pivots}, and these pivots propagate down and rightwards.
+    \item \textbf{Reduced Row Echelon Form (RREF)}: In addition to REF, each pivot must be $ 1 $ and each pivot column should have no other nonzero entries.
+\end{itemize}
+
+If $ A $ is a matrix in REF or RREF, the first nonzero (leading) entry in each row is a pivot.
+\begin{itemize}
+    \item A \textbf{pivot position} in $ A $ is a location that corresponds to a pivot.
+    \item A \textbf{pivot column} is a column in $ A $ that contains a pivot position.
+    \item The number of pivot positions in a matrix $ A $ is called the \textbf{rank} of $ A $.
+    \item \textbf{Pivot Variables}: Variables that correspond to the pivot columns. Variables that do not correspond are called \textbf{free variables}.
+    \item If the system is inconsistent, the solution set is empty even though the matrix has free variables. % TODO: fact check?
+\end{itemize}
+
+\section*{Lecture 2}
+
+\subsection*{Row Reduction Algorithm}
+
+\begin{enumerate}
+    \item From the left, find the first pivot column.
+    \item Interchange rows so that the top entry (pivot) in the column is nonzero.
+
+        NOTE: If $ 1 $ or $ -1 $ is in the column, we prefer these entries as the pivot.
+    \item Use row replacement operations to make all entries beneath the pivot in the pivot column zero.
+    \item Repeat steps 1-3 on the submatrix consisting of all rows below the most recently obtained pivot until we reach the bottom row or there are no remaining nonzero rows.
+
+        NOTE: After step 4, our matrix will be in REF.
+    \item Beginning with the rightmost pivot and working left and upwards, use scaling operations to set the pivot to 1.
+    \item Use row replacement operations to make all entries above the pivot in the pivot column zero.
+    \item Repeat steps 5-6 until all pivots are 1 and there are no nonzero entries in the pivot columns.
+
+        NOTE: Our matrix will be in RREF.
+\end{enumerate}
+
+\subsection*{Existence and Uniqueness Theorem}
+
+A linear system is \textit{consistent} \textit{\textbf{if and only if}} the rightmost column of the augmented matrix is not a pivot column.
+
+If a linear system is consistent, then:
+
+\begin{enumerate}
+    \item It has a unique solution when there is no free variable.
+    \item It has infinitely many solutions when there is a free variable.
+\end{enumerate}
+
+% TODO: Rouche-Capelli
+
+\subsection*{Rouche-Capelli Theorem}
+
+A linear system is \textit{consistent} \textit{\textbf{if and only if}}:
+
+\medskip
+{\centering
+
+$ \textrm{rank}(A) = \textrm{rank}([ A \hspace{4pt} b ]) $
+
+}
+\medskip
+
+If a linear system is consistent, then:
+
+\begin{enumerate}
+    \item It has a unique solution when $ \textrm{rank}(A) = n $.
+    \item It has a infinitely many solutions when $ \textrm{rank}(A) < n $.
+\end{enumerate}
+
+Where $ n $ is the number of columns in the matrix $ A $.
+
 
 \end{document}
