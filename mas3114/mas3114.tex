@@ -158,6 +158,8 @@ The \textbf{size} of a matrix is the number of rows and columns. Any $ m \times 
 \end{enumerate}
 
 Two matrices are \textbf{row equivalent} if there is a sequence of elementary row operations that transform one matrix into the other.
+
+\textit{Row equivalent} augmented matrices have the \textit{same solution set}.
 \medskip
 
 \subsection*{Echelon Forms}
@@ -173,7 +175,7 @@ If $ A $ is a matrix in REF or RREF, the first nonzero (leading) entry in each r
 \begin{itemize}
     \item A \textbf{pivot position} in $ A $ is a location that corresponds to a pivot.
     \item A \textbf{pivot column} is a column in $ A $ that contains a pivot position.
-    \item The number of pivot positions in a matrix $ A $ is called the \textbf{rank} of $ A $.
+    \item \textbf{Rank}: The number of pivot positions in the matrix $ A $.
     \item \textbf{Pivot Variables}: Variables that correspond to the pivot columns. Variables that do not correspond are called \textbf{free variables}.
     \item If the system is inconsistent, the solution set is empty even though the matrix has free variables. % TODO: fact check?
 \end{itemize}
