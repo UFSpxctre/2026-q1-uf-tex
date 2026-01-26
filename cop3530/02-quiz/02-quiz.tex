@@ -1,0 +1,82 @@
+\documentclass[12pt, letterpaper]{article}
+\setlength{\parindent}{0pt}
+
+\usepackage{xcolor}
+\usepackage[bottom=0.5cm, top=0.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{hyperref}
+
+\usepackage{amssymb}
+
+\usepackage{minted}
+
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue,
+    filecolor = magenta,
+    urlcolor = cyan,
+}
+
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+
+\title{COP3530 - Quiz 2 (Unique Book Titles)}
+\author{Ian Zou}
+
+\begin{document}
+
+\maketitle
+
+\part*{Part I - Algorithm Design}
+
+This is a naive solution that is implemented without C++ Sets and Tables.
+\bigskip
+
+\begin{minted}[
+        linenos,
+        frame=lines,
+        framesep=2mm,
+        baselinestretch=1.2,
+        breaklines,
+        mathescape,
+]
+{cpp}
+#include <vector>
+#include <string>
+#include <iostream>
+
+bool is_in_vec(const std::vector<std::string>& vec, const std::string& query) {
+    for (size_t i = 0; i < vec.size(); ++i) {
+        if (vec.at(i) == query) {
+            return true;
+        }
+    }
+
+    return false;
+}
+std::vector<std::string> unique_strings(const std::vector<std::vector<std::string>>& strings) {
+    std::vector<std::string> uniques = {};
+    for (size_t row = 0; row < strings.size(); ++row) {
+        for (size_t col = 0; col < strings[row].size(); ++col) {
+            if (is_in_vec(uniques, strings[row][col])) {
+                continue;
+            }
+
+            uniques.push_back(strings[row][col]);
+        }
+    }
+
+    return uniques;
+}
+\end{minted}
+
+\part*{Part II - Algorithm Analysis}
+
+The function \texttt{unique\_strings} iterates through the entire 2-D array, checking whether each string is in \texttt{uniques} with the function \texttt{is\_in\_vec}, which will iterate through the provided vector to check whether the string is within that vector. If \texttt{is\_in\_vec} returns false, the unique string will be pushed to the back of the \texttt{uniques} vector.
+\medskip
+
+In the worst case, we assume that all strings have $ c $ characters and all strings are unique. We must iterate through the characters of each string in the 2-D array, and for each string, check whether there is a string in the \texttt{uniques} array that is the same as the current string in the 2-D array. Since each string is unique, the worst-case time complexity of \texttt{is\_in\_vec} is $ \Omega (n * c) $, where $ n $ is the number of strings in the array. There are $ n * m $ strings in the 2-D array, where $ n $ is the number of rows and $ m $ is the number of columns. Thus, the worst-case time complexity of \texttt{unique\_strings}, therefore, is $ \Omega (n * m * c) $.
+\medskip
+
+In the worst case, since we assume all strings have $ c $ characters annd all are strings are unique, the \texttt{uniques} vector will be of length $ n * m $, where $ n $ is the number of rows and $ m $ is the number of columns. The worst-case auxiliary space complexity of \texttt{unique\_strings}, therefore, is $ \Omega (n * m * c) $.
+
+\end{document}
