@@ -315,4 +315,32 @@ Let $ A $ be an $ m \times n $ matrix. The following are logically equivalent:
     \item The linear system with augmented matrix $ \begin{bmatrix}a_1 & a_2 & ... & a_n & b \end{bmatrix} $ is consistent.
 \end{enumerate}
 
+\section*{Lecture 5}
+
+\subsection*{Homogeneous Systems}
+
+A \textbf{homogeneous} linear system can be written in the form $ Ax = 0 $, where $ A $ is an $ m \times n $ matrix and $ 0 \in \mathbb{R}^m $ is the zero vector.
+
+\begin{itemize}
+    \item Always has at least one solution $ x = 0 $ (\textbf{trivial solution})
+    \item Always consistent
+    \item \textbf{Nontrivial Solution} $ \leftrightarrow $ 1 or more free variables
+\end{itemize}
+
+We can thus derive the following theorems regarding homogeneous systems. Let $ f $ be the number of free variables in the system:
+
+\begin{enumerate}
+    \item $ f = 0 \rightarrow $ \textbf{trivial solution} $ x = 0 $ with solution set $ \textrm{Span} \{ 0 \} $
+    \item $ f = 1 \rightarrow $ line with solution set $ \textrm{Span} \{ v \} $
+    \item $ f = 2 \rightarrow $ plane with solution set $ \textrm{Span} \{ u, v \} $
+\end{enumerate}
+
+\subsection*{Nonhomogeneous Linear Systems}
+
+A \textbf{nonhomogeneous} linear system can be written in the form $ Ax = b $, where $ b \neq 0 $.
+
+\begin{itemize}
+    \item Solution sets of an homogeneous system represented by $ Ax = 0 $ shifted by a particular solution $ p $.
+\end{itemize}
+
 \end{document}
