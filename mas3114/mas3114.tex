@@ -300,6 +300,10 @@ Let $ A = \begin{bmatrix}
     a_1 & a_2 & ... & a_n
 \end{bmatrix} $ be an $ m \times n $ matrix and $ x \in \mathbb{R}^n $. The \textbf{product} of $ A $ and $ x $ is the linear combination of the columns of $ A $ using the corresponding entries in $ x $ as weights.
 
+\subsection*{Row-Vector Rule}
+
+Each element of the resulting vector is found by taking the \textit{dot product} of a row from the first matrix and a column from the second matrix.
+
 \subsection*{Matrix Equations}
 
 A \textbf{matrix equation} is an equation of the form $ Ax = b $, where $ A $ is a matrix. They can be represented as a linear system, vector equations, or an augmented matrix.
@@ -314,6 +318,10 @@ Let $ A $ be an $ m \times n $ matrix. The following are logically equivalent:
     \item $ b $ is in $ \textrm{Span} \{ a_1, a_2, ..., a_n \} $.
     \item The linear system with augmented matrix $ \begin{bmatrix}a_1 & a_2 & ... & a_n & b \end{bmatrix} $ is consistent.
 \end{enumerate}
+
+\bigskip
+
+In summary, the product of two matrices is \textit{consistent} for all $ b $ only if there is a pivot in every row.
 
 \section*{Lecture 5}
 
@@ -340,7 +348,12 @@ We can thus derive the following theorems regarding homogeneous systems. Let $ f
 A \textbf{nonhomogeneous} linear system can be written in the form $ Ax = b $, where $ b \neq 0 $.
 
 \begin{itemize}
-    \item Solution sets of an homogeneous system represented by $ Ax = 0 $ shifted by a particular solution $ p $.
+    \item Solution sets of a homogeneous system represented by $ Ax = 0 $ shifted by a particular solution $ p $.
+    \item The particular solution $ p $ can be found by:
+        \begin{enumerate}
+            \item Reducing the matrix to RREF.
+            \item Setting free variables to $ 0 $.
+        \end{enumerate}
 \end{itemize}
 
 \end{document}
