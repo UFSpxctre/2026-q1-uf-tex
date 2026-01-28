@@ -343,9 +343,9 @@ We can thus derive the following theorems regarding homogeneous systems. Let $ f
     \item $ f = 2 \rightarrow $ plane with solution set $ \textrm{Span} \{ u, v \} $
 \end{enumerate}
 
-\subsection*{Nonhomogeneous Linear Systems}
+\subsection*{Non-homogeneous Linear Systems}
 
-A \textbf{nonhomogeneous} linear system can be written in the form $ Ax = b $, where $ b \neq 0 $.
+A \textbf{non-homogeneous} linear system can be written in the form $ Ax = b $, where $ b \neq 0 $.
 
 \begin{itemize}
     \item Solution sets of a homogeneous system represented by $ Ax = 0 $ shifted by a particular solution $ p $.
@@ -355,5 +355,52 @@ A \textbf{nonhomogeneous} linear system can be written in the form $ Ax = b $, w
             \item Setting free variables to $ 0 $.
         \end{enumerate}
 \end{itemize}
+
+\section*{Lecture 6}
+
+\subsection*{Linear Independence}
+
+A set of vectors $ \{v_1, v_2, ..., v_p \} $ in $ \mathbb{R^n} $ is \textbf{linearly independent} if the vector equation
+
+\medskip
+{\centering
+
+$ x_1v_1 + x_2v_2 + ... + x_pv_p = 0 $
+
+}
+\medskip
+
+has only the trivial solution.
+\bigskip
+
+Thus, an $ m \times n $ augmented matrix $ [A \:|\: b] $, where $ b $ is the zero column vector, is linearly independent if:
+\begin{itemize}
+    \item There are no nontrivial solutions (only the trivial solution).
+    \item There are no free variables.
+    \item There are pivots equal to $ m $, the number of rows, in the matrix.
+\end{itemize}
+
+\subsection*{Special Cases for Linear Dependence}
+
+\begin{enumerate}
+    \item A set of one vector: $ \{ v_1 \} $
+        \medskip
+
+        $ \{ v_1 \} $ is linearly independent $ \leftrightarrow v_1 \neq 0 $ 
+    \item A set of two vectors: $ \{ v_1, v_2 \} $
+        \medskip
+
+        $ \{v_1, v_2 \} $ is linearly independent $ \leftrightarrow v_2 \neq cv_1 $
+        \medskip
+
+        Thus, a set of two vectors is linearly independent \textbf{iif} the two vectors are not \textit{scalar multiples} of each other.
+    \item A set of two or more vectors: $ \{ v_1, v_2, ..., v_p \} $
+        \medskip
+
+        The set $ S = \{ v_1, v_2, ..., v_p \} $ is linearly independent only if \textbf{all} vectors are \textit{not} linear combinations.
+        \medskip
+
+        Thus, a set of two or more vectors is linearly independent \textbf{iif} there are no vectors that are \textit{scalar multiples} of each other.
+\end{enumerate}
 
 \end{document}
