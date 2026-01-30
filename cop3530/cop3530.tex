@@ -137,8 +137,6 @@ Instead, we measure in terms of their \textit{growth rate}; as the load increase
 
 \subsection*{Arrays}
 
-Arrays are a type of list with a few properties:
-
 \begin{itemize}
     \item Fixed size
     \item Contiguous in memory
@@ -158,5 +156,47 @@ Arrays are a type of list with a few properties:
     \item Pointer overhead on traversal
 \end{itemize}
 
-% TODO: stacks
+\subsection*{ADT: Stacks}
+
+The Stack ADT is characterized by the \textbf{LIFO} principle. Elements are stacked like plates, with the most recent one on the top.
+
+\subsubsection*{Operations}
+
+\begin{itemize}
+    \item \texttt{push(item)}: insert an element to top of stack
+    \item \texttt{pop()}: removes last inserted element (top of stack)
+    \item \texttt{peek()}: returns last inserted element (C++ STL: \texttt{top()})
+    \item \texttt{size()}: returns the number of elements stored
+    \item \texttt{empty()}: returns true if the stack size is 0
+\end{itemize}
+
+\subsubsection*{Stacks: Array Implementation}
+
+\begin{itemize}
+    \item Constant-time operations
+    \item Fixed size, no random access
+\end{itemize}
+
+\subsubsection*{Stacks: Linked List Implementation}
+
+\begin{itemize}
+    \item Constant-time operations
+    \item Variable size
+    \item Requires more memory
+    \item More overhead (due to indirection with pointers to heap)
+\end{itemize}
+
+\section*{ADT: Queues}
+
+The Queue ADT is characterized by the \textbf{FIFO} principle. Analogous to a line, the first person to enter the queue is the first person to be removed.
+
+\subsubsection*{Operations}
+
+\begin{itemize}
+    \item \texttt{enqueue(item)}: inserts an element to the back of queue
+    \item \texttt{dequeue()}: removes first inserted element (front of queue)
+    \item \texttt{size()}: returns the number of elements stored
+    \item \texttt{empty()}: returns true if the queue size is 0
+\end{itemize}
+
 \end{document}
