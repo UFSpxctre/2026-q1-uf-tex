@@ -1,0 +1,7 @@
+#!/bin/sh
+
+TARGET=$( find . -type f -name "*.pdf" | rofi -dmenu -no-custom -p "Open:")
+
+if [ ! -z $TARGET ]; then
+    zathura $TARGET
+fi
