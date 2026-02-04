@@ -390,4 +390,44 @@ Thus, an $ m \times n $ augmented matrix $ [A \:|\: b] $, where $ b $ is the zer
         Thus, a set of two or more vectors is linearly independent \textbf{iif} there are no vectors that are \textit{scalar multiples} of each other.
 \end{enumerate}
 
+% TODO: a few more special cases must be documented here
+
+\section*{Lecture 7}
+
+\section*{Lecture 8}
+
+\subsection*{Geometric Linear Transformations}
+
+If $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is a linear transformation, we can write $ T(x) = Ax $ , where $ A = \begin{bmatrix} T(e_1) & T(e_2) & ... & T(e_n) \end{bmatrix} $ is the $ m \times n $ standard matrix.
+
+\subsection*{Onto and One-to-One Transformations}
+
+A mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto} if the equation $ T(x) = b $ has a solution for each $ b \in \mathbb{R}^m $. That is, if $ T(x) = b $ can be treated as \textbf{consistent} linear system, it is \textbf{onto}.
+\bigskip
+
+A mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{one-to-one} if the equation $ T(x) = b $ has a solution for each $ b \in \mathbb{R}^m $ and the solution is \textbf{unique}. That is, $ T(x) = b $ is the image of exactly one $ x \in \mathbb{R}^n $.
+
+\subsection*{Theorem: One-to-One Linear Transformations}
+
+If the mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is a linear transformation, then
+
+\medskip
+{\centering
+
+$ T $ is \textbf{one-to-one} $ \leftrightarrow T(x) = 0 $ has only the \textbf{trivial solution}.
+
+}
+\medskip
+
+That is, if the linear transformation $ T $ can be written as a homogenous system $ T(x) = 0 $ with a trivial solution, the solution set is a \textbf{point}, and thus is \textbf{unique}.
+
+\subsection*{Theorem: One-to-One Relation to Matrix Columns}
+
+If the mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is a linear transformation and the matrix $ A $ is the standard matrix of $ T $, then
+
+\begin{itemize}
+    \item $ T $ maps $ \mathbb{R}^n $ onto $ \mathbb{R}^m  \leftrightarrow $ the columns of $ A $ span $ \mathbb{R}^m $.
+    \item $ T $ is one-to-one $ \leftrightarrow $ the columns of $ A $ are linearly independent.
+\end{itemize}
+
 \end{document}
