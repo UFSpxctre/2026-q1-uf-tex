@@ -1,0 +1,116 @@
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage{../spreamble}
+
+\title{CIS4204}
+\author{Ian Zou}
+
+\begin{document}
+
+\maketitle
+
+\part*{4 - Networking Fundamentals}
+
+\section*{Local Area Network}
+
+A \textbf{LAN (local area network)} is a network restricted to a small geographical area.
+
+\section*{Wide Area Network}
+
+\textbf{WAN (Wide Area Network)} is a larger network that connects multiple LANs across potentially great distances.
+
+\section*{Internet}
+
+The \textbf{internet} itself is an example of a WAN. It is a global network of networks that uses a standardized protocol to allow billions of devices to interoperate.
+
+\section*{Network Topology}
+
+\begin{itemize}
+    \item \textbf{Physical Topology}: The cables that are plugged in.
+    \item \textbf{Logical Topology}: The way the data flows.
+\end{itemize}
+
+\subsection*{Common Topology Types}
+
+\begin{itemize}
+    \item \textbf{Point-to-Point (P2P)}: Direct link between two nodes.
+        \begin{itemize}
+            \item \textcolor{green}{Pros:} Simple and high-bandwidth.
+            \item \textcolor{red}{Cons:} Not very scalable.
+        \end{itemize}
+    \item \textbf{Bus}: All devices share a single backbone cable.
+        \begin{itemize}
+            \item \textcolor{green}{Pros:} Cost-effective for simple networks.
+            \item \textcolor{red}{Cons:} Prone to collisions and backbone failure.
+        \end{itemize}
+    \item \textbf{Ring}: Each devices connects two neighbors.
+        \begin{itemize}
+            \item Token passing.
+            \item \textcolor{red}{Cons:} One node failing can cause the entire network to fail.
+        \end{itemize}
+    \item \textbf{Star}: All devices connect to a \textbf{switch}.
+        \begin{itemize}
+            \item \textcolor{green}{Pros:} Easy to manage and fault-isolated.
+            \item \textcolor{red}{Cons:} Switch failure causes entire network to fail.
+        \end{itemize}
+    \item \textbf{Mesh}: Every device connects to many or all other devices.
+        \begin{itemize}
+            \item \textbf{Full}: Node connects to all other nodes.
+            \item \textbf{Partial}: Node connects to some of the nodes.
+            \item \textcolor{green}{Pros:} Highly reliable and secure.
+            \item \textcolor{red}{Cons:} Complex and expensive.
+        \end{itemize}
+    \item \textbf{Tree}: Hierarchical structure combining a star and a bus.
+        \begin{itemize}
+            \item \textcolor{green}{Pros:} Scalable.
+            \item \textcolor{red}{Cons:} Central hub failure impacts the entire network.
+        \end{itemize}
+    \item \textbf{Hybrid}: Combination of topologies.
+        \begin{itemize}
+            \item \textcolor{green}{Pros:} Offres flexibility.
+            \item \textcolor{red}{Cons:} High design and maintenance costs.
+        \end{itemize}
+\end{itemize}
+
+\section*{OSI Model}
+
+The \textbf{OSI model} is a conceptual framework used to understand how data moves from a physical wire up to a user application.
+
+\begin{itemize}
+    \item \textbf{Physical (L1)}: Hardware (cables, radio waves, fiber optics).
+    \item \textbf{Data Link (L2)}: Local delivery (switches, MAC addresses).
+    \item \textbf{Network (L3)}: Routing across networks (IP addresses, routers).
+    \item \textbf{Transport (L4)}: End-to-end communication (TCP, UDP, ports).
+    \item \textbf{Session (L5)}: Managing connections between applications (Linux socket API, Winsock, AppleTalk, WebRTC, Airdrop).
+    \item \textbf{Presentation (L6)}: Data formatting and encryption (SSL/TLS, JPG, ASCII).
+    \item \textbf{Application (L7)}: What the user interacts with (HTTP, SSH, DNS).
+
+\end{itemize}
+
+\section*{Networking Devices/Protocols}
+
+\subsection*{MAC Address}
+
+\textbf{MAC Addresses} are \texttt{48-bit} "burned-in" physical identifiers for network hardware.
+
+\subsection*{CAM Table}
+
+\textbf{CAM Tables} are maintained by switches and maps a device's MAC address to a specific physical port on the switch.
+
+\subsection*{Switches}
+
+A \textbf{switch} is the \textit{"brain"} of a LAN.
+\begin{itemize}
+    \item Ensures data packets sent from one computer does not clutter the network.
+\end{itemize}
+
+\subsubsection*{Switches - Handling Data}
+
+\begin{enumerate}
+    \item When a packet arrives, the switch looks up the Destination MAC in the CAM table.
+    \item \textbf{MAC Address Found:} Data is sent to the corresponding port.
+    \item \textbf{MAC Address Unknown:} Data is flooded to every port until the correct device responds.
+\end{enumerate}
+
+
+\end{document}
