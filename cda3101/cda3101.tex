@@ -1,16 +1,6 @@
 \documentclass[12pt, letterpaper]{article}
-\setlength{\parindent}{0pt}
 
-\usepackage{xcolor}
-\usepackage[bottom=0.5cm, top=0.5cm, left=1.5cm, right=1.5cm]{geometry}
-\usepackage{hyperref}
-
-\hypersetup{
-    colorlinks = true,
-    linkcolor = blue,
-    filecolor = magenta,
-    urlcolor = cyan,
-}
+\usepackage{../spreamble}
 
 \title{CDA3101}
 \author{Ian Zou}
@@ -18,5 +8,102 @@
 \begin{document}
 
 \maketitle
+
+\part*{Von Neumann Architecture}
+
+Instructions and data are stored in the same memory space. Single-memory, single-bus architecture.
+
+\subsection*{Von Neumann Bottleneck}
+
+Tasks are completed sequentially due to the single bus, and thus the speed of this single bus is a performance bottleneck.
+
+\begin{itemize}
+    \item \textbf{CU (Control Unit)}: Manages how the processor works by sending control signals, controlling input/output operations, and fetching instructions for execution.
+    \item \textbf{ALU (Arithmetic Logic Unit)}: Performs arithmetic and logic calculations.
+    \item \textbf{Memory Unit}: Consists of the main memory (RAM) and the registers. Single-memory system that holds both data and instructions.
+    \item \textbf{Registers}: High-speed temporary storage on the CPU.
+\end{itemize}
+
+\part*{Measuring Performance}
+
+\section*{Orders of Magnitude}
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{|p{2cm}|p{3cm}|}
+            \hline
+            \textbf{nano} & $ 10^{-9} $ \\
+            \hline
+            \textbf{micro} & $ 10^{-6} $ \\
+            \hline
+            \textbf{milli} & $ 10^{-3} $ \\
+            \hline
+            \textbf{kilo} & $ 10^3 $ \\
+            \hline
+            \textbf{mega} & $ 10^6 $ \\
+            \hline
+            \textbf{giga} & $ 10^9 $ \\
+            \hline
+            \textbf{tera} & $ 10^{12} $ \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\FloatBarrier
+
+\section*{Units of Measure}
+\begin{itemize}
+    \item \textbf{Frequency}: \textit{Hertz}, or cycles per second. Used for \textbf{clock rate}.
+    \item \textbf{Period}: Seconds per cycle. Used for \textbf{clock cycle}.
+    \item \textbf{CPI}: Clocks per instruction. Highlights a CPU's \textbf{efficiency}.
+\end{itemize}
+
+Use \textit{dimensional analysis} to get to the desired unit.
+
+\section*{Speedup}
+
+$ \textrm{speedup} = \frac{t_{\textrm{old}}}{t_{\textrm{new}}} $
+
+Where $ t_{\textrm{old}} $ and $ t_{\textrm{new}} $ are the times the program took before and after the upgrade, \textit{in seconds}.
+
+\part*{discrete shit}
+
+\section*{Two's Complement}
+
+\textbf{Two's complement} is the standard for representing signed integers.
+
+\begin{itemize}
+\item \textbf{Most significant bit (MSB)} used as a sign bit.
+\item For an $n$-bit word, the range of representable numbers is $ -2^{n-1} $ to $ 2^{n-1} - 1 $.
+\end{itemize}
+
+\subsection*{Two's Complement Representation}
+
+\begin{enumerate}
+    \item Take the binary of the absolute value of the integer.
+    \item Flip the bits \textit{(one's complement)}.
+    \item Add \texttt{1}.
+\end{enumerate}
+
+\part*{RISC-V Instructions}
+
+\begin{table}[h]
+\begin{center}
+    \begin{tabular}{|p{4cm}|p{6cm}|p{5cm}| }
+        \hline
+        \textbf{Mnemonic} & \textbf{Instruction} & \textbf{Description} \\
+        \hline
+        \texttt{add rd, rs1, rs2 } & Add & \texttt{rd <- rs1 + rs2}\\
+        \hline
+        \texttt{sub rd, rs1, rs2 } & Subtract & \texttt{rd <- rs1 - rs2}\\
+        \hline
+        \texttt{addi rd, rs1, imm12 } & Add (immediate r-value) & \texttt{rd <- rs1 + imm12}\\
+        \hline
+        \texttt{add rd, rs1, rs2 } & Add & \texttt{rd <- rs1 + rs2}\\
+        \hline
+    \end{tabular}
+\end{center}
+\end{table}
+
+\FloatBarrier
 
 \end{document}

@@ -2,7 +2,7 @@
 
 parse:
 	pdflatex *.tex -halt-on-error
-	zathura *.pdf
+	../open-pdf
 
 clean:
 	rm -f *.aux *.log *.out *.pdf
