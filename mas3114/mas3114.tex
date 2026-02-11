@@ -510,4 +510,81 @@ The \textbf{main diagonal} of a matrix $ A = \begin{bmatrix} a_{ij} \end{bmatrix
     \item A matrix $ U_{n \times n} $ is a \textbf{upper triangular matrix} if its non-zero entries are only in the upper triangle of the matrix.
 \end{itemize}
 
+\section*{Module 1 Overview}
+
+\begin{table}[h]
+\begin{center}
+
+    \begin{tabular}{|c|c|c|c|}
+       \hline
+        \textbf{Consistent} & $ Ax = b $ has a solution & $ b $ is in the span of columns of $ A $ & $ T(x) = b $ is \textbf{onto} \\
+        \hline
+    \end{tabular}
+
+\end{center}
+\end{table}
+\FloatBarrier
+
+\part*{Unit 2}
+
+\section*{Lecture 10}
+
+\subsection*{Tranpose}
+
+The tranpose of $ A $ (where $ A $ is an $ m \times n $ matrix), denoted $ A^T $, is the $ m \times n $ matrix where the columns of $ A $ become the rows of $ A^T $.
+
+\medskip
+{\centering
+
+$ A = \begin{bmatrix}
+    3 & 1 & 0 \\
+    2 & 1 & 3 \\
+\end{bmatrix} $,
+$ A^T = \begin{bmatrix}
+    3 & 2 \\
+    1 & 1 \\
+    0 & 3 \\
+\end{bmatrix} $
+
+}
+\medskip
+
+\subsubsection*{Properties of Tranposes}
+
+\begin{enumerate}
+    \item $ (A^T)^T = A $
+    \item $ (A + B)^T = A^T + B^T $
+    \item $ (rA)^T = rA^T $ for any scalar $ r $
+    \item $ (AB)^T = B^TA^T $
+\end{enumerate}
+
+\subsubsection*{Invertible}
+
+An $ m \times n $ matrix $ A $ is \textbf{invertible} if there is an $ m \times n $ matrix $ B $ such that:
+
+\medskip
+{\centering
+
+    $ AB = I_n = BA $
+
+
+\medskip
+
+where $ I_n $ is the $ n \times n $ identity matrix.
+\medskip
+
+Otherwise, if $ A $ is \textit{not} invertible, it is \textbf{singular}.
+
+\subsubsection*{Inverse}
+
+The \textbf{inverse} of $ A $, denoted by $ A^{-1} $, is the unique matrix such that:
+
+\medskip
+{\centering
+
+$ AA^{-1} = I_n = A^{-1}A $
+
+}
+\medskip
+
 \end{document}
