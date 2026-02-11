@@ -259,8 +259,17 @@ Trees are rooted, directed, acyclic structures.
     \item \textbf{Full Binary Tree}
         \begin{itemize}
             \item Each node must either have 2 nodes or 0 nodes.
-            \item Exactly $ \frac{n + 1}{2} $ leaf nodes.
         \end{itemize}
+\end{itemize}
+
+\section*{Balanced Trees}
+
+To reduce the occurrence of worst case tree patterns that degrade a BST's time complexity to a worst case of \texttt{O(n)}, we can modify the tree when we encounter some of these patterns to optimize the tree.
+
+\subsection*{AVL Trees}
+
+\begin{itemize}
+    \item Every node has a \textbf{balance factor} property: \texttt{0}, \texttt{-1}, or \texttt{1}.
 \end{itemize}
 
 \end{document}
