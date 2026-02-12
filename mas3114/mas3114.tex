@@ -427,8 +427,8 @@ That is, if the linear transformation $ T $ can be written as a homogeneous syst
 If the mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is a linear transformation and the matrix $ A $ is the standard matrix of $ T $, then
 
 \begin{itemize}
-    \item $ T $ maps $ \mathbb{R}^n $ onto $ \mathbb{R}^m  \leftrightarrow $ the columns of $ A $ span $ \mathbb{R}^m $.
-    \item $ T $ is one-to-one $ \leftrightarrow $ the columns of $ A $ are linearly independent.
+    \item $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto} $ \leftrightarrow $ the columns of $ A $ span $ \mathbb{R}^m $.
+    \item $ T $ is \textbf{one-to-one} $ \leftrightarrow $ the columns of $ A $ are linearly independent.
 \end{itemize}
 
 \section*{Lecture 9}
@@ -518,7 +518,7 @@ The following table contains common two-way equivalencies for matrices and linea
 \begin{center}
     \scriptsize
 
-        \begin{tabularx}{\linewidth}{|c|c|X|X|}
+        \begin{tabularx}{\linewidth}{|X|X|X|X|}
            \hline
            $ Ax = b $ & $ A = m \times n $ matrix & $ b = m \times p $ matrix & $ x = n \times p $ matrix \\
            \hline
@@ -528,11 +528,11 @@ The following table contains common two-way equivalencies for matrices and linea
            \hline
             \textbf{Linear Independence} & $ Ax = 0 $ has \textbf{one solution} & $ T $ is \textbf{one-to-one} & $ 0 \in \textrm{Span}\{a_1, a_2, \hdots, a_n \} $ \\
            \hline
-            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto} & $ T(x) = b $ \textbf{Consistent} for $ b \in \mathbb{R}^m $ \\
+            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto} & $ T(x) = b $ \textbf{Consistent} for $ b \in \mathbb{R}^m $ & columns of $ A $ span $ \mathbb{R}^m $ & range $ \subseteq $ codomain  \\
             \hline
-            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{one-to-one} & $ T(x) = b $ \textbf{one solution} for $ b \in \mathbb{R}^m $ & $ T(x) = b $ \textbf{linearly independent} for $ b \in \mathbb{R}^m $ & $ T(x) = 0 $ is \textbf{linearly independent} \\
+            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{one-to-one} & $ T(x) = b $ \textbf{one solution} for $ b \in \mathbb{R}^m $ & $ T(x) = b $ \textbf{linearly independent} for $ b \in \mathbb{R}^m $ & range $ = $ codomain \\
             \hline
-            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ & columns are $ \mathbb{R}^n $ input vectors & $ \mathbb{R}^m $ rows act on input vectors to produce scalar components & $ T $ represented as $ m \times n $ matrix \\
+            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ & $ n $ columns = domain & $ m $ rows = codomain & $ T $ represented as $ m \times n $ matrix \\
             \hline
         \end{tabularx}
 
