@@ -1,5 +1,6 @@
 \documentclass[12pt, letterpaper]{article}
 \usepackage{../spreamble}
+\usepackage{tabularx}
 
 \title{MAS3114}
 \author{Ian Zou}
@@ -402,7 +403,7 @@ If $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is a linear transformation, we c
 
 \subsection*{Onto and One-to-One Transformations}
 
-A mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto} if the equation $ T(x) = b $ has a solution for each $ b \in \mathbb{R}^m $. That is, if $ T(x) = b $ can be treated as \textbf{consistent} linear system, it is \textbf{onto}.
+A mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto} if the equation $ T(x) = b $ has a solution for each $ b \in \mathbb{R}^m $. That is, if $ T(x) = b $ can be treated as a \textbf{consistent} linear system for $ b \in \mathbb{R}^m $, it is \textbf{onto}.
 \bigskip
 
 A mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{one-to-one} if the equation $ T(x) = b $ has a solution for each $ b \in \mathbb{R}^m $ and the solution is \textbf{unique}. That is, $ T(x) = b $ is the image of exactly one $ x \in \mathbb{R}^n $.
@@ -419,7 +420,7 @@ $ T $ is \textbf{one-to-one} $ \leftrightarrow T(x) = 0 $ has only the \textbf{t
 }
 \medskip
 
-That is, if the linear transformation $ T $ can be written as a homogenous system $ T(x) = 0 $ with a trivial solution, the solution set is a \textbf{point}, and thus is \textbf{unique}.
+That is, if the linear transformation $ T $ can be written as a homogeneous system $ T(x) = 0 $ with a trivial solution, the solution set is a \textbf{point}, and thus is \textbf{unique}.
 
 \subsection*{Theorem: One-to-One Relation to Matrix Columns}
 
@@ -512,18 +513,36 @@ The \textbf{main diagonal} of a matrix $ A = \begin{bmatrix} a_{ij} \end{bmatrix
 
 \section*{Module 1 Overview}
 
+The following table contains common two-way equivalencies for matrices and linear systems.
 \begin{table}[h]
 \begin{center}
+    \scriptsize
 
-    \begin{tabular}{|c|c|c|c|}
-       \hline
-        \textbf{Consistent} & $ Ax = b $ has a solution & $ b $ is in the span of columns of $ A $ & $ T(x) = b $ is \textbf{onto} \\
-        \hline
-    \end{tabular}
+        \begin{tabularx}{\linewidth}{|c|c|X|X|}
+           \hline
+           $ Ax = b $ & $ A = m \times n $ matrix & $ b = m \times p $ matrix & $ x = n \times p $ matrix \\
+           \hline
+            \textbf{Consistent} & $ Ax = b $ has a solution & $ b \in \textrm{Span}\{a_1, a_2, \hdots, a_n \} $ & $ \textrm{rank}(A) = \textrm{rank}(\begin{bmatrix} A \:|\: b \end{bmatrix}) $ \\
+            \hline
+            \textbf{Inconsistent} & $ Ax = b $ has no solutions & $ b \not\in \textrm{Span}\{a_1, a_2, \hdots, a_n \} $ & $ \textrm{rank}(A) \not= \textrm{rank}(\begin{bmatrix} A \:|\: b \end{bmatrix}) $ \\
+           \hline
+            \textbf{Linear Independence} & $ Ax = 0 $ has \textbf{one solution} & $ T $ is \textbf{one-to-one} & $ 0 \in \textrm{Span}\{a_1, a_2, \hdots, a_n \} $ \\
+           \hline
+            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto} & $ T(x) = b $ \textbf{Consistent} for $ b \in \mathbb{R}^m $ \\
+            \hline
+            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{one-to-one} & $ T(x) = b $ \textbf{one solution} for $ b \in \mathbb{R}^m $ & $ T(x) = b $ \textbf{linearly independent} for $ b \in \mathbb{R}^m $ & $ T(x) = 0 $ is \textbf{linearly independent} \\
+            \hline
+            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ & columns are $ \mathbb{R}^n $ input vectors & $ \mathbb{R}^m $ rows act on input vectors to produce scalar components & $ T $ represented as $ m \times n $ matrix \\
+            \hline
+        \end{tabularx}
 
 \end{center}
 \end{table}
 \FloatBarrier
+
+\begin{itemize}
+    \item (\textbf{Homogeneous System} $ \leftrightarrow $ $ Ax = 0 $ $) \rightarrow $ \textbf{Consistent}
+\end{itemize}
 
 \part*{Unit 2}
 
