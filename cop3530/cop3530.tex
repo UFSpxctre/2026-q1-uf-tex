@@ -2,6 +2,10 @@
 
 \usepackage{../spreamble}
 
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+
 \title{COP3530}
 \author{Ian Zou}
 
@@ -269,7 +273,74 @@ To reduce the occurrence of worst case tree patterns that degrade a BST's time c
 \subsection*{AVL Trees}
 
 \begin{itemize}
-    \item Every node has a \textbf{balance factor} property: \texttt{0}, \texttt{-1}, or \texttt{1}.
+    \item \textbf{Balance Factor}: left subtree height - right subtree height
+    \item In a balanced tree, every node has a \textbf{balance factor} property of \texttt{0}, \texttt{-1}, or \texttt{1}.
+\end{itemize}
+
+\subsubsection*{Rotations}
+
+To keep an AVL Tree balanced, rotations are made when we encounter certain patterns that degrade the performance of the tree by increasing a node's balance factor greater than \texttt{1} or less than \texttt{-1}.
+
+\begin{itemize}
+    \item \textbf{Left-Left Case}:
+        \begin{itemize}
+            \item Node is inserted into the left subtree of the left child.
+
+                \begin{tikzpicture}[nodes={draw, circle}, ->]
+                    \node{3}
+                    child { node {2}
+                        child { node {1}
+                        }
+                        child [missing]
+                    }
+                    child [missing]
+                    ;
+                \end{tikzpicture}
+
+                \medskip
+
+                Notice that the balance factor for node containing \texttt{1} is \texttt{-2}.
+            \item \textbf{Fix}: Perform a \textbf{right rotation}.
+
+                \begin{tikzpicture}[nodes={draw, circle}, ->]
+                    \node{2}
+                    child { node {1}
+                    }
+                    child { node { 3 }
+                    }
+                    ;
+                \end{tikzpicture}
+        \end{itemize}
+    \item \textbf{Right-Right Case}:
+        \begin{itemize}
+            \item Node is inserted into the right subtree of the right child.
+
+                \begin{tikzpicture}[nodes={draw, circle}, ->]
+                    \node{1}
+                    child [missing]
+                    child { node {2}
+                        child [missing]
+                        child { node {3}
+                        }
+                    }
+                    ;
+                \end{tikzpicture}
+
+                \medskip
+
+                Notice that the balance factor for node containing \texttt{1} is \texttt{-2}.
+            \item \textbf{Fix}: Perform a \textbf{left rotation}.
+
+                \begin{tikzpicture}[nodes={draw, circle}, ->]
+                    \node{2}
+                    child { node {1}
+                    }
+                    child { node { 3 }
+                    }
+                    ;
+                \end{tikzpicture}
+        \end{itemize}
 \end{itemize}
 
 \end{document}
+
