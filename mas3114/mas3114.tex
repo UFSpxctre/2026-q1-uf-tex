@@ -669,7 +669,7 @@ $ A = \begin{bmatrix}
     c & d \\ 
 \end{bmatrix} $.
 The \textbf{inverse} of $ A $ is defined as
-$ A^{-1} = \frac{1}{ad - bc}
+$ \displaystyle A^{-1} = \frac{1}{ad - bc}
     \begin{bmatrix}
     d & -b \\
     -c & a \\
@@ -686,5 +686,99 @@ A & I \\
 Thus, given a matrix $ A $, you can solve the augmented matrix $ \begin{bmatrix} A & I \end{bmatrix} $. The solution matrix $ x $ is $ A^{-1} $. 
 
 \section*{Lecture 12}
+
+\subsection*{Determinant}
+
+\textit{Recall}: For a $ 1 \times 1 $ matrix, the \textbf{determinant} is defined as $ \textrm{det} \: A = \: \textrm{det} \: a_{11} $.
+\bigskip
+
+\textit{Recall}: For a $ 2 \times 2 $ matrix $ A =
+\begin{bmatrix}
+    a & b \\
+    c & d \\
+\end{bmatrix} $, the \textbf{determinant} of the matrix is $ \textrm{det} \: A = ad - bc $.
+\bigskip
+
+The \textbf{determinant} for an $ n \times n $ matrix, where $ n \geq 2 $, is the sums of $ n $ terms of the form $ \pm a_{1j} \: \textrm{det} \: A_{1j} $, where the entries $ a_{11}, a_{12}, \hdots, a_{1n} $ are from the first row of $ A $.
+\medskip
+
+The submatrices in the form $ A_{ij} $ are obtained from the matrix $ A $ by deleting the $ i $-th row and the $ j $-th column.
+
+\medskip
+{\centering
+
+$ A = \begin{bmatrix}
+    1 & 5 & 0 \\
+    2 & 4 & -1 \\
+    0 & -2 & 0 \\
+\end{bmatrix} $
+\medskip
+
+$ \textrm{det} \: A = a_{11} \: \textrm{det} \: A_{11} - a_{12} \: \textrm{det} \: A_{12} + a_{13} \: \textrm{det} \: A_{13} $
+\medskip
+
+$ \textrm{det} \: A = a_{11}
+\: \textrm{det} \begin{bmatrix}
+    a_{22} & a_{23} \\
+    a_{32} & a_{33} \\
+\end{bmatrix}
+- a_{12}
+\: \textrm{det} \begin{bmatrix}
+    a_{21} & a_{23} \\
+    a_{31} & a_{33} \\
+\end{bmatrix}
++ a_{13}
+\: \textrm{det} \begin{bmatrix}
+    a_{21} & a_{22} \\
+    a_{31} & a_{32} \\
+\end{bmatrix} $
+\medskip
+
+$ \textrm{det} \: A = 1(0 - 2) - 5(0 - 0) + 0(-4 - 0) = -2 $
+
+}
+\medskip
+
+\subsubsection*{Cofactors}
+
+The \textbf{$ (i, j) $-cofactor} of matrix $ A $ is the number $ C_{ij} $ given by:
+
+\medskip
+{\centering
+
+$ C_{ij} = (-1)^{i + j} \: \textrm{det} \: A_{ij} $
+
+}
+\medskip
+
+\subsubsection*{Cofactor Expansion}
+
+Notice that the cofactors along the first row can be used to define the \textbf{determinant}:
+
+\medskip
+{\centering
+
+$ \textrm{det} \: A = a_{11} C_{11} + a_{12}C_{12} + \hdots + a_{1n}C_{1n} $
+
+}
+\medskip
+
+\subsubsection*{Theorem: Cofactor Expansion}
+
+The determinant of an $ n \times n $ matrix $ A $ can be computed by a \textbf{cofactor expansion} across \textit{any row or column}.
+
+\medskip
+{\centering
+
+    $ \textrm{det} \: A = a_{i1}C_{i1} + a_{i2}C_{i2} + \hdots + a_{in}C_{in} $ (expansion across row)
+    \medskip
+
+    $ \textrm{det} \: A = a_{1j}C_{1j} + a_{2j}C_{2j} + \hdots + a_{nj}C_{nj} $ (expansion across column)
+
+}
+\medskip
+
+% TODO: the determinant of the matrix is equal to the determinant of its transpose (proof it)
+
 
 \end{document}
