@@ -284,7 +284,9 @@ To keep an AVL Tree balanced, rotations are made when we encounter certain patte
 \begin{itemize}
     \item \textbf{Left-Left Case}:
         \begin{itemize}
-            \item Node is inserted into the left subtree of the left child.
+            \item Parent: \texttt{+2}
+            \item Child: \texttt{+1}
+                \bigskip
 
                 \begin{tikzpicture}[nodes={draw, circle}, ->]
                     \node{3}
@@ -298,9 +300,8 @@ To keep an AVL Tree balanced, rotations are made when we encounter certain patte
                 \end{tikzpicture}
 
                 \medskip
-
-                Notice that the balance factor for node containing \texttt{1} is \texttt{-2}.
             \item \textbf{Fix}: Perform a \textbf{right rotation}.
+                \bigskip
 
                 \begin{tikzpicture}[nodes={draw, circle}, ->]
                     \node{2}
@@ -313,7 +314,9 @@ To keep an AVL Tree balanced, rotations are made when we encounter certain patte
         \end{itemize}
     \item \textbf{Right-Right Case}:
         \begin{itemize}
-            \item Node is inserted into the right subtree of the right child.
+            \item Parent: \texttt{-2}
+            \item Child: \texttt{-1}
+                \bigskip
 
                 \begin{tikzpicture}[nodes={draw, circle}, ->]
                     \node{1}
@@ -327,9 +330,8 @@ To keep an AVL Tree balanced, rotations are made when we encounter certain patte
                 \end{tikzpicture}
 
                 \medskip
-
-                Notice that the balance factor for node containing \texttt{1} is \texttt{-2}.
             \item \textbf{Fix}: Perform a \textbf{left rotation}.
+                \bigskip
 
                 \begin{tikzpicture}[nodes={draw, circle}, ->]
                     \node{2}
@@ -340,7 +342,148 @@ To keep an AVL Tree balanced, rotations are made when we encounter certain patte
                     ;
                 \end{tikzpicture}
         \end{itemize}
+    \item \textbf{Left-Right Case}:
+        \begin{itemize}
+            \item Parent: \texttt{+2}
+            \item Child: \texttt{-1}
+                \bigskip
+
+                \begin{tikzpicture}[nodes={draw, circle}, ->]
+                    \node{3}
+                    child { node {1}
+                    child [missing]
+                        child { node {2}
+                        }
+                    }
+                    child [missing]
+                    ;
+                \end{tikzpicture}
+
+                \medskip
+            \item Fix: Perform a \textbf{left} rotation on the child, followed by a \textbf{right} rotation on the parent.
+
+                \begin{tikzpicture}[nodes={draw, circle}, ->]
+                    \node{3}
+                    child { node {2}
+                        child { node {1}
+                        }
+                        child [missing]
+                    }
+                    child [missing]
+                    ;
+                \end{tikzpicture}
+                \medskip
+
+                \begin{tikzpicture}[nodes={draw, circle}, ->]
+                    \node{2}
+                    child {
+                        node {1}
+                    }
+                    child {
+                        node {3}
+                    };
+                \end{tikzpicture}
+        \end{itemize}
+    \item \textbf{Right-Left Case}:
+        \begin{itemize}
+            \item Parent: \texttt{-2}
+            \item Child: \texttt{+1}
+                \bigskip
+
+                \begin{tikzpicture}[nodes={draw, circle}, ->]
+                    \node{1}
+                    child [missing]
+                    child { node {3}
+                        child { node {2}
+                        }
+                        child [missing]
+                    }
+                    ;
+                \end{tikzpicture}
+
+                \medskip
+            \item Fix: Perform a \textbf{right} rotation on the child, followed by a \textbf{left} rotation on the parent.
+
+                \begin{tikzpicture}[nodes={draw, circle}, ->]
+                    \node{1}
+                    child [missing]
+                    child { node {2}
+                        child [missing]
+                        child { node {3}
+                        }
+                    };
+                \end{tikzpicture}
+                \medskip
+
+                \begin{tikzpicture}[nodes={draw, circle}, ->]
+                    \node{2}
+                    child {
+                        node {1}
+                    }
+                    child {
+                        node {3}
+                    };
+                \end{tikzpicture}
+        \end{itemize}
 \end{itemize}
+
+\bigskip
+
+When do we need to rotate nodes in an AVL tree?
+
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\subsection*{Red-Black Trees}
+
+\begin{itemize}
+    \item A node can be \textbf{red} or \textbf{black}.
+    \item Root node is \textbf{black}.
+    \item \textbf{Red} nodes always has \textbf{black} children.
+    \item \textbf{Null} nodes are defined as \textbf{black}.
+    \item Much cheaper than height comparison due to color flips.
+\end{itemize}
+
+\subsubsection*{Red-Black Tree: Insertion}
+
+\begin{enumerate}
+    \item Insert the node into BST as a \textbf{red} node.
+    \item If:
+        \begin{itemize}
+            \item Tree is \textbf{empty}: insert as \textbf{black}
+            \item \textit{Parent} is \textbf{black}: do nothing
+            \item \textit{Parent} is \textbf{red}:
+                \begin{itemize}
+                    \item \textit{Uncle} is \textbf{red}: invert colors of parent, uncle, and grandparent
+                    \item \textit{Uncle} is \textbf{black}: rotate (similar to AVL Trees) % TODO: link it up
+                        % TODO: add examples for invariance correction
+                \end{itemize}
+        \end{itemize}
+    \item Cascade rule up the parent chain to check and remediate invariance of the tree.
+\end{enumerate}
+
+\subsubsection*{Red-Black Tree: Use Case}
+
+Red-black trees are used to back \textit{hash maps} when collisions occur. When poor hash indices are generated and cause collision, using a List ADT to handle collisions will degrade the time complexity to \texttt{O(n)}. By using a red-black tree, we can mitigate the worst-case time complexity to \texttt{O(log(n))}.
+
+\subsection*{Splay Tree}
+
+Self-adjusting binary search tree with additional property that recent accessed elements are quick to access.
+
+\begin{itemize}
+    \item \textbf{Splaying}: series of rotations that push a node to the root of the tree
+    \item \textit{Splaying} is done after a node is accessed or inserted
+    \item Guarantees \texttt{m} tree operations will take \texttt{O(m log(n))} time.
+    \item On average, a tree operation is \texttt{O(log(n))}.
+    \item In the worst case, the splay tree is skewed left or right, and thus tree operations are \texttt{O(n)}. Splaying will drastically speed up subsequent operations.
+\end{itemize}
+
+\subsubsection*{Splay Tree: Use Case}
+
+Due to the Splay Tree's self-balancing nature and ability to make recently accessed items extremely fast to access, it is implemented primarily in \textbf{cache} and \textbf{garbage collection}.
+
+\subsection*{B Tree}
 
 \end{document}
 
