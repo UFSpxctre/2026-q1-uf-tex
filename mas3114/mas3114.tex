@@ -633,7 +633,7 @@ $ A^T = \begin{bmatrix}
     \item $ (AB)^T = B^TA^T $
 \end{enumerate}
 
-\subsubsection*{Invertible}
+\subsection*{Invertible}
 
 An $ m \times n $ matrix $ A $ is \textbf{invertible} if there is an $ m \times n $ matrix $ B $ such that:
 
@@ -642,7 +642,7 @@ An $ m \times n $ matrix $ A $ is \textbf{invertible} if there is an $ m \times 
 
     $ AB = I_n = BA $
 
-
+}
 \medskip
 
 where $ I_n $ is the $ n \times n $ identity matrix.
@@ -661,5 +661,14 @@ $ AA^{-1} = I_n = A^{-1}A $
 
 }
 \medskip
+
+Given $ A = \begin{bmatrix} a & b \\ c & d \\ \end{bmatrix} $. The \textbf{inverse} of $ A $ is defined as $ A^{-1} = \frac{1}{ad - bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix} $.
+\bigskip
+
+\subsubsection*{Theorem: Inverse Matrix}
+$ A $ is \textbf{invertible} if and only if the augmented matrix $ \begin{bmatrix} A & I \end{bmatrix} $ is \textbf{consistent}.
+
+\medskip
+Thus, given a matrix $ A $, you can solve the augmented matrix $ \begin{bmatrix} A & I \end{bmatrix} $. The solution matrix $ x $ is $ A^{-1} $. 
 
 \end{document}
