@@ -637,6 +637,7 @@ $ A^T = \begin{bmatrix}
 
 An $ m \times n $ matrix $ A $ is \textbf{invertible} if there is an $ m \times n $ matrix $ B $ such that:
 
+
 \medskip
 {\centering
 
@@ -657,18 +658,33 @@ The \textbf{inverse} of $ A $, denoted by $ A^{-1} $, is the unique matrix such 
 \medskip
 {\centering
 
-$ AA^{-1} = I_n = A^{-1}A $
+    $ AA^{-1} = I_n = A^{-1}A $
 
 }
 \medskip
 
-Given $ A = \begin{bmatrix} a & b \\ c & d \\ \end{bmatrix} $. The \textbf{inverse} of $ A $ is defined as $ A^{-1} = \frac{1}{ad - bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix} $.
+Given
+$ A = \begin{bmatrix}
+    a & b \\
+    c & d \\ 
+\end{bmatrix} $.
+The \textbf{inverse} of $ A $ is defined as
+$ A^{-1} = \frac{1}{ad - bc}
+    \begin{bmatrix}
+    d & -b \\
+    -c & a \\
+    \end{bmatrix} $.
 \bigskip
 
-\subsubsection*{Theorem: Inverse Matrix}
-$ A $ is \textbf{invertible} if and only if the augmented matrix $ \begin{bmatrix} A & I \end{bmatrix} $ is \textbf{consistent}.
+\subsubsection*{Theorem: Invertibility}
 
-\medskip
+$ A $ is \textbf{invertible} if and only if the augmented matrix
+$ \begin{bmatrix}
+A & I \\
+\end{bmatrix} $ is \textbf{consistent}.
+
 Thus, given a matrix $ A $, you can solve the augmented matrix $ \begin{bmatrix} A & I \end{bmatrix} $. The solution matrix $ x $ is $ A^{-1} $. 
+
+\section*{Lecture 12}
 
 \end{document}
