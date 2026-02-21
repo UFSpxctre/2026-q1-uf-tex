@@ -485,5 +485,39 @@ Due to the Splay Tree's self-balancing nature and ability to make recently acces
 
 \subsection*{B Tree}
 
+% TODO
+
+\section*{Heaps}
+
+\textbf{Heaps} are \textit{complete binary tree} data structures that satisfy the \textbf{heap property}.
+
+\begin{itemize}
+    \item \textbf{Heap Property}: Values of children must be greater than or equal to its own value.
+    \item \textbf{Min Heap}: Value of the root node is the smallest.
+    \item \textbf{Max Heap}: Value of the root node is the greatest.
+\end{itemize}
+
+\subsection*{Heaps: Use Case}
+
+Heaps are usually used to implement \textbf{priority queues}, where the maximum or minimum is always the root node of the tree.
+\medskip
+
+Heaps can also be useful when implementing \textbf{Djikstra's Algorithm}.
+
+\subsection*{Heaps: Operations}
+
+\begin{itemize}
+    \item \texttt{heapify}: The heapify operation is used to heal the heap and maintain the \textit{heap property}. Parent nodes are compared to their children, and are swapped if they do not adhere to the \textit{heap property}, and this is done to the entire tree.
+    \item \texttt{insert}: Use \textit{level order traversal} to find the next empty node in the current level. If the tree is \textit{full}, then the current level will not contain an empty node, in which case we move down a level.
+        \medskip
+
+        Insert the value in the next empty node, then \textit{heapify} down the path of the new node.
+        \bigskip
+
+        \textbf{Time Complexity}: \texttt{O(log(n))} down one path.
+
+\end{itemize}
+
+
 \end{document}
 
