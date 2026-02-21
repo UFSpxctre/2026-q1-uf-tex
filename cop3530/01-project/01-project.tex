@@ -1,0 +1,35 @@
+\documentclass[12pt, letterpaper]{article}
+
+\usepackage{../../spreamble}
+\usepackage{graphicx}
+
+\title{COP3530 - Project 1}
+\author{Ian Zou}
+
+\begin{document}
+
+\maketitle
+
+\section*{Documentation}
+
+\begin{enumerate}
+    \item \texttt{insert}: Since an AVL Tree is kept balanced after every insertion, both the worst-case and average case time-complexity of inserting a new element into the tree is \texttt{O(log(n))}. Because an AVL Tree is always kept relatively balanced, the height grows at a logarithmic rate to the number of nodes in the tree, thus making the search to the correct place to insert the node also grow at a logarithmic rate.
+    \item \texttt{remove}: For similar reasons to \texttt{insert}, \texttt{remove} is also \texttt{O(log(n))}. Note that we are not rebalancing the tree after removal, which we should be doing in a more complicated and correct AVL Tree implementation.
+    \item \texttt{search}: For similar reasons to \texttt{insert} and \texttt{remove}, \texttt{search} is also \texttt{O(log(n))}. All of these methods look for the locadtion of a node in relatively the same way; its the operations they do afterwards that changes.
+    \item \texttt{search [NAME]}: I used an inorder traversal to print all instances of nodes with the same name as the query. This is \texttt{O(n)}, as all inorder traversals are since they must iterate through the entire tree to find all possible occurrences of the query.
+    \item \texttt{printInorder}: By the nature of depth first search, this is \texttt{O(n)} since it must traverse every single node.
+    \item \texttt{printPreorder}: By the nature of depth first search, this is \texttt{O(n)} since it must traverse every single node.
+    \item \texttt{printPostorder}: By the nature of depth first search, this is \texttt{O(n)} since it must traverse every single node.
+    \item \texttt{printLevelCount}: The worst-case time complexity of calculating the height is \texttt{O(n)}, since calculating the maximum height would require traversing down every path to every leaf node until all paths have been traversed, and then determining the longest path from a leaf to the root. This would use a depth first search under the hood, which would make this method inherently \texttt{O(n)}.
+    \item \texttt{removeInorder}: The worst-case time complexity of this operation would be \texttt{O(n)}, if $ n $ was equal to the number of elements in the AVL Tree. Inorder traversals inherently take \texttt{O(n)} time because they are depth first searches that must traverse every single node to get to the very end.
+\end{enumerate}
+
+\section*{What would I have done differently?}
+
+I definitely would not have overengineered this project, as that took considerably longer to write code that I genuinely wanted as opposed to getting the job done. A lot of the code that I wrote was pretty much overkill for a small project like this; I just wanted to create it for the sake of accomplishment. I get the sense of accomplishment but at the cost of a late penalty.
+\medskip
+
+I also would have started earlier; I got stuck on removal after experiencing a segfault that I took an hour or two to find with GDB. More importantly, however, I would just manage my time better next time and definitely get started on this earlier. I have had a pretty rough week because of extenuating circumstances, and I am hoping that Professor Kapoor will be nice enough to grant me the 6-hour extension I requested over email since I gave it my all.
+
+\end{document}
+
