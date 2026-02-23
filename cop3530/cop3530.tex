@@ -435,6 +435,8 @@ When do we need to rotate nodes in an AVL tree?
     \item 
 \end{enumerate}
 
+% TODO: subsubsection on AVL Tree removal
+
 \subsection*{Red-Black Trees}
 
 \begin{itemize}
@@ -485,7 +487,43 @@ Due to the Splay Tree's self-balancing nature and ability to make recently acces
 
 \subsection*{B Tree}
 
-% TODO
+\begin{itemize}
+    \item Type of \textit{n-ary} tree.
+    \item Root is a leaf or has 2 to \texttt{n} children.
+    \item Internal or non-leaf nodes have \texttt{ceil(n/2)} to \texttt{n} children.
+    \item Non-leaf or internal nodes have a maximum of $ L $ keys, where $ L = n - 1 $.
+    \item All leaf nodes have the same depth, thus the height is maintained at \texttt{O(log(n))}.
+    \item Minimizes disk I/O, thereby reducing overhead from constantly reading disk blocks which are slow.
+    \item Bigger memory overhead compared to binary trees.
+\end{itemize}
+
+With \textit{B Trees}, nodes are sorted and act as separators for keys in child subtrees.
+
+\subsubsection*{B Tree: Insertion}
+
+\begin{enumerate}
+    \item New keys are added to leaf nodes.
+    \item \textit{If node exceeds $ L $ keys}: split into two nodes, \textit{middle key} moves up to parent.
+    \item Repeat recursively until the \textit{B Tree} properties are satisfied \textit{(i.e. no node has more than $ L $ keys)}.
+\end{enumerate}
+
+\subsubsection*{B Tree: Deletion}
+
+\begin{itemize}
+    \item Keys are removed.
+    \item \textit{If node becomes less than half-full}: merged with siblings.
+\end{itemize}
+
+\subsection*{B+ Trees}
+
+\textbf{B+ Trees} are a special type of \textit{B Tree} that stores data only in leaf nodes, with internal nodes only storing keys.
+
+\begin{itemize}
+    \item Stores data only in leaf nodes.
+    \item Internal, non-leaf nodes only store keys.
+    \item Leaf nodes are linked together, making sequential access and range queries more efficient.
+    \item Search times are more consistent since all seraches terminate at the same leaf level.
+\end{itemize}
 
 \section*{Heaps}
 
@@ -517,7 +555,6 @@ Heaps can also be useful when implementing \textbf{Djikstra's Algorithm}.
         \textbf{Time Complexity}: \texttt{O(log(n))} down one path.
 
 \end{itemize}
-
 
 \end{document}
 
