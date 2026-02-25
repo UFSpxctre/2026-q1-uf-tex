@@ -782,5 +782,101 @@ The determinant of an $ n \times n $ matrix $ A $ can be computed by a \textbf{c
 
 % TODO: the determinant of the matrix is equal to the determinant of its transpose (proof it)
 
+\section*{Lecture 12}
+
+% TODO: Cramer's rule
+
+\section*{Lecture 13}
+
+\subsection*{Vector Spaces}
+
+Let $ V $ be a nonempty set of vectors on which two operations are defined:
+
+\medskip
+{\centering
+
+$ u + v \in V $ (closed under addition)
+\medskip
+
+$ cu \in V $ (closed under scalar multiplication)
+
+}
+\medskip
+
+The set $ V $ with the operations form a \textbf{vector space} if the following eight axioms hold for all $ u $, $ v $, $ w $ in $ V $ and for all scalars $ c $ and $ d $:
+
+\begin{enumerate}
+    \item $ u + v = v + u $ 
+    \item $ (u + v) + w = u + (v + w) $
+    \item $ u + \vec{0} = u $
+    \item For each $ u \in V $, there is a vector $ -u $ such that $ u + (-u) = 0 $.
+    \item c(u + v) = cu + cv
+    \item (c + d)u = cu + du
+    \item c(du) = (cd)u
+    \item 1u = u
+\end{enumerate}
+
+Using the axioms listed above, we can show that:
+
+\begin{enumerate}
+    \item The zero vector is unique.
+    \item The negative of $ u $, denoted by $ -u $, is unique.
+\end{enumerate}
+
+\subsubsection*{Vector Spaces: Examples}
+
+\begin{enumerate}
+    \item $ \mathbb{R}^n = \begin{Bmatrix}
+            \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                \vdots \\
+                x_n
+            \end{bmatrix} & : & x_i \in \mathbb{R}
+    \end{Bmatrix} $
+\item $ \mathbb{M}_{x \times n} = \begin{Bmatrix}
+        [a_{ij}] \: | \:  a_{ij} \in \mathbb{R}
+\end{Bmatrix} $
+    \item $ \mathbb{P}_n = \textrm{the set of polynomials of degree at most} n \textrm{with real coefficients} $
+\end{enumerate}
+
+\subsection*{Subspaces}
+
+Let $ H $ be a subset of a vector space $ V $. $ H $ is called a \textbf{subspace} of $ V $ if it satisfies the following conditions:
+
+\begin{enumerate}
+    \item The zero vector of $ V $ is in $ H $.
+    \item $ H $ is closed under vector addition:
+        For any $ u $, $ v \in H \rightarrow (u + v) \in H $
+    \item $ H $ is closed under scalar multiplication:
+        For any $ u \in H $, $ c \in \mathbb{R} \rightarrow cu \in H $
+\end{enumerate}
+
+Any subspace of a subspace of $ V $ is a subspace of $ V $.
+\bigskip
+
+\textbf{WARNING}: $ \mathbb{R}^2 $ is not a subspace of $ \mathbb{R}^3 $ .
+
+\subsubsection*{Zero Subspace}
+
+The \textbf{zero subspace} $ \begin{Bmatrix} 0 \end{Bmatrix} $ is the set consisting of only the zero vector of a vector space $ V $.
+    
+\subsection*{Theorem: Subspace Spanned by Vectors}
+If $ v_1, \hdots, v_p $ are in a vector space $ V $, then $ H = \textrm{Span} \begin{Bmatrix}
+    v_1, \hdots, v_p \\
+\end{Bmatrix} $ is a subspace of $ V $. Thus, \textbf{spans are subspaces}.
+
+\subsection*{Spanning Sets}
+
+Let $ V $ be a vector space and $ v_i \in V $. Then, let $ S = \begin{Bmatrix}
+    v_1, \hdots, v_p
+\end{Bmatrix} $ be a set of vectors, and $ H = \textrm{Span} \begin{Bmatrix}
+    v_1, \hdots, v_p
+\end{Bmatrix} $.
+
+\begin{itemize}
+    \item The set $ S $ is a \textbf{spanning set} for $ H $.
+    \item $ H $ is called the \textbf{subspace of $ V $ spanned} by the set $ S $.
+\end{itemize}
 
 \end{document}
