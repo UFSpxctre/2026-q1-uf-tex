@@ -12,8 +12,10 @@
 
 \section*{Documentation}
 
+For all of the methods, $ n $ represents the number of nodes in the tree.
+
 \begin{enumerate}
-    \item \texttt{insert}: Since an AVL Tree is kept balanced after every insertion, both the worst-case and average case time-complexity of inserting a new element into the tree is \texttt{O(log(n))}. Because an AVL Tree is always kept relatively balanced, the height grows at a logarithmic rate to the number of nodes in the tree, thus making the search to the correct place to insert the node also grow at a logarithmic rate.
+    \item \texttt{insert}: Since an AVL Tree is kept balanced after every insertion, both the worst-case and average case time-complexity of inserting a new element into the tree is \texttt{O(log(n)}. Because an AVL Tree is always kept relatively balanced, the height grows at a logarithmic rate to the number of nodes in the tree, thus making the search to the correct place to insert the node also grow at a logarithmic rate.
     \item \texttt{remove}: For similar reasons to \texttt{insert}, \texttt{remove} is also \texttt{O(log(n))}. Note that we are not rebalancing the tree after removal, which we should be doing in a more complicated and correct AVL Tree implementation.
     \item \texttt{search}: For similar reasons to \texttt{insert} and \texttt{remove}, \texttt{search} is also \texttt{O(log(n))}. All of these methods look for the locadtion of a node in relatively the same way; its the operations they do afterwards that changes.
     \item \texttt{search [NAME]}: I used an inorder traversal to print all instances of nodes with the same name as the query. This is \texttt{O(n)}, as all inorder traversals are since they must iterate through the entire tree to find all possible occurrences of the query.
