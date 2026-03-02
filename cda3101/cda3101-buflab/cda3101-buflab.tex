@@ -22,10 +22,8 @@ The lab template document wasn't working well for me; typing in the textboxes wa
 
 \subsection*{Show a screenshot of the compile command with your name somewhere in the screenshot.}
 
-\textcolor{gray}{Note: I used the RISC-V cross-compiler and QEMU directly to run and debug it. Thus, the commands may look a little different, but rest assured everything works the same way.}
-
 \medskip
-\includegraphics[width=\textwidth]{./screenshot.png}
+\includegraphics[width=\textwidth]{./task01_screenshot_v2.png}
 \medskip
 
 \part*{Task 2 - Run main from the deugger, without causing buffer overflow}
@@ -59,11 +57,11 @@ At the first line of \texttt{main}.
             \hline
             \textbf{Register} & \textbf{Value} \\
             \hline
-            \texttt{ra} & \texttt{0x10584} \\
+            \texttt{ra} & \texttt{0x7ffff7e95c94} \\
             \hline
-            \texttt{sp} & \texttt{0x7efc1f138600} \\
+            \texttt{sp} & \texttt{0x7ffffffffab0} \\
             \hline
-            \texttt{s0} / \texttt{fp} & \texttt{0x7efc1f138620} \\
+            \texttt{s0} / \texttt{fp} & \texttt{0x7ffffffffad0} \\
             \hline
     \end{tabular}
     \end{center}
@@ -80,11 +78,11 @@ At the first line of \texttt{get\_input}.
             \hline
             \textbf{Register} & \textbf{Value} \\
             \hline
-            \texttt{ra} & \texttt{0x10506} \\
+            \texttt{ra} & \texttt{0x555555555766} \\
             \hline
-            \texttt{sp} & \texttt{0x7f4f299385e0} \\
+            \texttt{sp} & \texttt{0x7ffffffffa90} \\
             \hline
-            \texttt{s0} / \texttt{fp}  & \texttt{0x7f4f29938600} \\
+            \texttt{s0} / \texttt{fp}  & \texttt{0x7ffffffffab0} \\
             \hline
         \end{tabular}
     \end{center}
@@ -101,9 +99,9 @@ Look at the contents of the stack with the following command: \texttt{x/4gx \$sp
             \hline
             \textbf{Memory Address} & \textbf{Value} & \textbf{Value} \\
             \hline
-            \texttt{0x7ff32b5d25e0} & \texttt{0x0000000700092188} & \texttt{0x0000000300000004} \\
+            \texttt{0x7ffffffffa90} & \texttt{0x0000000700000000} & \texttt{0x0000000300000004} \\
             \hline
-            \texttt{0x7ff32b5d25f0} & \texttt{0x00007ff32b5d2620} & \texttt{0x0000000000010506} \\
+            \texttt{0x7ffffffffaa0} & \texttt{0x00007ffffffffad0} & \texttt{0x0000555555555766} \\
             \hline
         \end{tabular}
     \end{center}
@@ -113,9 +111,9 @@ Look at the contents of the stack with the following command: \texttt{x/4gx \$sp
 \subsection*{Using the values you entered in \textit{Table 2} and \textit{Table 3}, what are the addresses pointed to by A, B, and C in Figure 1?}
 
 \begin{itemize}
-    \item \texttt{A -> (0x7f4f299385e0)}
-    \item \texttt{B -> (0x7efc1f138600)}
-    \item \texttt{C -> (0x7efc1f138620)}
+    \item \texttt{A -> (0x7ffffffffa90)}
+    \item \texttt{B -> (0x7ffffffffab0)}
+    \item \texttt{C -> (0x7ffffffffad0)}
 \end{itemize}
 
 \subsection*{Table 4}
@@ -128,11 +126,11 @@ I typed in \texttt{12345678} and observed the values placed on the stack with th
             \hline
             \textbf{Memory Address} & \textbf{Value} & \textbf{Value} \\
             \hline
-            \texttt{0x7ff32b5d25e0} & \texttt{0x0000000700092188} & \textcolor{red}{\texttt{0x3837363534333231}} \\
+            \texttt{0x7ffffffffa90} & \texttt{0x0000000700000000} & \textcolor{red}{\texttt{0x3837363534333231}} \\
             \hline
-            \texttt{0x7ff32b5d25f0} & \texttt{0x00007ff32b5d2600} & \texttt{0x0000000000010506} \\
+            \texttt{0x7ffffffffaa0} & \texttt{0x00007ffffffffa00} & \texttt{0x0000555555555766} \\
             \hline
-            \texttt{0x7ff32b5d2600} & \texttt{0x00000000000003e8} & \texttt{0x0000000700000002} \\
+            \texttt{0x7ffffffffab0} & \texttt{0x0000000000000000} & \texttt{0x0000000700000000} \\
             \hline
         \end{tabular}
     \end{center}
@@ -150,9 +148,12 @@ Typing in a string of 18 characters (\texttt{123456789012345678}) and observe th
         \begin{tabular}{|c|c|c|}
             \hline
             \textbf{Memory Address} & \textbf{Value} & \textbf{Value} \\
-            \texttt{0x7f89f64915e0} & \texttt{0x0000000700092188} & \texttt{0x3837363534333231} \\
-            \texttt{0x7f89f64915f0} & \texttt{0x3635343332313039} & \texttt{0x0000000000003837} \\
-            \texttt{0x7f89f6491600} & \texttt{0x00000000000003e8} & \texttt{0x0000000700000002} \\
+            \hline
+            \texttt{0x7ffffffffa90} & \texttt{0x0000000700000000} & \texttt{0x3837363534333231} \\
+            \hline
+            \texttt{0x7ffffffffaa0} & \texttt{0x3635343332313039} & \texttt{0x0000555555003837} \\
+            \hline
+            \texttt{0x7ffffffffab0} & \texttt{0x0000000000000000} & \texttt{0x0000000700000000} \\
             \hline
         \end{tabular}
     \end{center}
@@ -165,7 +166,7 @@ Our stack frame (and even our return address, it seems) have been overwritten by
 
 \subsection*{Type \texttt{n} until you see a message. Why did this happen?}
 
-I used \texttt{c} to continue instead and got the message: "\texttt{Program received signal SIGSEGV, Segmentation fault.}" This segmentation fault occurs because we wrote past the bounds of our memory and corrupted the return address, and attempting to jump to a corrupt return address would fail and thus is why we got a segmentation fault.
+I got the warning "Cannot insert breakpoint 0. Cannot access memory at address \texttt{0x555555003836}." This happened because our buffer overflow caused an overwrite to our stack frame and return address. The program now attempting to return to those addresses or restore the stack frame can no longer do so because the values are now corrupted by our buffer overflow.
 
 \subsection*{Table 6}
 
@@ -174,10 +175,15 @@ Use \texttt{i r} again to to list out the information on all of the current regi
 \begin{table}[h]
     \begin{center}
         \begin{tabular}{|c|c|}
+            \hline
             \textbf{Register} & \textbf{Value} \\
-            \texttt{ra} & \texttt{0x3837} \\
-            \texttt{sp} & \texttt{0x7f89f6491600} \\
+            \hline
+            \texttt{ra} & \texttt{0x555555003837} \\
+            \hline
+            \texttt{sp} & \texttt{0x7ffffffffab0} \\
+            \hline
             \texttt{s0} / \texttt{fp} & \texttt{0x3635343332313039} \\
+            \hline
         \end{tabular}
     \end{center}
 \end{table}
@@ -190,16 +196,16 @@ Our buffer overflow previously overwrote the stack frame and return address when
 
 \subsection*{What is the address in memory of the first line of the \texttt{arbitrary\_code} function?}
 
-By using \texttt{diassemble arbitrary\_code}, I was able to get the address as \texttt{0x10466}.
+By using \texttt{diassemble arbitrary\_code}, I was able to get the address as \texttt{0x00005555555556c6}.
 
 \part*{Task 5 - Run main from command line, overflow the buffer}
 
 \subsection*{What happens when you input a string of 20 characters with no spaces?}
 
-It prints what I inputted and then segmentation faults.
+It prints what I inputted and then segmentation faults. It says that it is unable to access the instruction at some memory address that has been corrupted by my the buffer overflow induced by my input.
 
 \medskip
-\includegraphics[width=\textwidth]{./task05_screenshot.png}
+\includegraphics[width=\textwidth]{./task05_screenshot_v2.png}
 \medskip
 
 \part*{Task 6 - Run \texttt{main} from command line, craft input to main to execute \texttt{arbitrary\_code} function}
@@ -214,13 +220,13 @@ We need to be able to exploit the return address consistently by replacing the r
 
 \subsection*{What happens?}
 
-So I used \texttt{echo -e "ABCDEFGHIJKLMNOP\\x66\\x04\\x01" | qemu-riscv64 ./main} and got the buffer overflow to work. The program started spamming "\textit{Now you know I should not be seen ! But I am. Don't believe me just watch}" over and over again.
+So I used \texttt{echo -e "ABCDEFGHIJKLMNOP\textbackslash xc6 \textbackslash x56 \textbackslash x55 \textbackslash x55 \textbackslash x55 \textbackslash x55" | ./main} and got the buffer overflow to work. The program started spamming "\textit{Now you know I should not be seen ! But I am. Don't believe me just watch}" over and over again.
 
 \part*{Task 7 - Turn ASLR back on}
 
 \subsection*{What happens?}
 
-So after typing in the specified commands, it printed a bunch of characters after the alphabet and then segmentatoin faulted as it did when the buffer overflowed but without a payload of the address of the \texttt{arbitrary\_code}.
+So after typing in the specified commands, it printed a bunch of characters after the alphabet and then segmentatoin faulted as it did when the buffer overflowed but without a payload of the address of the \texttt{arbitrary\_code}. Turning ASLR back on has managed to prevent the buffer overflow attack from occuring in this particular way.
 
 \part*{Task 8 - Fix the vulnerability}
 
@@ -228,7 +234,7 @@ So after typing in the specified commands, it printed a bunch of characters afte
 \texttt{fgets} ensures that only the specified length of characters is read in from \texttt{stdin}, thereby removing the possibility of a buffer overflow. Moreover, it makes sure to null terminate the buffer so that we know for a fact when this string ends. Therefore, when we input a value that is greater than 8 characters, it will truncate our input to 7 characters, replacing the 8th character with the null terminator.
 
 \medskip
-\includegraphics[width=\textwidth]{./task07-screenshot.png}
+\includegraphics[width=\textwidth]{./task08_screenshot_v2.png}
 \medskip
 
 \part*{Task 9 - Real-world application}
