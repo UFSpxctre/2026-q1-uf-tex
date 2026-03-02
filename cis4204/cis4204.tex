@@ -112,5 +112,46 @@ A \textbf{switch} is the \textit{"brain"} of a LAN.
     \item \textbf{MAC Address Unknown:} Data is flooded to every port until the correct device responds.
 \end{enumerate}
 
+\subsection*{Address Resolution Protocol (ARP)}
+
+Computers communicate via \textbf{IP addresses}, hardware communicates via \textbf{MAC addresses}.
+\medskip
+
+\textbf{ARP Process}:
+\begin{itemize}
+    \item \textbf{Request}: A host sends a broadcast: "Who has IP 192.168.1.1? Tell 192.168.1.50."
+    \item \textbf{Reply}: Device with that IP sends a unicast back: "I have that IP. My MAC Address is AA:BB:CC..."
+\end{itemize}
+
+\textbf{ARP Caching}: Computers store mappings in an \textit{ARP Cache} for a few minutes.
+
+\subsection*{Router}
+
+To make routing efficient, IP addresses are \textbf{hierarchical} (ZIP Code > Street > House Number).
+
+\begin{itemize}
+    \item \textbf{Network Portion}: Identifies the specific network or "neighborhood" where the device is located.
+    \item \textbf{Host Portion}: Identifies the specific device or "house" within that neighborhood.
+\end{itemize}
+
+\subsection*{Subnetting}
+
+\textbf{Subnet Mask}: Mathematical "filter" that tells a device exactly where the Network portion ends and the Host portion begins. Determines the boundaries of the local network.
+\medskip
+
+
+\begin{itemize}
+    \item \textbf{Local Traffic}: If the destination IP shares the same Network portion as the sender, data travels directly through the switch>
+    \item \textbf{Remote Traffic}: If Network portions are different, data must be sent to the Router.
+\end{itemize}
+
+\subsection*{CIDR Notation}
+
+Computers see IP addresses and masks as 32-bit binary strings.
+\begin{itemize}
+        \textbf{/24 Mask}: 24 bits reserved for the Network, leaving 8 bits for Hosts \textbf{(256 addresses)}.
+        \textbf{/16 Mask}: 16 bits reserved for the Network, leaving 16 bits for Hosts \textbf{(65536 addresses)}.
+\end{itemize}
+
 
 \end{document}
