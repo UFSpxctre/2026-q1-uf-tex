@@ -290,4 +290,26 @@ Originally developed by IBM in the early 1980s as a simple file sharing tool, la
     \item \texttt{get /etc/shadow} or \texttt{/root/.ssh/id\_rsa}: yeah
 \end{enumerate}
 
+\subsection*{Secure Shell (SSH)}
+
+The \textbf{Secure Shell (SSH)} protocol was designed specifically to replace insecure, clear-text protocols such as Telnet, rlogin, and FTP.
+
+\begin{itemize}
+    \item Used for secure remote command-line access, remote command execution, and encrypted file transfers via \textbf{SFTP} or \textbf{SCP}.
+    \item \textbf{TCP 22}: universal port for SSH.
+    \item \textbf{Public key cryptography}: Establishes an encrypted tunnel between the client and server before any authentication happens.
+\end{itemize}
+
+\subsubsection*{SSH: Interaction}
+
+SSH is almost always preferred over Telnet or FTP because it protects passwords from being sniffed over the wire.
+
+\begin{enumerate}
+    \item \texttt{ssh <username>@<target\_IP>}: connect to remote terminal.
+    \item \texttt{ssh <username>@<target\_IP> '<command>'}: connects, runs a command, and exits.
+    \item \texttt{scp <local\_file> <username>@<target\_IP>:/home/user/}: copy file to server.
+    \item \texttt{scp <username>@<target\_IP>:/etc/passwd ./local\_copy.txt}: copy file from server.
+    \item \texttt{sftp <username>@<target\_IP>}: FTP-like interface running over SSH.
+\end{enumerate}
+
 \end{document}
