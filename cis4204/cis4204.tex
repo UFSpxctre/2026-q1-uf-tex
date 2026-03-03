@@ -153,5 +153,98 @@ Computers see IP addresses and masks as 32-bit binary strings.
         \textbf{/16 Mask}: 16 bits reserved for the Network, leaving 16 bits for Hosts \textbf{(65536 addresses)}.
 \end{itemize}
 
+\part*{5 - Common Services}
+
+\subsection*{CVE}
+
+A \textbf{CVE (Common Vulnerability and Exposure)} is the result of a rigorous research and reporting process.
+
+\begin{itemize}
+    \item \textbf{Discovery}: Flaw is found in a piece of software.
+    \item \textbf{Reporting}: Researher notifies software vendor first, giving the vendor time to create a patch.
+    \item \textbf{Assignment}: A \textbf{CNA (CVE Numbering Authority)} assigns an unique ID to the flaw.
+    \item \textbf{Publication}: CVE is published to \textbf{National Vulnerability Database (NVD)}, given a CVSS Score based on how easy it is to exploit and how much damage it can do.
+\end{itemize}
+
+There is a three-step workflow to prove that a version in place is a risk.
+
+\begin{enumerate}
+    \item \textbf{Fingerprinting}: Using tools (like \texttt{nmap -sV}) to find the exact version of a service.
+    \item \textbf{Searching for CVEs}: Research on that version to find vulnerabilities.
+    \item \textbf{Finding a Proof of Concept}: Look for code that successfully demonstrates the exploit.
+\end{enumerate}
+
+\subsection*{Domain Name Service (DNS)}
+
+\textbf{DNS} is the resolution engine of the world, mapping domain names to IP addresses and routing email via \textit{MX records} and provides service location via \textit{SRV records}.
+\medskip
+
+DNS is hierarchical and chained; no single server knows every address, and instead they have to communicate with other servers.
+\medskip
+
+DNS is very useful for pentesters because it can reveal subdomains and the internal infrastructure of many networks.
+
+\subsection*{DNS Interaction}
+
+Purely query based. Tools like \texttt{dig} and \texttt{nslookup} can be used by pentesters to manually query DNS servers.
+
+\begin{itemize}
+    \item \textbf{Lookup IP (A Record)}: \texttt{dig <domain\_name> A}
+    \item \textbf{Lookup Mail Servers (MX Record)}: \texttt{dig <domain\_name> MX}
+    \item \textbf{Lookup Name Servers (NS Record)}: \texttt{dig <domain\_name> NS}
+    \item \textbf{Reverse Lookup}: \texttt{dig -x <target\_IP>}
+    \item \textbf{Tracing}: \texttt{dig <domain\_name> +trace} (\textit{shows every step of the DNS resolution process})
+\end{itemize}
+
+\subsection*{Zone Transfers}
+
+A \textbf{DNS Zone Transfer (AXFR)} is a mechanism intended for replicating DNS records between a primary and a secondary server.
+\medskip
+
+The vulnerability exists when a DNS server is misconfigured to allow AXFR requests from any IP address, and thus attackers can obtain a \textit{full copy} of the DNS zone file, revealing every recorded subdomain, internal IP address, and mail server.
+
+\begin{itemize}
+    \item \textbf{Attempt Transfer}: \texttt{dig axfr \@<dns\_server\_ip> <domain\_name>}
+\end{itemize}
+
+\subsection*{Domain Hijacking}
+
+Attackers can register abandoned domain names or claim abandoned IP addresses of outdated NS records. This allows the attacker to become an "authoritative" source for that domain, allowing them to \textbf{intercept emails}, \textbf{create fake subdomains}, or \textbf{redirect users to phishing sites.}
+
+\begin{itemize}
+    \item \texttt{dig ns <domain\_name>} to check if those name servers are active or registrable
+    \item Look for \texttt{SERVFAIL} or \texttt{NXDOMAIN} responses when querying nameservers
+    \item Register the expired name domain at a public registrar
+    \item \texttt{dig <domain\_name>} to verify the hijack
+\end{itemize}
+
+\subsection*{File Transfer Protocol (FTP)}
+
+\textbf{File Transfer Protocol (FTP)} is a protocol primarily used for bulk file transfers, website maintenance, and distributing large software packages.
+
+\begin{itemize}
+    \item \textbf{Stateful and clear-text}: the commands, usernames, and passwords sent over FTP is visible to anyone sniffing traffic. \textbf{FTPS} implements certificates and fixes this issue.
+    \item \textbf{TCP Port 21}: sends commands and receiving status codes.
+    \item \textbf{TCP Port 20}: used for actual transfer of file data in "Active" mode.
+\end{itemize}
+
+\subsubsection*{FTP: Interaction}
+
+\begin{enumerate}
+    \item \texttt{ftp <target\_IP>}: Begin with a connection on TCP port 21, followed by authentication.
+    \item \texttt{ls -R}: recursively list subdirectories and files similar to the Linux shell.
+    \item \texttt{get <filename>}: download files from server to local machine.
+    \item \texttt{put <filename>}: upload files from local to server machine.
+    \item \texttt{bye} or \texttt{exit}: exit the session.
+\end{enumerate}
+
+\subsubsection*{FTP: Anonymous Login}
+
+\textit{Anonymous login} is a legacy feature; turned on only for the admin's convenience but can become a vulnerability when the FTP root directory is set to a sensitive path or when permissions are globally readable.
+
+\begin{enumerate}
+    \item \texttt{nmap -sV --script ftp-anon <target>}: check for this vulnerability.
+    \item \texttt{wget -m ftp://anonymous:anonymous@<target>}: mirrors entire server locally.
+\end{enumerate}
 
 \end{document}
