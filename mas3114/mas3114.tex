@@ -911,4 +911,125 @@ Given an $ m \times n $ matrix $ A $, then:
     \item $ \textrm{Col} (A) $ is a subspace of $ \mathbb{R}^m $
 \end{enumerate}
 
+\subsection*{Theorem: Geometric Description of Nul A, Row A, and Col A}
+
+\begin{itemize}
+    \item $ \textrm{Nul} \: A \perp \textrm{Row} \: A $
+    \item $ \textrm{Nul} \: A^T \perp \textrm{Col} \: A $
+\end{itemize}
+
+\section*{Lecture 16}
+
+\subsection*{Bases}
+
+Let $ H $ be a subspace of a vector space $ V $ and let $ b_i \in V $. $ B = \begin{Bmatrix}
+    b_1, \hdots, b_p \\
+\end{Bmatrix} $ is a \textbf{basis} for $ H $ if:
+
+\begin{enumerate}
+    \item $ B $ is \textbf{linearly independent}.
+    \item $ H = \textrm{Span} \begin{Bmatrix}
+            b_1, \hdots, b_p \\
+    \end{Bmatrix} $ 
+\end{enumerate}
+
+\subsection*{Theorem: Basis from Invertible Matrices}
+
+The columns of an $ n \times n $ invertible matrix $ A $ form a basis for $ \mathbb{R}^n $.
+
+\subsection*{Theorem: Basis is Spanning Set}
+
+Assume that $ B $ is the \textbf{basis} of matrix $ H $. Thus, $ B $ is also the spanning set of $ H $.
+
+\subsection*{Spanning Set Theorem}
+
+Let $ S = \begin{Bmatrix}
+    v_1, \hdots, v_p \\
+\end{Bmatrix} $ be a set in $ V $ and let $ H = \textrm{Span} \begin{Bmatrix}
+    v_1 \hdots, v_p \\
+\end{Bmatrix} $
+
+\begin{enumerate}
+    \item If one of the vectors in $ S $ is a linear combination of the other vectors in $ S $, then $ S $ still spans $ H $ if we remove that vector from $ S $.
+    \item If one of the vectors in $ S $ is \textbf{linearly dependent} on the other vectors in $ S $, then that vector can be removed from $ S $ and $ S $ will still span $ H $.
+    \item If $ H \neq \begin{Bmatrix}
+            0
+    \end{Bmatrix} $, some subset of $ S $ is a basis for $ H $.
+\end{enumerate}
+
+\subsubsection*{Spanning Set Theorem: Example 1}
+
+Consider if $ H = \textrm{Span} \begin{Bmatrix}
+    1, t, t^2, 2 - 3t^2 \\
+\end{Bmatrix} $, then $ H = \textrm{Span} \begin{Bmatrix}
+    1, t, t^2
+\end{Bmatrix} $.
+\medskip
+
+A \textbf{basis} can be formed from a \textbf{spanning set} by discarding unneeded vectors.
+
+\subsubsection*{Spanning Set Theorem: Example 2}
+
+\medskip
+{\centering
+
+Let $ v_1 = \begin{bmatrix}
+    1 \\
+    0 \\
+    0 \\
+\end{bmatrix} $,
+$ v_2 = \begin{bmatrix}
+    0 \\
+    1 \\
+    1 \\
+\end{bmatrix} $,
+$ v_3 = \begin{bmatrix}
+    -3 \\
+    4 \\
+    4 \\
+\end{bmatrix} $.
+
+}
+\medskip
+
+\begin{enumerate}
+    \item Determine if the set $ \begin{Bmatrix}
+            v_1, v_2, v_3 \\
+    \end{Bmatrix} $ is a basis for $ \mathbb{R}^3 $.
+    \bigskip
+
+        The set $ \begin{Bmatrix}
+            v_1, v_2, v_3 \\
+        \end{Bmatrix} $ is \textbf{linearly dependent}, and thus does not row-reduce into an $ n \times n $ identity matrix. Therefore, the set is not a basis for $ \mathbb{R}^3 $.
+    \item Let $ H = \textrm{Span} \begin{Bmatrix}
+            v_1, v_2, v_3 \\
+    \end{Bmatrix} $ be a subspace for $ \mathbb{R}^3 $. Then, $ H = \textrm{Span} \begin{Bmatrix}
+        v_1, v_2, \\
+    \end{Bmatrix} $ and $ \begin{Bmatrix}
+        v_1, v_2 \\
+    \end{Bmatrix} $ is a basis for $ H $.
+    \bigskip
+
+        Since $ v_3 $ is a \textbf{linearly dependent} vector of $ v_1 $ and $ v_2 $, by the \textbf{Spanning Set Theorem} we can remove this vector from the set and it will still span $ H $. Thus, it will still be a \textbf{basis} for $ H $.
+\end{enumerate} 
+
+\subsection*{Basis for Null Space}
+
+Find the \textbf{basis} for $ \textrm{Nul} \: A \neq 0 $, we solve for $ Ax = 0 $ by using the row reduction algorithm.
+
+\subsection*{Basis for Row Space}
+
+Reduce matrix $ A $ to RREF, then the \textbf{nonzero rows} are linearly independent and form a basis for $ \textrm{Row} \: A $.
+
+\subsection*{Basis for Column Space}
+
+The \textbf{pivot columns} of matrix $ A $ form a basis for $ \textrm{Col} \: A $.
+
+\subsubsection*{Theorem: Basis for Column Space}
+
+\begin{enumerate}
+    \item The pivot columns of $ A $ are \textbf{linearly independent}.
+    \item Each non-pivot column of $ A $ is a linear combination of the preceding pivot columns.
+\end{enumerate}
+
 \end{document}
