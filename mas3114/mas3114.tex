@@ -879,21 +879,36 @@ Let $ V $ be a vector space and $ v_i \in V $. Then, let $ S = \begin{Bmatrix}
     \item $ H $ is called the \textbf{subspace of $ V $ spanned} by the set $ S $.
 \end{itemize}
 
+\section*{Lecture 14}
+
+\subsection*{Null Space}
+
+The \textbf{null space} of $ m \times n $ matrix $ A $, denoted by $ \textrm{Nul} \: A $, is the solution set of $ Ax = 0 $.
+
 \section*{Lecture 15}
 
-Given an $ m \times n $ matrix $ A $, then:
-
-\begin{enumerate}
-    \item $ \textrm{Nul} (A) $ is a subspace of $ \mathbb{R}^n $
-    \item $ \textrm{Col} (A) $ is a subspace of $ \mathbb{R}^m $
-\end{enumerate}
-
 \subsection*{Column Space}
+
+The \textbf{column space} of an $ m \times n $ matrix $ A $, denoted by $ \textrm{Col} \: A $, is the set of all linear combinations of $ A $.
+
+\subsubsection*{Theorem: Column Space is the Span}
+
+The \textbf{column space} of a $ m \times n $ matrix $ A $ is equivalent to the \textbf{span} of the columns of $ A $.
+
+\subsubsection*{Theorem: Column Space}
 
 Given an $ m \times n $ matrix $ A $, a $ m \times 1 $ matrix $ w $ is \textbf{in} the \textbf{column space} of $ A $ if $ Ax = w $ is a consistent system.
 
 \subsection*{Theorem: Column Space of Transpose}
 
 Given an $ m \times n $ matrix $ A $, the \textbf{row space} of $ A^T $ is the same as the \textbf{column space} of $ A $, because the rows of $ A^T $ are the columns of $ (A^T)^T = A $.
+
+\subsubsection*{Theorem: Vector Subspaces}
+Given an $ m \times n $ matrix $ A $, then:
+
+\begin{enumerate}
+    \item $ \textrm{Nul} (A) $ is a subspace of $ \mathbb{R}^n $
+    \item $ \textrm{Col} (A) $ is a subspace of $ \mathbb{R}^m $
+\end{enumerate}
 
 \end{document}
