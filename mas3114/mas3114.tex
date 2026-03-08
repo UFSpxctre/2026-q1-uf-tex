@@ -685,6 +685,145 @@ A & I \\
 
 Thus, given a matrix $ A $, you can solve the augmented matrix $ \begin{bmatrix} A & I \end{bmatrix} $. The solution matrix $ x $ is $ A^{-1} $. 
 
+\subsubsection*{Invertible: Example 1}
+
+Given $ A = \begin{bmatrix}
+    -2 & 3 \\
+    3 & -5 \\
+\end{bmatrix} $ and $ B = \begin{bmatrix}
+    -5 & -3 \\
+    -3 & -2 \\
+\end{bmatrix} $, show that $ B = A^{-1} $.
+\bigskip
+
+To show that $ A $ and $ B $ are inverses of each other, their matrix product must be the $ 2 \times 2 $ identity matrix.
+\bigskip
+
+\medskip
+{\centering
+
+$ \begin{bmatrix}
+    -2 & 3 \\
+    3 & -5 \\
+\end{bmatrix} \begin{bmatrix} 
+    -5 & -3 \\
+    -3 & -2 \\
+\end{bmatrix} = \begin{bmatrix}
+    1 & 0 \\
+    0 & 1 \\
+\end{bmatrix} $
+
+}
+\medskip
+
+\subsubsection*{Invertible: Example 2}
+
+Let $ A = \begin{bmatrix}
+    1 & -3 \\
+    -2 & 10 \\
+\end{bmatrix} $
+\begin{enumerate}
+    \item Find the inverse of $ A $.
+        \bigskip
+
+        The easiest way is to use the formula $\displaystyle \frac{1}{ad - bc} \begin{bmatrix}
+            d & -b \\
+            -c & a \\
+        \end{bmatrix} $.
+        \bigskip
+
+        The inverse of $ A $ is $\displaystyle \frac{1}{10 - 6} \begin{bmatrix}
+            10 & 2 \\
+            3 & 1 \\
+        \end{bmatrix} = \begin{bmatrix}
+            \frac{10}{4} & \frac{2}{4} \\
+            \frac{3}{4} & \frac{1}{4} \\
+        \end{bmatrix} $
+    \item Solve the system $ Ax = b $, where $ b = \begin{bmatrix}
+            -4 \\ 8 \\
+    \end{bmatrix} $
+    \bigskip
+
+    Just solve the augmented matrix.
+        $ \begin{amatrix}{2}
+            1 & 0 & -4 \\
+            0 & 1 & 0 \\
+        \end{amatrix} $
+\end{enumerate}
+
+\subsubsection*{Invertible: Example 3}
+
+Find the inverse of the matrix $ A $ if it exists.
+
+\begin{enumerate}
+    \item $ A = \begin{bmatrix}
+            1 & 0 & -2 \\
+            0 & 1 & 4 \\
+            0 & -2 & -8 \\
+    \end{bmatrix} $
+        \bigskip
+
+        Solve the augmented matrix $ \begin{amatrix}{1}
+            A & I \\
+        \end{amatrix} $.
+        \bigskip
+
+        \medskip
+        {\centering
+
+        $ \begin{bmatrix}
+            1 & 0 & -2 & 1 & 0 & 0 \\
+            0 & 1 & 4 & 0 & 1 & 0 \\
+            0 & -2 & -8 & 0 & 0 & 1 \\
+        \end{bmatrix} $
+        \bigskip
+
+        $ \begin{bmatrix}
+            1 & 0 & -2 & 1 & 0 & 0 \\
+            0 & 1 & 4 & 0 & 0 & -\frac{1}{2} \\
+            0 & 0 & 0 & 0 & 1 & \frac{1}{2} \\
+        \end{bmatrix} $
+        \bigskip
+
+
+        }
+        \medskip
+
+        Since the augmented matrix is \textbf{inconsistent}, the matrix $ A $ is \textbf{not invertible}.
+
+    \item $ A = \begin{bmatrix}
+            1 & 0 & -2 \\
+            0 & 1 & 4 \\
+            0 & -2 & -7 \\
+    \end{bmatrix} $
+        \bigskip
+
+        \medskip
+        {\centering
+
+        $ \begin{bmatrix}
+            1 & 0 & -2 & 1 & 0 & 0 \\
+            0 & 1 & 4 & 0 & 1 & 0 \\
+            0 & -2 & -7 & 0 & 0 & 1 \\
+        \end{bmatrix} $
+        \bigskip
+
+        $ \begin{bmatrix}
+            1 & 0 & 0 & 1 & 4 & 2 \\
+            0 & 1 & 0 & 0 & -7 & -4 \\
+            0 & 0 & 1 & 0 & 2 & 1 \\
+        \end{bmatrix} $
+
+        }
+        \medskip
+
+        Since the augmented matrix is \textbf{consistent}, the inverse of matrix $ A $ is $ \begin{bmatrix}
+            1 & 4 & 2 \\
+            0 & -7 & -4 \\
+            0 & 2 & 1 \\
+        \end{bmatrix} $.
+\end{enumerate}
+
 \section*{Lecture 11}
 
 \subsection*{Determinant}
@@ -779,6 +918,28 @@ The determinant of an $ n \times n $ matrix $ A $ can be computed by a \textbf{c
 
 }
 \medskip
+
+\subsubsection*{Determinants: Example 1}
+
+Compute the determinant for the matrix $ \begin{bmatrix}
+    0 & 0 & 0 \\
+    1 & 2 & 3 \\
+    4 & 5 & 6 \\
+\end{bmatrix} $.
+\bigskip
+
+By using \textbf{cofactor expansion} across the first row, the elements in the first row become the scalars to the determinants of the submatrices. The determinant will be 0.
+
+\subsubsection*{Determinants: Example 2}
+
+Compute the determinant for the matrix $ \begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    1 & -2 & 0 & 0 \\
+    1 & -2 & 3 & 0 \\
+    1 & -2 & 3 & -4 \\
+\end{bmatrix} $
+\bigskip
+% TODO: finish this example sometime
 
 % TODO: the determinant of the matrix is equal to the determinant of its transpose (proof it)
 
