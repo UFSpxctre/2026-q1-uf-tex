@@ -1032,4 +1032,68 @@ The \textbf{pivot columns} of matrix $ A $ form a basis for $ \textrm{Col} \: A 
     \item Each non-pivot column of $ A $ is a linear combination of the preceding pivot columns.
 \end{enumerate}
 
+\section*{Lecture 17}
+
+\subsection*{Dimension}
+
+The \textbf{dimension}, denoted by $ \textrm{dim} \: V $, is the number of vectors in a basis for a nonzero vector space $ V $.
+
+\begin{itemize}
+    \item The \textbf{dimension} of the zero vector is \textbf{0}.
+    \item If $ V $ is spanned by a \textbf{finite} set, then $ V $ is \textbf{finite-dimensional}.
+    \item If $ V $ cannot be spanned finite set, then $ V $ is \textbf{infinite-dimensional}.
+\end{itemize}
+
+\subsubsection*{Dimension: Examples}
+
+\begin{enumerate}
+    \item $ V = \mathbb{R}^n $
+        \bigskip
+
+        $ E = \begin{Bmatrix}
+            e_1 & e_2 & e_3 & \hdots & e_n \\
+        \end{Bmatrix} $
+        \bigskip
+
+        Thus, $ \textrm{dim} \: V = n $.
+    \item $ V = \mathbb{P}_3 $
+        \bigskip
+
+        $ \textrm{dim} \: V = 4 $
+    \item $ V = \mathbb{P} $
+        \bigskip
+
+        The vector space $ V $ would be \textbf{infinite-dimensional}.
+    \item $ V = \mathbb{M}_{2 \times 2} $
+        \bigskip
+
+        $ \textrm{dim} \: V = m \times n = 4 $
+\end{enumerate}
+
+\subsection*{Theorem: Dimension to Rank}
+
+The \textbf{dimension} of a vector space $ V $ is equivalent to the rank of $ V $.
+
+\subsection*{Theorem: Linearly Dependent Spaces}
+
+If a vector space $ V $ has a basis $ B = \begin{Bmatrix}
+    b_1, \hdots, b_n \\
+\end{Bmatrix} $, then any set in $ V $ containing more than $ n $ vectors must be \textbf{linearly dependent}.
+\medskip
+
+This also follows from the \textbf{Spanning Set Theorem}; any unnecessary vectors will be \textbf{linearly dependent}.
+
+\subsection*{Theorem: Dimensions for Bases}
+
+If both $ B = \begin{Bmatrix}
+    b_1, \hdots, b_n \\
+\end{Bmatrix} $ and
+$ B' = \begin{Bmatrix}
+    b'_1, \hdots, b'_m \\
+\end{Bmatrix} $ are bases for a vector space $ V $, then $ n = m $.
+
+\subsection*{Theorem: Subspace of Finite-Dimensional Space}
+
+Let $ H $ be a subspace of a finite-dimensional space $ V $. Any linearly independent set in $ H $ can be expanded to a basis for $ H $. $ H $ is also finite-dimensional and $ \textrm{dim} \: H \leq \textrm{dim} \: V $.
+
 \end{document}
