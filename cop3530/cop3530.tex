@@ -266,6 +266,14 @@ Trees are rooted, directed, acyclic structures.
         \end{itemize}
 \end{itemize}
 
+\subsection*{Binary Tree: Array Representation}
+
+Array representations of binary trees are the level order traversals of the tree (including \textbf{null} nodes).
+
+\begin{itemize}
+    \item \texttt{a[i]} has children \texttt{a[2 * i + 1]} and \texttt{a[2 * i + 2]}.
+\end{itemize}
+
 \section*{Balanced Trees}
 
 To reduce the occurrence of worst case tree patterns that degrade a BST's time complexity to a worst case of \texttt{O(n)}, we can modify the tree when we encounter some of these patterns to optimize the tree.
@@ -444,7 +452,8 @@ When do we need to rotate nodes in an AVL tree?
     \item Root node is \textbf{black}.
     \item \textbf{Red} nodes always has \textbf{black} children.
     \item \textbf{Null} nodes are defined as \textbf{black}.
-    \item Much cheaper than height comparison due to color flips.
+    \item Every path from a node to \textbf{null} descendants contain the same number of \textbf{black} nodes.
+    \item Color flips are much cheaper than height comparison.
 \end{itemize}
 
 \subsubsection*{Red-Black Tree: Insertion}
@@ -457,12 +466,12 @@ When do we need to rotate nodes in an AVL tree?
             \item \textit{Parent} is \textbf{black}: do nothing
             \item \textit{Parent} is \textbf{red}:
                 \begin{itemize}
-                    \item \textit{Uncle} is \textbf{red}: invert colors of parent, uncle, and grandparent
-                    \item \textit{Uncle} is \textbf{black}: rotate (similar to AVL Trees) % TODO: link it up
+                    \item \textit{Uncle} is \textbf{red}: invert colors of \textbf{parent}, \textbf{uncle}, and \textbf{grandparent} (but root is always \textbf{black})
+                    \item \textit{Uncle} is \textbf{black}: rotate (similar to AVL Trees), then invert parent and grandparent.
                         % TODO: add examples for invariance correction
                 \end{itemize}
         \end{itemize}
-    \item Cascade rule up the parent chain to check and remediate invariance of the tree.
+    \item Cascade rules up the parent chain to check and remediate any invariance violations.
 \end{enumerate}
 
 \subsubsection*{Red-Black Tree: Use Case}
