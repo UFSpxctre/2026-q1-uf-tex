@@ -149,8 +149,8 @@ To make routing efficient, IP addresses are \textbf{hierarchical} (ZIP Code > St
 
 Computers see IP addresses and masks as 32-bit binary strings.
 \begin{itemize}
-        \textbf{/24 Mask}: 24 bits reserved for the Network, leaving 8 bits for Hosts \textbf{(256 addresses)}.
-        \textbf{/16 Mask}: 16 bits reserved for the Network, leaving 16 bits for Hosts \textbf{(65536 addresses)}.
+    \item \textbf{/24 Mask}: 24 bits reserved for the Network, leaving 8 bits for Hosts \textbf{(256 addresses)}.
+    \item \textbf{/16 Mask}: 16 bits reserved for the Network, leaving 16 bits for Hosts \textbf{(65536 addresses)}.
 \end{itemize}
 
 \part*{5 - Common Services}
@@ -311,5 +311,118 @@ SSH is almost always preferred over Telnet or FTP because it protects passwords 
     \item \texttt{scp <username>@<target\_IP>:/etc/passwd ./local\_copy.txt}: copy file from server.
     \item \texttt{sftp <username>@<target\_IP>}: FTP-like interface running over SSH.
 \end{enumerate}
+
+\part*{6 - Writing Reports}
+
+\section*{Types of Reports}
+
+\subsection*{Vulnerability Assessment}
+
+\begin{itemize}
+    \item \textbf{Deliverable}: High-volume list of every potential flaw found by an automated scanner.
+    \item Designed for broad coverage.
+\end{itemize}
+
+\subsection*{Penetration Test}
+
+\begin{itemize}
+    \item \textbf{Deliverable}: Manual testing and full proof of concept.
+    \item Fcouses on the \textbf{attack chain}, or proving how an attacker can move laterally through a network.
+\end{itemize}
+
+\subsection*{Compliance-Driven Reports}
+
+\begin{itemize}
+    \item Reporst are written specifically to satisfy regulatory bodies.
+    \item Often, reports must map technical findings directly to legal violations.
+\end{itemize}
+
+\subsection*{Specialized Tests}
+\begin{itemize}
+    \item Can have different frameworks or deliverables from common penetration tests.
+\end{itemize}
+
+\section*{Drafts}
+
+Different clients have different priorities and preferences, and some organizations will request a draft report that allows clients.
+
+\begin{itemize}
+    \item Gives clients the opportunity to provide feedback, clarify details, or explain how they plan to address specific findings.
+    \item Some organizations will request an immediate report upon discovery of a critical vulnerability.
+\end{itemize}
+
+\section*{Nontechnical Components}
+
+\subsection*{Legal \& Overview}
+
+Good reports must begin with a clear Executive Summary and Engagement Overview that establishes legal and administrative boundaries of the test.
+
+\begin{itemize}
+    \item \textbf{Sensitivity Warning}: Explicitly states who owns the data and the penalties for unauthorized release.
+    \item \textbf{Contact Information}: Clear line of communication between testing team and client's emergency response contacts.
+    \item \textbf{Executive Summary}: High-level summary for executives.
+    \item \textbf{Engagement Overview}: Outlines the objectives and goals of the penetration test, along with a rigid scope list of what was allowed to be tested to ensure testers didn't stray into unauthorized systems.
+\end{itemize}
+
+\subsection*{Executive Summary}
+
+The most-read part of the document, written for non-technical stakeholders who allocate budgets.
+
+\begin{itemize}
+    \item \textbf{Refrain} from using \textbf{technical language} in this section.
+    \item Give an overview of what was tested.
+    \item Give an extremely broad overview of the most impactful findings.
+    \item Include any other information you find absolutely necessary for non-technical executives to know.
+\end{itemize}
+
+\subsection*{Engagement Overview}
+
+\begin{itemize}
+    \item Provide a list of in-scope assets.
+    \item Good practice to create and provide a \textbf{visual network diagram}.
+\end{itemize}
+
+\section*{Technical Report and Findings}
+
+\subsection*{Calculating CVSS Scores}
+
+\textbf{CVSS} (Common Vulnerability Scoring System) provides a numerical score (0.0 - 10.0) based on ease of exploitation and severity.
+\medskip
+
+Sometimes, a raw CVSS score isn't enough. An \textit{adjusted CVSS score} accounts for the difference in the vulnerability of browser on a locked-down kiosk versus that on the CEO's laptop.
+
+\subsection*{Anatomy of a Technical Finding}
+
+Each finding in the Technical Report section must follow a consistent modular structure:
+
+\begin{itemize}
+    \item \textbf{Adjusted CVSS Score}: Numerical rating (0.0 - 10.0) that accounts for the specific likelihood and impact on the client's business.
+    \item \textbf{Details}: High-level explanation of the vulnerability.
+    \item \textbf{Confirmation}: Step-by-step evidence, including specific commands used and terminal output, along with screenshots where necessary for understanding/proof.
+    \item \textbf{Impact}: Worst-case scenarios for the client.
+    \item \textbf{Mitigation}: Clear, actionable advice on how to fix/mitigate the issue.
+\end{itemize}
+
+\section*{Additional Reporting Advice}
+
+\subsection*{QA Lifestyle}
+
+Reports should never go from pentester directly to the client. It should pass through a \textbf{Quality Assurance (QA)} phase.
+
+\begin{itemize}
+    \item \textbf{Technical Accuracy}: Are the reproduction steps correct?
+    \item \textbf{Consistency}: Does the \textbf{Executive Summary} match the \textbf{Technical Findings}?
+    \item \textbf{Tone}: Is the language professional?
+\end{itemize}
+
+\subsection*{Appendices}
+
+The \textbf{Appendices} are for the "deep dive" information that would clutter up the main report:
+
+\begin{itemize}
+    \item \textbf{Tool List}: Transparency about what software was used.
+    \item \textbf{Methodology}: Explaining the standard followed.
+    \item \textbf{OSINT \& Phishing}: Detailed logs of what was found in public records or the results of social engineering campaigns.
+\end{itemize}
 
 \end{document}
