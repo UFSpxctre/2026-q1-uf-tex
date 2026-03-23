@@ -425,4 +425,148 @@ The \textbf{Appendices} are for the "deep dive" information that would clutter u
     \item \textbf{OSINT \& Phishing}: Detailed logs of what was found in public records or the results of social engineering campaigns.
 \end{itemize}
 
+\section*{7 - Basic Cryptography}
+
+\subsection*{Encoding vs. Encryption}
+
+\textbf{Encoding} is a public transformation of data.
+
+\begin{itemize}
+    \item Prioritizes \textbf{usability} and \textbf{reproducibility}.
+    \item Ensures binray data can survive being sent over protocols that only support text.
+    \item \textit{Example:} Base64, URL encoding, ASCII.
+\end{itemize}
+
+\bigskip
+
+\textbf{Encryption} transforms data using a \textbf{secret} (a key).
+
+\begin{itemize}
+    \item Without the secret, the transformed data should be indistinguishable from random noise.
+    \item \textit{Example:} AES, RSA, PGP.
+\end{itemize}
+
+\subsubsection*{Real World Example: Encoding}
+
+\begin{itemize}
+    \item \textbf{URL Encoding}
+        \begin{itemize}
+            \item \textbf{Input:} \texttt{Hello World!}
+            \item \textbf{Encoded:} \texttt{Hello\%20World\%21}
+            \item Why? Browsers can't handle spaces or "!" in URLs reliably.
+        \end{itemize}
+    \item \textbf{Base64 Encoding}
+        \begin{itemize}
+            \item \textbf{Input:} \texttt{admin:password123}
+            \item \textbf{Encoded:} \texttt{YWRtaW46cGFzc3dvcmQxMjM=}
+            \item Why? Used to send credentials in HTTP Basic Auth headers without breaking the protocol.
+        \end{itemize}
+\end{itemize}
+
+\subsection*{Base64}
+
+\begin{itemize}
+    \item Most common encoding variation.
+    \item Processes data in \textbf{24-bit} groups, reresenting them as four \textbf{6-bit} units.
+    \item Padding in the form of \texttt{=} signs is added to the end.
+\end{itemize}
+
+\subsection*{Symmetric Encryption}
+
+\textbf{Symmetric encryption} uses a single shared secret key for both encrytpion and decryption.
+
+\begin{itemize}
+    \item Anyone with the keyc an read the data.
+    \item Fast, used to encrypt large amounts of information.
+    \item \textcolor{red}{Cons:} Key distribution - safely sharing the secret key without interception and keeping it from being leaked afterwards.
+\end{itemize}
+
+\bigskip
+
+Instead of trying to break \textbf{symmetric encryption}, people instead look for:
+
+\begin{itemize}
+    \item Hardcoded encryption keys in source code.
+    \item Keys stored in configuration files.
+    \item Weak encryption modes.
+    \item Reused keys across systems.
+\end{itemize}
+
+\subsubsection*{Common Symmetric Ciphers}
+
+\begin{itemize}
+    \item \textbf{AES (Advanced Encryption Standard)}: Used in TLS, disk encryption, VPNs.
+    \item \textbf{ChaCha20}: Modern, fast cipher used in TLS and mobile systems.
+\end{itemize}
+
+\subsection*{Asymmetric Encryption}
+
+\textbf{Asymmetric cryptography} (public key cryptography) uses two related keys instead of a single shared key:
+
+\begin{itemize}
+        \textbf \textbf{Public Key}: Shared with everyone, used to encrypt data.
+        \textbf \textbf{Private Key}: Kept secret - decrypts data encrypted with the \textbf{public key}.
+\end{itemize}
+
+\bigskip
+
+SSH keys are a good example of \textbf{asymmetric cryptography}. The private key never leaves the client machine, so if the server was compromised the attackers will only have access to your public key.
+
+\subsubsection*{Common Asymmetric Ciphers}
+
+\begin{itemize}
+    \item \textbf{RSA}: Widely used for certificates, signatures, and legacy encryption.
+    \item \textbf{Elliptic Curve Cryptography (ECC)}: Modern alternative used on occasion in TLS, SSH, and certificates. (super cool shit)
+\end{itemize}
+
+\subsection*{Password Attacks}
+
+Two types of password attacks:
+
+\begin{itemize}
+    \item \textbf{Online Attacks}: Pentester attemptse authentication directly against a running service. May trigger alerts, rate limits, or account lockouts.
+    \item \textbf{Offline Attacks}: Happen after obtaining password hashes or encrypted credential stores that can then be cracked locally without interacting with the target.
+\end{itemize}
+
+\bigskip
+
+In addition, there are different ways for cracking passwords:
+
+\begin{itemize}
+    \item \textbf{Brute Force Attacks}: attempt every possible character combination.
+        \begin{itemize}
+            \item Computationally expensive.
+            \item Usually impractical.
+        \end{itemize}
+    \item \textbf{Dictionary Attacks}: Use curated wordlists containing real passwords, leaked credentials, and common patterns.
+        \begin{itemize}
+            \item Highly effective due to human nature.
+            \item Much faster than a \textbf{brute force attack}.
+        \end{itemize}
+    \item \textbf{Hybrid Attacks}: Modify dictionary wordlist entries by adding numbers, symbols, and capitalization changes, or patterns such as seasons or company names to each word.
+\end{itemize}
+
+\subsubsection*{Password Spraying}
+
+\textbf{Password Spraying}: Takes brute force password attacks but targets a group of accounts with the same password.
+
+\begin{itemize}
+    \item Reduces the chance of lockouts.
+    \item Extremely effective in real corporate environments due to organizations enforcing complexity but not uniqueness of passwords.
+\end{itemize}
+
+\subsection*{Hydra}
+
+Fast, online password-guessing tool used by pentesters to test login services. Performs both \textbf{brute force} and \textbf{dictionary} attacks.
+
+\begin{enumerate}
+    \item Identify the service, such as using scanning tools to confirm attack vectors.
+    \item Prepare inputs, including username lists and password wordlists.
+    \item Run Hydra attack:
+        \begin{itemize}
+            \item \texttt{hydra -l exampleuser -P passwords.txt ssh://target\_IP}: single user with password list
+            \item \texttt{hydra -L users.txt -P passwords.txt ssh://target\_IP}: multiple users and passwords
+        \end{itemize}
+\end{enumerate}
+
 \end{document}
