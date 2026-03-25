@@ -504,8 +504,8 @@ Instead of trying to break \textbf{symmetric encryption}, people instead look fo
 \textbf{Asymmetric cryptography} (public key cryptography) uses two related keys instead of a single shared key:
 
 \begin{itemize}
-        \textbf \textbf{Public Key}: Shared with everyone, used to encrypt data.
-        \textbf \textbf{Private Key}: Kept secret - decrypts data encrypted with the \textbf{public key}.
+    \item \textbf \textbf{Public Key}: Shared with everyone, used to encrypt data.
+    \item \textbf \textbf{Private Key}: Kept secret - decrypts data encrypted with the \textbf{public key}.
 \end{itemize}
 
 \bigskip
@@ -643,4 +643,142 @@ The \textbf{Meterpreter} is a payload that has the following properties:
             \item Used for obfuscation, not security, since this protocol is insecure (susceptible to \textit{padding oracle attack}).
             \item Avoid meterpreter hijacks by using \textit{paranoid mode} (using a self-generated certificate and certificate-pinning the payload).
         \end{itemize}
+
+\part*{9 - Web Exploitation}
+
+\section*{Web Application}
+
+A \textbf{web application} is software that runs a remote server and is typically accessed through a browser over a network.
+
+\section*{Client-Server Model}
+
+Every web interaction follows the same pattern: a \textbf{client} makes a request, a \textbf{server} sends a response.
+
+\bigskip
+
+HTTP is stateless; each request is completely independent.
+
+\subsection*{Request-Response Cycle}
+
+\begin{enumerate}
+    \item Browser checks \texttt{/etc/hosts}, then resolves DNS: \texttt{example.com -> 93.184.216.34}.
+    \item Browser opens TCP connection to server on port 443 (HTTPS).
+    \item TLS handshake establishes encrypted tunnel.
+    \item Browser sends HTTP GET request with headers.
+    \item Server processes request, finds the resource.
+    \item Server responds: \texttt{HTTP/1.1 200 OK} + headers + body requested.
+    \item Browser parses HTML in response body, fires more requests for CSS/JS/images.
+\end{enumerate}
+
+\section*{HTTP Fundamentals}
+
+\textbf{HTTP} (Hypertext Transfer Protocol) is the application-layer protocol governing all web communication. Every browser request and server response follows HTTP rules.
+
+\subsection*{HTTP Protocols}
+
+\begin{itemize}
+    \item \textbf{HTTP/1.1}
+        \begin{itemize}
+            \item Most compatible and still widely used.
+            \item One request per TCP connection (mostly).
+            \item Plain-text headers that are human-readable.
+        \end{itemize}
+    \item \textbf{HTTP/2}
+        \begin{itemize}
+            \item Multiplexes many requests over one connection.
+            \item \textbf{Binary framing} (not plain text).
+            \item Headers compressed via \textbf{HPACK}.
+        \end{itemize}
+    \item \textbf{HTTP/3}
+        \begin{itemize}
+            \item Built on \textbf{QUIC} (UDP-based).
+            \item Faster connection setup, better on lossy networks.
+            \item Increasingly deployed on CDNs.
+        \end{itemize}
+\end{itemize}
+
+\subsection*{HTTP Methods}
+
+\begin{itemize}
+    \item \textbf{GET}: Requests a specific resource. Additional data can be passed to the server via query strings in the URL.
+    \item \textbf{POST}: Sends data to the server. This data is appended in the request body after the headers.
+    \item \textbf{PUT}: Creates new resources on the server. Prone to enabling the uploading of malicious resources.
+    \item \textbf{PATCH}: Applies partial modifications to the resource at the specified location.
+    \item \textbf{DELETE}: Deletes an existing resource on the webserver. If not properly secured, can lead to a \textbf{Denial of Service (DoS)} attack by deleting critical files on the server.
+    \item \textbf{HEAD}: Requests the headers that would be returned if a \textbf{GET} request was made to a server. Used to check the response length before downloading resources.
+    \item \textbf{OPTIONS}: Returns information about the server, such as the methods accepted by it.
+\end{itemize}
+
+\subsection*{HTTP Status Codes}
+
+\begin{itemize}
+    \item \textbf{1xx - Informational}
+        \begin{itemize}
+            \item \texttt{100 Continue}
+            \item \texttt{101 Switching Protocols}
+        \end{itemize}
+    \item \textbf{2xx - Success}
+        \begin{itemize}
+            \item \texttt{200 OK}
+            \item \texttt{201 Created}
+            \item \texttt{204 No Content}
+        \end{itemize}
+    \item \textbf{3xx - Redirection}
+        \begin{itemize}
+            \item \texttt{301 Permanent Redirect}
+            \item \texttt{302 Temporary Redirect}
+            \item \texttt{304 Not Modified (Cached)}
+        \end{itemize}
+    \item \textbf{4xx - Client Errors}
+        \begin{itemize}
+            \item \texttt{400 Bad Request}
+            \item \texttt{401 Unauthorized}
+            \item \texttt{403 Forbidden}
+            \item \texttt{404 Not Found}
+            \item \texttt{404 Method Not Allowed}
+            \item \texttt{429 Too Many Requests}
+        \end{itemize}
+    \item \textbf{5xx - Server Errors}
+        \begin{itemize}
+            \item \texttt{500 Internal Server Error}
+            \item \texttt{502 Bad Gateway}
+            \item \texttt{503 Service Unavailable}
+        \end{itemize}
+\end{itemize}
+
+403 vs 404 tells you whether a path exists. A 200 on a restricted endpoint is a clue. A 500 after injecting a quote means input may have hit a SQL query.
+
+\subsection*{HTTP Request Header}
+
+\begin{itemize}
+    \item \textbf{Host}: Tells the sever which virtual host to serve.
+    \item \textbf{User-Agent}: Identifies the client. Completely attacker-controlled, useful for bypassing bot detection.
+    \item \textbf{Cookie}: Sends stored cookies to the server. Authentication tokens are usually stored here; stealing it means stealing the identity.
+    \item \textbf{Authorization}: Carries credentials. Always check what scheme is used and whether the token is replayable.
+    \item \textbf{Content-Type}: Declares the body format. Changing it can bypass input validation logic.
+        \begin{itemize}
+            \item \texttt{application/json}
+            \item \texttt{multiport/form-data}
+            \item \texttt{application/x-www-form-urlencoded}
+        \end{itemize}
+    \item \textbf{Referer}: Previous page URL. Exploitable when it is the only access ccontrol check.
+    \item \textbf{X-Forwarded-For}: Attacker-controlled IP field added by proxies. Apps trusting it for rate limiting or geo-restrictions are trivially bypassed.
+\end{itemize}
+
+\subsection*{HTTP Response Headers}
+
+\begin{itemize}
+    \item \textbf{Set-Cookie}: Creates browser cookies.
+        \begin{itemize}
+            \item Missing \texttt{HttpOnly = JS}: can steal sessions.
+            \item Missing \texttt{Secure}: sent over HTTP (insecure).
+            \item Missing \texttt{SameSite}: \textbf{CSRF} exposure.
+        \end{itemize}
+    \item \textbf{Content-Type}: How the browser interprets the body. Mismatch between actual content and declared type = MIME sniffing attack surface.
+    \item \textbf{Location}: Redirect target for 3xx responses. user-controlled data rflected here = open redirect vulnerability.
+    \item \textbf{X-Frame-Options}: DENY or SAMEORIGIN. Prevents iframe embedding. Absence enables Clickjacking attacks.
+    \item \textbf{Content-Security-Policy (CSP)}: Whitelist of allowed resource origins. A strict CSP is the primary mitigation against XSS.
+    \item \textbf{Strict-Transport-Security (HSTS)}: Forces HTTPS for the domain. Prevents SSL stripping.
+    \item \textbf{Server / X-Powered-By}: Version disclosure. Match against CVE databses for known vulnerabilities.
+\end{itemize}
 \end{document}
