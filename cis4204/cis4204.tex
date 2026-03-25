@@ -599,5 +599,48 @@ Fast, online password-guessing tool used by pentesters to test login services. P
     \item \texttt{exploit}: run the exploit!
 \end{itemize}
 
+\subsection*{Metasploit Module Rank}
 
+\begin{itemize}
+    \item \textbf{Excellent} (will never crash the service)
+    \item \textbf{Great} (has default target, auto-detect application specific return address)
+    \item \textbf{Good} (default target is the common case)
+    \item \textbf{Normal} (reliable but depends upon a specific version)
+    \item \textbf{Average} (unreliable or difficult to exploit)
+    \item \textbf{Low} (nearly impossible to exploit)
+    \item \textbf{Manual} (unstable or difficult to exploit or of no use unless configured by user)
+\end{itemize}
+
+\subsection*{MS08\_067\_API}
+
+\begin{itemize}
+    \item \textbf{Rank: Great}
+    \item Exploits a vulnerability assigned \textbf{CVE-2008-4250)}, a buffer overflow in the Windows SMB service.
+    \item Same vulnerability is exploited by the Conficker worm and Stuxnet.
+    \item Superseded by \textbf{MS17-010}, codenamed \textbf{Eternal Blue}.
+\end{itemize}
+
+\subsection*{Meterpreter}
+
+The \textbf{Meterpreter} is a payload that has the following properties:
+
+\begin{itemize}
+    \item Provides a command interpreter that runs as the user who was executing the exploited process.
+    \item Supports listing of remote system's files, file upload and download, remote shell execution and many other functions.
+    \item \texttt{getsystem}: for Windows to escalate privilege to \texttt{NT AUTHORITY\\SYSTEM}
+    \item \texttt{grep meterpreter show payloads}: list of different available meterpreter payloads
+    \item \texttt{sessions}: command used to manage sessions. Only one session may be active and interacted with at a time, but multiple sessions may co-exist.
+    \item \texttt{sessions <session\_number>}: enter a session designated by its number.
+\end{itemize}
+
+\subsubsection*{Meterpreter: Under the Hood}
+
+\begin{itemize}
+    \item Uses a \textbf{stager} to download code and inject into a DLL.
+    \item Meterpreter payload is small; payload determines how the meterpreter on the victim is to interact with your metasploit framework.
+    \item \textbf{TLS/1.0 (Transport Layer Security)}: used to encrypt all communications between attacker and victim.
+        \begin{itemize}
+            \item Used for obfuscation, not security, since this protocol is insecure (susceptible to \textit{padding oracle attack}).
+            \item Avoid meterpreter hijacks by using \textit{paranoid mode} (using a self-generated certificate and certificate-pinning the payload).
+        \end{itemize}
 \end{document}
