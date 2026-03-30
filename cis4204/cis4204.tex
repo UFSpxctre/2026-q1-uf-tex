@@ -787,7 +787,7 @@ HTTP is stateless; each request is completely independent.
 
 A \textbf{web proxy}is software that sits between your browser and target web server, intercepting every HTTP and HTTPS request your browse rand sends every respones the server returns.
 
-\section*{OWASP ZAP Web Proxy}
+\subsection*{OWASP ZAP Web Proxy}
 
 \begin{itemize}
     \item Free and open source.
@@ -795,13 +795,13 @@ A \textbf{web proxy}is software that sits between your browser and target web se
     \item Supports addons for extended functionality.
 \end{itemize}
 
-\section*{Burp Suite}
+\subsection*{Burp Suite}
 
 \begin{itemize}
     \item Industry standard for web application security testing.
 \end{itemize}
 
-\subsection*{Key Features}
+\subsubsection*{Key Features}
 
 \begin{itemize}
     \item \textbf{Proxy}: Intercepts traffic between your browser and the target.
@@ -810,9 +810,85 @@ A \textbf{web proxy}is software that sits between your browser and target web se
     \item \textbf{Decoder}: Encode/decode data in common formats: Base64, URL, HTML, hex, and more.
 \end{itemize}
 
-\section*{Caido}
+\subsection*{Caido}
 \begin{itemize}
     \item New kid on the block, slower feature releases and fewer integrations than its alternatives.
+\end{itemize}
+
+\section*{Web Exploitation}
+
+\subsection*{SQL Injection}
+
+If apps build queries to SQL databases without \textbf{input sanitization} (thus they copy and paste your input verbatim), you can break out of the string by using SQL syntax to change what the query does.
+
+\subsubsection*{SQL Injection: Types}
+
+\begin{itemize}
+    \item \textbf{In-band}: Results return directly in the HTTP response. Trivial to exploit
+    \item \textbf{UNION-based}: Append an extra \texttt{SELECT} to pull data from other tables
+        \begin{enumerate}
+            \item Find how many columns the original query returns.
+                \begin{itemize}
+                    \item \texttt{'ORDER BY 1--} then \texttt{'ORDER BY 2--} keep going until error occurs.
+                    \item \texttt{'UNION SELECT username,password FROM users--}: pull data from another table
+                \end{itemize}
+        \end{enumerate}
+    \item \textbf{Error-based}: Trigger database errors that reveal data in the error message
+    \item \textbf{Blind}: Database runs query but you cannot see the reuslts in the response
+    \item \textbf{Boolean-based}: Ask true/false questions and watch how the response changes
+        \begin{enumerate}
+            \item \texttt{'AND 1=1--}: gives normal response
+            \item \texttt{'AND 1=2--}: gives an empty or different response
+            \item This tells you injectoin is working even though you see no data directly.
+        \end{enumerate}
+    \item \textbf{Time-based}: use \texttt{SLEEP()} to cause delays. A delay means the query ran
+\end{itemize}
+
+\subsubsection*{SQL Injection: Application}
+
+\begin{itemize}
+    \item \textbf{Simple Login Bypass}
+        \begin{itemize}
+            \item \textit{Example:} \texttt{SELECT * FROM users WHERE username='admin' AND password='...'}
+            \item If we input the username as: \texttt{admin'--}
+            \item The \texttt{--} turns everything after it into a comment, effectively bypassing the password check.
+        \end{itemize}
+    \item \textbf{Extracting Data with UNION (MySQL)}
+        \begin{itemize}
+            \item \texttt{'UNION SELECT <table\_name>,NULL FROM information\_schema.tables--}
+            \item \texttt{'UNION SELECT <column\_name>,NULL FROM information\_schema.columns WHERE table\_name='users'--}
+            \item \texttt{'UNION SELECT username,password FROM users--}
+        \end{itemize}
+    \item \textbf{Time-Based Blind Detection}
+        \begin{itemize}
+            \item \texttt{'AND SLEEP(5)--} \textit{(MySQL)}
+            \item \texttt{'; WAITFOR DELAY '0:0:5'--} \textit{(MSSQL)}
+            \item If the response takes 5 seconds longer than normal, this injection is confirmed.
+        \end{itemize}
+    \item \textbf{SQLMap}
+        \begin{itemize}
+            \item \texttt{sqlmap -u 'https://target.com/page?id=1'}: auto-detect injection
+            \item \texttt{sqlmap -u 'https://target.com/page?id=1' --dbs}: list databases
+            \item \texttt{sqlmap -u 'https://target.com/page?id=1' -D dbname -T users --dump}: dump a table
+        \end{itemize}
+\end{itemize}
+
+\subsubsection*{SQL Injection: Impact and Remediation}
+
+\begin{itemize}
+    \item \textbf{\textcolor{red}{What Attackers Can Do}}
+        \begin{itemize}
+            \item Log in as nay user including admins without knowing their password
+            \item Dump every username and password hash from database
+            \item Read, modify, or delete any data in the database
+            \item Run OS commands directly from SQL injection (in some database setups)
+        \end{itemize}
+    \item \textbf{\textcolor{green}{Fixes and Mitigations}}
+        \begin{itemize}
+            \item \textbf{Parameterized queries}: completely separate user input from SQL code. \textbf{Sanitize user inputs} to prevent unwanted input to be interpreted as SQL queries.
+            \item ORMs such as \textit{SQLAlchemy} or \textit{Django ORM} which automatically parameterize.
+            \item Give the database account only the permissions it needs.
+        \end{itemize}
 \end{itemize}
 
 \end{document}
