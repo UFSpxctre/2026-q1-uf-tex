@@ -120,4 +120,85 @@ Where $ t_{\textrm{old}} $ and $ t_{\textrm{new}} $ are the times the program to
 
 \FloatBarrier
 
+\part*{Building a Datapath}
+
+\section*{Digital Logic}
+
+Representation of signals and states of digital circuit with \textbf{binary}.
+
+\medskip
+{\centering
+
+$ z = f(x, y), $ where $ x, y, z \in \begin{Bmatrix} 0, 1 \end{Bmatrix} $
+
+}
+\medskip
+
+\subsection*{Logic Gates}
+
+\begin{itemize}
+    \item \textbf{NOT Gate}: $ Z = X' $, $ Z = \overline{X} $
+    \item \textbf{AND Gate}: $ Z = X \times Y $
+    \item \textbf{OR Gate}: $ Z = X' + Y $
+    \item \textbf{NAND Gate} % TODO
+    \item \textbf{NOR Gate}
+    \item \textbf{XOR Gate}
+\end{itemize}
+
+\subsection*{Building a Circuit}
+
+% TODO
+
+\subsection*{Comparator Circuit}
+
+\textbf{Comparator circuits} compare bits of binary numbers to see if they are equal.
+
+\subsection*{Multiplexer Circuit}
+
+\textbf{Multiplexer circuits} select one data channel from many input channels.
+
+\begin{itemize}
+    \item Maps the selected channel to the output channel.
+    \item Control signals used to select channel.
+    \item Can represent $ 2^n $ channels, where $ n $ is the number of control bits.
+\end{itemize}
+
+\subsection*{Decoder Circuit}
+
+\textbf{Decoder circuits} have many possible outputs that can be activated.
+
+\begin{itemize}
+    \item \textbf{Encoder} chooses one of the outputs.
+    \item Control signals used to make the choice.
+\end{itemize}
+
+\subsection*{Sum of Products}
+
+Any logic function can be described as \texttt{OR}-ing multiple \texttt{AND} results.
+\medskip
+
+\medskip
+{\centering
+
+$ Z = (X \textrm{AND} Y) \textrm{OR} (X' \textrm{AND} Y') $
+
+}
+\medskip
+
+% TODO: full instructions
+
+\subsection*{Product of Sums}
+
+Any logic function can be described as \texttt{AND}-ing multiple \textrm{OR} results.
+
+\medskip
+{\centering
+
+$ Z = (X \textrm{OR} Y) \textrm{AND} (X' \textrm{OR} Y') $
+
+}
+\medskip
+
+% TODO: full instructions
+
 \end{document}
