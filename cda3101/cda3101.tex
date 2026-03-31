@@ -120,6 +120,68 @@ Where $ t_{\textrm{old}} $ and $ t_{\textrm{new}} $ are the times the program to
 
 \FloatBarrier
 
+\part*{RISC-V Machine Code}
+
+\texttt{32-bit} instructions split into fields.
+
+\section*{R-Format Instruction Structure}
+
+\begin{itemize}
+    \item \texttt{func7} (\texttt{7 bits})
+        \begin{itemize}
+            \item Basic operation of the instruction.
+        \end{itemize}
+    \item \texttt{rs2} (\texttt{5 bits})
+        \begin{itemize}
+            \item Second source register.
+        \end{itemize}
+    \item \texttt{rs1} (\texttt{5 bits})
+        \begin{itemize}
+            \item First source register.
+        \end{itemize}
+    \item \texttt{func3} (\texttt{3 bits})
+        \begin{itemize}
+            \item Basic operation of the instruction.
+        \end{itemize}
+    \item \texttt{rd} (\texttt{5 bits})
+        \begin{itemize}
+            \item Destination register.
+        \end{itemize}
+    \item \texttt{opcode} (\texttt{7 bits})
+        \begin{itemize}
+            \item Basic operation of the instruction.
+        \end{itemize}
+\end{itemize}
+
+\section*{I-Format Instruction Structure}
+
+\begin{itemize}
+    \item \texttt{imm} (\texttt{12 bits})
+        \begin{itemize}
+            \item Immediate value.
+        \end{itemize}
+    \item \texttt{rs1} (\texttt{5 bits})
+        \begin{itemize}
+            \item First source register.
+        \end{itemize}
+    \item \texttt{func3} (\texttt{3 bits})
+        \begin{itemize}
+            \item Basic operation of the instruction.
+        \end{itemize}
+    \item \texttt{rd} (\texttt{5 bits})
+        \begin{itemize}
+            \item Destination register.
+        \end{itemize}
+    \item \texttt{opcode} (\texttt{7 bits})
+        \begin{itemize}
+            \item Basic operation of the instruction.
+        \end{itemize}
+\end{itemize}
+
+\section*{S-Format Instruction Structure}
+
+Same as \textit{R-Format Instruction Structure}, but \texttt{func7} is replaced with immediate-value address to some memory.
+
 \part*{Building a Datapath}
 
 \section*{Digital Logic}
