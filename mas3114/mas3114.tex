@@ -1265,4 +1265,103 @@ Given a basis $ B = \begin{Bmatrix}
     b_1, \hdots, b_n \\
 \end{Bmatrix} $ for a vector space $ V $, then every vector $ x \in V $ can be expressed as a linear combination $ x = c_1b_1 + \hdots + c_nb_n $ in exactly one way.
 
+\section*{Lecture 19}
+
+\subsection*{Eigenvector}
+
+An \textbf{eigenvector} of an $ n \times n $ matrix $ A $ is a nonzero vector $ x $ such that $ Ax = \lambda x $ or some scalar $ \lambda $.
+\bigskip
+
+To determine whether $ v $ is an \textbf{eigenvector} of $ A $:
+
+\begin{enumerate}
+    \item Compute $ Av $.
+    \item If $ Av $ is a scalar multiple of $ v $, then $ v $ is an \textbf{eigenvector} of $ A $.
+    \item The \textbf{eigenvalue} is the scalar factor.
+\end{enumerate}
+
+\bigskip
+
+\textit{Example.} Let $ A = \begin{bmatrix}
+    2 & 3 \\
+    -1 & 6 \end {bmatrix} $, determine whether $ \vec{x} = \begin{bmatrix}
+    3 \\ 1 \\
+    \end{bmatrix} $ is an \textbf{eigenvector} of $ A $.
+
+\begin{enumerate}
+    \item $ A \vec{x} = \begin{bmatrix}
+        2 & 3 \\
+        -1 & 6 \\
+    \end{bmatrix} \begin{bmatrix}
+        3 \\ 1 \\
+    \end{bmatrix} = \begin{bmatrix}
+        6 + 3 \\
+        -3 + 6 \\
+    \end{bmatrix} = \begin{bmatrix}
+        9 \\ 3 \\
+    \end{bmatrix} $
+    \item You can see that the matrix $ A\vec{x} = \begin{bmatrix}
+        9 \\ 3 \\
+\end{bmatrix} $ is an \textbf{eigenvector} of $ A $ with an \textbf{eigenvalue} of $ \lambda = 3 $.
+\end{enumerate}
+
+\bigskip
+
+\textit{Example.} Let $ A = \begin{bmatrix}
+    2 & 3 \\
+    -1 & 6 \\
+\end{bmatrix} $. Show that $ \lambda = 3 $ is an \textbf{eigenvalue} of matrix $ A $ and find the corresponding \textbf{eigenvectors}.
+
+\begin{enumerate}
+    \item $ A \vec{x} = \lambda \vec{x} $
+        \medskip
+
+        $ A \vec{x} - \lambda \vec{x} = 0 $
+        \medskip
+
+        $ ( A - \lambda I ) \vec{x} = 0 $
+        \medskip
+    \item $ (\begin{bmatrix} 
+            2 & 3 \\
+            -1 & 6 \\
+    \end{bmatrix} - \begin{bmatrix}
+        3 & 0 \\
+        0 & 3 \\
+    \end{bmatrix}) \vec{x} = 0 $
+\item $ \begin{bmatrix}
+        -1 & 3 \\
+        -1 & 3 \\
+\end{bmatrix} \vec{x} = 0 $
+\item Solve the homogenous system by reducing to row echelon form.
+    $ \begin{amatrix}{2}
+        1 & -3 & 0 \\
+        0 & 0 & 0
+    \end{amatrix} $
+    \medskip
+
+    $ \vec{x} = \begin{bmatrix}
+        3 x_2 \\
+        x_2 \\
+    \end{bmatrix} = x_2 \begin{bmatrix}
+        3 \\
+        1 \\
+    \end{bmatrix} $
+    \medskip
+\item The vector $ \begin{bmatrix}
+        3 \\
+        1 \\
+\end{bmatrix} $ is therefore also a \textbf{basis} of the \textit{eigenspace}.
+
+\end{enumerate}
+
+\section*{Lecture 21}
+
+\subsection*{The Diagonalization Theorem}
+
+Given a matrix $ A = PDP^{-1} $, with diagonal matrix $ D $,\textit{if and only if} the columns of $ P $ are $ n $ linearly independent eigenvectors of $ A $.
+\medskip
+
+Furthermore, the diagonal entries of $ D $ are the eigenvalues of $ A $ that correspond to the eigenvectors in $ P $.
+
+
 \end{document}
