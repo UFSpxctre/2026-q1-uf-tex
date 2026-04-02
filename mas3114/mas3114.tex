@@ -1354,6 +1354,77 @@ To determine whether $ v $ is an \textbf{eigenvector} of $ A $:
 
 \end{enumerate}
 
+\section*{Lecture 20}
+
+\subsection*{Characteristic Polynomial}
+
+The \textbf{characteristic equation} is defined as the scalar equation $ \textrm{det} \: (A - \lambda I) = 0 $. The real \textbf{eigenvalues} of $ A $ would be the solutions that satisfy this equation.
+
+\bigskip
+
+\textit{Example.} Find the \textbf{characteristic polynomial} and the \textbf{eigenvalues} of matrix $ A = \begin{bmatrix}
+    4 & 2 \\
+    2 & 4 \\
+\end{bmatrix} $.
+
+\begin{enumerate}
+    \item Find $ A - \lambda I $.
+        \medskip
+
+        $ \begin{bmatrix}
+            4 & 2 \\
+            2 & 4 \\
+        \end{bmatrix} - \begin{bmatrix}
+            \lambda & 0 \\
+            0 & \lambda \\
+        \end{bmatrix} = \begin{bmatrix}
+            4 - \lambda & 2 \\
+            2 & 4 - \lambda \\
+        \end{bmatrix} $
+    \item Find $ \det \: (A - \lambda I) = 0 $.
+        \medskip
+
+        Since $ A - \lambda I $ is a $ 2 \times 2 $ matrix, then $ \textrm{det} \: (A - \lambda I) = (4 - \lambda)(4 - \lambda) - 2(2) = \lambda^2 - 8\lambda + 12 $.
+    \item To find the real \textbf{eigenvalues} of $ A $, we solve for $ \lambda $.
+        \medskip
+
+        $ \lambda^2 - 8\lambda + 12 = (\lambda - 6)(\lambda - 2) $
+        \medskip
+
+        Therefore, the real \textbf{eigenvalues} for $ A $ are $ \lambda = 6 $ and $ \lambda = 2 $.
+\end{enumerate}
+
+\subsection*{Theorem: Eigenvalues of Triangular Matrices}
+
+Let $ T $ be an upper triangular square matrix. The real \textbf{eigenvalues} of $ T $ is the enumeration of the diagonal values of $ T $.
+
+\bigskip
+
+\textit{Example.} List the real \textbf{eigenvalues}, repeated according to their multiplicities, for $ T = \begin{bmatrix}
+    6 & -4 & 0 & 4 \\
+    0 & 3 & 5 & 7 \\
+    0 & 0 & 3 & 8 \\
+    0 & 0 & 0 & 2 \\
+\end{bmatrix} $.
+
+\bigskip
+
+The real \textbf{eigenvalues} for $ T $ are $ 6, 3, 3, 2 $.
+
+\subsection*{Diagonalizability}
+
+An $ n \times n $ matrix $ A $ is \textbf{diagonalizable} if $ A = PDP^{-1} $ for some \textit{invertible matrix} $ P $ and some \textit{diagonal matrix} $ D $.
+\medskip
+
+The columns of \textit{invertible matrix} $ P $ will be \textit{linearly independent} \textbf{eigenvectors} of $ A $.
+\medskip
+
+The diagonal entries of \textit{diagonal matrix} $ D $ are the corresponding \textbf{eigenvalues} of the \textbf{eigenvectors} in $ P $.
+
+\subsection*{Theorem: Diagonalizability and Eigenspace}
+
+An $ n \times n $ matrix $ A $ is \textbf{diagonalizable} \textit{if and only if} it has $ n $ distinct \textbf{eigenvalues}.
+
 \section*{Lecture 21}
 
 \subsection*{The Diagonalization Theorem}
