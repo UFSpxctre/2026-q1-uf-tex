@@ -1423,7 +1423,7 @@ The diagonal entries of \textit{diagonal matrix} $ D $ are the corresponding \te
 
 \subsection*{Theorem: Diagonalizability and Eigenspace}
 
-An $ n \times n $ matrix $ A $ is \textbf{diagonalizable} \textit{if and only if} it has $ n $ distinct \textbf{eigenvalues}.
+An $ n \times n $ matrix $ A $ is \textbf{diagonalizable} \textit{if and only if} the sum of the dimensions of the eigenspaces equals $ n $.
 
 \section*{Lecture 21}
 
@@ -1433,6 +1433,74 @@ Given a matrix $ A = PDP^{-1} $, with diagonal matrix $ D $,\textit{if and only 
 \medskip
 
 Furthermore, the diagonal entries of $ D $ are the eigenvalues of $ A $ that correspond to the eigenvectors in $ P $.
+\medskip
 
+\subsection*{Theorem: Invertible and Diagonalizable}
+
+Given an invertible matrix $ A $, zero is not an \textbf{eigenvalue}.
+\medskip
+
+Given a diagonalizable matrix $ A = PDP^{-1} $, it follows that $ A^{-1} = PD^{-1}P^{-1} $.
+
+\subsection*{Differential Equation: Position}
+
+The differential equation $ x' = Ax $ is $ x(t) = c_1v_1e^{\lambda_1t} + c_2v_2e^{\lambda_2t} $, where $ \lambda_n $ is the \textbf{eigenvalue} of the $ n \times n $ matrix $ A $ and $ v_n $ is its corresponding \textbf{eigenvector}.
+
+\bigskip
+
+\textit{Example.} A particle moving in a planar force field has a position vector $ x $ that satisfies $ x' = Ax $. The $ 2 \times 2 $ matrix $ A $ has \textbf{eigenvalues} $ 4 $ and $ 2 $, with corresponding \textbf{eigenvectors} $ v_1 = \begin{bmatrix}
+    -5 \\
+    1 \\
+\end{bmatrix} $ and $ v_2 = \begin{bmatrix}
+    -7 \\
+    1 \\
+\end{bmatrix} $. Find the position of the particle at time $ t $ assuming that $ x(0) = \begin{bmatrix}
+    -2 \\
+    1 \\
+\end{bmatrix} $.
+
+\begin{enumerate}
+    \item $ x(t) = c_1 \begin{bmatrix}
+            -7 \\
+            1 \\
+    \end{bmatrix} e^{5}t + c_2 \begin{bmatrix}
+        -3 \\
+        1 \\
+    \end{bmatrix} e^{4}t $
+    \item Solve for $ c_1 $ and $ c_2 $ with $ x(0) = \begin{bmatrix}
+        -17 \\
+        1 \\
+    \end{bmatrix} $.
+    \medskip
+
+    $ \begin{bmatrix}
+        -17 \\
+        1 \\
+    \end{bmatrix} = c_1 \begin{bmatrix}
+        -7 \\
+        1 \\
+    \end{bmatrix} e^{5(0)} + c_2 \begin{bmatrix}
+        -3 \\
+        1 \\
+    \end{bmatrix} e^{4(0)} $
+
+    \item Setup the augmented matrix and row reduce.
+    \medskip
+
+    $ \displaystyle \begin{amatrix}{2}
+        -7 & -3 & -17 \\
+        1 & 1 & 1 \\
+    \end{amatrix} \sim \begin{amatrix}{2}
+        1 & 0 & \frac{7}{2} \\
+        0 & 1 & -\frac{5}{2} \\
+    \end{amatrix} $
+\item The position of the particle at time $ t $ is given by: $\displaystyle x(t) = \frac{7}{2} \begin{bmatrix}
+        -7 \\
+        1 \\
+\end{bmatrix} e^{5t} - \frac{5}{2} \begin{bmatrix}
+    -3 \\
+    1 \\
+\end{bmatrix} e^{4t} $
+\end{enumerate}
 
 \end{document}
