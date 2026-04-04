@@ -565,5 +565,48 @@ Heaps can also be useful when implementing \textbf{Djikstra's Algorithm}.
 
 \end{itemize}
 
+\part{Graphs}
+
+\section*{Spanning Tree}
+
+\begin{itemize}
+    \item Subset of a \textit{connected}, \textit{undirected} graph.
+    \item For a graph with $ V $ vertices, a \textbf{spanning tree} always has $ V - 1 $ edges.
+    \item "Minimally connected" version of a graph.
+    \item Includes all \textbf{vertices} of the original graph with no cycles - \textbf{acyclic}.
+        \begin{itemize}
+            \item \textbf{Maximally Acyclic}: Adding just one more edge will create a cycle.
+            \item \textbf{Minimally Connected}: Removing just one edge will make the graph disconnected.
+        \end{itemize}
+\end{itemize}
+
+\section*{Minimum Spanning Tree}
+
+\begin{itemize}
+    \item The \textit{spanning tree} where the sum of the edge weights is the smallest possible.
+\end{itemize}
+
+\section*{Kruskal's Algorithm}
+
+\begin{itemize}
+    \item Greedy, edge-based algorithm to find the \textbf{minimum spanning tree} of a \textit{connected}, \textit{weighted} graph.
+    \item Sorts all edges by weight and adding them one by one, provided they do not form a cycle.
+    \item Ideal for \textbf{sparse graphs}.
+    \item \textbf{Time Complexity}: $ O(E \log V) $
+\end{itemize}
+
+\subsection*{Kruskal's Algorithm: Breakdown}
+
+\begin{enumerate}
+    \item \textbf{Sort} all graph edges in non-decreasing order of their weight.
+    \item \textbf{Create} a forest (set of trees) where each vertex in the graph is a separate tree.
+    \item \textbf{Iterate} through the sorted edges and add an edge to the \textbf{MST} if it connects two different trees.
+    \item \textbf{Repeat} until there are $ V - 1 $ edges in the \textbf{MST}.
+\end{enumerate}
+
+\subsection*{Kruskal's Algorithm: Application}
+
+\textbf{Kruskal's algorithm} is commonly applied to minimize costs in network design, such as laying cables for telecommunications, designing electrical grids, or establishing transportation routes.
+
 \end{document}
 
