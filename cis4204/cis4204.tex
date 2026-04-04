@@ -818,6 +818,14 @@ A \textbf{web proxy}is software that sits between your browser and target web se
 
 \section*{Web Exploitation}
 
+\subsection*{HTTP Verb Tampering}
+
+HTTP requests use a \textbf{method} to what it wants the server to do. Developers may forget to write checks for edge-case verbs at certain endpoints. By tampering with the verb we may be able to access endpoints without the intended authorization.
+
+\begin{itemize}
+    \item Use \texttt{OPTIONS} method to request exactly what the server supports.
+\end{itemize}
+
 \subsection*{Command Injection}
 
 f apps pass input directly to the command line without any checks, you can add extra commands.
