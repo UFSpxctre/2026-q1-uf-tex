@@ -567,6 +567,24 @@ Heaps can also be useful when implementing \textbf{Djikstra's Algorithm}.
 
 \part{Graphs}
 
+\section*{Dijkstra's Algorithm}
+
+\begin{itemize}
+    \item Greedy algorithm to find the shortest path between two nodes in a \textit{connected}, \textit{weighted} graph.
+    \item \textbf{Time Complexity}: \texttt{O((V + E) log V)} when using a priortiy queue.
+    \item \textcolor{green}{Pros:} Great for finding the fastest route between locations.
+    \item \textcolor{red}{Cons:} Does not work with negative edge weights (this requires \textbf{Bellman-Ford}).
+\end{itemize}
+
+\subsection*{Dijkstra's Algorithm: Breakdown}
+
+\begin{enumerate}
+    \item Set the starting node's distance to $ 0 $ , and all others to $ \infty $.
+    \item Select \textbf{unvisited} node with the least distance.
+    \item Update adjacent nodes with current node's distance + edge weight to adjacent node if less than the node's current distance.
+    \item Repeat until we select the destination node.
+\end{enumerate}
+
 \section*{Spanning Tree}
 
 \begin{itemize}
