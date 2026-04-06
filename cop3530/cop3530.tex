@@ -626,5 +626,28 @@ Heaps can also be useful when implementing \textbf{Djikstra's Algorithm}.
 
 \textbf{Kruskal's algorithm} is commonly applied to minimize costs in network design, such as laying cables for telecommunications, designing electrical grids, or establishing transportation routes.
 
+\section*{Prim's Algorithm}
+
+\begin{itemize}
+    \item Greedy, vertex-based algorithm to find the \textbf{minimum spanning tree} of a \textit{connected}, \textit{weighted} graph. Similar to \textit{Dijkstra's Algorithm}.
+    \item Builds the \textbf{MST} one vertex at a time by always adding the \textit{cheapest available connection} from the current tree to a new vertex.
+    \item \textbf{Time Complexity:}
+        \begin{itemize}
+            \item \texttt{O(|V|\textasciicircum2)} with \textit{adjacency matrix}
+            \item \texttt{O(|E| log |V|)} with \textit{binary heap} and \textit{adjacency list}
+            \item \texttt{O(|E| + |V| log |V|)} with \textit{fibonacci heap} and \textit{adjacency list}
+        \end{itemize}
+    \item \textcolor{green}{Pros:} Tends to be faster than \textit{Kruskal's Algorithm} for \textit{dense} graphs.
+\end{itemize}
+
+\subsection*{Prim's Algorithm: Breakdown}
+
+\begin{enumerate}
+    \item \textbf{Iterate} through all edges that connect a vertex in the \textit{spanning tree} to a vertex not yet included.
+    \item \textbf{Select} the edge with the \textit{least weight}.
+    \item \textbf{Add} the edge and the vertex to the \textbf{MST}.
+    \item \textbf{Repeat} until there are $ V - 1 $ edges in the \textbf{MST}.
+\end{enumerate}
+
 \end{document}
 
