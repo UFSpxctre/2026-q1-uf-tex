@@ -1282,7 +1282,7 @@ To determine whether $ v $ is an \textbf{eigenvector} of $ A $:
 
 \bigskip
 
-\textit{Example.} Let $ A = \begin{bmatrix}
+\textit{Example 1.} Let $ A = \begin{bmatrix}
     2 & 3 \\
     -1 & 6 \end {bmatrix} $, determine whether $ \vec{x} = \begin{bmatrix}
     3 \\ 1 \\
@@ -1307,10 +1307,13 @@ To determine whether $ v $ is an \textbf{eigenvector} of $ A $:
 
 \bigskip
 
-\textit{Example.} Let $ A = \begin{bmatrix}
+\textit{Example 2.} Let $ A = \begin{bmatrix}
     2 & 3 \\
     -1 & 6 \\
 \end{bmatrix} $. Show that $ \lambda = 3 $ is an \textbf{eigenvalue} of matrix $ A $ and find the corresponding \textbf{eigenvectors}.
+\bigskip
+
+    \textit{Note:} The basis of the \textbf{eigenspace} of $ A $ are also the \textbf{eigenvectors} of the matrix $ A $.
 
 \begin{enumerate}
     \item $ A \vec{x} = \lambda \vec{x} $
@@ -1394,7 +1397,7 @@ The \textbf{characteristic equation} is defined as the scalar equation $ \textrm
         Therefore, the real \textbf{eigenvalues} for $ A $ are $ \lambda = 6 $ and $ \lambda = 2 $.
 \end{enumerate}
 
-\subsection*{Theorem: Eigenvalues of Triangular Matrices}
+\subsection*{Theorem: Diagonal Property of Triangular Matrices}
 
 Let $ T $ be an upper triangular square matrix. The real \textbf{eigenvalues} of $ T $ is the enumeration of the diagonal values of $ T $.
 
@@ -1410,6 +1413,10 @@ Let $ T $ be an upper triangular square matrix. The real \textbf{eigenvalues} of
 \bigskip
 
 The real \textbf{eigenvalues} for $ T $ are $ 6, 3, 3, 2 $.
+
+\subsection*{Eigenvectors from Eigenspace}
+
+The basis vectors of \textbf{the eigenspace} are defined as the \textbf{eigenvectors} of matrix $ A $.
 
 \subsection*{Diagonalizability}
 
@@ -1429,7 +1436,7 @@ An $ n \times n $ matrix $ A $ is \textbf{diagonalizable} \textit{if and only if
 
 \subsection*{The Diagonalization Theorem}
 
-Given a matrix $ A = PDP^{-1} $, with diagonal matrix $ D $,\textit{if and only if} the columns of $ P $ are $ n $ linearly independent eigenvectors of $ A $.
+Given a matrix $ A = PDP^{-1} $, with diagonal matrix $ D $,\textit{if and only if} the columns of $ P $ are $ n $ linearly independent eigenvectors of $ A $. That is, if \textit{invertible matrix} $ P $ is \textbf{linearly independent} (every column is a pivot column).
 \medskip
 
 Furthermore, the diagonal entries of $ D $ are the eigenvalues of $ A $ that correspond to the eigenvectors in $ P $.
@@ -1444,7 +1451,7 @@ Given a diagonalizable matrix $ A = PDP^{-1} $, it follows that $ A^{-1} = PD^{-
 
 \subsection*{Differential Equation: Position}
 
-The differential equation $ x' = Ax $ is $ x(t) = c_1v_1e^{\lambda_1t} + c_2v_2e^{\lambda_2t} $, where $ \lambda_n $ is the \textbf{eigenvalue} of the $ n \times n $ matrix $ A $ and $ v_n $ is its corresponding \textbf{eigenvector}.
+The differential equation $ x' = Ax $ is $ \displaystyle x(t) = c_1v_1e^{\lambda_1t} + c_2v_2e^{\lambda_2t} + \hdots + c_nv_ne^{\lambda_nt} $, where $ \lambda_n $ is the \textbf{eigenvalue} of the $ n \times n $ matrix $ A $ and $ v_n $ is its corresponding \textbf{eigenvector}.
 
 \bigskip
 
