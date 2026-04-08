@@ -1002,8 +1002,6 @@ If apps build queries to SQL databases without \textbf{input sanitization} (thus
 
 \part*{10 - Active Directory}
 
-\section*{Active Directory}
-
 \textbf{Active Directory} is a directory service for Windows network environments.
 
 \begin{itemize}
@@ -1020,7 +1018,7 @@ If apps build queries to SQL databases without \textbf{input sanitization} (thus
 
 \textit{Active Directory exploitation} remains a key focus for attackers as the many corporations and enterprises run and depend on \textbf{Windows}.
 
-\subsection*{Active Directory: Terminology}
+\section*{Active Directory: Terminology}
 
 \begin{itemize}
     \item \textbf{Object}: \textbf{ANY} resource within an \textbf{Active Directory} environment.
@@ -1041,22 +1039,38 @@ If apps build queries to SQL databases without \textbf{input sanitization} (thus
         \end{itemize}
     \item \textbf{Domain}: Logical group of objects such as \textit{computers}, \textit{users}, \textit{groups}, etc.
         \begin{itemize}
-            \item Can operate entirely independently of one another or be connected via \textbf{trust relationshis}.
+            \item Can operate entirely independently of one another or be connected via \textbf{trust relationships}.
         \end{itemize}
     \item \textbf{Forests}: A collection of \textbf{domains}.
+        \begin{itemize}
+            \item Can operate entirely independent of one another or be connected via \textbf{trust relationships}.
+        \end{itemize}
     \item \textbf{Trees}: A collection of \textbf{domains} that begin at a single \textbf{root domain} and contains all \textbf{subdomains}.
         \begin{itemize}
+            \item \textit{Example:} \textbf{Root Domain} (\texttt{ufl.edu}) with \textbf{subdomains} \{\texttt{it.ufl.edu}, \texttt{one.uf.edu}\}
             \item Two trees in the same forest cannot share a name (\textbf{namespace}).
-            \item All domains in a tree shared a Global Catalog. % TODO: Elaborate on the Global Catalog
+            \item \textbf{Global Catalog}: Shared by all \textbf{domains} in a \textbf{tree}. Contains all information about objects that belong to the tree.
         \end{itemize}
     \item \textbf{Leaf}: \textit{Objects} that do not contain other \textit{objects}, found at the end of the subtree hierarchy.
-    \item \textbf{Container}: Container objects are objects that hold other objects.
+    \item \textbf{Container}: \textit{Objects} that hold other \textit{objects}.
         \begin{itemize}
             \item Have a defined place in the directory subtree hierarchy.
         \end{itemize}
 \end{itemize}
 
-\subsection*{Global Unique Identifier (GUID)}
+\section*{Active Directory Objects}
+
+\subsection*{Users}
+
+\subsection*{Contacts}
+% TODO
+
+\subsection*{Groups}
+
+% TODO: bro is going way too fucking fast he is glossing over he is just dumping dictionary words out from the powerpoint like I cant just go through the slides but chill guy btw hes probably rich
+
+
+\section*{Global Unique Identifier (GUID)}
 
 A \textbf{GUID} is a unique \texttt{128-bit} value assigned when a domain \textbf{user} or \textbf{group} is created.
 \begin{itemize}
@@ -1064,30 +1078,6 @@ A \textbf{GUID} is a unique \texttt{128-bit} value assigned when a domain \textb
     \item Every single object created by \textbf{Active Directory} is assigned a \textbf{GUID}; used internally and is \textbf{persistent}.
     \item Stored in the \texttt{ObjectGUID} attribute.
     \item Arguably the \textbf{most accurate} and \textbf{reliable} way to find an exact match for an object.
-\end{itemize}
-
-\subsection*{SAM File}
-
-The \textbf{SAM File} is a local version of the \textbf{Active Directory} database, stored on every \textbf{Windows} system.
-
-\begin{itemize}
-    \item % TODO
-\end{itemize}
-
-\subsection*{SYSTEM Hive}
-
-The \textbf{SYSTEM Hive} is a critical registry file that stores system configuration data.
-
-\begin{itemize}
-    \item Contains the \textbf{Boot Key} (internally as the \texttt{syskey}). % TODO
-\end{itemize}
-
-\subsection*{SECURITY Hive}
-
-THe \textbf{SECURITY Hive} is another registry file that contains \textbf{sensitive security-related information}.
-
-\begin{itemize}
-    \item Stored as \texttt{plaintext}. % TODO
 \end{itemize}
 
 \subsection*{NTDS.DIT}
@@ -1099,13 +1089,45 @@ The \textbf{NTDS.DIT} file can be considered the heart of \textbf{Active Directo
     \item Stored as a \textbf{Domain Controller} at \texttt{C:\\Windows\\NTDS}.
 \end{itemize}
 
+\section*{SAM File}
+
+The \textbf{SAM File} is a local version of the \textbf{Active Directory} database, stored on every \textbf{Windows} system.
+
+\begin{itemize}
+    \item Stored at \texttt{C:\\Windows\\System32\\config\\SAM}.
+    \item Contains information about local user accounts and their \textbf{encrypted password hashes}.
+    \item Once administrative privileges are obtained, pentesters can extract and crack all password hashes.
+    \item Usually locked while the system is running, so it cannot be accessed directly without offline access.
+\end{itemize}
+
+\section*{SYSTEM Hive}
+
+The \textbf{SYSTEM Hive} is a critical registry file that stores system configuration data.
+
+\begin{itemize}
+    \item Stored at \texttt{C:\\Windows\\System32\\config\\SYSTEM}.
+    \item Contains the \textbf{Boot Key} (internally as the \texttt{SysKey}). Used to \textbf{encrypt} the \textbf{hashes} stored in the \textbf{SAM File}.
+    \item Attackers will almost always attempt to dump both the \textbf{SYSTEM} and \textbf{SAM} files together.
+\end{itemize}
+
+\section*{SECURITY Hive}
+
+THe \textbf{SECURITY Hive} is another registry file that contains \textbf{sensitive security-related information} managed by the \textbf{Local Security Authority (LSA)}.
+
+\begin{itemize}
+    \item Contains local security policies, cached credentials, and \textbf{LSA Secrets}.
+    \item Stored as \texttt{plaintext}.
+    \item Penetration testers can gain lateral movement or privilege escalation within a network with access to this file.
+\end{itemize}
+
 \subsection*{Security Principals}
 
 \textbf{Security Principals} are anything that the operating system can authenticate.
 
 \begin{itemize}
     \item Users, computer accounts, or even threads/processes that run in the context of a user or computer account.
-    \item In \textbf{AD}, domain objects. In a \textbf{local context}, it would be \textbf{SAM} objects. % TODO
+    \item In \textbf{AD}, \textbf{domain objects} manage access to other resources within the domain.
+    \item In a \textbf{local context}, it would be \textbf{SAM} objects. % TODO
 \end{itemize}
 
 
@@ -1114,22 +1136,27 @@ The \textbf{NTDS.DIT} file can be considered the heart of \textbf{Active Directo
 A \textbf{security identifier}, or \textbf{SID}, is used as a unique identifier for a security principal or security group.
 
 \begin{itemize}
-    \item Every account, group, or process has its own unique SID. % TODO
+    \item Every account, group, or process has its own unique \textbf{SID}.
+    \item \textbf{SIDs} can only be generated and used once, and cannot be used to identify another user or group even after a user or group has been deleted.
 \end{itemize}
 
-\subsection*{Distinguished Name}
+\section*{Distinguished Name}
 
 \textbf{Distinguished Names} are \textbf{full paths} to objects. Gives pieces of information about an user object. % TODO
 
-\subsubsection*{Relative Distinguished Names}
+\subsection*{Relative Distinguished Names}
 
 Similarly, \textbf{relative distinguished names} are single components of the \textbf{distinguished name} that identifies the object as unique from other objects at the current level in the naming hierarchy. % TODO
 
-\subsubsection*{sAMAccountName}
+\subsection*{SAM Account Name}
 
 THe user's logon name.
 
-\subsubsection*{userPrincipalName}
+\begin{itemize}
+    \item Stored as the \texttt{sAMAccountName} attribute.
+\end{itemize}
+
+\subsection*{User Principal Name}
 
 Another way to identify users in \textbf{AD}.
 
@@ -1151,27 +1178,26 @@ The \textbf{server principal name} is an unique identifier for a \textbf{service
 \textbf{Group Policy Objects} are \textbf{virtual collections} of policy settings.
 
 \begin{itemize}
+    \item Each \textbf{GPO} has a unique \textbf{GUID}.
     \item Applies both at the \textbf{local} and \textbf{domain} context. % TODO
 \end{itemize}
 
 \section*{Access Control Entries}
 
-% TODO
+\textbf{Access Control Entries} identify a \textbf{trustee} (user account, group account, or logon session) and lists the \textbf{access rights} that are \textbf{allowed}, \textbf{denied}, or \textbf{audited}.
+
+\subsection*{Access Control Lists (ACL)}
+
+\textbf{Access Control Lists} are ordered collections of \textbf{Access Control Entries} that apply to an \textbf{object}.
 
 \subsection*{Discretionary Access Control List (DACL)}
 
-% TODO
+\textbf{Discretionary Access Control Lists} define which security principals are \textbf{granted} or \textbf{denied} to an \textbf{object}.
 
-\subsection*{Object:Users}
-
-% TODO
-
-\subsection*{Objects: Contacts}
-% TODO
-
-\subsection*{Groups}
-
-% TODO: bro is going way too fucking fast he is glossing over he is just dumping dictionary words out from the powerpoint like I cant just go through the slides but chill guy btw hes probably rich
-
-
+\begin{itemize}
+    \item When a process tries to access a \textbf{securable object}, the system checks the \textit{ACEs} in the object's \textbf{DACL} to determine whether or not to grant it access.
+    \item \textit{ACEs} are checked linearly until a match is found or access is denied.
+    \item \textbf{Object has no \textit{DACL:}} System grants everyone access.
+    \item \textbf{Object has \textit{DACL} with no entries:} System denies everyone access.
+\end{itemize}
 \end{document}
