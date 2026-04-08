@@ -1000,4 +1000,178 @@ If apps build queries to SQL databases without \textbf{input sanitization} (thus
         \end{itemize}
 \end{itemize}
 
+\part*{10 - Active Directory}
+
+\section*{Active Directory}
+
+\textbf{Active Directory} is a directory service for Windows network environments.
+
+\begin{itemize}
+    \item \textbf{Distributed}, \textbf{hierarchical} structure.
+    \item Allows for centralized management of an organization's resources, networks, computers, and users.
+    \item Essentially a \textit{sizeable read-only} database accessible to all users within the domain, \textbf{regardless of privilege level}.
+        \begin{itemize}
+            \item \textbf{ANY} user account, regardless of their privilege level, can enumerate most objects in an AD instance.
+        \end{itemize}
+    \item Highly scalable.
+\end{itemize}
+
+\bigskip
+
+\textit{Active Directory exploitation} remains a key focus for attackers as the many corporations and enterprises run and depend on \textbf{Windows}.
+
+\subsection*{Active Directory: Terminology}
+
+\begin{itemize}
+    \item \textbf{Object}: \textbf{ANY} resource within an \textbf{Active Directory} environment.
+        \begin{itemize}
+            \item Printers, users, domain controllers, etc.
+            \item Courtesy of Windows Fuckershell.
+        \end{itemize}
+    \item \textbf{Attributes}: Associated set of characteristics applied to an \textbf{object}.
+        \begin{itemize}
+            \item \textit{Example:} A \textit{computer} \textbf{object} contains \textbf{attributes} such as \texttt{hostname}.
+        \end{itemize}
+    \item \textbf{Schema}: Blueprint of any enterprise environment.
+        \begin{itemize}
+            \item Defines what type of \textbf{objects} and their associated \textbf{attributes} can exist in the \textbf{Active Directory} database.
+            \item \textit{Example:} User objects belong to the class "\texttt{user}", whereas computer objects belong to the class "\texttt{computer}".
+            \item \textbf{Object Instantiation}: Creating a new instance of an object of a class.
+            \item It is just \textbf{OOP}.
+        \end{itemize}
+    \item \textbf{Domain}: Logical group of objects such as \textit{computers}, \textit{users}, \textit{groups}, etc.
+        \begin{itemize}
+            \item Can operate entirely independently of one another or be connected via \textbf{trust relationshis}.
+        \end{itemize}
+    \item \textbf{Forests}: A collection of \textbf{domains}.
+    \item \textbf{Trees}: A collection of \textbf{domains} that begin at a single \textbf{root domain} and contains all \textbf{subdomains}.
+        \begin{itemize}
+            \item Two trees in the same forest cannot share a name (\textbf{namespace}).
+            \item All domains in a tree shared a Global Catalog. % TODO: Elaborate on the Global Catalog
+        \end{itemize}
+    \item \textbf{Leaf}: \textit{Objects} that do not contain other \textit{objects}, found at the end of the subtree hierarchy.
+    \item \textbf{Container}: Container objects are objects that hold other objects.
+        \begin{itemize}
+            \item Have a defined place in the directory subtree hierarchy.
+        \end{itemize}
+\end{itemize}
+
+\subsection*{Global Unique Identifier (GUID)}
+
+A \textbf{GUID} is a unique \texttt{128-bit} value assigned when a domain \textbf{user} or \textbf{group} is created.
+\begin{itemize}
+    \item Unique across the enterprise.
+    \item Every single object created by \textbf{Active Directory} is assigned a \textbf{GUID}; used internally and is \textbf{persistent}.
+    \item Stored in the \texttt{ObjectGUID} attribute.
+    \item Arguably the \textbf{most accurate} and \textbf{reliable} way to find an exact match for an object.
+\end{itemize}
+
+\subsection*{SAM File}
+
+The \textbf{SAM File} is a local version of the \textbf{Active Directory} database, stored on every \textbf{Windows} system.
+
+\begin{itemize}
+    \item % TODO
+\end{itemize}
+
+\subsection*{SYSTEM Hive}
+
+The \textbf{SYSTEM Hive} is a critical registry file that stores system configuration data.
+
+\begin{itemize}
+    \item Contains the \textbf{Boot Key} (internally as the \texttt{syskey}). % TODO
+\end{itemize}
+
+\subsection*{SECURITY Hive}
+
+THe \textbf{SECURITY Hive} is another registry file that contains \textbf{sensitive security-related information}.
+
+\begin{itemize}
+    \item Stored as \texttt{plaintext}. % TODO
+\end{itemize}
+
+\subsection*{NTDS.DIT}
+
+The \textbf{NTDS.DIT} file can be considered the heart of \textbf{Active Directory}.
+
+\begin{itemize}
+    \item A database that stores \textbf{Active Directory} data such as information about user and group objects, group membership, and \textbf{password hashes} for all users in the entire domain.
+    \item Stored as a \textbf{Domain Controller} at \texttt{C:\\Windows\\NTDS}.
+\end{itemize}
+
+\subsection*{Security Principals}
+
+\textbf{Security Principals} are anything that the operating system can authenticate.
+
+\begin{itemize}
+    \item Users, computer accounts, or even threads/processes that run in the context of a user or computer account.
+    \item In \textbf{AD}, domain objects. In a \textbf{local context}, it would be \textbf{SAM} objects. % TODO
+\end{itemize}
+
+
+\subsubsection*{Security Identifier (SID)}
+
+A \textbf{security identifier}, or \textbf{SID}, is used as a unique identifier for a security principal or security group.
+
+\begin{itemize}
+    \item Every account, group, or process has its own unique SID. % TODO
+\end{itemize}
+
+\subsection*{Distinguished Name}
+
+\textbf{Distinguished Names} are \textbf{full paths} to objects. Gives pieces of information about an user object. % TODO
+
+\subsubsection*{Relative Distinguished Names}
+
+Similarly, \textbf{relative distinguished names} are single components of the \textbf{distinguished name} that identifies the object as unique from other objects at the current level in the naming hierarchy. % TODO
+
+\subsubsection*{sAMAccountName}
+
+THe user's logon name.
+
+\subsubsection*{userPrincipalName}
+
+Another way to identify users in \textbf{AD}.
+
+\begin{itemize}
+    \item Stored as the \texttt{userPrincipalName} attribute.
+    \item Consists of the user account name (\textbf{prefix}) and the domain name (\textbf{suffix}).
+\end{itemize}
+
+\subsection*{Server Principal Name}
+
+The \textbf{server principal name} is an unique identifier for a \textbf{service} running on the \textbf{server}.
+
+\begin{itemize}
+    \item Maps a \textbf{service} to a \textbf{server account}. % TODO
+\end{itemize}
+
+\section*{Group Policy Object (GPO)}
+
+\textbf{Group Policy Objects} are \textbf{virtual collections} of policy settings.
+
+\begin{itemize}
+    \item Applies both at the \textbf{local} and \textbf{domain} context. % TODO
+\end{itemize}
+
+\section*{Access Control Entries}
+
+% TODO
+
+\subsection*{Discretionary Access Control List (DACL)}
+
+% TODO
+
+\subsection*{Object:Users}
+
+% TODO
+
+\subsection*{Objects: Contacts}
+% TODO
+
+\subsection*{Groups}
+
+% TODO: bro is going way too fucking fast he is glossing over he is just dumping dictionary words out from the powerpoint like I cant just go through the slides but chill guy btw hes probably rich
+
+
 \end{document}
