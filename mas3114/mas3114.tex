@@ -1510,4 +1510,67 @@ The differential equation $ x' = Ax $ is $ \displaystyle x(t) = c_1v_1e^{\lambda
 \end{bmatrix} e^{4t} $
 \end{enumerate}
 
+\section*{Lecture 24}
+
+\subsection*{Orthogonal Set}
+
+A \textbf{set} of \textbf{vectors} $ \begin{bmatrix} u_1, \hdots, u_p \end{bmatrix} $ in $ \mathbb{R}^n $ is said to be \textbf{orthogonal} if each \textbf{pair} of \textbf{distinct} vectors are orthogonal.
+\bigskip
+
+\textit{Note}: Two vectors are \textbf{orthogonal} if their dot product is equal to $ 0 $. Also note that two vectors that are \textbf{orthogonal} are also \textbf{linearly indepedent}.
+
+\subsection*{Orthogonal Basis}
+
+An \textbf{orthogonal basis} for a subspace $ W $ of $ \mathbb{R}^n $ is a \textbf{basis} for $ W $ that is also an \textbf{orthogonal set}.
+
+\subsection*{Theorem: Orthogonal Sets}
+
+If $ S = \begin{bmatrix}
+    u_1, \hdots, u_p
+\end{bmatrix} $ is an \textbf{orthogonal set} of nonzero vectors in $ \mathbb{R}^n $, then $ S $ is \textbf{linearly independent} and thus a basis for the \textbf{subspace} spanned by $ S $.
+
+\bigskip
+
+\textit{Example 1.} Show that $ \begin{Bmatrix}
+    u_1, u_2
+\end{Bmatrix} $ is an \textbf{orthogonal basis} for $ \mathbb{R}^2 $.
+\[
+    u_1 = \begin{bmatrix}
+        5 \\
+        -7
+    \end{bmatrix},
+    u_2 = \begin{bmatrix}
+        14 \\
+        10
+    \end{bmatrix},
+    x = \begin{bmatrix}
+        6 \\
+        -1
+    \end{bmatrix}
+\]
+\medskip
+
+Since the dot product of the pairs of distinct vectors ($ u_1 $ and $ u_2 $) is $ 0 $, the vectors form an \textbf{orthogonal set} by definition. By the \textbf{Theorem on Orthogonal Sets}, the vectors are also a basis for $ \mathbb{R}^2 $ because they are \textbf{linearly independent} vectors.
+\bigskip
+
+To express $ x $ as a linear combination of the $ u $s, row reduce the augmented matrix:
+
+\[\displaystyle
+    \begin{amatrix}{2}
+        5 & 14 & 6 \\
+        -7 & 10 & -1
+    \end{amatrix}
+    \sim
+    \begin{amatrix}{2}
+        1 & 0 & \frac{1}{2} \\
+        0 & 1 & \frac{1}{4}
+    \end{amatrix}
+\]
+
+Thus,
+
+\[\displaystyle
+    x = \frac{1}{2}u_1 + \frac{1}{4}u_2
+\]
+
 \end{document}
