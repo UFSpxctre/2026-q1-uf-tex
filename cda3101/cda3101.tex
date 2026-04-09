@@ -412,18 +412,99 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
     \item Common setups include a \textit{split} \textbf{L1} and a \textit{unified} \textbf{L2}.
 \end{itemize}
 
-\section*{Cache Breakdown}
+\section*{Cache Organization}
 
 Main memory is broken into \textbf{blocks}, whereas cache memory is broken into \textbf{cache lines}.
 
-\begin{enumerate}
-    \item \textbf{Blocks} containing a desired item is loaded into cache. May contain hundreds of bytes and take advantage of \textbf{spatial locality}.
-    \item Blocks are copied from main memory into \textbf{L2} or \textbf{L1} cache.
-    \item \textbf{L1} contains a subset of information in \textbf{L2}.
-    \item \textbf{Cache line} holds a block read from main memory.
-\end{enumerate}
+\subsection*{Blocks}
 
-\subsection*{Cache Read}
+\begin{itemize}
+    \item \textbf{Block Number}: $\displaystyle \frac{\textrm{address}}{\textrm{block size}} $
+    \item \textbf{Offset Bits}: $ \log_2 \textrm{block size} $
+\end{itemize}
+
+\subsection*{Cache Lines}
+
+\begin{itemize}
+    \item \textbf{Cache lines} are the same size as a \textbf{memory block}.
+    \item Mapping determines which line contains which block.
+    \item \textbf{Number of blocks}: $\displaystyle \frac{\textrm{main memory size}}{\textrm{block size}} $
+    \item \textbf{Number of lines}: $\displaystyle \frac{\textrm{cache size}}{\textrm{block size}} $
+\end{itemize}
+
+\subsection*{Associativity}
+
+Cache is organized into some number of sets.
+
+\begin{itemize}
+    \item \textbf{Associativity}: Number of blocks per set.
+    \item \textbf{N-Way Associative}: \texttt{N} blocks per set.
+\end{itemize}
+
+\subsubsection*{Fully Associative}
+
+\begin{itemize}
+    \item Any memory block can go into any empty cache line.
+    \item All lines are checked to detect \textbf{cache hits} or \textbf{misses}.
+    \item \textbf{Address}
+        \begin{itemize}
+            \item Based on dividing the address into two fields: an \textbf{tag field} and \textbf{offset field}.
+            \item \textbf{Offset field} width: $ \log_2 \textrm{line\_size} $
+            \item \textbf{Offset} is used to specify byte or word in the \textbf{cache line}.
+        \end{itemize}
+    \item \textbf{Cache Hit Detection}
+        \begin{itemize}
+            \item Separate tag stored for each \textbf{cache line}.
+            \item If a stored tag matches the \textbf{tag field}, we detect a \textbf{cache hit}.
+        \end{itemize}
+    \item \textbf{Block Loading}
+        \begin{itemize}
+            \item Block is loaded into \textbf{vacant cache line} if miss occurs.
+            \item If no line is vacant, use a \textbf{replacement policy} to evict a line. The most common is \textbf{Least Recently Used (LRU)}.
+        \end{itemize}
+    \item Requires hardware to compare all lines in parallel.
+\end{itemize}
+
+\subsubsection*{Direct Mapped}
+
+\begin{itemize}
+    \item Each block has a direct mapping to a cache line.
+    \item \textbf{Mapping}
+        \begin{itemize}
+            \item Maps \textbf{block number} $ B $ to line $ N $.
+            \item $ L = B \: \textrm{mod} \: N $.
+            \item Multiple \textbf{blocks} may map to the same \textbf{cache line}.
+        \end{itemize}
+    \item \textbf{Address}
+        \begin{itemize}
+            \item \textbf{Offset Field}: Identifies location within line.
+                \begin{itemize}
+                    \item $ \log_2 \textrm{line\_size} $
+                \end{itemize}
+            \item \textbf{Line Field}: Selects a unique line of cache.
+                \begin{itemize}
+                    \item $ \log_2 \textrm{lines} $
+                \end{itemize}
+            \item \textbf{Tag Field}: Used to identify currently loaded \textbf{block}.
+                \begin{itemize}
+                    \item $ \texttt{bits} - \textrm{LW} - \textrm{OW} $
+                \end{itemize}
+        \end{itemize}
+    \item \textbf{Cache Hit Detection}
+        \begin{itemize}
+            \item Visit the \textbf{cache line} as specified by the \textbf{line field}.
+            \item If the stored tag matches the \textbf{tag field}, we detect a \textbf{cache hit}.
+        \end{itemize}
+    \item \textbf{Block Loading}
+        \begin{itemize}
+            \item On \textbf{cache miss}, load the \textbf{cache line} with the \textbf{block}.
+            \item Prone to unused \textbf{vacant lines} if accessed \textbf{blocks} map to the same \textbf{line}.
+        \end{itemize}
+\end{itemize}
+
+\subsection*{Set Associative} % TODO: Compromise between fully associative and direct mapped.
+
+\section*{Cache Read}
 
 \begin{itemize}
     \item \textbf{Cache Hit}: Data is found at a given memory level.
@@ -439,7 +520,7 @@ Main memory is broken into \textbf{blocks}, whereas cache memory is broken into 
         \end{itemize}
 \end{itemize}
 
-\subsubsection*{Sources of Cache Misses}
+\subsection*{Sources of Cache Misses}
 
 \begin{itemize}
     \item \textbf{Compulsory Misses}: Initially empty cache.
@@ -447,7 +528,7 @@ Main memory is broken into \textbf{blocks}, whereas cache memory is broken into 
     \item \textbf{Conflict}: Different blocks mapping to the same cache line.
 \end{itemize}
 
-\subsubsection*{Lookaside Cache}
+\subsection*{Lookaside Cache}
 
 \begin{itemize}
     \item Accesses to cache and to main memory occur in parallel.
@@ -455,7 +536,7 @@ Main memory is broken into \textbf{blocks}, whereas cache memory is broken into 
     \item Lowers average memory access time at the cost of increase CPU to memory traffic.
 \end{itemize}
 
-\subsubsection*{Look Through Cache}
+\subsection*{Look Through Cache}
 
 \begin{itemize}
     \item \textbf{Primary cache} checked first. \textbf{Secondary cache} checked if \textbf{cache miss} on \textbf{L1}.
@@ -463,7 +544,7 @@ Main memory is broken into \textbf{blocks}, whereas cache memory is broken into 
     \item Avoids unneeded CPU-to-memory traffic, but increases average memory access time.
 \end{itemize}
 
-\subsection*{Cache Writing}
+\section*{Cache Writing}
 
 \begin{itemize}
     \item \textbf{Write Through}: Memory updated in parallel with every write. \textcolor{red}{Defeats the purpose of having a cache.}
