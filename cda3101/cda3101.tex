@@ -263,4 +263,75 @@ $ Z = (X \textrm{OR} Y) \textrm{AND} (X' \textrm{OR} Y') $
 
 % TODO: full instructions
 
+\part*{Single-Cycle Datapath}
+
+\section*{Datapath Design}
+
+The \textbf{Instruction Set Architecture} determines many aspects of implementation, and these strategies affect \textbf{clock rate} and \textbf{CPI}.
+
+\section*{Logic Design}
+
+\begin{itemize}
+    \item \textbf{Combinational Elements}
+        \begin{itemize}
+            \item Combination of gates, ALU.
+            \item Outputs depend only on inputs.
+        \end{itemize}
+    \item \textbf{State Elements}
+        \begin{itemize}
+            \item Memory, storage.
+            \item Data read from register is state value at previous clock cycle.
+        \end{itemize}
+    \item \textbf{Datapath}
+        \begin{itemize}
+            \item Reads an instruction.
+            \item Executes instructions.
+            \item Writes registers.
+            \item \texttt{PC} stores address of current instruction.
+            \item \textbf{Instruction Memory} stores the instruction.
+        \end{itemize}
+\end{itemize}
+
+\section*{Register File}
+
+\begin{itemize}
+    \item Register numbers are taken from the instruction and sent to the register file.
+    \item Data to be provided is sent through the \textbf{read ports}.
+    \item Signal with the register number to be written, and a \textbf{write port} through which the data will be sent.
+    \item \textbf{Read Data}: State of register in the previous clock cycle.
+    \item \textbf{Write Data}: Changed for the next clock cycle.
+\end{itemize}
+
+\section*{Datapath Elements for R-Format}
+
+\begin{enumerate}
+    \item Instruction is read from \textbf{instruction memory}.
+    \item Instruction is split by Decoder-Logic into \texttt{opcode}, \texttt{rs1}, \texttt{rs2}, and \texttt{rd} fields.
+    \item Register contents for \texttt{rs1} and \texttt{rs2} are read from \textbf{Register File}.
+    \item \textbf{ALU} computes using \texttt{rs1} and \texttt{rs2} registers and produces result.
+    \item Result is written to \textbf{Register File} at \texttt{WriteData} port.
+\end{enumerate}
+
+\section*{Datapath Elements for S-Format}
+
+\begin{enumerate}
+    \item Instruction is read from \textbf{instruction memory}.
+    \item Instruction is split by Decoder-Logic into \texttt{opcode}, \texttt{src} or \texttt{dst}, \texttt{offset}, and \texttt{base}.
+    \item \texttt{offset} sent to \textbf{Sign Extension}.
+    \item \textit{Load} output sent to \texttt{ReadData1}. \textit{Store} source is sent to \texttt{ReadData2}.
+    \item \textbf{ALU} computes memory address.
+    \item \textbf{ALU} output applied to data memory.
+    \item \textbf{LW Only:} \textbf{Data Memory} output written to \textbf{Register File}.
+\end{enumerate}
+
+\section*{Datapath Elements for Branch}
+
+\begin{enumerate}
+    \item Instruction is read from \textbf{Instruction Memory}.
+    \item Instruction is split by Decoder-Logic into \texttt{opcode}, \texttt{rs1}, \texttt{rs2}, and \texttt{imm} fields.
+    \item Register contents read from \textbf{Register File} (output at \texttt{ReadData1} and \texttt{ReadData2}).
+    \item \textbf{ALU} adds \texttt{PC} to sign-extended \texttt{imm} to produce \texttt{BTA}.
+    \item \textbf{ALU} compares \texttt{rs1} and \texttt{rs2} registers and calculates zero output (valued 1 or 0).
+\end{enumerate}
+
 \end{document}
