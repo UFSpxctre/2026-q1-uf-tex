@@ -1188,4 +1188,72 @@ The \textbf{server principal name} is an unique identifier for a \textbf{service
     \item \textbf{Object has no \textit{DACL:}} System grants everyone access.
     \item \textbf{Object has \textit{DACL} with no entries:} System denies everyone access.
 \end{itemize}
+
+\section*{Active Directory Objects}
+
+As briefly stated previously, \textbf{Active Directory Objects} are \textit{ANY} resource in an \textbf{Active Directory} environment.
+
+\subsection*{Users}
+
+\textbf{User} objects represent users within an \textbf{Active Directory} environment.
+
+\begin{itemize}
+    \item \textbf{Leaf} objects and \textbf{security principals}.
+    \item Contains a \textbf{GUID} and \textbf{SID}.
+    \item Crucial target for attackers since gaining access to \textit{ANY} user (even low-privileged ones) allows for enumeration of the \textbf{Active Directory} environment.
+\end{itemize}
+
+\subsection*{Contacts}
+
+\textbf{Contact} objects are usually used to represent an external user.
+
+\begin{itemize}
+    \item \textbf{Leaf} objects but \textit{NOT} \textbf{security principals}.
+    \item Only a \textbf{GUID}, no \textbf{SID}.
+    \item Contains informational attributes.
+\end{itemize}
+
+\subsection*{Printers}
+
+\textbf{Printer} objects point to printers accessible within the \textbf{Active Directory} network.
+
+\begin{itemize}
+    \item \textbf{Leaf} objects but \textit{NOT} \textbf{security principals}.
+    \item Only a textbf{GUID}, no \textbf{SID}.
+    \item Printer-specific attributes such as printer's name, driver information, port number, etc.
+\end{itemize}
+
+\subsection*{Computers}
+
+\textbf{Computer} objects point to any computer joined on the \textbf{Active Directory} network.
+
+\begin{itemize}
+    \item \textbf{Leaf} objects and \textbf{security principals}.
+    \item Contains a \textbf{GUID} and \textbf{SID}.
+    \item Prime targets for attackers since full administrative access to a computer grants similar rights to a standard domain user and can be used to enumerate the \textbf{Active Directory} network.
+\end{itemize}
+
+\subsection*{Shared Folders}
+
+\textbf{Shared Folder} objects point to a shared folder on the specific computer where the folder resides.
+
+\begin{itemize}
+    \item Can have stringent access control.
+    \item \textbf{GUID} only.
+    \item Includes attributes such as name, location on the system, and security access rights.
+\end{itemize}
+
+\subsection*{Groups}
+
+% TODO: bro is going way too fucking fast he is glossing over he is just dumping dictionary words out from the powerpoint like I cant just go through the slides but chill guy btw hes probably rich
+
+\subsection*{Organizational Units (OUs)}
+
+% TODO
+
+\subsection*{Domains}
+
+% TODO
+
+
 \end{document}
