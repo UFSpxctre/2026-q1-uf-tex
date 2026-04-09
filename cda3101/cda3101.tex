@@ -445,7 +445,6 @@ Cache is organized into some number of sets.
 
 \begin{itemize}
     \item Any memory block can go into any empty cache line.
-    \item All lines are checked to detect \textbf{cache hits} or \textbf{misses}.
     \item \textbf{Address}
         \begin{itemize}
             \item Based on dividing the address into two fields: an \textbf{tag field} and \textbf{offset field}.
@@ -454,7 +453,7 @@ Cache is organized into some number of sets.
         \end{itemize}
     \item \textbf{Cache Hit Detection}
         \begin{itemize}
-            \item Separate tag stored for each \textbf{cache line}.
+            \item Check all \textbf{cache lines} in parallel.
             \item If a stored tag matches the \textbf{tag field}, we detect a \textbf{cache hit}.
         \end{itemize}
     \item \textbf{Block Loading}
@@ -477,7 +476,7 @@ Cache is organized into some number of sets.
         \end{itemize}
     \item \textbf{Address}
         \begin{itemize}
-            \item \textbf{Offset Field}: Identifies location within line.
+            \item \textbf{Offset Field}: Specify byte or word in the \textbf{cache line}.
                 \begin{itemize}
                     \item $ \log_2 \textrm{line\_size} $
                 \end{itemize}
@@ -499,10 +498,44 @@ Cache is organized into some number of sets.
         \begin{itemize}
             \item On \textbf{cache miss}, load the \textbf{cache line} with the \textbf{block}.
             \item Prone to unused \textbf{vacant lines} if accessed \textbf{blocks} map to the same \textbf{line}.
+            \item If no line is vacant, use a \textbf{replacement policy} to evict a line.
         \end{itemize}
 \end{itemize}
 
-\subsection*{Set Associative} % TODO: Compromise between fully associative and direct mapped.
+\subsection*{Set Associative}
+
+\begin{itemize}
+    \item Divides \textbf{cache lines} into several \textbf{sets}.
+    \item \textbf{Address}
+        \begin{itemize}
+            \item \textbf{Tag Field}:  Used to identify the \textbf{line} within the \textbf{set} that contains the \textbf{block}.
+                \begin{itemize}
+                    \item $ \texttt{bits} - \texttt{SW} - \texttt{OW} $
+                \end{itemize}
+            \item \textbf{Set Field}: Selects the \textbf{set} of blocks.
+                \begin{itemize}
+                    \item $ \log_2 (sets) $
+                \end{itemize}
+            \item \textbf{Offset Field}: Specify byte or word in the \textbf{cache line}.
+                \begin{itemize}
+                    \item $ \log_2 (block\_size) $
+                \end{itemize}
+        \end{itemize}
+    \item \textbf{Cache Hit Detection}
+        \begin{itemize}
+            \item Visit the \textbf{set} as specified by the \textbf{set field}.
+            \item Check all \textbf{cache lines} in the \textbf{set} in parallel.
+            \item If a stored tag matches the \textbf{tag field}, we detect a \textbf{cache hit}.
+        \end{itemize}
+    \item \textbf{Block Loading}
+        \begin{itemize}
+            \item \textbf{Block} can be loaded in any \textbf{vacant cache line} in specified \textbf{set}.
+        \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+    \item 
+\end{itemize}
 
 \section*{Cache Read}
 
