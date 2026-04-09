@@ -334,4 +334,28 @@ The \textbf{Instruction Set Architecture} determines many aspects of implementat
     \item \textbf{ALU} compares \texttt{rs1} and \texttt{rs2} registers and calculates zero output (valued 1 or 0).
 \end{enumerate}
 
+\part*{Pipelining}
+
+Separate resource for each stage in the datapath in order to reduce the time taken for multiple consecutive instructions.
+
+\begin{itemize}
+    \item For a pipeline, each \textbf{stage} is a \textbf{cycle}.
+    \item \textbf{Cycle Time}: Time of the longest stage.
+    \item Each instruction takes $ \textrm{stage} \times \textrm{cycle time} $ to execute.
+\end{itemize}
+
+Pipelining enables \textbf{parallel execution} through overlapping execution of different instruction stages concurrently.
+
+\section*{Classic Pipeline}
+
+\begin{enumerate}
+    \item \textbf{Instruction Fetch}
+    \item \textbf{Register Read}
+    \item \textbf{ALU Operation}
+    \item \textbf{Data Access}
+    \item \textbf{Register Write}
+\end{enumerate}
+
+This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle time} shorter (duration of the longest stage), we can make each instruction take 5 cycles to execute.
+
 \end{document}
