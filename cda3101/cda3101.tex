@@ -358,4 +358,121 @@ Pipelining enables \textbf{parallel execution} through overlapping execution of 
 
 This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle time} shorter (duration of the longest stage), we can make each instruction take 5 cycles to execute.
 
+\part*{Cache Memory}
+
+\section*{Memory Hierarchy}
+
+\subsection*{Maximize Memory Performance}
+
+\begin{itemize}
+    \item \textbf{Maximize} data transfers in \textbf{fast memory} (registers <-> cache)
+    \item \textbf{Minimize} data transfers in \textbf{slow memory} (registers <-> main memory)
+\end{itemize}
+
+\section*{Locality}
+
+\textbf{Locality} can be exploited to improve performance.
+
+\begin{itemize}
+    \item \textbf{Spatial Locality}: Instructions tend to be accessed sequentially - they are near each other in memory.
+    \item \textbf{Temporal Locality}: Reuse of data or instructions previously accessed.
+\end{itemize}
+
+\section*{Cache Memory}
+
+\subsection*{Primary Cache}
+
+\textbf{L1} or \textbf{primary cache} is on the same chip as the CPU.
+
+\begin{itemize}
+    \item \textbf{Fastest memory} outside of registers.
+    \item Limited in size.
+\end{itemize}
+
+\subsection*{Secondary Cache}
+
+\textbf{L2} or \textbf{secondary cache} can be on the same chip or separate.
+
+\begin{itemize}
+    \item Larger than \textbf{L1}.
+    \item Slower access time than \textbf{L1}.
+\end{itemize}
+
+\subsection*{Harvard Cache}
+
+\textbf{Unified} or \textbf{integrated} caches contain both instructions and data.
+\bigskip
+
+\textbf{Harvard cache} is a split cache system.
+
+\begin{itemize}
+    \item \textbf{I-cache} for caching instructions.
+    \item \textbf{D-cache} for caching data.
+    \item Provides better \textbf{locality} at the cost of complexity.
+    \item Common setups include a \textit{split} \textbf{L1} and a \textit{unified} \textbf{L2}.
+\end{itemize}
+
+\section*{Cache Breakdown}
+
+Main memory is broken into \textbf{blocks}, whereas cache memory is broken into \textbf{cache lines}.
+
+\begin{enumerate}
+    \item \textbf{Blocks} containing a desired item is loaded into cache. May contain hundreds of bytes and take advantage of \textbf{spatial locality}.
+    \item Blocks are copied from main memory into \textbf{L2} or \textbf{L1} cache.
+    \item \textbf{L1} contains a subset of information in \textbf{L2}.
+    \item \textbf{Cache line} holds a block read from main memory.
+\end{enumerate}
+
+\subsection*{Cache Read}
+
+\begin{itemize}
+    \item \textbf{Cache Hit}: Data is found at a given memory level.
+        \begin{itemize}
+            \item \textbf{Hit Rate}: Percent of references found at a given memory level.
+            \item \textbf{Hit Ratio}: $ \displaystyle \frac{\textrm{hits}}{\textrm{total\_refs}} $
+        \end{itemize}
+    \item \textbf{Cache Miss}: Data is not found.
+        \begin{itemize}
+            \item \textbf{Miss Rate}: $ 100 - \textrm{hit\_rate} $
+            \item \textbf{Miss Ratio}: $ 1 - \textrm{hit\_ratio} $
+            \item \textbf{Miss Penalty}: Time required to process a miss.
+        \end{itemize}
+\end{itemize}
+
+\subsubsection*{Sources of Cache Misses}
+
+\begin{itemize}
+    \item \textbf{Compulsory Misses}: Initially empty cache.
+    \item \textbf{Capacity}: Limited size of cache.
+    \item \textbf{Conflict}: Different blocks mapping to the same cache line.
+\end{itemize}
+
+\subsubsection*{Lookaside Cache}
+
+\begin{itemize}
+    \item Accesses to cache and to main memory occur in parallel.
+    \item Main memory access is cancelled if \textbf{cache hit} occurs.
+    \item Lowers average memory access time at the cost of increase CPU to memory traffic.
+\end{itemize}
+
+\subsubsection*{Look Through Cache}
+
+\begin{itemize}
+    \item \textbf{Primary cache} checked first. \textbf{Secondary cache} checked if \textbf{cache miss} on \textbf{L1}.
+    \item Only accesses main memory if \textbf{cache miss} on all cache memory.
+    \item Avoids unneeded CPU-to-memory traffic, but increases average memory access time.
+\end{itemize}
+
+\subsection*{Cache Writing}
+
+\begin{itemize}
+    \item \textbf{Write Through}: Memory updated in parallel with every write. \textcolor{red}{Defeats the purpose of having a cache.}
+    \item \textbf{Write Back}: Updates only the cache copy of the item.
+        \begin{itemize}
+            \item Main memory is updated when the item is removed from the cache.
+            \item Must record whether cache line was written (dirty).
+            \item May cause issues with concurrent access (shared memory multiprocessors).
+        \end{itemize}
+\end{itemize}
+
 \end{document}
