@@ -565,6 +565,78 @@ Heaps can also be useful when implementing \textbf{Djikstra's Algorithm}.
 
 \end{itemize}
 
+\part{Sets, Maps, and Hashing}
+
+\section*{ADT: Sets}
+
+The \textbf{Set ADT} is characterized by a collection that contains \textbf{no duplicates}.
+
+\subsection*{Operations}
+\begin{itemize}
+    \item \texttt{insert(element)}: inserts an element into the set
+    \item \texttt{remove(element)}: removes the element from the set
+    \item \texttt{count(element)}: returns \texttt{1} if element is found, or \texttt{0} if not
+    \item \texttt{size()}: returns number of elements in the set
+    \item \texttt{empty()}: returns true if set is empty
+\end{itemize}
+
+\textbf{Sets} can be \textbf{ordered} (implemented as a \textit{BST}) or \textbf{unordered} (implemented as a \textit{hash set}).
+
+\section*{ADT: Maps}
+
+The \textbf{Map ADT} is chracterized by (\texttt{\textcolor{orange}{key}, \textcolor{cyan}{value}}) pairs.
+
+\begin{itemize}
+    \item Each \texttt{\textcolor{orange}{key}} is \textbf{unique}, but multiple \texttt{\textcolor{orange}{keys}} can map to the same \texttt{\textcolor{cyan}{value}}.
+\end{itemize}
+
+\subsection*{Operations}
+
+\begin{itemize}
+    \item \texttt{insert(\textcolor{orange}{key}, \textcolor{cyan}{value})}: returns false if the \texttt{\textcolor{orange}{key}} exists, otherwise inserts the (\texttt{\textcolor{orange}{key}}, \texttt{\textcolor{cyan}{value}}) pair into the map
+    \item \texttt{remove(\textcolor{orange}{key})}: removes the \texttt{\textcolor{orange}{key}} and corresponding \texttt{\textcolor{cyan}{value}} from the map
+    \item \texttt{count(\textcolor{orange}{key})}: returns \texttt{1} if \texttt{\textcolor{orange}{key}} exists, or \texttt{0} if not
+    \item \texttt{size()}: returns the number of pairs in the map
+    \item \texttt{empty()}: returns true if map is empty
+\end{itemize}
+
+\textbf{Tables} can be \textbf{ordered} (implemented as a \textit{BST}) or \textbf{unordered} (implemented as a \textit{hash map}).
+
+\section*{Hash Table}
+
+Uses a \textbf{hash function} to compute a \textbf{hash code} which maps to a \textbf{bucket} containing the value.
+
+\subsection*{Hash Function}
+
+A \textbf{hash function} generates a \textbf{hash code} which serves as an index into the \textbf{buckets}.
+
+\begin{itemize}
+    \item \textbf{Good hash functions} will attempt to \textbf{evenly distribute} data and \textbf{fast} to compute, thus reducing \textit{collisions}.
+\end{itemize}
+
+\subsection*{Collisions}
+
+\textbf{Hash tables} have some \texttt{capacity}, meaning that there are a limited number of \textbf{buckets}. Two distinct values may \textbf{hash} to the same \textbf{hash code}, and thus a \textbf{collision} has occurred.
+
+\subsubsection*{Collision Resolution: Open Addressing (Linear Probing)}
+
+\textbf{Linear probing} is a form of \textbf{open addressing}, but degrades the \textbf{hash table}'s performance to a \texttt{O(n)} worst-case, where $ n $ is equal to the number of buckets.
+
+\begin{itemize}
+    \item If a \textbf{data collision occurs}, simply go to the next bucket.
+    \item Repeat until an empty bucket is found.
+    \item Also do the same when searching for an item: after jumping to the obtained \textbf{hash code}, keep \textit{linearly probing} until desired or empty bucket is found.
+\end{itemize}
+
+\subsubsection*{Collision Resolution: Open Addressing (Quadratic Probing)}
+% TODO
+
+\subsubsection*{Collision Resolution: Separate Chaining (Linked List)}
+% TODO
+
+\subsubsection*{Collision Resolution: Separate Chaining (BST)}
+% TODO
+
 \part{Graphs}
 
 \section*{Dijkstra's Algorithm}
