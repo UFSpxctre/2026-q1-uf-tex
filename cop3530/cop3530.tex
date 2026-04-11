@@ -606,6 +606,10 @@ The \textbf{Map ADT} is chracterized by (\texttt{\textcolor{orange}{key}, \textc
 
 Uses a \textbf{hash function} to compute a \textbf{hash code} which maps to a \textbf{bucket} containing the value.
 
+\begin{itemize}
+    \item \textbf{Insert}, \textbf{Delete}, \textbf{Search}: \texttt{average} \texttt{O(1)}, \textcolor{red}{worst} \texttt{O(n)}, or \texttt{O(log n)} w/ \textbf{separate chaining (BST)}
+\end{itemize}
+
 \subsection*{Load Factor}
 
 \textbf{Load factor} is defined as the ratio of the \textbf{hash table}'s size to its capacity.
@@ -627,7 +631,7 @@ A \textbf{hash function} generates a \textbf{hash code} which serves as an index
 
 \textbf{Hash tables} have some \texttt{capacity}, meaning that there are a limited number of \textbf{buckets}. Two distinct values may \textbf{hash} to the same \textbf{hash code}, and thus a \textbf{collision} has occurred.
 
-\subsubsection*{Collision Resolution: Open Addressing (Linear Probing)}
+\subsection*{Collision Resolution: Open Addressing (Linear Probing)}
 
 \textbf{Linear probing} is a form of \textbf{open addressing}, but degrades the \textbf{hash table}'s performance to a \texttt{O(n)} worst-case, where $ n $ is equal to the number of buckets.
 
@@ -647,7 +651,7 @@ A \textbf{hash function} generates a \textbf{hash code} which serves as an index
         \end{itemize}
 \end{itemize}
 
-\subsubsection*{Collision Resolution: Open Addressing (Quadratic Probing)}
+\subsection*{Collision Resolution: Open Addressing (Quadratic Probing)}
 
 \textbf{Quadratic probing} is similar to \textbf{linear probing}.
 
@@ -667,7 +671,7 @@ A \textbf{hash function} generates a \textbf{hash code} which serves as an index
         \end{itemize}
 \end{itemize}
 
-\subsubsection*{Collision Resolution: Separate Chaining (Linked List)}
+\subsection*{Collision Resolution: Separate Chaining (Linked List)}
 
 Each \textbf{bucket} is backed by a \textbf{linked list}.
 
@@ -688,7 +692,7 @@ Each \textbf{bucket} is backed by a \textbf{linked list}.
         \end{itemize}
 \end{itemize}
 
-\subsubsection*{Collision Resolution: Separate Chaining (BST)}
+\subsection*{Collision Resolution: Separate Chaining (BST)}
 
 Every \textbf{bucket} is backed by a \textbf{BST}.
 
