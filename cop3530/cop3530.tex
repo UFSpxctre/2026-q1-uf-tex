@@ -715,6 +715,25 @@ Every \textbf{bucket} is backed by a \textbf{BST}.
 
 \part{Graphs}
 
+\section*{Graphs: Terminology}
+
+\begin{itemize}
+    \item \textbf{Vertex}: A node within a \textbf{graph}.
+    \item \textbf{Edge}: A connection between two \textbf{vertices}.
+        \begin{itemize}
+            \item \textbf{Directed}: \textbf{Edges} have a direction.
+            \item \textbf{Undirected}: \textbf{Edges} are bidirectional.
+            \item \textbf{Degree}: Number of \textbf{edges} \textbf{\textit{incident}} to a \textbf{vertex}.
+            \item \textbf{Weighted}: Edges have some numerical value assigned. Could represent the cost of traversal between \textbf{vertices}.
+            \item \textbf{Unweighted}: Edges have no numerical value assigned.
+        \end{itemize}
+    \item \textbf{Path}: Sequence of \textbf{vertices} where each adjacent pair is connected by an \textbf{edge}.
+    \item \textbf{Cycle}: A \textbf{path} that starts and ends on the same \textbf{vertex}, with no repetition of \textbf{vertices}.
+    \item \textbf{Connected}: A graph has a \textbf{path} between any two \textbf{vertices}.
+    \item \textbf{Acyclic}: A grpah has no \textbf{cycles}.
+    \item \textbf{Tree}: A graph is \textbf{connected} and \textbf{acyclic}.
+\end{itemize}
+
 \section*{Dijkstra's Algorithm}
 
 \begin{itemize}
