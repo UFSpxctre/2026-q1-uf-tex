@@ -606,6 +606,15 @@ The \textbf{Map ADT} is chracterized by (\texttt{\textcolor{orange}{key}, \textc
 
 Uses a \textbf{hash function} to compute a \textbf{hash code} which maps to a \textbf{bucket} containing the value.
 
+\subsection*{Load Factor}
+
+\textbf{Load factor} is defined as the ratio of the \textbf{hash table}'s size to its capacity.
+
+\begin{itemize}
+    \item To ensure that the performance of the \textbf{hash table} stays consistent, a \textbf{max load factor} is defined.
+    \item When the \textbf{load factor} passes the \textbf{max load factor}, dynamically reallocate the \textbf{hash table} to a greater capacity. This process is expensive and time-consuming as it requires \textbf{rehashing} of every element into the new table.
+\end{itemize}
+
 \subsection*{Hash Function}
 
 A \textbf{hash function} generates a \textbf{hash code} which serves as an index into the \textbf{buckets}.
@@ -624,18 +633,81 @@ A \textbf{hash function} generates a \textbf{hash code} which serves as an index
 
 \begin{itemize}
     \item If a \textbf{data collision occurs}, simply go to the next bucket.
-    \item Repeat until an empty bucket is found.
     \item Also do the same when searching for an item: after jumping to the obtained \textbf{hash code}, keep \textit{linearly probing} until desired or empty bucket is found.
+    \item \textbf{Worst-Case Time Complexity}: \texttt{O(n)}
+    \item \textcolor{green}{Pros}
+        \begin{itemize}
+            \item Extremely simple to implement.
+            \item Good \textbf{cache locality}.
+        \end{itemize}
+    \item \textcolor{red}{Cons}
+        \begin{itemize}
+            \item \textbf{Primary Clustering}: Keys that map to the same \textbf{hash code} cluster in adjacent \textbf{buckets}.
+            \item Performance quickly degrades to \textbf{linear time} as \textbf{load factor} increases.
+        \end{itemize}
 \end{itemize}
 
 \subsubsection*{Collision Resolution: Open Addressing (Quadratic Probing)}
-% TODO
+
+\textbf{Quadratic probing} is similar to \textbf{linear probing}.
+
+\begin{itemize}
+    \item If a \textbf{data collision occurs}, jump ahead $ j^2 $ buckets, where $ j $ is equal to the number of jumps done.
+    \item \textbf{Worst Case Time Complexity}: \texttt{O(n)}
+    \item \textcolor{green}{Pros}
+        \begin{itemize}
+            \item Mitigates \textbf{primary clustering}.
+            \item Not very hard to implement.
+        \end{itemize}
+    \item \textcolor{red}{Cons}
+        \begin{itemize}
+            \item \textbf{Secondary Clustering}: Keys that map to the same \textbf{hash code} follow the same subsequent probe sequence. Much more \textit{minor} compared to \textbf{primary clustering}, and can be mitigated with \textbf{double hashing}.
+            \item Worse \textbf{cache efficiency} compared to \textbf{linear probing} due to the exploitation of \textit{spatial locality}. (see \textit{Computer Organization})
+            \item Still the same worst-case time complexity compared to \textbf{linear probing}.
+        \end{itemize}
+\end{itemize}
 
 \subsubsection*{Collision Resolution: Separate Chaining (Linked List)}
-% TODO
+
+Each \textbf{bucket} is backed by a \textbf{linked list}.
+
+\begin{itemize}
+    \item \textbf{Hash code} maps to corresponding \textbf{bucket}, then traverse the \textbf{linked list} to find the corresponding element.
+    \item \textbf{Worst-Case Time Complexity}: \texttt{O(n)}
+    \item \textcolor{green}{Pros}
+        \begin{itemize}
+            \item Easy to implement.
+            \item \textbf{Hash table} never fills up completely.
+            \item Less sensitive to poor \textbf{hash functions}.
+        \end{itemize}
+    \item \textcolor{red}{Cons}
+        \begin{itemize}
+            \item Worse \textbf{cache efficiency} compared to \textbf{open addressing} due to non-contiguous memory.
+            \item Additional memory required for pointers.
+            \item Pointer dereference overhead.
+        \end{itemize}
+\end{itemize}
 
 \subsubsection*{Collision Resolution: Separate Chaining (BST)}
-% TODO
+
+Every \textbf{bucket} is backed by a \textbf{BST}.
+
+\begin{itemize}
+    \item \textbf{Hash code} maps to corresonding \textbf{bucket}, then search the \textbf{BST} to find the corresponding element.
+    \item \textbf{Worst-Case Time Complexity}: \texttt{O(log n)}
+    \item \textcolor{green}{Pros}
+        \begin{itemize}
+            \item Performance degrades to \textbf{logarithmic time} instead of \textbf{linear time}.
+            \item \textbf{Scalable}; handles high \textbf{load factors} better.
+        \end{itemize}
+    \item \textcolor{red}{Cons}
+        \begin{itemize}
+            \item Quite advanced; difficult to implement for shit programmers.
+            \item The \texttt{\textcolor{orange}{key}} must be \textbf{comparable}.
+            \item Significant memory overhead for each \textbf{BST}.
+            \item \textbf{Small Bucket Overhead}: The overhead of traversing a \textbf{BST} can be slower than traversing a \textbf{linked list}.
+        \end{itemize}
+\end{itemize}
 
 \part{Graphs}
 
