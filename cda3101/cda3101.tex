@@ -1,6 +1,7 @@
 \documentclass[12pt, letterpaper]{article}
 
 \usepackage{spreamble}
+\usepackage{graphicx}
 
 \title{CDA3101}
 \author{Ian Zou}
@@ -357,6 +358,97 @@ Pipelining enables \textbf{parallel execution} through overlapping execution of 
 \end{enumerate}
 
 This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle time} shorter (duration of the longest stage), we can make each instruction take 5 cycles to execute.
+
+\section*{Hazards}
+
+\textbf{Hazards} cause the instruction to not be able to execute.
+
+\begin{itemize}
+    \item \textbf{Structural Hazard}: Two instructions need the same hardware in the same cycle.
+        \begin{itemize}
+            \item \textit{Example:} In a pipeline, a \textbf{structural hazard} would occur if \textbf{fetch} for instructions occur in the same cycle as a \textbf{memory access} for data in \textit{Von Neumann Architecture}. This can be mitigated by using \textit{Harvard Architecture}, where instruction memory is separate from data memory.
+            \item \textit{Example:} In a pipeline, a \textbf{structural hazard} would occur if \textbf{instruction decode} occurs in the same cycle as a \textbf{register write}. This can be mitigated by using \textbf{split-cycle I/O}, where writes occur in the first half of the cycle and reads occur in the second half of the cycle.
+        \end{itemize}
+    \item \textbf{Data Hazard}: An instruction needs data from a register before it has been calculated. (data race)
+        \begin{itemize}
+            \item \textit{Example \textbf{(R-Type Data Hazard)}:} Consider the following code block executing in a pipeline:
+                \begin{minted}[
+                        linenos,
+                        framesep=2mm,
+                        baselinestretch=1.2,
+                        breaklines,
+                        mathescape,
+                    ]{asm}
+        SUB X2, X1, X3
+        AND X12, X2, X5             // 1st operand (X2) depends on SUB
+        OR X13, X6, X2              // 2nd operand (X2) depends on SUB
+        ADD X14, X2, X2             // operands depend on SUB
+        SW X15, X15, (100)X2        // second operand depends on SUB
+                \end{minted}
+
+                In a pipeline diagram, we can see where these diagrams take place.
+
+                \medskip
+                {\centering
+
+                    \includegraphics[width=0.8\textwidth]{./cda3101_hazard.png}
+
+                }
+                \medskip
+
+                \textbf{Forwarding}: We can store the calculated \texttt{X2} after \textbf{execute} stage of the \texttt{SUB} instruction into the \texttt{EX/MEM} memory buffer. This value can be retrieved in the subsequent cycle and loaded into the ALU by the \texttt{AND} instruction.
+
+                \medskip
+                {\centering
+
+                    \includegraphics[width=0.8\textwidth]{./cda3101_hazard_forward_01.png}
+                    
+                }
+                \medskip
+
+                Same thing; we can \textbf{forward} \texttt{X2} from the \texttt{SUB} instruction by storing into the \texttt{MEM/WB} buffer and then retrieve that value in the \texttt{OR} instruction.
+
+                \medskip
+                {\centering
+
+                    \includegraphics[width=0.8\textwidth]{./cda3101_hazard_forward_02.png}
+
+                }
+                \medskip
+
+                \textbf{Forwarding} solves all \textbf{R-type data hazards}.
+            \item \textit{Example \textbf{(Load-Use Data Hazard)}}: Consider the following code block executing in a pipeline:
+
+                \begin{minted}[
+                        linenos,
+                        framesep=2mm,
+                        baselinestretch=1.2,
+                        breaklines,
+                        mathescape,
+                    ]{asm}
+        LW X2, (20)
+        AND X4, X2, X5             // 1st operand (X2) depends on LW
+        OR X8, X2, X6              // 1st operand (X2) depends on LW
+        ADD X9, X4, X2             // 2nd operand (X2) depends on LW
+        SUB X1, X6, X7
+                \end{minted}
+
+                \texttt{X2} is uninitialized until \textbf{memory access}; the \textit{fourth} cycle. We can save \texttt{X2} into \texttt{MEM/WB} buffer to \textbf{forward} but we must \texttt{STALL} all other instructions until \textbf{execute} stage is past the \textit{fourth} cycle.
+
+                \medskip
+                {\centering
+
+                    \includegraphics[width=0.8\textwidth]{./cda3101_hazard_load_use.png}
+
+                }
+                \medskip
+
+        \end{itemize}
+    \item \textbf{Control Hazard}: Instruction to fetch is unknown because the results of a branch decision is not known yet.
+        \begin{itemize}
+            \item 
+        \end{itemize}
+\end{itemize}
 
 \part*{Cache Memory}
 
