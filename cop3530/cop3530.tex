@@ -721,9 +721,9 @@ Every \textbf{bucket} is backed by a \textbf{BST}.
     \item \textbf{Vertex}: A node within a \textbf{graph}.
     \item \textbf{Edge}: A connection between two \textbf{vertices}.
         \begin{itemize}
-            \item \textbf{Directed}: \textbf{Edges} have a direction.
-            \item \textbf{Undirected}: \textbf{Edges} are bidirectional.
-            \item \textbf{Degree}: Number of \textbf{edges} \textbf{\textit{incident}} to a \textbf{vertex}.
+            \item \textbf{Directed}: \textit{Edges} have a direction.
+            \item \textbf{Undirected}: \textit{Edges} are bidirectional.
+            \item \textbf{Degree}: Number of \textit{edges} \textbf{incident} to a \textbf{vertex}.
             \item \textbf{Weighted}: Edges have some numerical value assigned. Could represent the cost of traversal between \textbf{vertices}.
             \item \textbf{Unweighted}: Edges have no numerical value assigned.
         \end{itemize}
@@ -732,6 +732,77 @@ Every \textbf{bucket} is backed by a \textbf{BST}.
     \item \textbf{Connected}: A graph has a \textbf{path} between any two \textbf{vertices}.
     \item \textbf{Acyclic}: A grpah has no \textbf{cycles}.
     \item \textbf{Tree}: A graph is \textbf{connected} and \textbf{acyclic}.
+\end{itemize}
+
+\section*{Graph Representation: Adjacency Matrix}
+
+\textbf{Adjacency matrices} are $ n \times n $ matrices, where $ n $ is the number of \textbf{vertices} in the graph. Each entry in the matrix correspond to an \textbf{edge} from its $ x $-coordinate to its $ y $-coordinate, where $ x $ and $ y $ represent some \textbf{vertex} in the graph.
+
+\begin{itemize}
+    \item Represented by a \textbf{2D array}.
+    \item Input $ x $ and $ y $ (\texttt{adj\_matrix[x][y]}) corresponds to the \textbf{edge} from $ x $ to $ y $.
+    \item \textbf{2D array} can store a \texttt{bool} (\textbf{unweighted}) or \texttt{int} (\textbf{weighted}).
+    \item \textbf{Time Complexity (Edge Existence)}: \textcolor{green}{$ O(1) $}
+    \item \textbf{Space Complexity}: \textcolor{red}{$ O(V^2) $}
+    \item \textcolor{green}{Pros}
+        \begin{itemize}
+            \item Extremely simple implementation.
+            \item Suitable for \textbf{dense} graphs ($ \textrm{edges} \approx V^2 $).
+            \item \textbf{Self-Loop Detection}: Check if \texttt{adj\_matrix[x][x]} is non-zero.
+            \item \textbf{Directed Detection}: Check if the $ \texttt{adj\_matrix}^T = \texttt{adj\_matrix} $
+        \end{itemize}
+    \item \textcolor{red}{Cons}
+        \begin{itemize}
+            \item Redundant space allocated for \textbf{undirected} graphs.
+            \item Redundant space allocated if \textbf{self-loops} are not of concern.
+        \end{itemize}
+\end{itemize}
+
+\section*{Graph Representation: Adjacency List}
+
+\textbf{Adjacency lists} store every \textbf{edge} of every \textbf{vertex}.
+
+\begin{itemize}
+    \item Represented as an \textbf{array} of $ n $ \textbf{linked lists}, where $ n $ is the number of \textbf{vertices} in the graph.
+        \begin{itemize}
+            \item Maps each \textbf{vertex} to an entry in the \textbf{array}.
+            \item Traverse the \textbf{linked list} for every \textbf{edge} with \texttt{src} equal to the \textbf{vertex}.
+            \item Store a \texttt{int} in the \textbf{linked list} for \textbf{weighted} graphs.
+            \item \textbf{Time Complexity (Edge Existence)}: \textcolor{orange}{ $ O(\textrm{degree}(V)) $ }
+            \item \textbf{Space Complexity}: \textcolor{orange}{ $ O(V + E) $ }
+            \item \textcolor{green}{Pros}
+                \begin{itemize}
+                    \item \textbf{Dynamic allocation} of \textbf{edges}; much more \textbf{space efficient} compared to an \textbf{adjacency matrix}.
+                    \item Suitable for \textbf{sparse} graphs ($ \textrm{edges} < V^2 $).
+                \end{itemize}
+            \item \textcolor{red}{Cons}
+                \begin{itemize}
+                    \item Linear traversal of \textbf{linked lists} is slower than an \textbf{adjacency matrix}.
+                    \item Redundant space allocated for \textbf{undirected} graphs; two \textbf{edges} must be allocated for every \textbf{undirected edge}.
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\section*{Graph Representation: Edge List}
+
+\textbf{Edge lists} store every \textbf{edge} in the \textbf{graph}.
+
+\begin{itemize}
+    \item Represented as a \textbf{dynamic array} of \textbf{edges} (defined as a \texttt{struct} with a \texttt{src} and a \texttt{dst}).
+    \item An \textbf{edge} is defined as a \texttt{struct} with \texttt{v1} and \texttt{v2} in an \textbf{undirected} graph.
+    \item Add a \texttt{weight} property for \textbf{weighted} graphs.
+    \item \textbf{Time Complexity (Edge Existence)}: \textcolor{green}{ $ O(E) $ }
+    \item \textbf{Space Complexity}: \textcolor{green}{$ O(E) $}
+    \item \textcolor{green}{Pros}
+        \begin{itemize}
+            \item Great for \textbf{edge-based} algorithms. (see \textit{Kruskal's})
+            \item No redundant allocations for \textbf{undirected} graphs.
+            \item Overall outstanding \textbf{memory efficiency}.
+        \end{itemize}
+    \item \textcolor{red}{Cons}
+        \begin{itemize}
+            \item Subpar \textbf{time complexity} for finding neighbors or edge existence.
+        \end{itemize}
 \end{itemize}
 
 \section*{Dijkstra's Algorithm}
@@ -757,8 +828,6 @@ Every \textbf{bucket} is backed by a \textbf{BST}.
 \begin{itemize}
     \item Subset of a \textit{connected}, \textit{undirected} graph.
     \item For a graph with $ V $ vertices, a \textbf{spanning tree} always has $ V - 1 $ edges.
-    \item "Minimally connected" version of a graph.
-    \item Includes all \textbf{vertices} of the original graph with no cycles - \textbf{acyclic}.
         \begin{itemize}
             \item \textbf{Maximally Acyclic}: Adding just one more edge will create a cycle.
             \item \textbf{Minimally Connected}: Removing just one edge will make the graph disconnected.
