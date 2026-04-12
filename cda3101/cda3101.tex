@@ -450,6 +450,27 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
         \end{itemize}
 \end{itemize}
 
+\section*{Branch Prediction}
+
+\subsection*{Static Branch Prediction}
+
+\begin{itemize}
+    \item \textbf{Backward conditional branches always taken}: 
+    \item \textbf{Forward conditional branches always not taken}:
+\end{itemize}
+
+\subsection*{Dynamic Branch Prediction}
+
+\begin{itemize}
+    \item \textbf{Branch History Table}: indexed by the address of the branch instruction.
+        \begin{itemize}
+            \item \texttt{1-bit} predictor.
+            \item \texttt{2-bit} predictor. % TODO hard to understand the fuck
+        \end{itemize}
+    \item \textbf{Branch Target Buffer}: catches the target address for particular branches.
+    \item Implemented at the hardware level.
+\end{itemize}
+
 \part*{Cache Memory}
 
 \section*{Memory Hierarchy}
