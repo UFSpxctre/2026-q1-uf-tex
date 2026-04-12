@@ -350,11 +350,11 @@ Pipelining enables \textbf{parallel execution} through overlapping execution of 
 \section*{Classic Pipeline}
 
 \begin{enumerate}
-    \item \textbf{Instruction Fetch}
-    \item \textbf{Register Read}
-    \item \textbf{ALU Operation}
-    \item \textbf{Data Access}
-    \item \textbf{Register Write}
+    \item \textbf{Instruction Fetch} (\texttt{IF})
+    \item \textbf{Register Read} (\texttt{ID})
+    \item \textbf{ALU Operation} (\texttt{EXE})
+    \item \textbf{Data Access} (\texttt{MEM})
+    \item \textbf{Register Write} (\texttt{WB})
 \end{enumerate}
 
 This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle time} shorter (duration of the longest stage), we can make each instruction take 5 cycles to execute.
@@ -433,7 +433,7 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
         SUB X1, X6, X7
                 \end{minted}
 
-                \texttt{X2} is uninitialized until \textbf{memory access}; the \textit{fourth} cycle. We can save \texttt{X2} into \texttt{MEM/WB} buffer to \textbf{forward} but we must \texttt{STALL} all other instructions until \textbf{execute} stage is past the \textit{fourth} cycle.
+                \texttt{X2} is uninitialized until \texttt{MEM}; the \textit{fourth} cycle. We can save \texttt{X2} into \texttt{MEM/WB} buffer to \textbf{forward} but we must \texttt{STALL} all other instructions until \textbf{execute} stage is past the \textit{fourth} cycle.
 
                 \medskip
                 {\centering
@@ -446,7 +446,11 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
         \end{itemize}
     \item \textbf{Control Hazard}: Instruction to fetch is unknown because the results of a branch decision is not known yet.
         \begin{itemize}
-            \item 
+            \item For \texttt{BEQ} Instruction (\textbf{forward conditional branch}): \texttt{PC} is not incremented until \texttt{MEM}; the \textit{fourth} cycle. Without any changes to the design, there would be \textbf{three stall cycles}.
+                \begin{enumerate}
+                    \item Move \texttt{PC} adder to \texttt{ID}.
+                    \item Reduces to \textbf{one stall cycle}.
+                \end{enumerate}
         \end{itemize}
 \end{itemize}
 
@@ -456,7 +460,20 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
 
 \begin{itemize}
     \item \textbf{Backward conditional branches always taken}: 
-    \item \textbf{Forward conditional branches always not taken}:
+    \item \textbf{Forward conditional branches}: do not take the branch and load the next instructions.
+
+        \medskip
+        {\centering
+
+        \includegraphics[width=0.8\textwidth]{./cda3101_branch_prediction_forward_conditional_branch.png}
+
+        }
+        \medskip
+
+        Also note the \texttt{Flush} (see \texttt{ID} in \texttt{Cycle 4}). This is a \texttt{STALL} to wait for \texttt{BEQ} to evaluate in \texttt{EXE} of \texttt{Cycle 4}.
+        \bigskip
+
+        When the \texttt{BEQ} instruction's \texttt{EXE} evaluates, note thet bolded \texttt{\textbf{Flush}} (see \texttt{EXE} in \texttt{Cycle 5}); we \textbf{forward} the result of \texttt{BEQ} to the \texttt{AND} instruction and determine that we need to flush the \texttt{AND} instruction since we \textbf{do} branch.
 \end{itemize}
 
 \subsection*{Dynamic Branch Prediction}
