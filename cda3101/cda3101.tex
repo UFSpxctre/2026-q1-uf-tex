@@ -479,13 +479,17 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
 \subsection*{Dynamic Branch Prediction}
 
 \begin{itemize}
+    \item Occurs while the program is running, determining whether the particular branch instruction should be taken or not.
     \item \textbf{Branch History Table}: indexed by the address of the branch instruction.
-        \begin{itemize}
-            \item \texttt{1-bit} predictor.
-            \item \texttt{2-bit} predictor. % TODO hard to understand the fuck
-        \end{itemize}
     \item \textbf{Branch Target Buffer}: catches the target address for particular branches.
     \item Implemented at the hardware level.
+    \item \textbf{\texttt{2-bit} Predictor}: Stored for each branch instruction.
+        \begin{itemize}
+            \item \textbf{Increment} if branch was taken.
+            \item \textbf{Decrement} if branch was not taken.
+            \item \texttt{10}, \texttt{11}: will \textbf{predict taken}.
+            \item \texttt{01}, \texttt{00}: will \textbf{predict not taken}.
+        \end{itemize}
 \end{itemize}
 
 \part*{Cache Memory}
