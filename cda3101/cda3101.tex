@@ -303,6 +303,21 @@ The \textbf{Instruction Set Architecture} determines many aspects of implementat
     \item \textbf{Write Data}: Changed for the next clock cycle.
 \end{itemize}
 
+\section*{Control Signals}
+
+Decoded primarily from the \texttt{32-bit} instruction opcode (\texttt{funct3}) and function codes (\texttt{funct7}).
+
+\begin{itemize}
+    \item \textbf{\texttt{Branch}} (\texttt{1-bit}): if the instruction is a branch, used to determine the next \texttt{PC} value.
+    \item \textbf{\texttt{Jump}} (\texttt{1-bit}): if the instruction is an unconditional jump.
+    \item \textbf{\texttt{RegWrite}} (\texttt{1-bit}): enables writing data back to the \textbf{register file}.
+    \item \textbf{\texttt{ALUSrc}} (\texttt{1-bit}): selects the source for the second \textbf{ALU} operand.
+    \item \textbf{\texttt{MemRead}} (\texttt{1-bit}): enables reading from memory.
+    \item \textbf{\texttt{MemWrite}} (\texttt{1-bit}): enables writing to memory.
+    \item \textbf{\texttt{ResultSrc}} (\texttt{2-bits}): selects the source for the register file write data.
+    \item \textbf{\texttt{ALUOp}} (\texttt{2-bits}): tell \textbf{ALU} what type of operation to perform (\textit{R-type}, \textit{Load/Store}, or \textit{branch}).
+\end{itemize}
+
 \section*{Datapath Elements for R-Format}
 
 \begin{enumerate}
@@ -351,23 +366,30 @@ Pipelining enables \textbf{parallel execution} through overlapping execution of 
 
 \begin{enumerate}
     \item \textbf{Instruction Fetch} (\texttt{IF})
-    \item \textbf{Register Read} (\texttt{ID})
-    \item \textbf{ALU Operation} (\texttt{EXE})
-    \item \textbf{Data Access} (\texttt{MEM})
+    \item \textbf{Instruction Decode / Register Read} (\texttt{ID})
+    \item \textbf{Execute / ALU Operation} (\texttt{EXE})
+    \item \textbf{Memory Access} (\texttt{MEM})
     \item \textbf{Register Write} (\texttt{WB})
 \end{enumerate}
 
-This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle time} shorter (duration of the longest stage), we can make each instruction take 5 cycles to execute.
+This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle time} shorter (duration of the longest stage), we can make each instruction take 5 cycles to execute and enable \textbf{parallel execution}.
 
 \section*{Hazards}
 
 \textbf{Hazards} cause the instruction to not be able to execute.
 
 \begin{itemize}
-    \item \textbf{Structural Hazard}: Two instructions need the same hardware in the same cycle.
+    \item \textbf{Structural Hazard}: Occurs in \textbf{pipelines} when two instructions at their respective stages require the same hardware.
         \begin{itemize}
-            \item \textit{Example:} In a pipeline, a \textbf{structural hazard} would occur if \textbf{fetch} for instructions occur in the same cycle as a \textbf{memory access} for data in \textit{Von Neumann Architecture}. This can be mitigated by using \textit{Harvard Architecture}, where instruction memory is separate from data memory.
-            \item \textit{Example:} In a pipeline, a \textbf{structural hazard} would occur if \textbf{instruction decode} occurs in the same cycle as a \textbf{register write}. This can be mitigated by using \textbf{split-cycle I/O}, where writes occur in the first half of the cycle and reads occur in the second half of the cycle.
+            \item \textit{Example:} A \textbf{structural hazard} would occur if \textbf{fetch (\texttt{IF})} for instructions occur in the same cycle as a \textbf{memory access (\texttt{MEM})} for data in \textit{Von Neumann Architecture}.
+                \medskip
+
+                This can be mitigated by using \textit{Harvard Architecture}, where instruction memory is separate from data memory.
+
+            \item \textit{Example:} A \textbf{structural hazard} would occur if \textbf{instruction decode} occurs in the same cycle as a \textbf{register write}.
+                \medskip
+
+                This can be mitigated by using \textbf{split-cycle I/O}, where writes occur in the first half of the cycle and reads occur in the second half of the cycle.
         \end{itemize}
     \item \textbf{Data Hazard}: An instruction needs data from a register before it has been calculated. (data race)
         \begin{itemize}
