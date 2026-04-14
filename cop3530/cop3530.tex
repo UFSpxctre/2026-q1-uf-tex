@@ -805,6 +805,35 @@ Every \textbf{bucket} is backed by a \textbf{BST}.
         \end{itemize}
 \end{itemize}
 
+\section*{Depth-First Search}
+
+\begin{itemize}
+    \item Uses a \textbf{stack} and an \textbf{array} to check if a node has been visited. \textbf{WE DO NOT REVISIT NODES.}
+    \item \textbf{Time Complexity}: $ O(V + E) $, where $ V $ is the number of \textbf{vertices} and $ E $ is the number of \textbf{edges}
+\end{itemize}
+
+\subsection*{Depth-First Search: Breakdown}
+\begin{enumerate}
+    \item At a given vertex, visit any unvisited neighbor.
+    \item Goes as deep down a branch as it can before backtracking and visiting other vertices.
+\end{enumerate}
+
+\section*{Breadth-First Search}
+
+\begin{itemize}
+    \item Always gives the \textbf{s-t path} from \texttt{src} to \texttt{dest} vertex.
+    \item Uses a \textbf{queue} and an \textbf{array} to check if a node has been visited. \textbf{WE DO NOT REVISIT NODES.}
+    \item Store the \textbf{wave} the node was inserted into the \textbf{queue} to keep track of \textbf{edges} required to traverse from \texttt{src} to any visited node.
+    \item \textbf{Time Complexity}: $ O(V + E) $, where $ V $ is the number of \textbf{vertices} and $ E $ is the number of \textbf{edges}
+\end{itemize}
+
+\subsection*{Breadth-First Search: Breakdown}
+
+\begin{enumerate}
+    \item At a given vertex, visit the siblings before visiting its neighbors.
+    \item Explore all vertices the same distance away from a given vertex before exploring deeper.
+\end{enumerate}
+
 \section*{Dijkstra's Algorithm}
 
 \begin{itemize}
