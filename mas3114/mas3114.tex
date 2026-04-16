@@ -1579,4 +1579,30 @@ Thus,
 
 The set $ S $ is \textbf{orthonormal} if it is an \textbf{orthogonal set} of unit vectors.
 
+\section*{Lecture 26}
+
+\subsection*{Best Approximation Theorem}
+
+\textit{Reminder:} Let $ W $ be a subspace of $ \mathbb{R}^n $, then each $ y $ in $ \mathbb{R}^n $ can be written uniquely in the form $ \hat{y} + z $ where $ \hat{y} $ is called the \textbf{orthogonal projection} of $ y $ onto $ W $.
+\bigskip
+
+The \textbf{Best Approximation Theorem} states that $ \hat{y} $ is also the closest point in $ W $ to $ y $, in the sense that $ \| y - \hat{y} \| < \| y - v \| $ for all $ v $ in $ W $ distinct from $ \hat{y} $.
+
+\subsection*{Gram-Schmidt Method}
+
+The \textbf{Gram-Schmidt} method is used to transform a set of linearly independent vectors into an \textbf{orthonormal basis}.
+
+\begin{enumerate}
+    \item \textbf{Set} the first vector.
+        \[
+            v_1 = v_1
+        \]
+    \item \textbf{Orthogonalize} the second vector.
+        \[
+            v_2 = u_2 - \textrm{proj}_{v_1}(u_2)
+        \]
+    \item \textbf{Orthogonalize} all subsequent vectors. For each new vector, subtract its projections onto \textit{all} previously found orthogonal vectors.
+    \item \textbf{Normalize} all vectors by dividing each vector by its magnitude.
+\end{enumerate}
+
 \end{document}
