@@ -503,9 +503,13 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
 \begin{itemize}
     \item Occurs while the program is running, determining whether the particular branch instruction should be taken or not.
     \item \textbf{Branch History Table}: indexed by the address of the branch instruction.
+        \begin{itemize}
+            \item \textbf{Local Branch History}: Branch history stored for each instruction address.
+            \item \textbf{Global Branch History}: Universal history for all addresses.
+        \end{itemize}
     \item \textbf{Branch Target Buffer}: catches the target address for particular branches.
     \item Implemented at the hardware level.
-    \item \textbf{\texttt{2-bit} Predictor}: Stored for each branch instruction.
+    \item \textbf{\texttt{2-bit} Predictor}: Remembers the history of the last $ 2^2 $ occurrences of the branch.
         \begin{itemize}
             \item \textbf{Increment} if branch was taken.
             \item \textbf{Decrement} if branch was not taken.
@@ -744,5 +748,9 @@ Cache is organized into some number of sets.
             \item May cause issues with concurrent access (shared memory multiprocessors).
         \end{itemize}
 \end{itemize}
+
+\section*{Multicore Cache}
+
+Modern processors are multi-core; each core maintains its own private cache memory at the highest level and shares a single cache with all cores at lower levels.
 
 \end{document}
