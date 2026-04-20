@@ -81,7 +81,7 @@ We will be creating two \textit{line graphs}: one to illustrate the relationship
 
 \subsection*{Custom Devices}
 
-In addition to the relationships, we will also be plotting two real-world devices against each other. I opted to choose the PS2 (Emotion Engine CPU) and the Nintendo Gamecube (Gekko PowerPC CPU) as they similar specifications to the values I had used in the generic test suite and were competing consoles of their generation.
+In addition to the relationships, we will also be plotting two real-world devices against each other. I opted to choose the PS2 (Emotion Engine CPU) and the Nintendo GameCube (Gekko PowerPC CPU) as they similar specifications to the values I had used in the generic test suite and were competing consoles of their generation.
 
 \begin{itemize}
     \item \textbf{Sony PS2 (Emotion Engine)}
@@ -89,7 +89,7 @@ In addition to the relationships, we will also be plotting two real-world device
             \item Cache Size: $ 24576 $ bytes (because of limitations of the cache simulator only accepting exponents, we rounded up to $ 2^{15} = 32768 $ bytes)
             \item Block Size: $ 32 $ bytes
         \end{itemize}
-    \item \textbf{Nintendo Gamecube (Gekko PowerPC CPU)}
+    \item \textbf{Nintendo GameCube (Gekko PowerPC CPU)}
         \begin{itemize}
             \item Cache Size: $ 32768 $ bytes
             \item Block Size: $ 32 $ bytes
@@ -135,7 +135,7 @@ Fully Associative (FIFO)     & 0.91424 & 0.95555 & 0.97826 & 0.98691 & 0.99009 &
 8-Way Set Associative (LRU)  & 0.92523 & 0.96273 & 0.98178 & 0.98894 & 0.99126 &         &        & 0.969988 \\ \hline
 8-Way Set Associative (FIFO) & 0.91095 & 0.95494 & 0.97689 & 0.98616 & 0.98989 &         &        & 0.963766 \\ \hline
 PS2 (Emotion Engine)         &         &         &         &         &         & 0.98662 &        &          \\ \hline
-Gamecube (Gecko PowerPC CPU) &         &         &         &         &         &         & 0.9871 &          \\ \hline
+GameCube (Gecko PowerPC CPU) &         &         &         &         &         &         & 0.9871 &          \\ \hline
 \end{tabular}%
 }
 \caption{Cache Size vs. Hit Rate for Different Cache Types}
@@ -170,7 +170,7 @@ Fully Associative (FIFO)     & 0.93477 & 0.95469 & 0.9743  & 0.98483 & 0.99009 &
 8-Way Set Associative (LRU)  & 0.93551 & 0.95639 & 0.97577 & 0.98604 & 0.99126 & 0.968994 \\ \hline
 8-Way Set Associative (FIFO) & 0.93345 & 0.95426 & 0.97412 & 0.98464 & 0.98989 & 0.967272 \\ \hline
 PS2 (Emotion Engine)         &         &         &         & 0.98662 &         &          \\ \hline
-Gamecube (Gecko PowerPC CPU) &         &         &         & 0.9871  &         &          \\ \hline
+GameCube (Gecko PowerPC CPU) &         &         &         & 0.9871  &         &          \\ \hline
 \end{tabular}%
 }
 \caption{Block Size vs. Hit Rate for Different Cache Types}
@@ -219,7 +219,20 @@ Although the averages are much tighter, \textbf{direct mapped} still appears to 
     \item \textit{Q: What was the hit rate for the two real devices?  What was the difference in the two devices?  Did one perform better than the other?  What design choices were made?}
         \bigskip
 
-        Because of the limitations of our cache simulator, the severity of the difference in performance of the PS2 to the Gamecube is not accurately illustrated, but yes the Gamecube does perform better. Not only does it use an \textbf{8-way set associative cache} compared to the PS2's \textbf{2-way set associative cache}, it also should have a significantly greater \textbf{cache size}. Per \hyperref{table:cache}, the hit rate for the PS2 was $ 98.662\% $, whereas the Gamecube's hit rate was $ 98.71\% $.
+        Because of the limitations of our cache simulator, the severity of the difference in performance of the PS2 to the GameCube is not accurately illustrated, but yes the GameCube does perform better. Not only does it use an \textbf{8-way set associative cache} compared to the PS2's \textbf{2-way set associative cache}, it also should have a significantly greater \textbf{cache size}. Per \hyperref{table:cache}, the hit rate for the PS2 was $ 98.662\% $, whereas the GameCube's hit rate was $ 98.71\% $.
 \end{itemize}
 
+\part{Works Cited}
+
+\begin{thebibliography}{4}
+    \bibitem{ps2-analysis}
+        Rodrigo Copetti, Playstation 2 Architecture, https://www.copetti.org/writings/consoles/playstation-2
+    \bibitem{emotion-engine-wikipedia}
+        Wikipedia, Emotion Engine, https://en.wikipedia.org/wiki/Emotion\_Engine
+    \bibitem{gamecube-wikipedia}
+        Wikipedia, GameCube, https://en.wikipedia.org/wiki/GameCube
+    \bibitem{gekko-wikipedia}
+        Wikipedia, Gekko (Processor), https://en.wikipedia.org/wiki/Gekko\_(processor)
+
+\end{thebibliography}
 \end{document}
