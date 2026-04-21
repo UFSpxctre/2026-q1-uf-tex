@@ -434,6 +434,115 @@ sanitize paths by removing \texttt{../} or patterns of the like. Do
 not feed user input as a parameter directly into \texttt{include()}.
 
 \clearpage
+\section*{H2 - Log Poisoning}
+
+\begin{table}[!ht]
+  \centering
+  \renewcommand{\arraystretch}{1.8} % Increases row height for a cleaner look
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multirow{3}{*}{\textcolor{red}{\textbf{\huge 8.4}}} &
+    \multicolumn{4}{c|}{\textbf{Adjusted CVSS v3.1 Score}} \\ \cline{2-5}
+    & \textbf{Vector} &
+    \multicolumn{3}{c|}{AV:N/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:L} \\ \cline{2-5}
+    & \textbf{Likelihood} & \textcolor{green}{\textbf{Low}}
+    & \textbf{Impact} & \textcolor{RoyalPurple}{\textbf{Catastrophic}} \\ \hline
+    \multicolumn{5}{|c|}{\textbf{Affected Systems}} \\ \hline
+    \textbf{IP Address} & \textbf{Port} &
+    \multicolumn{2}{c|}{\textbf{Service}} & \textbf{Version} \\ \hline
+    \texttt{5.55.53.53} & \texttt{8091} & \multicolumn{2}{c|}{Apache}
+    & \texttt{2.4.66} \\ \hline
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection*{Details}
+
+The \texttt{/upload.php} endpoint of \textbf{Fazbear Parts \&
+Service} is vulnerable to a log poisoning attack in conjunction with
+vulnerabilty \textit{H1}. This endpoint allows any authenticated user
+to upload a new avatar to replace their existing one, however it only
+validates the file extension of the uploaded file (\texttt{.png} or
+\texttt{.gif} restriction). Any file can be uploaded with the
+aforementioned required extensions, despite their content. Moreover,
+the entire relative path where the avatars are stored is printed to
+the user, which allows for the file to be easily found through the
+\textit{H1} vulnerability.
+
+\subsection*{Confirmation}
+
+We create a \texttt{shell.png} file, containing a PHP reverse shell.
+The payload is the following:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{./h2-01.png}
+\end{figure}
+
+The \texttt{upload.php} endpoint will happily accept this file and
+return the full relative path that this "avatar" is now being served at.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.75\textwidth]{./h2-02.png}
+\end{figure}
+
+After some investigating and digging, the avatar can be included and
+we can observe our PHP being ran, indicated by a request for the
+\texttt{cmd} array.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./h2-03.png}
+\end{figure}
+
+Providing the \texttt{cmd} parameter by appending
+\texttt{\&cmd=<cmd>} to the end of the URL, we can see that our PHP
+reverse shell indeed appears to be functional. We can now run any
+shell command by passing it through the \texttt{cmd} parameter.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{./h2-04.png}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{./h2-05.png}
+\end{figure}
+\FloatBarrier
+
+More sensitive information found within the \texttt{/opt/maintenance} directory.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{./h2-06.png}
+\end{figure}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{./h2-07.png}
+\end{figure}
+\FloatBarrier
+
+\subsection*{Impact}
+
+A log poisoning attack allows for a malicious attacker to upload a
+PHP reverse shell onto the server, and have that reverse shell
+included, thus running the contents of the reverse shell. Given a
+reverse shell, the entire remote server can be compromised given
+sufficient privileges, allowing for enumeration of the entire remote
+filesystem and files never normally reachable by any means. Any
+sensitive credentials and confidential information will be accessible.
+
+\subsection*{Remediation}
+
+In addition to the remediation steps documented in vulnerability
+\textit{H1}, also check file contents to ensure the contents of the
+file are valid. Additionally, check file contents for \texttt{<?php>}
+tags before including them, as these files could be malicious.
+
+\clearpage
 \section*{L1 - Unused Endpoint}
 
 \begin{table}[!ht]
@@ -631,7 +740,7 @@ the \texttt{/tools.php} endpoint.
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.9\textwidth]{./l3-01.png}
+  \includegraphics[width=0.8\textwidth]{./l3-01.png}
 \end{figure}
 
 By editing the cookie that contains \texttt{tools\_access} to
@@ -639,8 +748,9 @@ By editing the cookie that contains \texttt{tools\_access} to
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.9\textwidth]{./l3-02.png}
+  \includegraphics[width=0.8\textwidth]{./l3-02.png}
 \end{figure}
+\FloatBarrier
 
 \subsection*{Impact}
 
