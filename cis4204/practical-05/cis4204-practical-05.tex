@@ -248,13 +248,24 @@ into the SQL query itself.
 
 \subsection*{Details}
 
-The \texttt{/parts.php} endpoint has a vulnerable search bar, of which the query is susceptible to a \texttt{UNION SELECT} SQL injection. Since the \texttt{/parts.php} endpoint is accessible without authentication, this security vulnerability essentially allows for any unprivileged user to enumerate the underlying \textit{SQLite} database.
+The \texttt{/parts.php} endpoint has a vulnerable search bar, of
+which the query is susceptible to a \texttt{UNION SELECT} SQL
+injection. Since the \texttt{/parts.php} endpoint is accessible
+without authentication, this security vulnerability essentially
+allows for any unprivileged user to enumerate the underlying
+\textit{SQLite} database.
 
 \subsection*{Confirmation} % TODO
 
 \subsection*{Impact}
 
-The ability to enumerate the entirety of the internal \textit{SQLite} database is catastrophic: it grants any user the ability to dump the accounts and corresponding credentials of every registered user in the system, every single order made by every single user, every single part that that exists in the database, and even some confidential or staff-only items that should be accessible to any unprivileged user.
+The ability to enumerate the entirety of the internal \textit{SQLite}
+database is catastrophic: it grants any user the ability to dump the
+accounts and corresponding credentials of every registered user in
+the system, every single order made by every single user, every
+single part that that exists in the database, and even some
+confidential or staff-only items that should be accessible to any
+unprivileged user.
 
 \subsection*{Remediation}
 
@@ -265,6 +276,94 @@ SQL query parameters and providing malicious SQL keywords.
 Parameterized queries, on the other hand, prevent SQL injections
 altogether by decoupling the input from being concatenated directly
 into the SQL query itself.
+
+\clearpage
+\section*{H1 - File Inclusion \& Path Traversal}
+
+\begin{table}[!ht]
+  \centering
+  \renewcommand{\arraystretch}{1.8} % Increases row height for a cleaner look
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multirow{3}{*}{\textcolor{red}{\textbf{\huge 7.8}}} &
+    \multicolumn{4}{c|}{\textbf{Adjusted CVSS v3.1 Score}} \\ \cline{2-5}
+    & \textbf{Vector} &
+    \multicolumn{3}{c|}{AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N} \\ \cline{2-5}
+    & \textbf{Likelihood} & \textcolor{red}{\textbf{High}}
+    & \textbf{Impact} & \textcolor{orange}{\textbf{Moderate}} \\ \hline
+    \multicolumn{5}{|c|}{\textbf{Affected Systems}} \\ \hline
+    \textbf{IP Address} & \textbf{Port} &
+    \multicolumn{2}{c|}{\textbf{Service}} & \textbf{Version} \\ \hline
+    \texttt{5.55.53.53} & \texttt{8091} & \multicolumn{2}{c|}{Apache}
+    & \texttt{2.4.66} \\ \hline
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection*{Details}
+
+A document viewer located at the \texttt{/docs.php} endpoint is
+vulnerable to a path traversal and file inclusion attack. It can be
+used to read a file off of the remote server's internal filesystem,
+or used as an setup for a much more catastrophic attack.
+
+\subsection*{Confirmation}
+
+Recognize that the content of the documentation is taken directly
+from a file within some internal server directory, as specified by
+the \texttt{?page} parameter in the URL.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./h1-01.png}
+\end{figure}
+
+We can edit the \texttt{?page} and attempt to point to some invalid
+file. If we set \texttt{?page=../}, we can observe it attempt to
+strip away the relative path but inadvertently show us the underlying PHP error.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./h1-02.png}
+\end{figure}
+
+The presence of \texttt{include()} and the fact that \texttt{?page}
+is being fed directly into this function as a parameter was ample
+evidence to indicate a file traversal vulnerability. After some
+testing, we concluded that the server cannot fully strip
+\texttt{....//}, allowing for full path traversal. This is confirmed
+by the following output indicating that PHP is now searching for a
+nonexistent file in a parent directory:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./h1-03.png}
+\end{figure}
+
+This path traversal method was used to compromise sensitive
+information stored in the home folder of the remote server's computer:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./h1-04.png}
+\end{figure}
+
+\subsection*{Impact}
+
+File traversal has the technical ability to enumerate the entire
+filesystem of the remote server. The pentester was able to find
+sensitive information given enough intelligence gathered from various
+other attack vectors. The biggest impact is the ability for the file
+traversal to include an uploaded file in a known directory. An
+uploaded file may contain a malicious payload that can be exploited
+in conjunction with this security vulnerability to establish a
+devastating attack.
+
+\subsection*{Remediation}
+
+Use a whitelist of allowed files to be accessed by the code and
+sanitize paths by removing \texttt{../} or patterns of the like. Do
+not feed user input as a parameter directly into \texttt{include()}.
 
 \clearpage
 \section*{L1 - Unused Endpoint}
@@ -298,7 +397,7 @@ manually inputted.
 \subsection*{Confirmation}
 
 Using Gobuster, a tool for fuzzing and finding exposed endpoints on a
-given webserver given a wordlist, the pentester was very easily able to
+given webserver given a wordlist, we were very easily able to
 find this endpoint with a common lowercase wordlist from Dirbuster:
 
 \begin{minted}[
