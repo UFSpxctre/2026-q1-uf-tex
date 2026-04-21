@@ -4,3 +4,6 @@
 *.gz
 *.out
 _minted/
+*.dvi
+*.fls
+*.fdb_latexmk
