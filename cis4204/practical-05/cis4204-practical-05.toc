@@ -1,0 +1,21 @@
+\contentsline {section}{\numberline {1}Executive Summary}{2}{section.1}%
+\contentsline {section}{\numberline {2}Engagement Overview}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Goals}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Scope}{2}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Technical Report}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Introduction}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Critical Risk Findings}{5}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}SQL Injection: Admin Password Bypass}{5}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}SQL Injection: UNION SELECT \& Database Enumeration}{7}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Command Injection}{11}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.3}High Risk Findings}{13}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}File Inclusion \& Path Traversal}{13}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Log Poisoning}{16}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Cross-Site Scripting: CSRF Chain}{21}{subsubsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.4}Medium Risk Findings}{24}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Cross-Site Scripting: Hijacking Cookies}{24}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}IDOR}{27}{subsubsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.5}Low Risk Findings}{30}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Unused Endpoint}{30}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}HTTP Verb Tampering}{32}{subsubsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.3}Client-Side Authorization (Stored As Cookie)}{34}{subsubsection.3.5.3}%

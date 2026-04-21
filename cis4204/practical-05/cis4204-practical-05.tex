@@ -12,6 +12,8 @@
 
 \maketitle
 
+\tableofcontents
+
 \clearpage
 \section{Executive Summary}
 
@@ -46,17 +48,21 @@ client (\textit{Fazbear Entertainment}).
 \subsection{Scope}
 
 The pentester was tasked with conducting a penetration test on the
-\texttt{5.55.53.53}
-remote server, which itself is a sandboxed replica of \textit{Fazbear
-Entertainment}'s internal infrastructure. This remote server hosts two
-applications: \textbf{Fazbear Parts \& Service} (port \texttt{8091}), and
-\textbf{Fazbear Staff Portal} (port \texttt{8092}). \bigskip
+\texttt{5.55.53.53} remote server, which itself is a sandboxed
+replica of \textit{Fazbear Entertainment}'s internal infrastructure.
+This remote server hosts two applications: \textbf{Fazbear Parts \&
+Service} (port \texttt{8091}), and \textbf{Fazbear Staff Portal}
+(port \texttt{8092}). \bigskip For \textbf{Fazbear Parts \& Service},
+the pentester was granted access to the unprivileged user account
+\texttt{fritz\_tech}. For \textbf{Fazbear Staff Portal}, the
+pentester was granted access to the unprivileged user account
+\texttt{bonnie\_hr}.
 
 As part of the penetration test, the pentester was assigned a
-specialized pod on the
-\texttt{5.55.53.0/24} network, with the IP address \texttt{5.55.53.3}.
-Connection to this device was enabled via \textit{NoVNC} through the \textit{NDG
-Portal}. All internal testing was restricted to this device. \bigskip
+specialized pod on the \texttt{5.55.53.0/24} network, with the IP
+address \texttt{5.55.53.3}. Connection to this device was enabled via
+\textit{NoVNC} through the \textit{NDG Portal}. All internal testing
+was restricted to this device. \bigskip
 
 The pentester was given the explicit permission to tamper with and exploit these
 services in whatever way the pentester sees fit for the purpose of identifying
@@ -155,7 +161,10 @@ vulnerability is for \textit{Fazbear Entertainment}:
 \bigskip
 
 \clearpage
-\section*{C1 - SQL Injection: Admin Password Bypass}
+\subsection{Critical Risk Findings}
+\bigskip
+
+\subsubsection{SQL Injection: Admin Password Bypass}
 
 \begin{table}[!ht]
   \centering
@@ -177,13 +186,13 @@ vulnerability is for \textit{Fazbear Entertainment}:
 \end{table}
 \FloatBarrier
 
-\subsection*{Details}
+\subsubsection*{Details}
 
 Unsanitized form on the \texttt{/login.php} endpoint allows for an SQL
 injection and thus a simple SQL password bypass, granting any
 unprivileged user access to the \texttt{admin} account.
 
-\subsection*{Confirmation}
+\subsubsection*{Confirmation}
 
 Access the login page at \texttt{http://5.55.53.53:8091/login.php},
 and attempt to login with the following payload which bypasses the
@@ -204,7 +213,7 @@ unprivileged user.
 \end{figure}
 \medskip
 
-\subsection*{Impact}
+\subsubsection*{Impact}
 
 Gaining access to an \texttt{admin} account as an unprivileged user
 is an extremely critical security vulnerability, and will surely
@@ -213,7 +222,7 @@ perform almost virtually task on the remote server, such as uploading
 malicious files, enumerating internal databases, changing passwords,
 or leaking confidential information.
 
-\subsection*{Remediation}
+\subsubsection*{Remediation}
 
 In order to prevent an SQL injection from occurring, sanitized input
 forms and parameterized queries should be used. Sanitizing inputs
@@ -224,7 +233,7 @@ altogether by decoupling the input from being concatenated directly
 into the SQL query itself.
 
 \clearpage
-\section*{C2 - SQL Injection: UNION SELECT \& Database Enumeration}
+\subsubsection{SQL Injection: UNION SELECT \& Database Enumeration}
 
 \begin{table}[!ht]
   \centering
@@ -246,7 +255,7 @@ into the SQL query itself.
 \end{table}
 \FloatBarrier
 
-\subsection*{Details}
+\subsubsection*{Details}
 
 The \texttt{/parts.php} endpoint has a vulnerable search bar, of
 which the query is susceptible to a \texttt{UNION SELECT} SQL
@@ -255,9 +264,48 @@ without authentication, this security vulnerability essentially
 allows for any unprivileged user to enumerate the underlying
 \textit{SQLite} database.
 
-\subsection*{Confirmation} % TODO
+\subsubsection*{Confirmation}
 
-\subsection*{Impact}
+We were able to confirm the existence of a possible \texttt{UNION
+SELECT} SQL injection along with the number of columns the original
+\texttt{SELECT} query in \texttt{parts.php} contained by using the
+\texttt{'ORDER BY 6--'} injection:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./c2-01.png}
+\end{figure}
+\FloatBarrier
+
+We were also able to confirm the SQL database backend
+(\textit{SQLite}). We can begin enumerating the internal database by
+first enumerating the \texttt{name} of entries from
+\texttt{sqlite\_schema}, which contains every single table contained
+in the database:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./c2-02.png}
+\end{figure}
+\FloatBarrier
+
+The table of interest is \texttt{users}. We are able to enumerate the columns of the \texttt{users} table by enumerating the \texttt{name} of every entry of \texttt{pragma\_table\_info('users')}, which stores every single column name of \texttt{users}:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./c2-03.png}
+\end{figure}
+\FloatBarrier
+
+Now we can enumerate every single column of \texttt{users} to expose the credentials of every single account registered on \textbf{Fazbear Parts \& Service}, including the administrator accounts.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./c2-04.png}
+\end{figure}
+\FloatBarrier
+
+\subsubsection*{Impact}
 
 The ability to enumerate the entirety of the internal \textit{SQLite}
 database is catastrophic: it grants any user the ability to dump the
@@ -278,7 +326,7 @@ altogether by decoupling the input from being concatenated directly
 into the SQL query itself.
 
 \clearpage
-\section*{C3 - Command Injection}
+\subsubsection{Command Injection}
 
 \begin{table}[!ht]
   \centering
@@ -300,14 +348,14 @@ into the SQL query itself.
 \end{table}
 \FloatBarrier
 
-\subsection*{Details}
+\subsubsection*{Details}
 
 Through the \texttt{/tools.php} endpoint on \textbf{Fazbear Staff
 Portal} exposed by vulnerability \textit{L3}, we are able to exploit
 the vulnerable ping tool in order to gain full command access to the
 underlying remote server.
 
-\subsection*{Confirmation}
+\subsubsection*{Confirmation}
 
 We can use the payload \texttt{1.1.1.1; whoami} to attempt a command
 injection into the input:
@@ -327,7 +375,7 @@ sensitive information by using \texttt{cat}:
   \includegraphics[width=0.9\textwidth]{./c3-02.png}
 \end{figure}
 
-\subsection*{Impact}
+\subsubsection*{Impact}
 
 Gaining access to a full shell capable of running any command is a
 critical security vulnerability. This gives attackers access to the
@@ -336,7 +384,7 @@ and even directories normally inaccessible through the web interface.
 Maliciouis files can be written directly into the remote server with
 \texttt{echo}, and a full reverse shell could be obtained.
 
-\subsection*{Remediation}
+\subsubsection*{Remediation}
 
 Do not feed user input from a web application directly into a shell,
 and then outputting the contents of the shell directly back to the
@@ -345,7 +393,10 @@ the \texttt{;} used to separate the ping tool's arguments with the
 next command fed into the shell.
 
 \clearpage
-\section*{H1 - File Inclusion \& Path Traversal}
+\subsection{High Risk Findings}
+\bigskip
+
+\subsubsection{File Inclusion \& Path Traversal}
 
 \begin{table}[!ht]
   \centering
@@ -367,7 +418,7 @@ next command fed into the shell.
 \end{table}
 \FloatBarrier
 
-\subsection*{Details}
+\subsubsection*{Details}
 
 A document viewer located at the \texttt{/docs.php} endpoint of
 \textbf{Fazbear Parts \& Service} is vulnerable to a path traversal
@@ -375,7 +426,7 @@ and file inclusion attack. It can be used to read a file off of the
 remote server's internal filesystem, or used as an setup for a much
 more catastrophic attack.
 
-\subsection*{Confirmation}
+\subsubsection*{Confirmation}
 
 Recognize that the content of the documentation is taken directly
 from a file within some internal server directory, as specified by
@@ -416,7 +467,7 @@ information stored in the home folder of the remote server's computer:
   \includegraphics[width=0.9\textwidth]{./h1-04.png}
 \end{figure}
 
-\subsection*{Impact}
+\subsubsection*{Impact}
 
 File traversal has the technical ability to enumerate the entire
 filesystem of the remote server. The pentester was able to find
@@ -427,14 +478,14 @@ uploaded file may contain a malicious payload that can be exploited
 in conjunction with this security vulnerability to establish a
 devastating attack.
 
-\subsection*{Remediation}
+\subsubsection*{Remediation}
 
 Use a whitelist of allowed files to be accessed by the code and
 sanitize paths by removing \texttt{../} or patterns of the like. Do
 not feed user input as a parameter directly into \texttt{include()}.
 
 \clearpage
-\section*{H2 - Log Poisoning}
+\subsubsection{Log Poisoning}
 
 \begin{table}[!ht]
   \centering
@@ -456,7 +507,7 @@ not feed user input as a parameter directly into \texttt{include()}.
 \end{table}
 \FloatBarrier
 
-\subsection*{Details}
+\subsubsection*{Details}
 
 The \texttt{/upload.php} endpoint of \textbf{Fazbear Parts \&
 Service} is vulnerable to a log poisoning attack in conjunction with
@@ -469,7 +520,7 @@ the entire relative path where the avatars are stored is printed to
 the user, which allows for the file to be easily found through the
 \textit{H1} vulnerability.
 
-\subsection*{Confirmation}
+\subsubsection*{Confirmation}
 
 We create a \texttt{shell.png} file, containing a PHP reverse shell.
 The payload is the following:
@@ -525,7 +576,7 @@ More sensitive information found within the \texttt{/opt/maintenance} directory.
 \end{figure}
 \FloatBarrier
 
-\subsection*{Impact}
+\subsubsection*{Impact}
 
 A log poisoning attack allows for a malicious attacker to upload a
 PHP reverse shell onto the server, and have that reverse shell
@@ -535,7 +586,7 @@ sufficient privileges, allowing for enumeration of the entire remote
 filesystem and files never normally reachable by any means. Any
 sensitive credentials and confidential information will be accessible.
 
-\subsection*{Remediation}
+\subsubsection*{Remediation}
 
 In addition to the remediation steps documented in vulnerability
 \textit{H1}, also check file contents to ensure the contents of the
@@ -543,7 +594,7 @@ file are valid. Additionally, check file contents for \texttt{<?php>}
 tags before including them, as these files could be malicious.
 
 \clearpage
-\section*{H3 - Cross-Site Scripting: CSRF Chain}
+\subsubsection{Cross-Site Scripting: CSRF Chain}
 
 \begin{table}[!ht]
   \centering
@@ -573,7 +624,7 @@ In conjunction with the XSS vulnerability \textit{M1}, this endpoint
 is vulnerable to a XSS + CSRF chain attack, forcing a browser logged
 into a privileged account to forcefully reset their password.
 
-\subsection*{Confirmation}
+\subsubsection*{Confirmation}
 
 We can see that \texttt{/settings.php} does not require any password
 confirmation to be used to reset the password:
@@ -605,14 +656,14 @@ administrator's browser to reset their password.
 
 \begin{figure}[!ht]
   \includegraphics[width=0.9\textwidth]{./h3-02.png}
-\end{figure}[!ht]
+\end{figure}
 \FloatBarrier
 
 After waiting for a good minute and a few attempts to log into the
 \texttt{admin} account, we were able to successfully log in as an
 unprivileged user.
 
-\subsection*{Impact}
+\subsubsection*{Impact}
 
 This chained attack requires a few factors to work properly, however
 gaining access to the \texttt{admin} account is critical privilege
@@ -626,7 +677,7 @@ This attack is also not limited to the local network, as there is no
 outgoing request required from the administrator's browser to an
 external server.
 
-\subsection*{Remediation}
+\subsubsection*{Remediation}
 
 To solve the problem of cross-site scripting, sanitize all form
 inputs to prevent Javascript payloads to be accepted and ran by the
@@ -634,7 +685,8 @@ browser of a privileged account. Prevent CSRF attacks from occurring
 by using 2-factor authentication to grant permission to a password reset.
 
 \clearpage
-\section*{M1 - Cross-Site Scripting: Hijacking Cookies}
+\subsection{Medium Risk Findings}
+\subsubsection{Cross-Site Scripting: Hijacking Cookies}
 
 \begin{table}[!ht]
   \centering
@@ -656,7 +708,7 @@ by using 2-factor authentication to grant permission to a password reset.
 \end{table}
 \FloatBarrier
 
-\subsection*{Details}
+\subsubsection*{Details}
 
 The endpoint \texttt{/feedback.php} is vulnerable to a cross-site
 scripting attack. Because of the nature of the unsanitized input
@@ -666,7 +718,7 @@ browser whenever the payload is opened. Since this feedback form is
 most likely read by an admin, the payload is effectively sent to the
 admin's browser.
 
-\subsection*{Confirmation}
+\subsubsection*{Confirmation}
 
 We will attempt to hijack the administrator's cookies by using a XSS
 cookie dump payload. First, we must make sure we have a web server
@@ -695,7 +747,7 @@ by the administrator's browser to our remote server:
   \includegraphics[width=0.9\textwidth]{./m1-03.png}
 \end{figure}
 
-\section*{Impact}
+\subsubsection*{Impact}
 
 Because of the nature of the attack pod being limited to the same
 network, the pentester cannot verify whether there is a network-wide
@@ -705,7 +757,7 @@ done with a device already connected to the internal \textit{Fazbear
 Entertainment} network, which makes this attack largely susceptible
 to use by a rogue employee.
 
-\section*{Remediation}
+\subsubsection*{Remediation}
 
 To solve the problem of cross-site scripting, sanitize all form
 inputs to prevent Javascript payloads to be accepted and ran by the
@@ -713,7 +765,89 @@ browser of a privileged account. Firewalls should be established on
 administrator networks and computers to prevent unwanted outgoing requests.
 
 \clearpage
-\section*{L1 - Unused Endpoint}
+\subsubsection{IDOR}
+
+\begin{table}[!ht]
+  \centering
+  \renewcommand{\arraystretch}{1.8} % Increases row height for a cleaner look
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multirow{3}{*}{\textcolor{orange}{\textbf{\huge 4.3}}} &
+    \multicolumn{4}{c|}{\textbf{Adjusted CVSS v3.1 Score}} \\ \cline{2-5}
+    & \textbf{Vector} &
+    \multicolumn{3}{c|}{AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N} \\ \cline{2-5}
+    & \textbf{Likelihood} & \textcolor{orange}{\textbf{Moderate}}
+    & \textbf{Impact} & \textcolor{orange}{\textbf{Moderate}} \\ \hline
+    \multicolumn{5}{|c|}{\textbf{Affected Systems}} \\ \hline
+    \textbf{IP Address} & \textbf{Port} &
+    \multicolumn{2}{c|}{\textbf{Service}} & \textbf{Version} \\ \hline
+    \texttt{5.55.53.3} & \texttt{8091} & \multicolumn{2}{c|}{Apache}
+    & \texttt{2.4.66} \\ \hline
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsubsection*{Details}
+
+The \texttt{/order.php} endpoint on \textbf{Fazbear Parts \& Service}
+is vulnerable to \textbf{IDOR (Indirect Object Reference)}. This
+vulnerability occurs when certain content on a page is accessed with
+a parameter (e.g. \texttt{id}) but no authorization is
+required to view any content. Thus, by changing the parameter, any
+user can access any piece of content served, as long as the
+\texttt{id} is valid. This is made more trivial if
+\texttt{id} is in-order, allowing for an extremely easy
+enumeration of every single order ever made.
+
+\subsubsection*{Confirmation}
+
+We are logged in with the given unprivileged account
+(\texttt{fritz\_tech}). Notice that specifying a specific order to
+view under \texttt{order.php} is accomplished through the \texttt{id} parameter.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{./m2-01.png}
+\end{figure}
+\FloatBarrier
+
+Even though the \texttt{id} does not appear to be a number, we can
+quickly deduce that the orders are stored in alphabetical order by
+"incrementing" the last letter to the next in the alphabet:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{./m2-02.png}
+\end{figure}
+\FloatBarrier
+
+Success, we have accessed a sensitive order not owned by the
+unprivileged account \texttt{fritz\_tech}.
+
+\subsubsection*{Impact}
+
+IDOR security vulnerabilities allows for an enumeration over one
+particular type of information. In this particular case,
+\textit{Fazbear Entertainment} may suffer a leak of confidential
+information if confidential orders are logged within this endpoint.
+While IDOR by itself cannot be exploited further to obtain access to
+sensitive credentials or access other parts beyond the confines of
+the endpoint, the information obtained may be used by malicious
+attackers to plan further attacks or locate other vulnerable points
+in \textit{Fazbear Entertainment}'s infrastructure.
+
+\subsubsection*{Remediation}
+
+Enable user authentication before attempting to access this endpoint,
+and disallow users without explicitly granted access from accessing
+orders from other users. Furthermore, randomize the \texttt{id}
+parameter when a new order is generated to prevent IDOR enumeration.
+
+\clearpage
+\subsection{Low Risk Findings}
+\bigskip
+
+\subsubsection{Unused Endpoint}
 
 \begin{table}[!ht]
   \centering
@@ -735,13 +869,13 @@ administrator networks and computers to prevent unwanted outgoing requests.
 \end{table}
 \FloatBarrier
 
-\subsection*{Details}
+\subsubsection*{Details}
 
 Although not accessible by any normal means, the \texttt{/archive}
 endpoint of \textbf{Fazbear Parts \& Service} has been left open and
 accessible should the URL be manually inputted.
 
-\subsection*{Confirmation}
+\subsubsection*{Confirmation}
 
 Using Gobuster, a tool for fuzzing and finding exposed endpoints on a
 given webserver given a wordlist, we were very easily able to
@@ -771,7 +905,7 @@ which allowed for the download and access of an internal log
 \end{figure}
 \bigskip
 
-\subsection*{Impact}
+\subsubsection*{Impact}
 
 Should this \texttt{/archive} endpoint have been an active endpoint
 used to archive confidential information, this simple
@@ -783,7 +917,7 @@ this case, old archives could contain sensitive information about
 information to attackers regarding other vulnerable parts of the
 server infrastructure.
 
-\subsection*{Remediation}
+\subsubsection*{Remediation}
 
 Web pages that are hosted by a web server will be accessible as long
 as their exact URL is known. Therefore, it is not a good idea to have
@@ -797,7 +931,7 @@ contain sensitive information, or otherwise take down old endpoints
 that are not meant to be accessible anymore.
 
 \clearpage
-\section*{L2 - HTTP Verb Tampering}
+\subsubsection{HTTP Verb Tampering}
 
 \begin{table}[!ht]
   \centering
@@ -819,7 +953,7 @@ that are not meant to be accessible anymore.
 \end{table}
 \FloatBarrier
 
-\subsection*{Details}
+\subsubsection*{Details}
 
 The \texttt{/api.php} endpoint of \textbf{Fazbear Staff Portal} is
 meant to be forbidden to unauthenticated users. However, a
@@ -827,7 +961,7 @@ misconfiguration on how this API endpoint handles \texttt{POST}
 requests as opposed to \texttt{GET} requests grants an unprivileged
 user a bypass to access the information stored at this endpoint.
 
-\subsection*{Confirmation}
+\subsubsection*{Confirmation}
 
 If we attempt to access \texttt{http://5.55.53.53:8092/api.php} by
 normal means, we will be met with this message:
@@ -852,7 +986,7 @@ The underlying information is now accessible, as simple as that:
   \includegraphics[width=0.9\textwidth]{./l2-03.png}
 \end{figure}
 
-\subsection*{Impact}
+\subsubsection*{Impact}
 
 Access to this endpoint does not grant the unprivileged user any
 permissions to overwrite the data, access other parts of the remote
@@ -865,7 +999,7 @@ corresponding notes may aid attackers in generating a wordlist in
 preparation for a future password spraying attack or social
 engineering campaign.
 
-\subsection*{Remediation}
+\subsubsection*{Remediation}
 
 Make sure to catch all edge cases at all API endpoints, especially
 those that are meant to be locked behind authentication. Check for
@@ -873,7 +1007,7 @@ the user's identity and authorization no matter what HTTP request
 they send to the server. Do not serve information on a \texttt{POST}
 request even if it does not require authorization.
 
-\section*{L3 - Client-Side Authorization (Stored As Cookie)}
+\subsubsection{Client-Side Authorization (Stored As Cookie)}
 
 \begin{table}[!ht]
   \centering
@@ -895,13 +1029,13 @@ request even if it does not require authorization.
 \end{table}
 \FloatBarrier
 
-\subsection*{Details}
+\subsubsection*{Details}
 
 \texttt{tools\_access} for \textbf{Fazbear Staff Portal} is
 client-sided (stored as a cookie), meaning any request made from the
 client is blindly trusted by the server.
 
-\subsection*{Confirmation}
+\subsubsection*{Confirmation}
 
 The only known instance of \texttt{tools\_access} being used to
 authenticate whether a user is privileged to access some content is
@@ -921,7 +1055,7 @@ By editing the cookie that contains \texttt{tools\_access} to
 \end{figure}
 \FloatBarrier
 
-\subsection*{Impact}
+\subsubsection*{Impact}
 
 While this is the only instance of the locally-stored cookie being
 used to authenticate with the server, this is a poor setup that
@@ -931,7 +1065,7 @@ security vulnerability only provides attackers with another attack
 surface to exploit further; it does not expose any confidential
 information on its own unless the exposed endpoints can be exploited further.
 
-\subsection*{Remediation}
+\subsubsection*{Remediation}
 
 Do not store authentication information as a boolean on the client
 side. Always authenticate on the server-side, with the credentials
