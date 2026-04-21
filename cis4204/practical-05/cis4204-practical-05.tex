@@ -543,6 +543,176 @@ file are valid. Additionally, check file contents for \texttt{<?php>}
 tags before including them, as these files could be malicious.
 
 \clearpage
+\section*{H3 - Cross-Site Scripting: CSRF Chain}
+
+\begin{table}[!ht]
+  \centering
+  \renewcommand{\arraystretch}{1.8} % Increases row height for a cleaner look
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multirow{3}{*}{\textcolor{red}{\textbf{\huge 8.1}}} &
+    \multicolumn{4}{c|}{\textbf{Adjusted CVSS v3.1 Score}} \\ \cline{2-5}
+    & \textbf{Vector} &
+    \multicolumn{3}{c|}{AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:N} \\ \cline{2-5}
+    & \textbf{Likelihood} & \textcolor{green}{\textbf{Low}}
+    & \textbf{Impact} & \textcolor{RoyalPurple}{\textbf{Catastrophic}} \\ \hline
+    \multicolumn{5}{|c|}{\textbf{Affected Systems}} \\ \hline
+    \textbf{IP Address} & \textbf{Port} &
+    \multicolumn{2}{c|}{\textbf{Service}} & \textbf{Version} \\ \hline
+    \texttt{5.55.53.53} & \texttt{8092} & \multicolumn{2}{c|}{Apache}
+    & \texttt{2.4.66} \\ \hline
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+The \texttt{/settings.php} endpoint in \textbf{Fazbear Staff Portal}
+allows for a display name change and password reset, but requires no
+password authentication. It functions through an HTML form, sending
+the corresponding form values as \texttt{POST} request to the server.
+In conjunction with the XSS vulnerability \textit{M1}, this endpoint
+is vulnerable to a XSS + CSRF chain attack, forcing a browser logged
+into a privileged account to forcefully reset their password.
+
+\subsection*{Confirmation}
+
+We can see that \texttt{/settings.php} does not require any password
+confirmation to be used to reset the password:
+
+\begin{figure}[!ht]
+  \includegraphics[width=0.9\textwidth]{./h3-01.png}
+\end{figure}[!ht]
+\FloatBarrier
+
+Since the administrator is known to check the portal's feedbacks, and
+\texttt{/feedback.php} is vulnerable to XSS, we will use the
+following XSS + CSRF chain attack payload to force the
+administrator's browser to reset their password.
+
+\begin{minted}[
+        framesep=2mm,
+        baselinestretch=1.2,
+        breaklines,
+    ]{js}
+    <script>
+    var f=document.createElement('form');
+    f.method='POST';
+    f.action='/settings.php';
+    f.innerHTML='<input name="name" value="youredone"><input name="password" value="youredone">';
+    document.body.appendChild(f);
+    f.submit();
+    </script>
+\end{minted}
+
+\begin{figure}[!ht]
+  \includegraphics[width=0.9\textwidth]{./h3-02.png}
+\end{figure}[!ht]
+\FloatBarrier
+
+After waiting for a good minute and a few attempts to log into the
+\texttt{admin} account, we were able to successfully log in as an
+unprivileged user.
+
+\subsection*{Impact}
+
+This chained attack requires a few factors to work properly, however
+gaining access to the \texttt{admin} account is critical privilege
+escalation and leads to a full remote server compromise. Through this
+method, the attacker can lock administrators out of their accounts
+whilst simultaneously gaining access to every account to the server.
+Further exploitation could be explored in administrator-only tools,
+which may have relaxed security measures or extensive system access
+due to only being meant to be accessed by the system administrator.
+This attack is also not limited to the local network, as there is no
+outgoing request required from the administrator's browser to an
+external server.
+
+\subsection*{Remediation}
+
+To solve the problem of cross-site scripting, sanitize all form
+inputs to prevent Javascript payloads to be accepted and ran by the
+browser of a privileged account. Prevent CSRF attacks from occurring
+by using 2-factor authentication to grant permission to a password reset.
+
+\clearpage
+\section*{M1 - Cross-Site Scripting: Hijacking Cookies}
+
+\begin{table}[!ht]
+  \centering
+  \renewcommand{\arraystretch}{1.8} % Increases row height for a cleaner look
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multirow{3}{*}{\textcolor{orange}{\textbf{\huge 6.7}}} &
+    \multicolumn{4}{c|}{\textbf{Adjusted CVSS v3.1 Score}} \\ \cline{2-5}
+    & \textbf{Vector} &
+    \multicolumn{3}{c|}{AV:L/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:L} \\ \cline{2-5}
+    & \textbf{Likelihood} & \textcolor{green}{\textbf{Low}}
+    & \textbf{Impact} & \textcolor{red}{\textbf{Serious}} \\ \hline
+    \multicolumn{5}{|c|}{\textbf{Affected Systems}} \\ \hline
+    \textbf{IP Address} & \textbf{Port} &
+    \multicolumn{2}{c|}{\textbf{Service}} & \textbf{Version} \\ \hline
+    \texttt{5.55.53.53} & \texttt{8092} & \multicolumn{2}{c|}{Apache}
+    & \texttt{2.4.66} \\ \hline
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection*{Details}
+
+The endpoint \texttt{/feedback.php} is vulnerable to a cross-site
+scripting attack. Because of the nature of the unsanitized input
+fields, any unauthenticated user is allowed to not only submit
+feedback, but include a Javascript payload that is ran on a victim's
+browser whenever the payload is opened. Since this feedback form is
+most likely read by an admin, the payload is effectively sent to the
+admin's browser.
+
+\subsection*{Confirmation}
+
+We will attempt to hijack the administrator's cookies by using a XSS
+cookie dump payload. First, we must make sure we have a web server
+running on our attack box to accept HTTP requests.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.7\textwidth]{./m1-02.png}
+\end{figure}
+\FloatBarrier
+
+We will then send the payload into the form:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./m1-01.png}
+\end{figure}
+
+Then, we use \textit{Wireshark} on our server to listen for requests,
+using the \texttt{ip.dst\_host == 5.55.53.3} to filter for
+incoming-only requests. We will find the request unconsensually made
+by the administrator's browser to our remote server:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./m1-03.png}
+\end{figure}
+
+\section*{Impact}
+
+Because of the nature of the attack pod being limited to the same
+network, the pentester cannot verify whether there is a network-wide
+firewall in place to block outgoing requests to external servers.
+Because of this, we can only conclude that this attack can only be
+done with a device already connected to the internal \textit{Fazbear
+Entertainment} network, which makes this attack largely susceptible
+to use by a rogue employee.
+
+\section*{Remediation}
+
+To solve the problem of cross-site scripting, sanitize all form
+inputs to prevent Javascript payloads to be accepted and ran by the
+browser of a privileged account. Firewalls should be established on
+administrator networks and computers to prevent unwanted outgoing requests.
+
+\clearpage
 \section*{L1 - Unused Endpoint}
 
 \begin{table}[!ht]
@@ -569,8 +739,7 @@ tags before including them, as these files could be malicious.
 
 Although not accessible by any normal means, the \texttt{/archive}
 endpoint of \textbf{Fazbear Parts \& Service} has been left open and
-accessible should the URL be
-manually inputted.
+accessible should the URL be manually inputted.
 
 \subsection*{Confirmation}
 
