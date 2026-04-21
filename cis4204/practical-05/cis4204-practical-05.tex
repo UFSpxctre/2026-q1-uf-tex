@@ -191,7 +191,7 @@ password field for the \texttt{admin} account:
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.9\textwidth]{./l2-01.png}
+  \includegraphics[width=0.9\textwidth]{./c1-01.png}
 \end{figure}
 \medskip
 
@@ -200,7 +200,7 @@ unprivileged user.
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.9\textwidth]{./l2-02.png}
+  \includegraphics[width=0.9\textwidth]{./c1-02.png}
 \end{figure}
 \medskip
 
@@ -278,6 +278,73 @@ altogether by decoupling the input from being concatenated directly
 into the SQL query itself.
 
 \clearpage
+\section*{C3 - Command Injection}
+
+\begin{table}[!ht]
+  \centering
+  \renewcommand{\arraystretch}{1.8} % Increases row height for a cleaner look
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multirow{3}{*}{\textcolor{RoyalPurple}{\textbf{\huge 9.0}}} &
+    \multicolumn{4}{c|}{\textbf{Adjusted CVSS v3.1 Score}} \\ \cline{2-5}
+    & \textbf{Vector} &
+    \multicolumn{3}{c|}{AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:N} \\ \cline{2-5}
+    & \textbf{Likelihood} & \textcolor{orange}{\textbf{Moderate}}
+    & \textbf{Impact} & \textcolor{red}{\textbf{Serious}} \\ \hline
+    \multicolumn{5}{|c|}{\textbf{Affected Systems}} \\ \hline
+    \textbf{IP Address} & \textbf{Port} &
+    \multicolumn{2}{c|}{\textbf{Service}} & \textbf{Version} \\ \hline
+    \texttt{5.55.53.53} & \texttt{8092} & \multicolumn{2}{c|}{Apache}
+    & \texttt{2.4.66} \\ \hline
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection*{Details}
+
+Through the \texttt{/tools.php} endpoint on \textbf{Fazbear Staff
+Portal} exposed by vulnerability \textit{L3}, we are able to exploit
+the vulnerable ping tool in order to gain full command access to the
+underlying remote server.
+
+\subsection*{Confirmation}
+
+We can use the payload \texttt{1.1.1.1; whoami} to attempt a command
+injection into the input:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./c3-01.png}
+\end{figure}
+
+Success. The unprivileged user now has access to a shell on the
+remote server through this command injection. We can navigate to
+sensitive directories with \texttt{cd} and \texttt{ls} or print
+sensitive information by using \texttt{cat}:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./c3-02.png}
+\end{figure}
+
+\subsection*{Impact}
+
+Gaining access to a full shell capable of running any command is a
+critical security vulnerability. This gives attackers access to the
+entire remote server's filesystem, including the web server itself
+and even directories normally inaccessible through the web interface.
+Maliciouis files can be written directly into the remote server with
+\texttt{echo}, and a full reverse shell could be obtained.
+
+\subsection*{Remediation}
+
+Do not feed user input from a web application directly into a shell,
+and then outputting the contents of the shell directly back to the
+client. Sanitize the input by removing any escape characters such as
+the \texttt{;} used to separate the ping tool's arguments with the
+next command fed into the shell.
+
+\clearpage
 \section*{H1 - File Inclusion \& Path Traversal}
 
 \begin{table}[!ht]
@@ -302,10 +369,11 @@ into the SQL query itself.
 
 \subsection*{Details}
 
-A document viewer located at the \texttt{/docs.php} endpoint is
-vulnerable to a path traversal and file inclusion attack. It can be
-used to read a file off of the remote server's internal filesystem,
-or used as an setup for a much more catastrophic attack.
+A document viewer located at the \texttt{/docs.php} endpoint of
+\textbf{Fazbear Parts \& Service} is vulnerable to a path traversal
+and file inclusion attack. It can be used to read a file off of the
+remote server's internal filesystem, or used as an setup for a much
+more catastrophic attack.
 
 \subsection*{Confirmation}
 
@@ -373,11 +441,11 @@ not feed user input as a parameter directly into \texttt{include()}.
   \renewcommand{\arraystretch}{1.8} % Increases row height for a cleaner look
   \begin{tabular}{|c|c|c|c|c|}
     \hline
-    \multirow{3}{*}{\textcolor{orange}{\textbf{\huge 5.8}}} &
+    \multirow{3}{*}{\textcolor{green}{\textbf{\huge 3.9}}} &
     \multicolumn{4}{c|}{\textbf{Adjusted CVSS v3.1 Score}} \\ \cline{2-5}
     & \textbf{Vector} &
     \multicolumn{3}{c|}{AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N} \\ \cline{2-5}
-    & \textbf{Likelihood} & \textcolor{red}{\textbf{High}}
+    & \textbf{Likelihood} & \textcolor{orange}{\textbf{Moderate}}
     & \textbf{Impact} & \textcolor{orange}{\textbf{Moderate}} \\ \hline
     \multicolumn{5}{|c|}{\textbf{Affected Systems}} \\ \hline
     \textbf{IP Address} & \textbf{Port} &
@@ -391,7 +459,8 @@ not feed user input as a parameter directly into \texttt{include()}.
 \subsection*{Details}
 
 Although not accessible by any normal means, the \texttt{/archive}
-endpoint has still been left open and accessible should the URL be
+endpoint of \textbf{Fazbear Parts \& Service} has been left open and
+accessible should the URL be
 manually inputted.
 
 \subsection*{Confirmation}
@@ -448,5 +517,147 @@ automated fuzzing tools to enumerate and uncover such web pages.
 It is a good idea to always enforce authentication to endpoints which
 contain sensitive information, or otherwise take down old endpoints
 that are not meant to be accessible anymore.
+
+\clearpage
+\section*{L2 - HTTP Verb Tampering}
+
+\begin{table}[!ht]
+  \centering
+  \renewcommand{\arraystretch}{1.8} % Increases row height for a cleaner look
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multirow{3}{*}{\textcolor{green}{\textbf{\huge 3.9}}} &
+    \multicolumn{4}{c|}{\textbf{Adjusted CVSS v3.1 Score}} \\ \cline{2-5}
+    & \textbf{Vector} &
+    \multicolumn{3}{c|}{AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N} \\ \cline{2-5}
+    & \textbf{Likelihood} & \textcolor{red}{\textbf{High}}
+    & \textbf{Impact} & \textcolor{green}{\textbf{Tolerable}} \\ \hline
+    \multicolumn{5}{|c|}{\textbf{Affected Systems}} \\ \hline
+    \textbf{IP Address} & \textbf{Port} &
+    \multicolumn{2}{c|}{\textbf{Service}} & \textbf{Version} \\ \hline
+    \texttt{5.55.53.53} & \texttt{8092} & \multicolumn{2}{c|}{Apache}
+    & \texttt{2.4.66} \\ \hline
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection*{Details}
+
+The \texttt{/api.php} endpoint of \textbf{Fazbear Staff Portal} is
+meant to be forbidden to unauthenticated users. However, a
+misconfiguration on how this API endpoint handles \texttt{POST}
+requests as opposed to \texttt{GET} requests grants an unprivileged
+user a bypass to access the information stored at this endpoint.
+
+\subsection*{Confirmation}
+
+If we attempt to access \texttt{http://5.55.53.53:8092/api.php} by
+normal means, we will be met with this message:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./l2-01.png}
+\end{figure}
+
+We can intercept this request with \textit{Burp Suite} and change the
+request type to \texttt{POST} from \texttt{GET}:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./l2-02.png}
+\end{figure}
+
+The underlying information is now accessible, as simple as that:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./l2-03.png}
+\end{figure}
+
+\subsection*{Impact}
+
+Access to this endpoint does not grant the unprivileged user any
+permissions to overwrite the data, access other parts of the remote
+server, nor retrieve any other piece of information other than what
+is provided at the endpoint. The data that is actually served at this
+endpoint is fairly harmless, but may still may be useful for
+attackers in gathering intelligence against \textit{Fazbear
+Entertainment}. For example, the enumerated users and their
+corresponding notes may aid attackers in generating a wordlist in
+preparation for a future password spraying attack or social
+engineering campaign.
+
+\subsection*{Remediation}
+
+Make sure to catch all edge cases at all API endpoints, especially
+those that are meant to be locked behind authentication. Check for
+the user's identity and authorization no matter what HTTP request
+they send to the server. Do not serve information on a \texttt{POST}
+request even if it does not require authorization.
+
+\section*{L3 - Client-Side Authorization (Stored As Cookie)}
+
+\begin{table}[!ht]
+  \centering
+  \renewcommand{\arraystretch}{1.8} % Increases row height for a cleaner look
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \multirow{3}{*}{\textcolor{green}{\textbf{\huge 3.1}}} &
+    \multicolumn{4}{c|}{\textbf{Adjusted CVSS v3.1 Score}} \\ \cline{2-5}
+    & \textbf{Vector} &
+    \multicolumn{3}{c|}{AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N} \\ \cline{2-5}
+    & \textbf{Likelihood} & \textcolor{orange}{\textbf{Moderate}}
+    & \textbf{Impact} & \textcolor{green}{\textbf{Tolerable}} \\ \hline
+    \multicolumn{5}{|c|}{\textbf{Affected Systems}} \\ \hline
+    \textbf{IP Address} & \textbf{Port} &
+    \multicolumn{2}{c|}{\textbf{Service}} & \textbf{Version} \\ \hline
+    \texttt{5.55.53.53} & \texttt{8092} & \multicolumn{2}{c|}{Apache}
+    & \texttt{2.4.66} \\ \hline
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsection*{Details}
+
+\texttt{tools\_access} for \textbf{Fazbear Staff Portal} is
+client-sided (stored as a cookie), meaning any request made from the
+client is blindly trusted by the server.
+
+\subsection*{Confirmation}
+
+The only known instance of \texttt{tools\_access} being used to
+authenticate whether a user is privileged to access some content is
+the \texttt{/tools.php} endpoint.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./l3-01.png}
+\end{figure}
+
+By editing the cookie that contains \texttt{tools\_access} to
+\texttt{true}, we gain access to this endpoint.
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./l3-02.png}
+\end{figure}
+
+\subsection*{Impact}
+
+While this is the only instance of the locally-stored cookie being
+used to authenticate with the server, this is a poor setup that
+essentially allows for any endpoint restricted only by this cookie to
+be accessible to an unprivileged user. By itself, however, this
+security vulnerability only provides attackers with another attack
+surface to exploit further; it does not expose any confidential
+information on its own unless the exposed endpoints can be exploited further.
+
+\subsection*{Remediation}
+
+Do not store authentication information as a boolean on the client
+side. Always authenticate on the server-side, with the credentials
+sent to the server as a \texttt{POST} request. Even when
+authenticating server-side, make sure all inputs are sanitized to
+avoid password bypasses through SQL injections or other shenanigans.
 
 \end{document}
