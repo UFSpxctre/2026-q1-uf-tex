@@ -202,7 +202,7 @@ password field for the \texttt{admin} account:
   \centering
   \includegraphics[width=0.9\textwidth]{./c1-01.png}
 \end{figure}
-\medskip
+\FloatBarrier
 
 The login should succeed, and authentication will be granted to the
 unprivileged user.
@@ -211,7 +211,7 @@ unprivileged user.
   \centering
   \includegraphics[width=0.9\textwidth]{./c1-02.png}
 \end{figure}
-\medskip
+\FloatBarrier
 
 \subsubsection*{Impact}
 
@@ -315,7 +315,7 @@ single part that that exists in the database, and even some
 confidential or staff-only items that should be accessible to any
 unprivileged user.
 
-\subsection*{Remediation}
+\subsubsection*{Remediation}
 
 In order to prevent an SQL injection from occurring, sanitized input
 forms and parameterized queries should be used. Sanitizing inputs
@@ -436,6 +436,7 @@ the \texttt{?page} parameter in the URL.
   \centering
   \includegraphics[width=0.9\textwidth]{./h1-01.png}
 \end{figure}
+\FloatBarrier
 
 We can edit the \texttt{?page} and attempt to point to some invalid
 file. If we set \texttt{?page=../}, we can observe it attempt to
@@ -445,6 +446,7 @@ strip away the relative path but inadvertently show us the underlying PHP error.
   \centering
   \includegraphics[width=0.9\textwidth]{./h1-02.png}
 \end{figure}
+\FloatBarrier
 
 The presence of \texttt{include()} and the fact that \texttt{?page}
 is being fed directly into this function as a parameter was ample
@@ -458,6 +460,7 @@ nonexistent file in a parent directory:
   \centering
   \includegraphics[width=0.9\textwidth]{./h1-03.png}
 \end{figure}
+\FloatBarrier
 
 This path traversal method was used to compromise sensitive
 information stored in the home folder of the remote server's computer:
@@ -466,6 +469,7 @@ information stored in the home folder of the remote server's computer:
   \centering
   \includegraphics[width=0.9\textwidth]{./h1-04.png}
 \end{figure}
+\FloatBarrier
 
 \subsubsection*{Impact}
 
@@ -631,7 +635,7 @@ confirmation to be used to reset the password:
 
 \begin{figure}[!ht]
   \includegraphics[width=0.9\textwidth]{./h3-01.png}
-\end{figure}[!ht]
+\end{figure}
 \FloatBarrier
 
 Since the administrator is known to check the portal's feedbacks, and
@@ -893,6 +897,7 @@ find this endpoint with a common lowercase wordlist from Dirbuster:
   \centering
   \includegraphics[width=0.9 \textwidth]{./l1-01.png}
 \end{figure}
+\FloatBarrier
 \medskip
 
 Furthermore, no authentication was required to access this endpoint,
@@ -903,7 +908,7 @@ which allowed for the download and access of an internal log
   \centering
   \includegraphics[width = 0.9\textwidth]{./l1-02.png}
 \end{figure}
-\bigskip
+\FloatBarrier
 
 \subsubsection*{Impact}
 
@@ -970,6 +975,7 @@ normal means, we will be met with this message:
   \centering
   \includegraphics[width=0.9\textwidth]{./l2-01.png}
 \end{figure}
+\FloatBarrier
 
 We can intercept this request with \textit{Burp Suite} and change the
 request type to \texttt{POST} from \texttt{GET}:
@@ -978,6 +984,7 @@ request type to \texttt{POST} from \texttt{GET}:
   \centering
   \includegraphics[width=0.9\textwidth]{./l2-02.png}
 \end{figure}
+\FloatBarrier
 
 The underlying information is now accessible, as simple as that:
 
