@@ -20,30 +20,32 @@ A \textbf{linear equation} is in the form:
 \medskip
 {\centering
 
-$ a_1 x_1 + a_2 x_2 + . . . + a_n x_n = b_1 $
+  $ a_1 x_1 + a_2 x_2 + . . . + a_n x_n = b_1 $
 
 }
 \medskip
 
-Where $ x_1, x_2, \hdots, x_n $ are variables, $ a_1, a_2, ..., a_n $ and $ b $ are scalars, and $ n $ is a positive integer.
+Where $ x_1, x_2, \hdots, x_n $ are variables, $ a_1, a_2, ..., a_n $
+and $ b $ are scalars, and $ n $ is a positive integer.
 
 \medskip
 
 Examples of linear equations include:
 \begin{itemize}
-    \item $ 5x_1 + 4x_2 = 0 $
-    \item $ \sqrt{5}x_1 + 4x_2 = 0 $
+  \item $ 5x_1 + 4x_2 = 0 $
+  \item $ \sqrt{5}x_1 + 4x_2 = 0 $
 \end{itemize}
 
 The following are \textit{NOT} linear equations:
 \begin{itemize}
-    \item $ 5\sqrt{x_1} + 4x_2 = 0 $
-    \item $ 5\sqrt{x_1} + 4x_2 = 0 $
+  \item $ 5\sqrt{x_1} + 4x_2 = 0 $
+  \item $ 5\sqrt{x_1} + 4x_2 = 0 $
 \end{itemize}
 
 \subsection*{Linear Systems}
 
-A \textbf{system of linear equations} (\textbf{linear system}) is a collection of one or more linear equations.
+A \textbf{system of linear equations} (\textbf{linear system}) is a
+collection of one or more linear equations.
 \medskip
 
 The following is a linear system:
@@ -51,8 +53,8 @@ The following is a linear system:
 \medskip
 {\centering
 
-$ 2x_1 + x_2 + x_3 = 1 $
-$ x_1 - 2x_2 - x_3 = 2 $
+  $ 2x_1 + x_2 + x_3 = 1 $
+  $ x_1 - 2x_2 - x_3 = 2 $
 
 }
 \medskip
@@ -60,8 +62,9 @@ $ x_1 - 2x_2 - x_3 = 2 $
 A linear system is:
 
 \begin{itemize}
-    \item \textbf{Consistent}: has 1 solution or \textit{infinitely many} solutions.
-    \item \textbf{Inconsistent}: has \textit{no} solutions.
+  \item \textbf{Consistent}: has 1 solution or \textit{infinitely
+    many} solutions.
+  \item \textbf{Inconsistent}: has \textit{no} solutions.
 \end{itemize}
 
 Two linear systems are \textbf{equivalent} if they have the same solution set.
@@ -77,96 +80,112 @@ The following is an example of a $ 3 \times 3 $ \textbf{coefficient matrix}:
 \medskip
 {\centering
 
-$ A = \begin{bmatrix}
+  $ A =
+  \begin{bmatrix}
     a_{11} & a_{12} & a_{13} \\
     a_{21} & a_{22} & a_{23} \\
     a_{31} & a_{32} & a_{33}
-\end{bmatrix}  $
+  \end{bmatrix}  $
 
 }
 \medskip
 
-The \textbf{size} of a matrix is the number of rows and columns. Any $ m \times n $ matrix is a 2-D array of numbers.
+The \textbf{size} of a matrix is the number of rows and columns. Any
+$ m \times n $ matrix is a 2-D array of numbers.
 
 \begin{enumerate}
-    \item \textit{Example}: Solve the system.
+  \item \textit{Example}: Solve the system.
 
-        {\centering
+    {\centering
 
-            $ x_1 - x_2 = -4 $
+      $ x_1 - x_2 = -4 $
 
-            $ x_1 + 2x_2 = 2 $
+      $ x_1 + 2x_2 = 2 $
 
-        }
+    }
 
-        \bigskip
+    \bigskip
 
-        \textit{Naive Solution}: We get the singular equation by subtracting the equations: % TODO: clarify 
+    \textit{Naive Solution}: We get the singular equation by
+    subtracting the equations: % TODO: clarify
 
-        {\centering
+    {\centering
 
-            $ 3x_2 = 6 $
+      $ 3x_2 = 6 $
 
-            $ x_2 = 2 $
+      $ x_2 = 2 $
 
-        }
+    }
 
-        \medskip
+    \medskip
 
-        We can plug it back into one of the equations to solve for $ x_1 $:
+    We can plug it back into one of the equations to solve for $ x_1 $:
 
-        {\centering
+    {\centering
 
-            $ x_1 + 2(2) = 2 $
+      $ x_1 + 2(2) = 2 $
 
-            $ x_1 = -2 $
+      $ x_1 = -2 $
 
-        }
+    }
 
-        \medskip
+    \medskip
 
-        Thus, the solution set is:
+    Thus, the solution set is:
 
-        {\centering
+    {\centering
 
-            $\begin{bmatrix}
-                -2 \\
-                 2 \\
-            \end{bmatrix}$
+      $
+      \begin{bmatrix}
+        -2 \\
+        2 \\
+      \end{bmatrix}$
 
-        }
+    }
 
 \end{enumerate}
 
 \subsection*{Elementary Row Operations}
 
 \begin{enumerate}
-    \item \textbf{Interchange}: Interchange two rows.
-    \item \textbf{Scaling}: Multiply every entry in a row by a nonzero constant.
-    \item \textbf{Replacement/Row Addition}: Add a multiple of one row to another row.
+  \item \textbf{Interchange}: Interchange two rows.
+  \item \textbf{Scaling}: Multiply every entry in a row by a nonzero constant.
+  \item \textbf{Replacement/Row Addition}: Add a multiple of one row
+    to another row.
 \end{enumerate}
 
-Two matrices are \textbf{row equivalent} if there is a sequence of elementary row operations that transform one matrix into the other.
+Two matrices are \textbf{row equivalent} if there is a sequence of
+elementary row operations that transform one matrix into the other.
 
 \textit{Row equivalent} augmented matrices have the \textit{same solution set}.
 \medskip
 
 \subsection*{Echelon Forms}
 
-\textbf{Row Echelon Forms} help us determine whether a matrix is \textit{consistent}.
+\textbf{Row Echelon Forms} help us determine whether a matrix is
+\textit{consistent}.
 
 \begin{itemize}
-    \item \textbf{Row Echelon Form (REF)}: Leading entries of each row are \textbf{pivots}, and these pivots propagate down and rightwards.
-    \item \textbf{Reduced Row Echelon Form (RREF)}: In addition to REF, each pivot must be $ 1 $ and each pivot column should have no other nonzero entries.
+  \item \textbf{Row Echelon Form (REF)}: Leading entries of each row
+    are \textbf{pivots}, and these pivots propagate down and rightwards.
+  \item \textbf{Reduced Row Echelon Form (RREF)}: In addition to REF,
+    each pivot must be $ 1 $ and each pivot column should have no
+    other nonzero entries.
 \end{itemize}
 
-If $ A $ is a matrix in REF or RREF, the first nonzero (leading) entry in each row is a pivot.
+If $ A $ is a matrix in REF or RREF, the first nonzero (leading)
+entry in each row is a pivot.
 \begin{itemize}
-    \item A \textbf{pivot position} in $ A $ is a location that corresponds to a pivot.
-    \item A \textbf{pivot column} is a column in $ A $ that contains a pivot position.
-    \item \textbf{Rank}: The number of pivot positions in the matrix $ A $.
-    \item \textbf{Pivot Variables}: Variables that correspond to the pivot columns. Variables that do not correspond are called \textbf{free variables}.
-    \item If the system is inconsistent, the solution set is empty even though the matrix has free variables. % TODO: fact check?
+  \item A \textbf{pivot position} in $ A $ is a location that
+    corresponds to a pivot.
+  \item A \textbf{pivot column} is a column in $ A $ that contains a
+    pivot position.
+  \item \textbf{Rank}: The number of pivot positions in the matrix $ A $.
+  \item \textbf{Pivot Variables}: Variables that correspond to the
+    pivot columns. Variables that do not correspond are called
+    \textbf{free variables}.
+  \item If the system is inconsistent, the solution set is empty even
+    though the matrix has free variables. % TODO: fact check?
 \end{itemize}
 
 \section*{Lecture 2}
@@ -174,30 +193,38 @@ If $ A $ is a matrix in REF or RREF, the first nonzero (leading) entry in each r
 \subsection*{Row Reduction Algorithm}
 
 \begin{enumerate}
-    \item From the left, find the first pivot column.
-    \item Interchange rows so that the top entry (pivot) in the column is nonzero.
+  \item From the left, find the first pivot column.
+  \item Interchange rows so that the top entry (pivot) in the column is nonzero.
 
-        NOTE: If $ 1 $ or $ -1 $ is in the column, we prefer these entries as the pivot.
-    \item Use row replacement operations to make all entries beneath the pivot in the pivot column zero.
-    \item Repeat steps 1-3 on the submatrix consisting of all rows below the most recently obtained pivot until we reach the bottom row or there are no remaining nonzero rows.
+    NOTE: If $ 1 $ or $ -1 $ is in the column, we prefer these
+    entries as the pivot.
+  \item Use row replacement operations to make all entries beneath
+    the pivot in the pivot column zero.
+  \item Repeat steps 1-3 on the submatrix consisting of all rows
+    below the most recently obtained pivot until we reach the bottom
+    row or there are no remaining nonzero rows.
 
-        NOTE: After step 4, our matrix will be in REF.
-    \item Beginning with the rightmost pivot and working left and upwards, use scaling operations to set the pivot to 1.
-    \item Use row replacement operations to make all entries above the pivot in the pivot column zero.
-    \item Repeat steps 5-6 until all pivots are 1 and there are no nonzero entries in the pivot columns.
+    NOTE: After step 4, our matrix will be in REF.
+  \item Beginning with the rightmost pivot and working left and
+    upwards, use scaling operations to set the pivot to 1.
+  \item Use row replacement operations to make all entries above the
+    pivot in the pivot column zero.
+  \item Repeat steps 5-6 until all pivots are 1 and there are no
+    nonzero entries in the pivot columns.
 
-        NOTE: Our matrix will be in RREF.
+    NOTE: Our matrix will be in RREF.
 \end{enumerate}
 
 \subsection*{Existence and Uniqueness Theorem}
 
-A linear system is \textit{consistent} \textit{\textbf{if and only if}} the rightmost column of the augmented matrix is not a pivot column.
+A linear system is \textit{consistent} \textit{\textbf{if and only
+if}} the rightmost column of the augmented matrix is not a pivot column.
 
 If a linear system is consistent, then:
 
 \begin{enumerate}
-    \item It has a unique solution when there is no free variable.
-    \item It has infinitely many solutions when there is a free variable.
+  \item It has a unique solution when there is no free variable.
+  \item It has infinitely many solutions when there is a free variable.
 \end{enumerate}
 
 % TODO: Rouche-Capelli
@@ -209,7 +236,7 @@ A linear system is \textit{consistent} \textit{\textbf{if and only if}}:
 \medskip
 {\centering
 
-$ \textrm{rank}(A) = \textrm{rank}([ A \hspace{4pt} b ]) $
+  $ \textrm{rank}(A) = \textrm{rank}([ A \hspace{4pt} b ]) $
 
 }
 \medskip
@@ -217,143 +244,174 @@ $ \textrm{rank}(A) = \textrm{rank}([ A \hspace{4pt} b ]) $
 If a linear system is consistent, then:
 
 \begin{enumerate}
-    \item It has a unique solution when $ \textrm{rank}(A) = n $.
-    \item It has a infinitely many solutions when $ \textrm{rank}(A) < n $.
+  \item It has a unique solution when $ \textrm{rank}(A) = n $.
+  \item It has a infinitely many solutions when $ \textrm{rank}(A) < n $.
 \end{enumerate}
 
 Where $ n $ is the number of columns in the matrix $ A $.
 
 \section*{Lecture 3}
 
-\textbf{Vector}: Ordered list of numbers, or a matrix with only one row or one column.
+\textbf{Vector}: Ordered list of numbers, or a matrix with only one
+row or one column.
 
 \subsection*{Vector Operations}
 
-For vectors $ u $, $ v $, $ w $ in $ \mathbb{R}^n $ and for scalars $ c $ and $ d $:
+For vectors $ u $, $ v $, $ w $ in $ \mathbb{R}^n $ and for scalars $
+c $ and $ d $:
 
 \begin{enumerate}
-    \item $ u + v = v + u $
-    \item $ (u + v) + w = u + (v + w) $
-    \item $ u + 0 = 0 + u = u $
-    \item $ u + (-u) = 0 $
-    \item $ c(u + v) = cu + cv $
-    \item $ (c + d)u = cu + du $
-    \item $ (cd)u = c(du) $
-    \item $ 1u = u $
+  \item $ u + v = v + u $
+  \item $ (u + v) + w = u + (v + w) $
+  \item $ u + 0 = 0 + u = u $
+  \item $ u + (-u) = 0 $
+  \item $ c(u + v) = cu + cv $
+  \item $ (c + d)u = cu + du $
+  \item $ (cd)u = c(du) $
+  \item $ 1u = u $
 \end{enumerate}
 
 \subsection*{Linear Combinations}
 
-Given vectors $ v_1, v_2, \hdots, v_p \in \mathbb{R}^n $ and scalars $ c_1, c_2, ..., c_p $, the vector $ b $ defined by
+Given vectors $ v_1, v_2, \hdots, v_p \in \mathbb{R}^n $ and scalars
+$ c_1, c_2, ..., c_p $, the vector $ b $ defined by
 
 \medskip
 {\centering
 
-$ b = c_1v_1 + c_2v_2 + \hdots + c_pv_p $
+  $ b = c_1v_1 + c_2v_2 + \hdots + c_pv_p $
 
 }
 \medskip
 
-is a \textbf{linear combination} of $ v_1, v_2, \hdots , v_p $ with \textbf{weights} $ c_1, c_2, ... , c_p $.
+is a \textbf{linear combination} of $ v_1, v_2, \hdots , v_p $ with
+\textbf{weights} $ c_1, c_2, ... , c_p $.
 
 \bigskip
 
-A solution $ b $ can be generated by a linear combination of columns of $ A $ if and only if there exists a solution to the linear system $ Ax = b $.
+A solution $ b $ can be generated by a linear combination of columns
+of $ A $ if and only if there exists a solution to the linear system $ Ax = b $.
 
 % TODO: Examples & Theorems
 
 \subsection*{Spans}
 
-$ \textrm{Span} \{ v_1, \hdots, v_p \} = \{ c_1v_1 + ... + c_pv_p \hspace{4pt} | \hspace{4pt} c_1, ..., c_p \textrm{are scalars.}\} $ is the subset of $ \mathbb{R}^n $ \textbf{spanned} by $ v_1, v_2, ..., v_p $. It is the collection of all linear combinations from $ v_1 $ to $ v_p $.
+$ \textrm{Span} \{ v_1, \hdots, v_p \} = \{ c_1v_1 + ... + c_pv_p
+\hspace{4pt} | \hspace{4pt} c_1, ..., c_p \textrm{are scalars.}\} $
+is the subset of $ \mathbb{R}^n $ \textbf{spanned} by $ v_1, v_2,
+..., v_p $. It is the collection of all linear combinations from $
+v_1 $ to $ v_p $.
 
-To ask if a vector is within a span of vectors is the same as asking if the matrix formed from the column vectors has a solution.
+To ask if a vector is within a span of vectors is the same as asking
+if the matrix formed from the column vectors has a solution.
 
 % TODO: Examples for Span
 
 \bigskip
 
-Reduce the matrix to reduced echelon form. The rank of the matrix determines the type of the span:
+Reduce the matrix to reduced echelon form. The rank of the matrix
+determines the type of the span:
 \begin{itemize}
-    \item 0 Pivots - Point
-    \item 1 Pivot - Line (All points from the origin to the vector)
-    \item 2 Pivots - Plane
-    \item 3+ Pivots - $ \mathbb{R}^3 $
+  \item 0 Pivots - Point
+  \item 1 Pivot - Line (All points from the origin to the vector)
+  \item 2 Pivots - Plane
+  \item 3+ Pivots - $ \mathbb{R}^3 $
 \end{itemize}
 
 \section*{Lecture 4}
 
 \subsection*{Matrix-Vector Product}
 
-Let $ A = \begin{bmatrix}
-    a_1 & a_2 & \hdots & a_n
-\end{bmatrix} $ be an $ m \times n $ matrix and $ x \in \mathbb{R}^n $. The \textbf{product} of $ A $ and $ x $ is the linear combination of the columns of $ A $ using the corresponding entries in $ x $ as weights.
+Let $ A =
+\begin{bmatrix}
+  a_1 & a_2 & \hdots & a_n
+\end{bmatrix} $ be an $ m \times n $ matrix and $ x \in \mathbb{R}^n
+$. The \textbf{product} of $ A $ and $ x $ is the linear combination
+of the columns of $ A $ using the corresponding entries in $ x $ as weights.
 
 \subsection*{Row-Vector Rule}
 
-Each element of the resulting vector is found by taking the \textit{dot product} of a row from the first matrix and a column from the second matrix.
+Each element of the resulting vector is found by taking the
+\textit{dot product} of a row from the first matrix and a column from
+the second matrix.
 
 \subsection*{Matrix Equations}
 
-A \textbf{matrix equation} is an equation of the form $ Ax = b $, where $ A $ is a matrix. They can be represented as a linear system, vector equations, or an augmented matrix.
+A \textbf{matrix equation} is an equation of the form $ Ax = b $,
+where $ A $ is a matrix. They can be represented as a linear system,
+vector equations, or an augmented matrix.
 
 \subsection*{Test for Consistency Theorem}
 
 Let $ A $ be an $ m \times n $ matrix. The following are logically equivalent:
 
 \begin{enumerate}
-    \item The matrix equation $ Ax = b $ is consistent.
-    \item The vector equation $ x_1a_1 + x_2a_2 + \hdots + x_na_n = b $ has a solution.
-    \item $ b $ is in $ \textrm{Span} \{ a_1, a_2, \hdots, a_n \} $.
-    \item The linear system with augmented matrix $ \begin{bmatrix}a_1 & a_2 & \hdots & a_n & b \end{bmatrix} $ is consistent.
+  \item The matrix equation $ Ax = b $ is consistent.
+  \item The vector equation $ x_1a_1 + x_2a_2 + \hdots + x_na_n = b $
+    has a solution.
+  \item $ b $ is in $ \textrm{Span} \{ a_1, a_2, \hdots, a_n \} $.
+  \item The linear system with augmented matrix $
+    \begin{bmatrix}a_1 & a_2 & \hdots & a_n & b
+    \end{bmatrix} $ is consistent.
 \end{enumerate}
 
 \bigskip
 
-In summary, the product of two matrices is \textit{consistent} for all $ b $ only if there is a pivot in every row.
+In summary, the product of two matrices is \textit{consistent} for
+all $ b $ only if there is a pivot in every row.
 
 \section*{Lecture 5}
 
 \subsection*{Homogeneous Systems}
 
-A \textbf{homogeneous} linear system can be written in the form $ Ax = 0 $, where $ A $ is an $ m \times n $ matrix and $ 0 \in \mathbb{R}^m $ is the zero vector.
+A \textbf{homogeneous} linear system can be written in the form $ Ax
+= 0 $, where $ A $ is an $ m \times n $ matrix and $ 0 \in
+\mathbb{R}^m $ is the zero vector.
 
 \begin{itemize}
-    \item Always has at least one solution $ x = 0 $ (\textbf{trivial solution})
-    \item Always consistent
-    \item \textbf{Nontrivial Solution} $ \leftrightarrow $ 1 or more free variables
+  \item Always has at least one solution $ x = 0 $ (\textbf{trivial solution})
+  \item Always consistent
+  \item \textbf{Nontrivial Solution} $ \leftrightarrow $ 1 or more
+    free variables
 \end{itemize}
 
-We can thus derive the following theorems regarding homogeneous systems. Let $ f $ be the number of free variables in the system:
+We can thus derive the following theorems regarding homogeneous
+systems. Let $ f $ be the number of free variables in the system:
 
 \begin{enumerate}
-    \item $ f = 0 \rightarrow $ \textbf{trivial solution} $ x = 0 $ with solution set $ \textrm{Span} \{ 0 \} $
-    \item $ f = 1 \rightarrow $ line with solution set $ \textrm{Span} \{ v \} $
-    \item $ f = 2 \rightarrow $ plane with solution set $ \textrm{Span} \{ u, v \} $
+  \item $ f = 0 \rightarrow $ \textbf{trivial solution} $ x = 0 $
+    with solution set $ \textrm{Span} \{ 0 \} $
+  \item $ f = 1 \rightarrow $ line with solution set $ \textrm{Span} \{ v \} $
+  \item $ f = 2 \rightarrow $ plane with solution set $ \textrm{Span}
+    \{ u, v \} $
 \end{enumerate}
 
 \subsection*{Non-homogeneous Linear Systems}
 
-A \textbf{non-homogeneous} linear system can be written in the form $ Ax = b $, where $ b \neq 0 $.
+A \textbf{non-homogeneous} linear system can be written in the form $
+Ax = b $, where $ b \neq 0 $.
 
 \begin{itemize}
-    \item Solution sets of a homogeneous system represented by $ Ax = 0 $ shifted by a particular solution $ p $.
-    \item The particular solution $ p $ can be found by:
-        \begin{enumerate}
-            \item Reducing the matrix to RREF.
-            \item Setting free variables to $ 0 $.
-        \end{enumerate}
+  \item Solution sets of a homogeneous system represented by $ Ax = 0
+    $ shifted by a particular solution $ p $.
+  \item The particular solution $ p $ can be found by:
+    \begin{enumerate}
+      \item Reducing the matrix to RREF.
+      \item Setting free variables to $ 0 $.
+    \end{enumerate}
 \end{itemize}
 
 \section*{Lecture 6}
 
 \subsection*{Linear Independence}
 
-A set of vectors $ \{v_1, v_2, \hdots, v_p \} $ in $ \mathbb{R^n} $ is \textbf{linearly independent} if the vector equation
+A set of vectors $ \{v_1, v_2, \hdots, v_p \} $ in $ \mathbb{R^n} $
+is \textbf{linearly independent} if the vector equation
 
 \medskip
 {\centering
 
-$ x_1v_1 + x_2v_2 + \hdots + x_pv_p = 0 $
+  $ x_1v_1 + x_2v_2 + \hdots + x_pv_p = 0 $
 
 }
 \medskip
@@ -361,142 +419,178 @@ $ x_1v_1 + x_2v_2 + \hdots + x_pv_p = 0 $
 has only the trivial solution.
 \bigskip
 
-Thus, an $ m \times n $ augmented matrix $ [A \:|\: b] $, where $ b $ is the zero column vector, is linearly independent if:
+Thus, an $ m \times n $ augmented matrix $ [A \:|\: b] $, where $ b $
+is the zero column vector, is linearly independent if:
 \begin{itemize}
-    \item There are no nontrivial solutions (only the trivial solution).
-    \item There are no free variables.
-    \item There are pivots equal to $ m $, the number of rows, in the matrix.
+  \item There are no nontrivial solutions (only the trivial solution).
+  \item There are no free variables.
+  \item There are pivots equal to $ m $, the number of rows, in the matrix.
 \end{itemize}
 
 \subsection*{Special Cases for Linear Dependence}
 
 \begin{enumerate}
-    \item A set of one vector: $ \{ v_1 \} $
-        \medskip
+  \item A set of one vector: $ \{ v_1 \} $
+    \medskip
 
-        $ \{ v_1 \} $ is linearly independent $ \leftrightarrow v_1 \neq 0 $ 
-    \item A set of two vectors: $ \{ v_1, v_2 \} $
-        \medskip
+    $ \{ v_1 \} $ is linearly independent $ \leftrightarrow v_1 \neq 0 $
+  \item A set of two vectors: $ \{ v_1, v_2 \} $
+    \medskip
 
-        $ \{v_1, v_2 \} $ is linearly independent $ \leftrightarrow v_2 \neq cv_1 $
-        \medskip
+    $ \{v_1, v_2 \} $ is linearly independent $ \leftrightarrow v_2 \neq cv_1 $
+    \medskip
 
-        Thus, a set of two vectors is linearly independent \textbf{iif} the two vectors are not \textit{scalar multiples} of each other.
-    \item A set of two or more vectors: $ \{ v_1, v_2, \hdots, v_p \} $
-        \medskip
+    Thus, a set of two vectors is linearly independent \textbf{iif}
+    the two vectors are not \textit{scalar multiples} of each other.
+  \item A set of two or more vectors: $ \{ v_1, v_2, \hdots, v_p \} $
+    \medskip
 
-        The set $ S = \{ v_1, v_2, \hdots, v_p \} $ is linearly independent only if \textbf{all} vectors are \textit{not} linear combinations.
-        \medskip
+    The set $ S = \{ v_1, v_2, \hdots, v_p \} $ is linearly
+    independent only if \textbf{all} vectors are \textit{not} linear
+    combinations.
+    \medskip
 
-        Thus, a set of two or more vectors is linearly independent \textbf{iif} there are no vectors that are \textit{scalar multiples} of each other.
+    Thus, a set of two or more vectors is linearly independent
+    \textbf{iif} there are no vectors that are \textit{scalar
+    multiples} of each other.
 \end{enumerate}
 
 % TODO: a few more special cases must be documented here
 
 \section*{Lecture 7}
 
-This table contains all of the standard matrices for every common matrix transformation.
+This table contains all of the standard matrices for every common
+matrix transformation.
 \begin{table}[h]
-    \begin{center}
+  \begin{center}
 
-        \begin{tabular}{|c|c|}
-            \hline
-            Identity Matrix / No Transformation & $ \begin{bmatrix}
-                1 & 0                                               \\
-                0 & 1                                               \\
-                                                    \end{bmatrix} $ \\
-            \hline
-            Reflection across $ x $-axis & $ \begin{bmatrix}
-                1 & 0                                               \\
-                0 & -1                                              \\
-                                                    \end{bmatrix} $ \\
-            \hline
-            Reflection across $ y $-axis & $ \begin{bmatrix}
-                -1 & 0                                               \\
-                0 & 1                                               \\
-                                                    \end{bmatrix} $ \\
-            \hline
-            Reflection across $ y = x $ & $ \begin{bmatrix}
-                0 & 1                                               \\
-                1 & 0                                               \\
-                                                    \end{bmatrix} $ \\
-            \hline
-            Reflection across $ y = -x $ & $ \begin{bmatrix}
-                0 & -1                                               \\
-                -1 & 0                                               \\
-                                                    \end{bmatrix} $ \\
-            \hline
-            Reflection across origin & $ \begin{bmatrix}
-                -1 & 0                                               \\
-                0 & -1                                               \\
-                                                    \end{bmatrix} $ \\
-            \hline
-            Horizontal Shear & $ \begin{bmatrix}
-                1 & k                                               \\
-                0 & 1                                               \\
-                                                    \end{bmatrix} $ \\
-            \hline
-            Vertical Shear & $ \begin{bmatrix}
-                1 & 0                                               \\
-                k & 1                                               \\
-                                                    \end{bmatrix} $ \\
-            \hline
-            Counter-clockwise Rotation & $ \begin{bmatrix}
-                \cos(\theta) & -\sin(\theta)               \\
-                \sin(\theta) &  \cos(\theta)               \\
-                                                    \end{bmatrix} $ \\
-            \hline
-        \end{tabular}
+    \begin{tabular}{|c|c|}
+      \hline
+      Identity Matrix / No Transformation & $
+      \begin{bmatrix}
+        1 & 0                                               \\
+        0 & 1                                               \\
+      \end{bmatrix} $ \\
+      \hline
+      Reflection across $ x $-axis & $
+      \begin{bmatrix}
+        1 & 0                                               \\
+        0 & -1                                              \\
+      \end{bmatrix} $ \\
+      \hline
+      Reflection across $ y $-axis & $
+      \begin{bmatrix}
+        -1 & 0                                               \\
+        0 & 1                                               \\
+      \end{bmatrix} $ \\
+      \hline
+      Reflection across $ y = x $ & $
+      \begin{bmatrix}
+        0 & 1                                               \\
+        1 & 0                                               \\
+      \end{bmatrix} $ \\
+      \hline
+      Reflection across $ y = -x $ & $
+      \begin{bmatrix}
+        0 & -1                                               \\
+        -1 & 0                                               \\
+      \end{bmatrix} $ \\
+      \hline
+      Reflection across origin & $
+      \begin{bmatrix}
+        -1 & 0                                               \\
+        0 & -1                                               \\
+      \end{bmatrix} $ \\
+      \hline
+      Horizontal Shear & $
+      \begin{bmatrix}
+        1 & k                                               \\
+        0 & 1                                               \\
+      \end{bmatrix} $ \\
+      \hline
+      Vertical Shear & $
+      \begin{bmatrix}
+        1 & 0                                               \\
+        k & 1                                               \\
+      \end{bmatrix} $ \\
+      \hline
+      Counter-clockwise Rotation & $
+      \begin{bmatrix}
+        \cos(\theta) & -\sin(\theta)               \\
+        \sin(\theta) &  \cos(\theta)               \\
+      \end{bmatrix} $ \\
+      \hline
+    \end{tabular}
 
-    \end{center}
+  \end{center}
 \end{table}
 
 \section*{Lecture 8}
 
 \subsection*{Geometric Linear Transformations}
 
-If $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is a linear transformation, we can write $ T(x) = Ax $ , where $ A = \begin{bmatrix} T(e_1) & T(e_2) & \hdots & T(e_n) \end{bmatrix} $ is the $ m \times n $ standard matrix.
+If $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is a linear
+transformation, we can write $ T(x) = Ax $ , where $ A =
+\begin{bmatrix} T(e_1) & T(e_2) & \hdots & T(e_n)
+\end{bmatrix} $ is the $ m \times n $ standard matrix.
 
 \subsection*{Onto and One-to-One Transformations}
 
-A mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto} if the equation $ T(x) = b $ has a solution for each $ b \in \mathbb{R}^m $. That is, if $ T(x) = b $ can be treated as a \textbf{consistent} linear system for $ b \in \mathbb{R}^m $, it is \textbf{onto}.
+A mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is
+\textbf{onto} if the equation $ T(x) = b $ has a solution for each $
+b \in \mathbb{R}^m $. That is, if $ T(x) = b $ can be treated as a
+\textbf{consistent} linear system for $ b \in \mathbb{R}^m $, it is
+\textbf{onto}.
 \bigskip
 
-A mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{one-to-one} if the equation $ T(x) = b $ has a solution for each $ b \in \mathbb{R}^m $ and the solution is \textbf{unique}. That is, $ T(x) = b $ is the image of exactly one $ x \in \mathbb{R}^n $.
+A mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is
+\textbf{one-to-one} if the equation $ T(x) = b $ has a solution for
+each $ b \in \mathbb{R}^m $ and the solution is \textbf{unique}. That
+is, $ T(x) = b $ is the image of exactly one $ x \in \mathbb{R}^n $.
 
 \subsection*{Theorem: One-to-One Linear Transformations}
 
-If the mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is a linear transformation, then
+If the mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is a
+linear transformation, then
 
 \medskip
 {\centering
 
-$ T $ is \textbf{one-to-one} $ \leftrightarrow T(x) = 0 $ has only the \textbf{trivial solution}.
+  $ T $ is \textbf{one-to-one} $ \leftrightarrow T(x) = 0 $ has only
+  the \textbf{trivial solution}.
 
 }
 \medskip
 
-That is, if the linear transformation $ T $ can be written as a homogeneous system $ T(x) = 0 $ with a trivial solution, the solution set is a \textbf{point}, and thus is \textbf{unique}.
+That is, if the linear transformation $ T $ can be written as a
+homogeneous system $ T(x) = 0 $ with a trivial solution, the solution
+set is a \textbf{point}, and thus is \textbf{unique}.
 
 \subsection*{Theorem: One-to-One Relation to Matrix Columns}
 
-If the mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is a linear transformation and the matrix $ A $ is the standard matrix of $ T $, then
+If the mapping $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is a
+linear transformation and the matrix $ A $ is the standard matrix of $ T $, then
 
 \begin{itemize}
-    \item $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto} $ \leftrightarrow $ the columns of $ A $ span $ \mathbb{R}^m $.
-    \item $ T $ is \textbf{one-to-one} $ \leftrightarrow $ the columns of $ A $ are linearly independent.
+  \item $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto}
+    $ \leftrightarrow $ the columns of $ A $ span $ \mathbb{R}^m $.
+  \item $ T $ is \textbf{one-to-one} $ \leftrightarrow $ the columns
+    of $ A $ are linearly independent.
 \end{itemize}
 
 \section*{Lecture 9}
 
 \subsection*{Matrices}
 
-\underline{Recall}: We have used the following notation for an $ m \times n $ matrix $ A $:
+\underline{Recall}: We have used the following notation for an $ m
+\times n $ matrix $ A $:
 
 \medskip
 {\centering
 
-    $ A = \begin{bmatrix} a_1 & \hdots & a_j & \hdots & a_n \end{bmatrix} $
+  $ A =
+  \begin{bmatrix} a_1 & \hdots & a_j & \hdots & a_n
+  \end{bmatrix} $
 
 }
 \medskip
@@ -506,36 +600,51 @@ where
 \medskip
 {\centering
 
-$ a_j = \begin{bmatrix} a_{1j} \\ \vdots \\ a_{ij} \\ \vdots \\ a_{mj} \end{bmatrix} \in \mathbb{R}^m $.
+  $ a_j =
+  \begin{bmatrix} a_{1j} \\ \vdots \\ a_{ij} \\ \vdots \\ a_{mj}
+  \end{bmatrix} \in \mathbb{R}^m $.
 
 }
 \medskip
 
 \subsection*{Matrix Equality}
 
-Two matrices are \textbf{equal} if they have the same size and their corresponding entries are equal.
+Two matrices are \textbf{equal} if they have the same size and their
+corresponding entries are equal.
 
 \subsection*{Sums and Scalar Multiples of Matrices}
 
-Let $ A = \begin{bmatrix} a_{ij} \end{bmatrix} $ and $ B = \begin{bmatrix} b_{ij} \end{bmatrix} $ be two $ m \times n $ matrices, and let $ r $ be a scalar. Then:
+Let $ A =
+\begin{bmatrix} a_{ij}
+\end{bmatrix} $ and $ B =
+\begin{bmatrix} b_{ij}
+\end{bmatrix} $ be two $ m \times n $ matrices, and let $ r $ be a scalar. Then:
 
 \begin{itemize}
-    \item $ A + B = \begin{bmatrix} a_{ij} + b_{ij} \end{bmatrix} $
-    \item $ rA = \begin{bmatrix} ra_{ij} \end{bmatrix} $
+  \item $ A + B =
+    \begin{bmatrix} a_{ij} + b_{ij}
+    \end{bmatrix} $
+  \item $ rA =
+    \begin{bmatrix} ra_{ij}
+    \end{bmatrix} $
 \end{itemize}
 
-That is, the \textbf{sum of two matrices} is defined as the $ m \times n $ matrix with entries of sums of all corresponding entries. This property is only defined between two matrices of \textit{the same size}.
+That is, the \textbf{sum of two matrices} is defined as the $ m
+\times n $ matrix with entries of sums of all corresponding entries.
+This property is only defined between two matrices of \textit{the same size}.
 
 \subsection*{Matrix Multiplication}
 
-Let $ A $ be an $ m \times n $ matrix, $ B $ be an $ n \times p $ matrix, and $ x \in \mathbb{R}^p $. The \textbf{composition of linear transformations}
+Let $ A $ be an $ m \times n $ matrix, $ B $ be an $ n \times p $
+matrix, and $ x \in \mathbb{R}^p $. The \textbf{composition of linear
+transformations}
 
 \medskip
 {\centering
 
-$ T: \mathbb{R}^p \rightarrow \mathbb{R}^n \rightarrow \mathbb{R}^m $
+  $ T: \mathbb{R}^p \rightarrow \mathbb{R}^n \rightarrow \mathbb{R}^m $
 
-$ x \rightarrow Bx \rightarrow A(Bx) $
+  $ x \rightarrow Bx \rightarrow A(Bx) $
 
 }
 \medskip
@@ -545,59 +654,90 @@ and be condensed to the linear transformation
 \medskip
 {\centering
 
-$ T: \mathbb{R}^p \rightarrow \mathbb{R}^m $
+  $ T: \mathbb{R}^p \rightarrow \mathbb{R}^m $
 
-$ x \rightarrow A(Bx) $
+  $ x \rightarrow A(Bx) $
 
 }
 \medskip
 
-Thus, if $ A $ is an $ m \times n $ matrix and $ B $ is an $ n \times p $ matrix, the \textbf{matrix product} $ AB $ consists of concatenated column vectors created from the \textbf{dot product} of every row of $ A $ with every column of $ B $.
+Thus, if $ A $ is an $ m \times n $ matrix and $ B $ is an $ n \times
+p $ matrix, the \textbf{matrix product} $ AB $ consists of
+concatenated column vectors created from the \textbf{dot product} of
+every row of $ A $ with every column of $ B $.
 \medskip
 
-\textcolor{gray}{Note: Matrix multiplication is only applicable between a matrix $ A $ with $ n $ columns and a matrix $ B $ with $ n $ rows.}
+\textcolor{gray}{Note: Matrix multiplication is only applicable
+between a matrix $ A $ with $ n $ columns and a matrix $ B $ with $ n $ rows.}
 
 \subsection*{Special Matrices}
 
-The \textbf{main diagonal} of a matrix $ A = \begin{bmatrix} a_{ij} \end{bmatrix} $ is the list of entries $ a_{ii} $.
+The \textbf{main diagonal} of a matrix $ A =
+\begin{bmatrix} a_{ij}
+\end{bmatrix} $ is the list of entries $ a_{ii} $.
 
 \begin{itemize}
-    \item A matrix $ D_{n \times n} $ is a \textbf{diagonal matrix} if its non-diagonal entries are zero.
-    \item A matrix $ L_{n \times n} $ is a \textbf{lower triangular matrix} if its non-zero entries are only in the lower triangle of the matrix.
-    \item A matrix $ U_{n \times n} $ is a \textbf{upper triangular matrix} if its non-zero entries are only in the upper triangle of the matrix.
+  \item A matrix $ D_{n \times n} $ is a \textbf{diagonal matrix} if
+    its non-diagonal entries are zero.
+  \item A matrix $ L_{n \times n} $ is a \textbf{lower triangular
+    matrix} if its non-zero entries are only in the lower triangle of
+    the matrix.
+  \item A matrix $ U_{n \times n} $ is a \textbf{upper triangular
+    matrix} if its non-zero entries are only in the upper triangle of
+    the matrix.
 \end{itemize}
 
 \section*{Module 1 Overview}
 
-The following table contains common two-way equivalencies for matrices and linear systems.
+The following table contains common two-way equivalencies for
+matrices and linear systems.
 \begin{table}[h]
-\begin{center}
+  \begin{center}
     \scriptsize
 
-        \begin{tabularx}{\linewidth}{|X|X|X|X|}
-           \hline
-           $ Ax = b $ & $ A = m \times n $ matrix & $ b = m \times p $ matrix & $ x = n \times p $ matrix \\
-           \hline
-            \textbf{Consistent} & $ Ax = b $ has a solution & $ b \in \textrm{Span}\{a_1, a_2, \hdots, a_n \} $ & $ \textrm{rank}(A) = \textrm{rank}(\begin{bmatrix} A \:|\: b \end{bmatrix}) $ \\
-            \hline
-            \textbf{Inconsistent} & $ Ax = b $ has no solutions & $ b \not\in \textrm{Span}\{a_1, a_2, \hdots, a_n \} $ & $ \textrm{rank}(A) \not= \textrm{rank}(\begin{bmatrix} A \:|\: b \end{bmatrix}) $ \\
-           \hline
-            \textbf{Linear Independence} & $ Ax = 0 $ has \textbf{one solution} & $ T $ is \textbf{one-to-one} & $ 0 \in \textrm{Span}\{a_1, a_2, \hdots, a_n \} $ \\
-           \hline
-            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto} & $ T(x) = b $ \textbf{Consistent} for $ b \in \mathbb{R}^m $ & columns of $ A $ span $ \mathbb{R}^m $ & range $ \subseteq $ codomain  \\
-            \hline
-            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{one-to-one} & $ T(x) = b $ \textbf{one solution} for $ b \in \mathbb{R}^m $ & $ T(x) = b $ \textbf{linearly independent} for $ b \in \mathbb{R}^m $ & range $ = $ codomain \\
-            \hline
-            $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ & $ n $ columns = domain & $ m $ rows = codomain & $ T $ represented as $ m \times n $ matrix \\
-            \hline
-        \end{tabularx}
+    \begin{tabularx}{\linewidth}{|X|X|X|X|}
+      \hline
+      $ Ax = b $ & $ A = m \times n $ matrix & $ b = m \times p $
+      matrix & $ x = n \times p $ matrix \\
+      \hline
+      \textbf{Consistent} & $ Ax = b $ has a solution & $ b \in
+      \textrm{Span}\{a_1, a_2, \hdots, a_n \} $ & $ \textrm{rank}(A)
+      = \textrm{rank}(
+        \begin{bmatrix} A \:|\: b
+      \end{bmatrix}) $ \\
+      \hline
+      \textbf{Inconsistent} & $ Ax = b $ has no solutions & $ b
+      \not\in \textrm{Span}\{a_1, a_2, \hdots, a_n \} $ & $
+      \textrm{rank}(A) \not= \textrm{rank}(
+        \begin{bmatrix} A \:|\: b
+      \end{bmatrix}) $ \\
+      \hline
+      \textbf{Linear Independence} & $ Ax = 0 $ has \textbf{one
+      solution} & $ T $ is \textbf{one-to-one} & $ 0 \in
+      \textrm{Span}\{a_1, a_2, \hdots, a_n \} $ \\
+      \hline
+      $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is \textbf{onto} &
+      $ T(x) = b $ \textbf{Consistent} for $ b \in \mathbb{R}^m $ &
+      columns of $ A $ span $ \mathbb{R}^m $ & range $ \subseteq $ codomain  \\
+      \hline
+      $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ is
+      \textbf{one-to-one} & $ T(x) = b $ \textbf{one solution} for $
+      b \in \mathbb{R}^m $ & $ T(x) = b $ \textbf{linearly
+      independent} for $ b \in \mathbb{R}^m $ & range $ = $ codomain \\
+      \hline
+      $ T: \mathbb{R}^n \rightarrow \mathbb{R}^m $ & $ n $ columns =
+      domain & $ m $ rows = codomain & $ T $ represented as $ m
+      \times n $ matrix \\
+      \hline
+    \end{tabularx}
 
-\end{center}
+  \end{center}
 \end{table}
 \FloatBarrier
 
 \begin{itemize}
-    \item (\textbf{Homogeneous System} $ \leftrightarrow $ $ Ax = 0 $ $) \rightarrow $ \textbf{Consistent}
+  \item (\textbf{Homogeneous System} $ \leftrightarrow $ $ Ax = 0 $
+    $) \rightarrow $ \textbf{Consistent}
 \end{itemize}
 
 \part*{Unit 2}
@@ -606,20 +746,24 @@ The following table contains common two-way equivalencies for matrices and linea
 
 \subsection*{Tranpose}
 
-The tranpose of $ A $ (where $ A $ is an $ m \times n $ matrix), denoted $ A^T $, is the $ m \times n $ matrix where the columns of $ A $ become the rows of $ A^T $.
+The tranpose of $ A $ (where $ A $ is an $ m \times n $ matrix),
+denoted $ A^T $, is the $ m \times n $ matrix where the columns of $
+A $ become the rows of $ A^T $.
 
 \medskip
 {\centering
 
-$ A = \begin{bmatrix}
+  $ A =
+  \begin{bmatrix}
     3 & 1 & 0 \\
     2 & 1 & 3 \\
-\end{bmatrix} $,
-$ A^T = \begin{bmatrix}
+  \end{bmatrix} $,
+  $ A^T =
+  \begin{bmatrix}
     3 & 2 \\
     1 & 1 \\
     0 & 3 \\
-\end{bmatrix} $
+  \end{bmatrix} $
 
 }
 \medskip
@@ -627,21 +771,21 @@ $ A^T = \begin{bmatrix}
 \subsubsection*{Properties of Tranposes}
 
 \begin{enumerate}
-    \item $ (A^T)^T = A $
-    \item $ (A + B)^T = A^T + B^T $
-    \item $ (rA)^T = rA^T $ for any scalar $ r $
-    \item $ (AB)^T = B^TA^T $
+  \item $ (A^T)^T = A $
+  \item $ (A + B)^T = A^T + B^T $
+  \item $ (rA)^T = rA^T $ for any scalar $ r $
+  \item $ (AB)^T = B^TA^T $
 \end{enumerate}
 
 \subsection*{Invertible}
 
-An $ m \times n $ matrix $ A $ is \textbf{invertible} if there is an $ m \times n $ matrix $ B $ such that:
-
+An $ m \times n $ matrix $ A $ is \textbf{invertible} if there is an
+$ m \times n $ matrix $ B $ such that:
 
 \medskip
 {\centering
 
-    $ AB = I_n = BA $
+  $ AB = I_n = BA $
 
 }
 \medskip
@@ -653,102 +797,119 @@ Otherwise, if $ A $ is \textit{not} invertible, it is \textbf{singular}.
 
 \subsubsection*{Inverse}
 
-The \textbf{inverse} of $ A $, denoted by $ A^{-1} $, is the unique matrix such that:
+The \textbf{inverse} of $ A $, denoted by $ A^{-1} $, is the unique
+matrix such that:
 
 \medskip
 {\centering
 
-    $ AA^{-1} = I_n = A^{-1}A $
+  $ AA^{-1} = I_n = A^{-1}A $
 
 }
 \medskip
 
 Given
-$ A = \begin{bmatrix}
-    a & b \\
-    c & d \\ 
+$ A =
+\begin{bmatrix}
+  a & b \\
+  c & d \\
 \end{bmatrix} $.
 The \textbf{inverse} of $ A $ is defined as
 $ \displaystyle A^{-1} = \frac{1}{ad - bc}
-    \begin{bmatrix}
-    d & -b \\
-    -c & a \\
-    \end{bmatrix} $.
+\begin{bmatrix}
+  d & -b \\
+  -c & a \\
+\end{bmatrix} $.
 \bigskip
 
 \subsubsection*{Theorem: Invertibility}
 
 $ A $ is \textbf{invertible} if and only if the augmented matrix
-$ \begin{bmatrix}
-A & I \\
+$
+\begin{bmatrix}
+  A & I \\
 \end{bmatrix} $ is \textbf{consistent}.
 
-Thus, given a matrix $ A $, you can solve the augmented matrix $ \begin{bmatrix} A & I \end{bmatrix} $. The solution matrix $ x $ is $ A^{-1} $. 
+Thus, given a matrix $ A $, you can solve the augmented matrix $
+\begin{bmatrix} A & I
+\end{bmatrix} $. The solution matrix $ x $ is $ A^{-1} $.
 
 \subsubsection*{Invertible: Example 1}
 
-Given $ A = \begin{bmatrix}
-    -2 & 3 \\
-    3 & -5 \\
-\end{bmatrix} $ and $ B = \begin{bmatrix}
-    -5 & -3 \\
-    -3 & -2 \\
+Given $ A =
+\begin{bmatrix}
+  -2 & 3 \\
+  3 & -5 \\
+\end{bmatrix} $ and $ B =
+\begin{bmatrix}
+  -5 & -3 \\
+  -3 & -2 \\
 \end{bmatrix} $, show that $ B = A^{-1} $.
 \bigskip
 
-To show that $ A $ and $ B $ are inverses of each other, their matrix product must be the $ 2 \times 2 $ identity matrix.
+To show that $ A $ and $ B $ are inverses of each other, their matrix
+product must be the $ 2 \times 2 $ identity matrix.
 \bigskip
 
 \medskip
 {\centering
 
-$ \begin{bmatrix}
+  $
+  \begin{bmatrix}
     -2 & 3 \\
     3 & -5 \\
-\end{bmatrix} \begin{bmatrix} 
+  \end{bmatrix}
+  \begin{bmatrix}
     -5 & -3 \\
     -3 & -2 \\
-\end{bmatrix} = \begin{bmatrix}
+  \end{bmatrix} =
+  \begin{bmatrix}
     1 & 0 \\
     0 & 1 \\
-\end{bmatrix} $
+  \end{bmatrix} $
 
 }
 \medskip
 
 \subsubsection*{Invertible: Example 2}
 
-Let $ A = \begin{bmatrix}
-    1 & -3 \\
-    -2 & 10 \\
+Let $ A =
+\begin{bmatrix}
+  1 & -3 \\
+  -2 & 10 \\
 \end{bmatrix} $
 \begin{enumerate}
-    \item Find the inverse of $ A $.
-        \bigskip
+  \item Find the inverse of $ A $.
+    \bigskip
 
-        The easiest way is to use the formula $\displaystyle \frac{1}{ad - bc} \begin{bmatrix}
-            d & -b \\
-            -c & a \\
-        \end{bmatrix} $.
-        \bigskip
+    The easiest way is to use the formula $\displaystyle \frac{1}{ad - bc}
+    \begin{bmatrix}
+      d & -b \\
+      -c & a \\
+    \end{bmatrix} $.
+    \bigskip
 
-        The inverse of $ A $ is $\displaystyle \frac{1}{10 - 6} \begin{bmatrix}
-            10 & 2 \\
-            3 & 1 \\
-        \end{bmatrix} = \begin{bmatrix}
-            \frac{10}{4} & \frac{2}{4} \\
-            \frac{3}{4} & \frac{1}{4} \\
-        \end{bmatrix} $
-    \item Solve the system $ Ax = b $, where $ b = \begin{bmatrix}
-            -4 \\ 8 \\
+    The inverse of $ A $ is $\displaystyle \frac{1}{10 - 6}
+    \begin{bmatrix}
+      10 & 2 \\
+      3 & 1 \\
+    \end{bmatrix} =
+    \begin{bmatrix}
+      \frac{10}{4} & \frac{2}{4} \\
+      \frac{3}{4} & \frac{1}{4} \\
+    \end{bmatrix} $
+  \item Solve the system $ Ax = b $, where $ b =
+    \begin{bmatrix}
+      -4 \\ 8 \\
     \end{bmatrix} $
     \bigskip
 
     Just solve the augmented matrix.
-        $ \begin{amatrix}{2}
-            1 & 0 & -4 \\
-            0 & 1 & 0 \\
-        \end{amatrix} $
+    $
+    \begin{amatrix}{2}
+      1 & 0 & -4 \\
+      0 & 1 & 0 \\
+    \end{amatrix} $
 \end{enumerate}
 
 \subsubsection*{Invertible: Example 3}
@@ -756,192 +917,222 @@ Let $ A = \begin{bmatrix}
 Find the inverse of the matrix $ A $ if it exists.
 
 \begin{enumerate}
-    \item $ A = \begin{bmatrix}
-            1 & 0 & -2 \\
-            0 & 1 & 4 \\
-            0 & -2 & -8 \\
+  \item $ A =
+    \begin{bmatrix}
+      1 & 0 & -2 \\
+      0 & 1 & 4 \\
+      0 & -2 & -8 \\
     \end{bmatrix} $
-        \bigskip
+    \bigskip
 
-        Solve the augmented matrix $ \begin{amatrix}{1}
-            A & I \\
-        \end{amatrix} $.
-        \bigskip
+    Solve the augmented matrix $
+    \begin{amatrix}{1}
+      A & I \\
+    \end{amatrix} $.
+    \bigskip
 
-        \medskip
-        {\centering
+    \medskip
+    {\centering
 
-        $ \begin{bmatrix}
-            1 & 0 & -2 & 1 & 0 & 0 \\
-            0 & 1 & 4 & 0 & 1 & 0 \\
-            0 & -2 & -8 & 0 & 0 & 1 \\
-        \end{bmatrix} $
-        \bigskip
+      $
+      \begin{bmatrix}
+        1 & 0 & -2 & 1 & 0 & 0 \\
+        0 & 1 & 4 & 0 & 1 & 0 \\
+        0 & -2 & -8 & 0 & 0 & 1 \\
+      \end{bmatrix} $
+      \bigskip
 
-        $ \begin{bmatrix}
-            1 & 0 & -2 & 1 & 0 & 0 \\
-            0 & 1 & 4 & 0 & 0 & -\frac{1}{2} \\
-            0 & 0 & 0 & 0 & 1 & \frac{1}{2} \\
-        \end{bmatrix} $
-        \bigskip
+      $
+      \begin{bmatrix}
+        1 & 0 & -2 & 1 & 0 & 0 \\
+        0 & 1 & 4 & 0 & 0 & -\frac{1}{2} \\
+        0 & 0 & 0 & 0 & 1 & \frac{1}{2} \\
+      \end{bmatrix} $
+      \bigskip
 
+    }
+    \medskip
 
-        }
-        \medskip
+    Since the augmented matrix is \textbf{inconsistent}, the matrix $
+    A $ is \textbf{not invertible}.
 
-        Since the augmented matrix is \textbf{inconsistent}, the matrix $ A $ is \textbf{not invertible}.
-
-    \item $ A = \begin{bmatrix}
-            1 & 0 & -2 \\
-            0 & 1 & 4 \\
-            0 & -2 & -7 \\
+  \item $ A =
+    \begin{bmatrix}
+      1 & 0 & -2 \\
+      0 & 1 & 4 \\
+      0 & -2 & -7 \\
     \end{bmatrix} $
-        \bigskip
+    \bigskip
 
-        \medskip
-        {\centering
+    \medskip
+    {\centering
 
-        $ \begin{bmatrix}
-            1 & 0 & -2 & 1 & 0 & 0 \\
-            0 & 1 & 4 & 0 & 1 & 0 \\
-            0 & -2 & -7 & 0 & 0 & 1 \\
-        \end{bmatrix} $
-        \bigskip
+      $
+      \begin{bmatrix}
+        1 & 0 & -2 & 1 & 0 & 0 \\
+        0 & 1 & 4 & 0 & 1 & 0 \\
+        0 & -2 & -7 & 0 & 0 & 1 \\
+      \end{bmatrix} $
+      \bigskip
 
-        $ \begin{bmatrix}
-            1 & 0 & 0 & 1 & 4 & 2 \\
-            0 & 1 & 0 & 0 & -7 & -4 \\
-            0 & 0 & 1 & 0 & 2 & 1 \\
-        \end{bmatrix} $
+      $
+      \begin{bmatrix}
+        1 & 0 & 0 & 1 & 4 & 2 \\
+        0 & 1 & 0 & 0 & -7 & -4 \\
+        0 & 0 & 1 & 0 & 2 & 1 \\
+      \end{bmatrix} $
 
-        }
-        \medskip
+    }
+    \medskip
 
-        Since the augmented matrix is \textbf{consistent}, the inverse of matrix $ A $ is $ \begin{bmatrix}
-            1 & 4 & 2 \\
-            0 & -7 & -4 \\
-            0 & 2 & 1 \\
-        \end{bmatrix} $.
+    Since the augmented matrix is \textbf{consistent}, the inverse of
+    matrix $ A $ is $
+    \begin{bmatrix}
+      1 & 4 & 2 \\
+      0 & -7 & -4 \\
+      0 & 2 & 1 \\
+    \end{bmatrix} $.
 \end{enumerate}
 
 \section*{Lecture 11}
 
 \subsection*{Determinant}
 
-\textit{Recall}: For a $ 1 \times 1 $ matrix, the \textbf{determinant} is defined as $ \textrm{det} \: A = \: \textrm{det} \: a_{11} $.
+\textit{Recall}: For a $ 1 \times 1 $ matrix, the
+\textbf{determinant} is defined as $ \textrm{det} \: A = \:
+\textrm{det} \: a_{11} $.
 \bigskip
 
 \textit{Recall}: For a $ 2 \times 2 $ matrix $ A =
 \begin{bmatrix}
-    a & b \\
-    c & d \\
-\end{bmatrix} $, the \textbf{determinant} of the matrix is $ \textrm{det} \: A = ad - bc $.
+  a & b \\
+  c & d \\
+\end{bmatrix} $, the \textbf{determinant} of the matrix is $
+\textrm{det} \: A = ad - bc $.
 \bigskip
 
-The \textbf{determinant} for an $ n \times n $ matrix, where $ n \geq 2 $, is the sums of $ n $ terms of the form $ \pm a_{1j} \: \textrm{det} \: A_{1j} $, where the entries $ a_{11}, a_{12}, \hdots, a_{1n} $ are from the first row of $ A $.
+The \textbf{determinant} for an $ n \times n $ matrix, where $ n \geq
+2 $, is the sums of $ n $ terms of the form $ \pm a_{1j} \:
+\textrm{det} \: A_{1j} $, where the entries $ a_{11}, a_{12}, \hdots,
+a_{1n} $ are from the first row of $ A $.
 \medskip
 
-The submatrices in the form $ A_{ij} $ are obtained from the matrix $ A $ by deleting the $ i $-th row and the $ j $-th column.
+The submatrices in the form $ A_{ij} $ are obtained from the matrix $
+A $ by deleting the $ i $-th row and the $ j $-th column.
 
 \medskip
 {\centering
 
-$ A = \begin{bmatrix}
+  $ A =
+  \begin{bmatrix}
     1 & 5 & 0 \\
     2 & 4 & -1 \\
     0 & -2 & 0 \\
-\end{bmatrix} $
-\medskip
+  \end{bmatrix} $
+  \medskip
 
-$ \textrm{det} \: A = a_{11} \: \textrm{det} \: A_{11} - a_{12} \: \textrm{det} \: A_{12} + a_{13} \: \textrm{det} \: A_{13} $
-\medskip
+  $ \textrm{det} \: A = a_{11} \: \textrm{det} \: A_{11} - a_{12} \:
+  \textrm{det} \: A_{12} + a_{13} \: \textrm{det} \: A_{13} $
+  \medskip
 
-$ \textrm{det} \: A = a_{11}
-\: \textrm{det} \begin{bmatrix}
+  $ \textrm{det} \: A = a_{11}
+  \: \textrm{det}
+  \begin{bmatrix}
     a_{22} & a_{23} \\
     a_{32} & a_{33} \\
-\end{bmatrix}
-- a_{12}
-\: \textrm{det} \begin{bmatrix}
+  \end{bmatrix}
+  - a_{12}
+  \: \textrm{det}
+  \begin{bmatrix}
     a_{21} & a_{23} \\
     a_{31} & a_{33} \\
-\end{bmatrix}
-+ a_{13}
-\: \textrm{det} \begin{bmatrix}
+  \end{bmatrix}
+  + a_{13}
+  \: \textrm{det}
+  \begin{bmatrix}
     a_{21} & a_{22} \\
     a_{31} & a_{32} \\
-\end{bmatrix} $
+  \end{bmatrix} $
 
-\medskip
+  \medskip
 
-
-$ \textrm{det} \: A = 1(0 - 2) - 5(0 - 0) + 0(-4 - 0) = -2 $
+  $ \textrm{det} \: A = 1(0 - 2) - 5(0 - 0) + 0(-4 - 0) = -2 $
 
 }
 \medskip
 
 \subsubsection*{Cofactors}
 
-The \textbf{$ (i, j) $-cofactor} of matrix $ A $ is the number $ C_{ij} $ given by:
+The \textbf{$ (i, j) $-cofactor} of matrix $ A $ is the number $
+C_{ij} $ given by:
 
 \medskip
 {\centering
 
-$ C_{ij} = (-1)^{i + j} \: \textrm{det} \: A_{ij} $
+  $ C_{ij} = (-1)^{i + j} \: \textrm{det} \: A_{ij} $
 
 }
 \medskip
 
 \subsubsection*{Cofactor Expansion}
 
-Notice that the cofactors along the first row can be used to define the \textbf{determinant}:
+Notice that the cofactors along the first row can be used to define
+the \textbf{determinant}:
 
 \medskip
 {\centering
 
-$ \textrm{det} \: A = a_{11} C_{11} + a_{12}C_{12} + \hdots + a_{1n}C_{1n} $
+  $ \textrm{det} \: A = a_{11} C_{11} + a_{12}C_{12} + \hdots + a_{1n}C_{1n} $
 
 }
 \medskip
 
 \subsubsection*{Theorem: Cofactor Expansion}
 
-The determinant of an $ n \times n $ matrix $ A $ can be computed by a \textbf{cofactor expansion} across \textit{any row or column}.
+The determinant of an $ n \times n $ matrix $ A $ can be computed by
+a \textbf{cofactor expansion} across \textit{any row or column}.
 
 \medskip
 {\centering
 
-    $ \textrm{det} \: A = a_{i1}C_{i1} + a_{i2}C_{i2} + \hdots + a_{in}C_{in} $ (expansion across row)
-    \medskip
+  $ \textrm{det} \: A = a_{i1}C_{i1} + a_{i2}C_{i2} + \hdots +
+  a_{in}C_{in} $ (expansion across row)
+  \medskip
 
-    $ \textrm{det} \: A = a_{1j}C_{1j} + a_{2j}C_{2j} + \hdots + a_{nj}C_{nj} $ (expansion across column)
+  $ \textrm{det} \: A = a_{1j}C_{1j} + a_{2j}C_{2j} + \hdots +
+  a_{nj}C_{nj} $ (expansion across column)
 
 }
 \medskip
 
 \subsubsection*{Determinants: Example 1}
 
-Compute the determinant for the matrix $ \begin{bmatrix}
-    0 & 0 & 0 \\
-    1 & 2 & 3 \\
-    4 & 5 & 6 \\
+Compute the determinant for the matrix $
+\begin{bmatrix}
+  0 & 0 & 0 \\
+  1 & 2 & 3 \\
+  4 & 5 & 6 \\
 \end{bmatrix} $.
 \bigskip
 
-By using \textbf{cofactor expansion} across the first row, the elements in the first row become the scalars to the determinants of the submatrices. The determinant will be 0.
+By using \textbf{cofactor expansion} across the first row, the
+elements in the first row become the scalars to the determinants of
+the submatrices. The determinant will be 0.
 
 \subsubsection*{Determinants: Example 2}
 
-Compute the determinant for the matrix $ \begin{bmatrix}
-    1 & 0 & 0 & 0 \\
-    1 & -2 & 0 & 0 \\
-    1 & -2 & 3 & 0 \\
-    1 & -2 & 3 & -4 \\
+Compute the determinant for the matrix $
+\begin{bmatrix}
+  1 & 0 & 0 & 0 \\
+  1 & -2 & 0 & 0 \\
+  1 & -2 & 3 & 0 \\
+  1 & -2 & 3 & -4 \\
 \end{bmatrix} $
 \bigskip
 % TODO: finish this example sometime
 
-% TODO: the determinant of the matrix is equal to the determinant of its transpose (proof it)
+% TODO: the determinant of the matrix is equal to the determinant of
+% its transpose (proof it)
 
 \section*{Lecture 12}
 
@@ -956,61 +1147,68 @@ Let $ V $ be a nonempty set of vectors on which two operations are defined:
 \medskip
 {\centering
 
-$ u + v \in V $ (closed under addition)
-\medskip
+  $ u + v \in V $ (closed under addition)
+  \medskip
 
-$ cu \in V $ (closed under scalar multiplication)
+  $ cu \in V $ (closed under scalar multiplication)
 
 }
 \medskip
 
-The set $ V $ with the operations form a \textbf{vector space} if the following eight axioms hold for all $ u $, $ v $, $ w $ in $ V $ and for all scalars $ c $ and $ d $:
+The set $ V $ with the operations form a \textbf{vector space} if the
+following eight axioms hold for all $ u $, $ v $, $ w $ in $ V $ and
+for all scalars $ c $ and $ d $:
 
 \begin{enumerate}
-    \item $ u + v = v + u $ 
-    \item $ (u + v) + w = u + (v + w) $
-    \item $ u + \vec{0} = u $
-    \item For each $ u \in V $, there is a vector $ -u $ such that $ u + (-u) = 0 $.
-    \item c(u + v) = cu + cv
-    \item (c + d)u = cu + du
-    \item c(du) = (cd)u
-    \item 1u = u
+  \item $ u + v = v + u $
+  \item $ (u + v) + w = u + (v + w) $
+  \item $ u + \vec{0} = u $
+  \item For each $ u \in V $, there is a vector $ -u $ such that $ u
+    + (-u) = 0 $.
+  \item c(u + v) = cu + cv
+  \item (c + d)u = cu + du
+  \item c(du) = (cd)u
+  \item 1u = u
 \end{enumerate}
 
 Using the axioms listed above, we can show that:
 
 \begin{enumerate}
-    \item The zero vector is unique.
-    \item The negative of $ u $, denoted by $ -u $, is unique.
+  \item The zero vector is unique.
+  \item The negative of $ u $, denoted by $ -u $, is unique.
 \end{enumerate}
 
 \subsubsection*{Vector Spaces: Examples}
 
 \begin{enumerate}
-    \item $ \mathbb{R}^n = \begin{Bmatrix}
-            \begin{bmatrix}
-                x_1 \\
-                x_2 \\
-                \vdots \\
-                x_n
-            \end{bmatrix} & : & x_i \in \mathbb{R}
+  \item $ \mathbb{R}^n =
+    \begin{Bmatrix}
+      \begin{bmatrix}
+        x_1 \\
+        x_2 \\
+        \vdots \\
+        x_n
+      \end{bmatrix} & : & x_i \in \mathbb{R}
     \end{Bmatrix} $
-\item $ \mathbb{M}_{x \times n} = \begin{Bmatrix}
-        [a_{ij}] \: | \:  a_{ij} \in \mathbb{R}
-\end{Bmatrix} $
-    \item $ \mathbb{P}_n = \textrm{the set of polynomials of degree at most} n \textrm{with real coefficients} $
+  \item $ \mathbb{M}_{x \times n} =
+    \begin{Bmatrix}
+      [a_{ij}] \: | \:  a_{ij} \in \mathbb{R}
+    \end{Bmatrix} $
+  \item $ \mathbb{P}_n = \textrm{the set of polynomials of degree at
+    most} n \textrm{with real coefficients} $
 \end{enumerate}
 
 \subsection*{Subspaces}
 
-Let $ H $ be a subset of a vector space $ V $. $ H $ is called a \textbf{subspace} of $ V $ if it satisfies the following conditions:
+Let $ H $ be a subset of a vector space $ V $. $ H $ is called a
+\textbf{subspace} of $ V $ if it satisfies the following conditions:
 
 \begin{enumerate}
-    \item The zero vector of $ V $ is in $ H $.
-    \item $ H $ is closed under vector addition:
-        For any $ u $, $ v \in H \rightarrow (u + v) \in H $
-    \item $ H $ is closed under scalar multiplication:
-        For any $ u \in H $, $ c \in \mathbb{R} \rightarrow cu \in H $
+  \item The zero vector of $ V $ is in $ H $.
+  \item $ H $ is closed under vector addition:
+    For any $ u $, $ v \in H \rightarrow (u + v) \in H $
+  \item $ H $ is closed under scalar multiplication:
+    For any $ u \in H $, $ c \in \mathbb{R} \rightarrow cu \in H $
 \end{enumerate}
 
 Any subspace of a subspace of $ V $ is a subspace of $ V $.
@@ -1020,620 +1218,808 @@ Any subspace of a subspace of $ V $ is a subspace of $ V $.
 
 \subsubsection*{Zero Subspace}
 
-The \textbf{zero subspace} $ \begin{Bmatrix} 0 \end{Bmatrix} $ is the set consisting of only the zero vector of a vector space $ V $.
-    
+The \textbf{zero subspace} $
+\begin{Bmatrix} 0
+\end{Bmatrix} $ is the set consisting of only the zero vector of a
+vector space $ V $.
+
 \subsection*{Theorem: Subspace Spanned by Vectors}
-If $ v_1, \hdots, v_p $ are in a vector space $ V $, then $ H = \textrm{Span} \begin{Bmatrix}
-    v_1, \hdots, v_p \\
+If $ v_1, \hdots, v_p $ are in a vector space $ V $, then $ H = \textrm{Span}
+\begin{Bmatrix}
+  v_1, \hdots, v_p \\
 \end{Bmatrix} $ is a subspace of $ V $. Thus, \textbf{spans are subspaces}.
 
 \subsection*{Spanning Sets}
 
-Let $ V $ be a vector space and $ v_i \in V $. Then, let $ S = \begin{Bmatrix}
-    v_1, \hdots, v_p
-\end{Bmatrix} $ be a set of vectors, and $ H = \textrm{Span} \begin{Bmatrix}
-    v_1, \hdots, v_p
+Let $ V $ be a vector space and $ v_i \in V $. Then, let $ S =
+\begin{Bmatrix}
+  v_1, \hdots, v_p
+\end{Bmatrix} $ be a set of vectors, and $ H = \textrm{Span}
+\begin{Bmatrix}
+  v_1, \hdots, v_p
 \end{Bmatrix} $.
 
 \begin{itemize}
-    \item The set $ S $ is a \textbf{spanning set} for $ H $.
-    \item $ H $ is called the \textbf{subspace of $ V $ spanned} by the set $ S $.
+  \item The set $ S $ is a \textbf{spanning set} for $ H $.
+  \item $ H $ is called the \textbf{subspace of $ V $ spanned} by the set $ S $.
 \end{itemize}
 
 \section*{Lecture 14}
 
 \subsection*{Null Space}
 
-The \textbf{null space} of $ m \times n $ matrix $ A $, denoted by $ \textrm{Nul} \: A $, is the solution set of $ Ax = 0 $.
+The \textbf{null space} of $ m \times n $ matrix $ A $, denoted by $
+\textrm{Nul} \: A $, is the solution set of $ Ax = 0 $.
 
 \section*{Lecture 15}
 
 \subsection*{Column Space}
 
-The \textbf{column space} of an $ m \times n $ matrix $ A $, denoted by $ \textrm{Col} \: A $, is the set of all linear combinations of $ A $.
+The \textbf{column space} of an $ m \times n $ matrix $ A $, denoted
+by $ \textrm{Col} \: A $, is the set of all linear combinations of $ A $.
 
 \subsubsection*{Theorem: Column Space is the Span}
 
-The \textbf{column space} of a $ m \times n $ matrix $ A $ is equivalent to the \textbf{span} of the columns of $ A $.
+The \textbf{column space} of a $ m \times n $ matrix $ A $ is
+equivalent to the \textbf{span} of the columns of $ A $.
 
 \subsubsection*{Theorem: Column Space}
 
-Given an $ m \times n $ matrix $ A $, a $ m \times 1 $ matrix $ w $ is \textbf{in} the \textbf{column space} of $ A $ if $ Ax = w $ is a consistent system.
+Given an $ m \times n $ matrix $ A $, a $ m \times 1 $ matrix $ w $
+is \textbf{in} the \textbf{column space} of $ A $ if $ Ax = w $ is a
+consistent system.
 
 \subsection*{Theorem: Column Space of Transpose}
 
-Given an $ m \times n $ matrix $ A $, the \textbf{row space} of $ A^T $ is the same as the \textbf{column space} of $ A $, because the rows of $ A^T $ are the columns of $ (A^T)^T = A $.
+Given an $ m \times n $ matrix $ A $, the \textbf{row space} of $ A^T
+$ is the same as the \textbf{column space} of $ A $, because the rows
+of $ A^T $ are the columns of $ (A^T)^T = A $.
 
 \subsubsection*{Theorem: Vector Subspaces}
 Given an $ m \times n $ matrix $ A $, then:
 
 \begin{enumerate}
-    \item $ \textrm{Nul} (A) $ is a subspace of $ \mathbb{R}^n $
-    \item $ \textrm{Col} (A) $ is a subspace of $ \mathbb{R}^m $
+  \item $ \textrm{Nul} (A) $ is a subspace of $ \mathbb{R}^n $
+  \item $ \textrm{Col} (A) $ is a subspace of $ \mathbb{R}^m $
 \end{enumerate}
 
 \subsection*{Theorem: Geometric Description of Nul A, Row A, and Col A}
 
 \begin{itemize}
-    \item $ \textrm{Nul} \: A \perp \textrm{Row} \: A $
-    \item $ \textrm{Nul} \: A^T \perp \textrm{Col} \: A $
+  \item $ \textrm{Nul} \: A \perp \textrm{Row} \: A $
+  \item $ \textrm{Nul} \: A^T \perp \textrm{Col} \: A $
 \end{itemize}
 
 \section*{Lecture 16}
 
 \subsection*{Bases}
 
-Let $ H $ be a subspace of a vector space $ V $ and let $ b_i \in V $. $ B = \begin{Bmatrix}
-    b_1, \hdots, b_p \\
+Let $ H $ be a subspace of a vector space $ V $ and let $ b_i \in V $. $ B =
+\begin{Bmatrix}
+  b_1, \hdots, b_p \\
 \end{Bmatrix} $ is a \textbf{basis} for $ H $ if:
 
 \begin{enumerate}
-    \item $ B $ is \textbf{linearly independent}.
-    \item $ H = \textrm{Span} \begin{Bmatrix}
-            b_1, \hdots, b_p \\
-    \end{Bmatrix} $ 
+  \item $ B $ is \textbf{linearly independent}.
+  \item $ H = \textrm{Span}
+    \begin{Bmatrix}
+      b_1, \hdots, b_p \\
+    \end{Bmatrix} $
 \end{enumerate}
 
 \subsection*{Theorem: Basis from Invertible Matrices}
 
-The columns of an $ n \times n $ invertible matrix $ A $ form a basis for $ \mathbb{R}^n $.
+The columns of an $ n \times n $ invertible matrix $ A $ form a basis
+for $ \mathbb{R}^n $.
 
 \subsection*{Theorem: Basis is Spanning Set}
 
-Assume that $ B $ is the \textbf{basis} of matrix $ H $. Thus, $ B $ is also the spanning set of $ H $.
+Assume that $ B $ is the \textbf{basis} of matrix $ H $. Thus, $ B $
+is also the spanning set of $ H $.
 
 \subsection*{Spanning Set Theorem}
 
-Let $ S = \begin{Bmatrix}
-    v_1, \hdots, v_p \\
-\end{Bmatrix} $ be a set in $ V $ and let $ H = \textrm{Span} \begin{Bmatrix}
-    v_1 \hdots, v_p \\
+Let $ S =
+\begin{Bmatrix}
+  v_1, \hdots, v_p \\
+\end{Bmatrix} $ be a set in $ V $ and let $ H = \textrm{Span}
+\begin{Bmatrix}
+  v_1 \hdots, v_p \\
 \end{Bmatrix} $
 
 \begin{enumerate}
-    \item If one of the vectors in $ S $ is a linear combination of the other vectors in $ S $, then $ S $ still spans $ H $ if we remove that vector from $ S $.
-    \item If one of the vectors in $ S $ is \textbf{linearly dependent} on the other vectors in $ S $, then that vector can be removed from $ S $ and $ S $ will still span $ H $.
-    \item If $ H \neq \begin{Bmatrix}
-            0
+  \item If one of the vectors in $ S $ is a linear combination of the
+    other vectors in $ S $, then $ S $ still spans $ H $ if we remove
+    that vector from $ S $.
+  \item If one of the vectors in $ S $ is \textbf{linearly dependent}
+    on the other vectors in $ S $, then that vector can be removed
+    from $ S $ and $ S $ will still span $ H $.
+  \item If $ H \neq
+    \begin{Bmatrix}
+      0
     \end{Bmatrix} $, some subset of $ S $ is a basis for $ H $.
 \end{enumerate}
 
 \subsubsection*{Spanning Set Theorem: Example 1}
 
-Consider if $ H = \textrm{Span} \begin{Bmatrix}
-    1, t, t^2, 2 - 3t^2 \\
-\end{Bmatrix} $, then $ H = \textrm{Span} \begin{Bmatrix}
-    1, t, t^2
+Consider if $ H = \textrm{Span}
+\begin{Bmatrix}
+  1, t, t^2, 2 - 3t^2 \\
+\end{Bmatrix} $, then $ H = \textrm{Span}
+\begin{Bmatrix}
+  1, t, t^2
 \end{Bmatrix} $.
 \medskip
 
-A \textbf{basis} can be formed from a \textbf{spanning set} by discarding unneeded vectors.
+A \textbf{basis} can be formed from a \textbf{spanning set} by
+discarding unneeded vectors.
 
 \subsubsection*{Spanning Set Theorem: Example 2}
 
 \medskip
 {\centering
 
-Let $ v_1 = \begin{bmatrix}
+  Let $ v_1 =
+  \begin{bmatrix}
     1 \\
     0 \\
     0 \\
-\end{bmatrix} $,
-$ v_2 = \begin{bmatrix}
+  \end{bmatrix} $,
+  $ v_2 =
+  \begin{bmatrix}
     0 \\
     1 \\
     1 \\
-\end{bmatrix} $,
-$ v_3 = \begin{bmatrix}
+  \end{bmatrix} $,
+  $ v_3 =
+  \begin{bmatrix}
     -3 \\
     4 \\
     4 \\
-\end{bmatrix} $.
+  \end{bmatrix} $.
 
 }
 \medskip
 
 \begin{enumerate}
-    \item Determine if the set $ \begin{Bmatrix}
-            v_1, v_2, v_3 \\
+  \item Determine if the set $
+    \begin{Bmatrix}
+      v_1, v_2, v_3 \\
     \end{Bmatrix} $ is a basis for $ \mathbb{R}^3 $.
     \bigskip
 
-        The set $ \begin{Bmatrix}
-            v_1, v_2, v_3 \\
-        \end{Bmatrix} $ is \textbf{linearly dependent}, and thus does not row-reduce into an $ n \times n $ identity matrix. Therefore, the set is not a basis for $ \mathbb{R}^3 $.
-    \item Let $ H = \textrm{Span} \begin{Bmatrix}
-            v_1, v_2, v_3 \\
-    \end{Bmatrix} $ be a subspace for $ \mathbb{R}^3 $. Then, $ H = \textrm{Span} \begin{Bmatrix}
-        v_1, v_2, \\
-    \end{Bmatrix} $ and $ \begin{Bmatrix}
-        v_1, v_2 \\
+    The set $
+    \begin{Bmatrix}
+      v_1, v_2, v_3 \\
+    \end{Bmatrix} $ is \textbf{linearly dependent}, and thus does not
+    row-reduce into an $ n \times n $ identity matrix. Therefore, the
+    set is not a basis for $ \mathbb{R}^3 $.
+  \item Let $ H = \textrm{Span}
+    \begin{Bmatrix}
+      v_1, v_2, v_3 \\
+    \end{Bmatrix} $ be a subspace for $ \mathbb{R}^3 $. Then, $ H =
+    \textrm{Span}
+    \begin{Bmatrix}
+      v_1, v_2, \\
+    \end{Bmatrix} $ and $
+    \begin{Bmatrix}
+      v_1, v_2 \\
     \end{Bmatrix} $ is a basis for $ H $.
     \bigskip
 
-        Since $ v_3 $ is a \textbf{linearly dependent} vector of $ v_1 $ and $ v_2 $, by the \textbf{Spanning Set Theorem} we can remove this vector from the set and it will still span $ H $. Thus, it will still be a \textbf{basis} for $ H $.
-\end{enumerate} 
+    Since $ v_3 $ is a \textbf{linearly dependent} vector of $ v_1 $
+    and $ v_2 $, by the \textbf{Spanning Set Theorem} we can remove
+    this vector from the set and it will still span $ H $. Thus, it
+    will still be a \textbf{basis} for $ H $.
+\end{enumerate}
 
 \subsection*{Basis for Null Space}
 
-Find the \textbf{basis} for $ \textrm{Nul} \: A \neq 0 $, we solve for $ Ax = 0 $ by using the row reduction algorithm.
+Find the \textbf{basis} for $ \textrm{Nul} \: A \neq 0 $, we solve
+for $ Ax = 0 $ by using the row reduction algorithm.
 
 \subsection*{Basis for Row Space}
 
-Reduce matrix $ A $ to RREF, then the \textbf{nonzero rows} are linearly independent and form a basis for $ \textrm{Row} \: A $.
+Reduce matrix $ A $ to RREF, then the \textbf{nonzero rows} are
+linearly independent and form a basis for $ \textrm{Row} \: A $.
 
 \subsection*{Basis for Column Space}
 
-The \textbf{pivot columns} of matrix $ A $ form a basis for $ \textrm{Col} \: A $.
+The \textbf{pivot columns} of matrix $ A $ form a basis for $
+\textrm{Col} \: A $.
 
 \subsubsection*{Theorem: Basis for Column Space}
 
 \begin{enumerate}
-    \item The pivot columns of $ A $ are \textbf{linearly independent}.
-    \item Each non-pivot column of $ A $ is a linear combination of the preceding pivot columns.
+  \item The pivot columns of $ A $ are \textbf{linearly independent}.
+  \item Each non-pivot column of $ A $ is a linear combination of the
+    preceding pivot columns.
 \end{enumerate}
 
 \section*{Lecture 17}
 
 \subsection*{Dimension}
 
-The \textbf{dimension}, denoted by $ \textrm{dim} \: V $, is the number of vectors in a basis for a nonzero vector space $ V $.
+The \textbf{dimension}, denoted by $ \textrm{dim} \: V $, is the
+number of vectors in a basis for a nonzero vector space $ V $.
 
 \begin{itemize}
-    \item The \textbf{dimension} of the zero vector is \textbf{0}.
-    \item If $ V $ is spanned by a \textbf{finite} set, then $ V $ is \textbf{finite-dimensional}.
-    \item If $ V $ cannot be spanned finite set, then $ V $ is \textbf{infinite-dimensional}.
+  \item The \textbf{dimension} of the zero vector is \textbf{0}.
+  \item If $ V $ is spanned by a \textbf{finite} set, then $ V $ is
+    \textbf{finite-dimensional}.
+  \item If $ V $ cannot be spanned finite set, then $ V $ is
+    \textbf{infinite-dimensional}.
 \end{itemize}
 
 \subsubsection*{Dimension: Examples}
 
 \begin{enumerate}
-    \item $ V = \mathbb{R}^n $
-        \bigskip
+  \item $ V = \mathbb{R}^n $
+    \bigskip
 
-        $ E = \begin{Bmatrix}
-            e_1 & e_2 & e_3 & \hdots & e_n \\
-        \end{Bmatrix} $
-        \bigskip
+    $ E =
+    \begin{Bmatrix}
+      e_1 & e_2 & e_3 & \hdots & e_n \\
+    \end{Bmatrix} $
+    \bigskip
 
-        Thus, $ \textrm{dim} \: V = n $.
-    \item $ V = \mathbb{P}_3 $
-        \bigskip
+    Thus, $ \textrm{dim} \: V = n $.
+  \item $ V = \mathbb{P}_3 $
+    \bigskip
 
-        $ \textrm{dim} \: V = 4 $
-    \item $ V = \mathbb{P} $
-        \bigskip
+    $ \textrm{dim} \: V = 4 $
+  \item $ V = \mathbb{P} $
+    \bigskip
 
-        The vector space $ V $ would be \textbf{infinite-dimensional}.
-    \item $ V = \mathbb{M}_{2 \times 2} $
-        \bigskip
+    The vector space $ V $ would be \textbf{infinite-dimensional}.
+  \item $ V = \mathbb{M}_{2 \times 2} $
+    \bigskip
 
-        $ \textrm{dim} \: V = m \times n = 4 $
+    $ \textrm{dim} \: V = m \times n = 4 $
 \end{enumerate}
 
 \subsection*{Theorem: Dimension to Rank}
 
-The \textbf{dimension} of a vector space $ V $ is equivalent to the rank of $ V $.
+The \textbf{dimension} of a vector space $ V $ is equivalent to the
+rank of $ V $.
 
 \subsection*{Theorem: Linearly Dependent Spaces}
 
-If a vector space $ V $ has a basis $ B = \begin{Bmatrix}
-    b_1, \hdots, b_n \\
-\end{Bmatrix} $, then any set in $ V $ containing more than $ n $ vectors must be \textbf{linearly dependent}.
+If a vector space $ V $ has a basis $ B =
+\begin{Bmatrix}
+  b_1, \hdots, b_n \\
+\end{Bmatrix} $, then any set in $ V $ containing more than $ n $
+vectors must be \textbf{linearly dependent}.
 \medskip
 
-This also follows from the \textbf{Spanning Set Theorem}; any unnecessary vectors will be \textbf{linearly dependent}.
+This also follows from the \textbf{Spanning Set Theorem}; any
+unnecessary vectors will be \textbf{linearly dependent}.
 
 \subsection*{Theorem: Dimensions for Bases}
 
-If both $ B = \begin{Bmatrix}
-    b_1, \hdots, b_n \\
+If both $ B =
+\begin{Bmatrix}
+  b_1, \hdots, b_n \\
 \end{Bmatrix} $ and
-$ B' = \begin{Bmatrix}
-    b'_1, \hdots, b'_m \\
+$ B' =
+\begin{Bmatrix}
+  b'_1, \hdots, b'_m \\
 \end{Bmatrix} $ are bases for a vector space $ V $, then $ n = m $.
 
 \subsection*{Theorem: Subspace of Finite-Dimensional Space}
 
-Let $ H $ be a subspace of a finite-dimensional space $ V $. Any linearly independent set in $ H $ can be expanded to a basis for $ H $. $ H $ is also finite-dimensional and $ \textrm{dim} \: H \leq \textrm{dim} \: V $.
+Let $ H $ be a subspace of a finite-dimensional space $ V $. Any
+linearly independent set in $ H $ can be expanded to a basis for $ H
+$. $ H $ is also finite-dimensional and $ \textrm{dim} \: H \leq
+\textrm{dim} \: V $.
 
 \section*{Lecture 18}
 
 \subsection*{Unique Representation Theorem}
 
-Given a basis $ B = \begin{Bmatrix}
-    b_1, \hdots, b_n \\
-\end{Bmatrix} $ for a vector space $ V $, then every vector $ x \in V $ can be expressed as a linear combination $ x = c_1b_1 + \hdots + c_nb_n $ in exactly one way.
+Given a basis $ B =
+\begin{Bmatrix}
+  b_1, \hdots, b_n \\
+\end{Bmatrix} $ for a vector space $ V $, then every vector $ x \in V
+$ can be expressed as a linear combination $ x = c_1b_1 + \hdots +
+c_nb_n $ in exactly one way.
 
 \section*{Lecture 19}
 
 \subsection*{Eigenvector}
 
-An \textbf{eigenvector} of an $ n \times n $ matrix $ A $ is a nonzero vector $ x $ such that $ Ax = \lambda x $ or some scalar $ \lambda $.
+An \textbf{eigenvector} of an $ n \times n $ matrix $ A $ is a
+nonzero vector $ x $ such that $ Ax = \lambda x $ or some scalar $ \lambda $.
 \bigskip
 
 To determine whether $ v $ is an \textbf{eigenvector} of $ A $:
 
 \begin{enumerate}
-    \item Compute $ Av $.
-    \item If $ Av $ is a scalar multiple of $ v $, then $ v $ is an \textbf{eigenvector} of $ A $.
-    \item The \textbf{eigenvalue} is the scalar factor.
+  \item Compute $ Av $.
+  \item If $ Av $ is a scalar multiple of $ v $, then $ v $ is an
+    \textbf{eigenvector} of $ A $.
+  \item The \textbf{eigenvalue} is the scalar factor.
 \end{enumerate}
 
 \bigskip
 
-\textit{Example 1.} Let $ A = \begin{bmatrix}
-    2 & 3 \\
-    -1 & 6 \end {bmatrix} $, determine whether $ \vec{x} = \begin{bmatrix}
+\textit{Example 1.} Let $ A =
+\begin{bmatrix}
+  2 & 3 \\
+  -1 & 6 \end {bmatrix} $, determine whether $ \vec{x} =
+  \begin{bmatrix}
     3 \\ 1 \\
-    \end{bmatrix} $ is an \textbf{eigenvector} of $ A $.
+  \end{bmatrix} $ is an \textbf{eigenvector} of $ A $.
 
-\begin{enumerate}
-    \item $ A \vec{x} = \begin{bmatrix}
+  \begin{enumerate}
+    \item $ A \vec{x} =
+      \begin{bmatrix}
         2 & 3 \\
         -1 & 6 \\
-    \end{bmatrix} \begin{bmatrix}
+      \end{bmatrix}
+      \begin{bmatrix}
         3 \\ 1 \\
-    \end{bmatrix} = \begin{bmatrix}
+      \end{bmatrix} =
+      \begin{bmatrix}
         6 + 3 \\
         -3 + 6 \\
-    \end{bmatrix} = \begin{bmatrix}
+      \end{bmatrix} =
+      \begin{bmatrix}
         9 \\ 3 \\
-    \end{bmatrix} $
-    \item You can see that the matrix $ A\vec{x} = \begin{bmatrix}
+      \end{bmatrix} $
+    \item You can see that the matrix $ A\vec{x} =
+      \begin{bmatrix}
         9 \\ 3 \\
-\end{bmatrix} $ is an \textbf{eigenvector} of $ A $ with an \textbf{eigenvalue} of $ \lambda = 3 $.
-\end{enumerate}
+      \end{bmatrix} $ is an \textbf{eigenvector} of $ A $ with an
+      \textbf{eigenvalue} of $ \lambda = 3 $.
+  \end{enumerate}
 
-\bigskip
+  \bigskip
 
-\textit{Example 2.} Let $ A = \begin{bmatrix}
+  \textit{Example 2.} Let $ A =
+  \begin{bmatrix}
     2 & 3 \\
     -1 & 6 \\
-\end{bmatrix} $. Show that $ \lambda = 3 $ is an \textbf{eigenvalue} of matrix $ A $ and find the corresponding \textbf{eigenvectors}.
-\bigskip
+  \end{bmatrix} $. Show that $ \lambda = 3 $ is an
+  \textbf{eigenvalue} of matrix $ A $ and find the corresponding
+  \textbf{eigenvectors}.
+  \bigskip
 
-    \textit{Note:} The basis of the \textbf{eigenspace} of $ A $ are also the \textbf{eigenvectors} of the matrix $ A $.
+  \textit{Note:} The basis of the \textbf{eigenspace} of $ A $ are
+  also the \textbf{eigenvectors} of the matrix $ A $.
 
-\begin{enumerate}
+  \begin{enumerate}
     \item $ A \vec{x} = \lambda \vec{x} $
-        \medskip
+      \medskip
 
-        $ A \vec{x} - \lambda \vec{x} = 0 $
-        \medskip
+      $ A \vec{x} - \lambda \vec{x} = 0 $
+      \medskip
 
-        $ ( A - \lambda I ) \vec{x} = 0 $
-        \medskip
-    \item $ (\begin{bmatrix} 
-            2 & 3 \\
-            -1 & 6 \\
-    \end{bmatrix} - \begin{bmatrix}
-        3 & 0 \\
-        0 & 3 \\
-    \end{bmatrix}) \vec{x} = 0 $
-\item $ \begin{bmatrix}
+      $ ( A - \lambda I ) \vec{x} = 0 $
+      \medskip
+    \item $ (
+        \begin{bmatrix}
+          2 & 3 \\
+          -1 & 6 \\
+        \end{bmatrix} -
+        \begin{bmatrix}
+          3 & 0 \\
+          0 & 3 \\
+      \end{bmatrix}) \vec{x} = 0 $
+    \item $
+      \begin{bmatrix}
         -1 & 3 \\
         -1 & 3 \\
-\end{bmatrix} \vec{x} = 0 $
-\item Solve the homogenous system by reducing to row echelon form.
-    $ \begin{amatrix}{2}
+      \end{bmatrix} \vec{x} = 0 $
+    \item Solve the homogenous system by reducing to row echelon form.
+      $
+      \begin{amatrix}{2}
         1 & -3 & 0 \\
         0 & 0 & 0
-    \end{amatrix} $
-    \medskip
+      \end{amatrix} $
+      \medskip
 
-    $ \vec{x} = \begin{bmatrix}
+      $ \vec{x} =
+      \begin{bmatrix}
         3 x_2 \\
         x_2 \\
-    \end{bmatrix} = x_2 \begin{bmatrix}
+      \end{bmatrix} = x_2
+      \begin{bmatrix}
         3 \\
         1 \\
-    \end{bmatrix} $
-    \medskip
-\item The vector $ \begin{bmatrix}
+      \end{bmatrix} $
+      \medskip
+    \item The vector $
+      \begin{bmatrix}
         3 \\
         1 \\
-\end{bmatrix} $ is therefore also a \textbf{basis} of the \textit{eigenspace}.
+      \end{bmatrix} $ is therefore also a \textbf{basis} of the
+      \textit{eigenspace}.
 
-\end{enumerate}
+  \end{enumerate}
 
-\section*{Lecture 20}
+  \section*{Lecture 20}
 
-\subsection*{Characteristic Polynomial}
+  \subsection*{Characteristic Polynomial}
 
-The \textbf{characteristic equation} is defined as the scalar equation $ \textrm{det} \: (A - \lambda I) = 0 $. The real \textbf{eigenvalues} of $ A $ would be the solutions that satisfy this equation.
+  The \textbf{characteristic equation} is defined as the scalar
+  equation $ \textrm{det} \: (A - \lambda I) = 0 $. The real
+  \textbf{eigenvalues} of $ A $ would be the solutions that satisfy
+  this equation.
 
-\bigskip
+  \bigskip
 
-\textit{Example.} Find the \textbf{characteristic polynomial} and the \textbf{eigenvalues} of matrix $ A = \begin{bmatrix}
+  \textit{Example.} Find the \textbf{characteristic polynomial} and
+  the \textbf{eigenvalues} of matrix $ A =
+  \begin{bmatrix}
     4 & 2 \\
     2 & 4 \\
-\end{bmatrix} $.
+  \end{bmatrix} $.
 
-\begin{enumerate}
+  \begin{enumerate}
     \item Find $ A - \lambda I $.
-        \medskip
+      \medskip
 
-        $ \begin{bmatrix}
-            4 & 2 \\
-            2 & 4 \\
-        \end{bmatrix} - \begin{bmatrix}
-            \lambda & 0 \\
-            0 & \lambda \\
-        \end{bmatrix} = \begin{bmatrix}
-            4 - \lambda & 2 \\
-            2 & 4 - \lambda \\
-        \end{bmatrix} $
+      $
+      \begin{bmatrix}
+        4 & 2 \\
+        2 & 4 \\
+      \end{bmatrix} -
+      \begin{bmatrix}
+        \lambda & 0 \\
+        0 & \lambda \\
+      \end{bmatrix} =
+      \begin{bmatrix}
+        4 - \lambda & 2 \\
+        2 & 4 - \lambda \\
+      \end{bmatrix} $
     \item Find $ \det \: (A - \lambda I) = 0 $.
-        \medskip
+      \medskip
 
-        Since $ A - \lambda I $ is a $ 2 \times 2 $ matrix, then $ \textrm{det} \: (A - \lambda I) = (4 - \lambda)(4 - \lambda) - 2(2) = \lambda^2 - 8\lambda + 12 $.
-    \item To find the real \textbf{eigenvalues} of $ A $, we solve for $ \lambda $.
-        \medskip
+      Since $ A - \lambda I $ is a $ 2 \times 2 $ matrix, then $
+      \textrm{det} \: (A - \lambda I) = (4 - \lambda)(4 - \lambda) -
+      2(2) = \lambda^2 - 8\lambda + 12 $.
+    \item To find the real \textbf{eigenvalues} of $ A $, we solve
+      for $ \lambda $.
+      \medskip
 
-        $ \lambda^2 - 8\lambda + 12 = (\lambda - 6)(\lambda - 2) $
-        \medskip
+      $ \lambda^2 - 8\lambda + 12 = (\lambda - 6)(\lambda - 2) $
+      \medskip
 
-        Therefore, the real \textbf{eigenvalues} for $ A $ are $ \lambda = 6 $ and $ \lambda = 2 $.
-\end{enumerate}
+      Therefore, the real \textbf{eigenvalues} for $ A $ are $
+      \lambda = 6 $ and $ \lambda = 2 $.
+  \end{enumerate}
 
-\subsection*{Theorem: Diagonal Property of Triangular Matrices}
+  \subsection*{Theorem: Diagonal Property of Triangular Matrices}
 
-Let $ T $ be an upper triangular square matrix. The real \textbf{eigenvalues} of $ T $ is the enumeration of the diagonal values of $ T $.
+  Let $ T $ be an upper triangular square matrix. The real
+  \textbf{eigenvalues} of $ T $ is the enumeration of the diagonal
+  values of $ T $.
 
-\bigskip
+  \bigskip
 
-\textit{Example.} List the real \textbf{eigenvalues}, repeated according to their multiplicities, for $ T = \begin{bmatrix}
+  \textit{Example.} List the real \textbf{eigenvalues}, repeated
+  according to their multiplicities, for $ T =
+  \begin{bmatrix}
     6 & -4 & 0 & 4 \\
     0 & 3 & 5 & 7 \\
     0 & 0 & 3 & 8 \\
     0 & 0 & 0 & 2 \\
-\end{bmatrix} $.
+  \end{bmatrix} $.
 
-\bigskip
+  \bigskip
 
-The real \textbf{eigenvalues} for $ T $ are $ 6, 3, 3, 2 $.
+  The real \textbf{eigenvalues} for $ T $ are $ 6, 3, 3, 2 $.
 
-\subsection*{Eigenvectors from Eigenspace}
+  \subsection*{Eigenvectors from Eigenspace}
 
-The basis vectors of \textbf{the eigenspace} are defined as the \textbf{eigenvectors} of matrix $ A $.
+  The basis vectors of \textbf{the eigenspace} are defined as the
+  \textbf{eigenvectors} of matrix $ A $.
 
-\subsection*{Diagonalizability}
+  \subsection*{Diagonalizability}
 
-An $ n \times n $ matrix $ A $ is \textbf{diagonalizable} if $ A = PDP^{-1} $ for some \textit{invertible matrix} $ P $ and some \textit{diagonal matrix} $ D $.
-\medskip
+  An $ n \times n $ matrix $ A $ is \textbf{diagonalizable} if $ A =
+  PDP^{-1} $ for some \textit{invertible matrix} $ P $ and some
+  \textit{diagonal matrix} $ D $.
+  \medskip
 
-The columns of \textit{invertible matrix} $ P $ will be \textit{linearly independent} \textbf{eigenvectors} of $ A $.
-\medskip
+  The columns of \textit{invertible matrix} $ P $ will be
+  \textit{linearly independent} \textbf{eigenvectors} of $ A $.
+  \medskip
 
-The diagonal entries of \textit{diagonal matrix} $ D $ are the corresponding \textbf{eigenvalues} of the \textbf{eigenvectors} in $ P $.
+  The diagonal entries of \textit{diagonal matrix} $ D $ are the
+  corresponding \textbf{eigenvalues} of the \textbf{eigenvectors} in $ P $.
 
-\subsection*{Theorem: Diagonalizability and Eigenspace}
+  \subsection*{Theorem: Diagonalizability and Eigenspace}
 
-An $ n \times n $ matrix $ A $ is \textbf{diagonalizable} \textit{if and only if} the sum of the dimensions of the eigenspaces equals $ n $.
+  An $ n \times n $ matrix $ A $ is \textbf{diagonalizable}
+  \textit{if and only if} the sum of the dimensions of the
+  eigenspaces equals $ n $.
 
-\subsection*{Theorem: Algebraic Multiplicity of Eigenvalue}
+  \subsection*{Theorem: Algebraic Multiplicity of Eigenvalue}
 
-A matrix $ U $ is \textbf{diagonalizable} \textit{if and only if} the \textbf{algebraic multiplicity} of every \textbf{eigenvalue} is equal to its \textbf{geometric multiplicity}.
-\bigskip
+  A matrix $ U $ is \textbf{diagonalizable} \textit{if and only if}
+  the \textbf{algebraic multiplicity} of every \textbf{eigenvalue} is
+  equal to its \textbf{geometric multiplicity}.
+  \bigskip
 
-\textit{Note:} The \textbf{geometric multiplicity} is equal to the dimension (number of free variables) of the null space of $ A - \lambda I $, where $ \lambda $ is the \textbf{eigenvalue}.
+  \textit{Note:} The \textbf{geometric multiplicity} is equal to the
+  dimension (number of free variables) of the null space of $ A -
+  \lambda I $, where $ \lambda $ is the \textbf{eigenvalue}.
 
-\section*{Lecture 21}
+  \section*{Lecture 21}
 
-\subsection*{The Diagonalization Theorem}
+  \subsection*{The Diagonalization Theorem}
 
-Given a matrix $ A = PDP^{-1} $, with diagonal matrix $ D $,\textit{if and only if} the columns of $ P $ are $ n $ linearly independent eigenvectors of $ A $. That is, if \textit{invertible matrix} $ P $ is \textbf{linearly independent} (every column is a pivot column).
-\medskip
+  Given a matrix $ A = PDP^{-1} $, with diagonal matrix $ D
+  $,\textit{if and only if} the columns of $ P $ are $ n $ linearly
+  independent eigenvectors of $ A $. That is, if \textit{invertible
+  matrix} $ P $ is \textbf{linearly independent} (every column is a
+  pivot column).
+  \medskip
 
-Furthermore, the diagonal entries of $ D $ are the eigenvalues of $ A $ that correspond to the eigenvectors in $ P $.
-\medskip
+  Furthermore, the diagonal entries of $ D $ are the eigenvalues of $
+  A $ that correspond to the eigenvectors in $ P $.
+  \medskip
 
-\subsection*{Theorem: Invertible and Diagonalizable}
+  \subsection*{Theorem: Invertible and Diagonalizable}
 
-Given an invertible matrix $ A $, zero is not an \textbf{eigenvalue}.
-\medskip
+  Given an invertible matrix $ A $, zero is not an \textbf{eigenvalue}.
+  \medskip
 
-Given a diagonalizable matrix $ A = PDP^{-1} $, it follows that $ A^{-1} = PD^{-1}P^{-1} $.
+  Given a diagonalizable matrix $ A = PDP^{-1} $, it follows that $
+  A^{-1} = PD^{-1}P^{-1} $.
 
-\subsection*{Differential Equation: Position}
+  \subsection*{Invertible Matrix Theorem}
 
-The differential equation $ x' = Ax $ is $ \displaystyle x(t) = c_1v_1e^{\lambda_1t} + c_2v_2e^{\lambda_2t} + \hdots + c_nv_ne^{\lambda_nt} $, where $ \lambda_n $ is the \textbf{eigenvalue} of the $ n \times n $ matrix $ A $ and $ v_n $ is its corresponding \textbf{eigenvector}.
+  Given the \textbf{invertible matrix} $ A $, the following are equivalent:
 
-\bigskip
+  \begin{enumerate}
+    \item The equation $ Ax = 0 $ has only the \textbf{trivial solution}.
+    \item The number $ 0 $ is not an \textbf{eigenvalue} of $ A $>
+    \item $ \textrm{Nul} \: A =
+      \begin{Bmatrix}
+        0 \\
+      \end{Bmatrix} $
+    \item $ \textrm{dim} \: \textrm{Nul} \: (A) = 0 $
+  \end{enumerate}
 
-\textit{Example.} A particle moving in a planar force field has a position vector $ x $ that satisfies $ x' = Ax $. The $ 2 \times 2 $ matrix $ A $ has \textbf{eigenvalues} $ 4 $ and $ 2 $, with corresponding \textbf{eigenvectors} $ v_1 = \begin{bmatrix}
+  \subsection*{Differential Equation: Position}
+
+  The differential equation $ x' = Ax $ is $ \displaystyle x(t) =
+  c_1v_1e^{\lambda_1t} + c_2v_2e^{\lambda_2t} + \hdots +
+  c_nv_ne^{\lambda_nt} $, where $ \lambda_n $ is the
+  \textbf{eigenvalue} of the $ n \times n $ matrix $ A $ and $ v_n $
+  is its corresponding \textbf{eigenvector}.
+
+  \bigskip
+
+  \textit{Example.} A particle moving in a planar force field has a
+  position vector $ x $ that satisfies $ x' = Ax $. The $ 2 \times 2
+  $ matrix $ A $ has \textbf{eigenvalues} $ 4 $ and $ 2 $, with
+  corresponding \textbf{eigenvectors} $ v_1 =
+  \begin{bmatrix}
     -5 \\
     1 \\
-\end{bmatrix} $ and $ v_2 = \begin{bmatrix}
+  \end{bmatrix} $ and $ v_2 =
+  \begin{bmatrix}
     -7 \\
     1 \\
-\end{bmatrix} $. Find the position of the particle at time $ t $ assuming that $ x(0) = \begin{bmatrix}
+  \end{bmatrix} $. Find the position of the particle at time $ t $
+  assuming that $ x(0) =
+  \begin{bmatrix}
     -2 \\
     1 \\
-\end{bmatrix} $.
+  \end{bmatrix} $.
 
-\begin{enumerate}
-    \item $ x(t) = c_1 \begin{bmatrix}
-            -7 \\
-            1 \\
-    \end{bmatrix} e^{5}t + c_2 \begin{bmatrix}
-        -3 \\
-        1 \\
-    \end{bmatrix} e^{4}t $
-    \item Solve for $ c_1 $ and $ c_2 $ with $ x(0) = \begin{bmatrix}
-        -17 \\
-        1 \\
-    \end{bmatrix} $.
-    \medskip
-
-    $ \begin{bmatrix}
-        -17 \\
-        1 \\
-    \end{bmatrix} = c_1 \begin{bmatrix}
+  \begin{enumerate}
+    \item $ x(t) = c_1
+      \begin{bmatrix}
         -7 \\
         1 \\
-    \end{bmatrix} e^{5(0)} + c_2 \begin{bmatrix}
+      \end{bmatrix} e^{5}t + c_2
+      \begin{bmatrix}
         -3 \\
         1 \\
-    \end{bmatrix} e^{4(0)} $
+      \end{bmatrix} e^{4}t $
+    \item Solve for $ c_1 $ and $ c_2 $ with $ x(0) =
+      \begin{bmatrix}
+        -17 \\
+        1 \\
+      \end{bmatrix} $.
+      \medskip
+
+      $
+      \begin{bmatrix}
+        -17 \\
+        1 \\
+      \end{bmatrix} = c_1
+      \begin{bmatrix}
+        -7 \\
+        1 \\
+      \end{bmatrix} e^{5(0)} + c_2
+      \begin{bmatrix}
+        -3 \\
+        1 \\
+      \end{bmatrix} e^{4(0)} $
 
     \item Setup the augmented matrix and row reduce.
-    \medskip
+      \medskip
 
-    $ \displaystyle \begin{amatrix}{2}
+      $ \displaystyle
+      \begin{amatrix}{2}
         -7 & -3 & -17 \\
         1 & 1 & 1 \\
-    \end{amatrix} \sim \begin{amatrix}{2}
+      \end{amatrix} \sim
+      \begin{amatrix}{2}
         1 & 0 & \frac{7}{2} \\
         0 & 1 & -\frac{5}{2} \\
-    \end{amatrix} $
-\item The position of the particle at time $ t $ is given by: $\displaystyle x(t) = \frac{7}{2} \begin{bmatrix}
+      \end{amatrix} $
+    \item The position of the particle at time $ t $ is given by:
+      $\displaystyle x(t) = \frac{7}{2}
+      \begin{bmatrix}
         -7 \\
         1 \\
-\end{bmatrix} e^{5t} - \frac{5}{2} \begin{bmatrix}
-    -3 \\
-    1 \\
-\end{bmatrix} e^{4t} $
-\end{enumerate}
+      \end{bmatrix} e^{5t} - \frac{5}{2}
+      \begin{bmatrix}
+        -3 \\
+        1 \\
+      \end{bmatrix} e^{4t} $
+  \end{enumerate}
 
-\section*{Lecture 22}
+  \section*{Lecture 22}
 
-\subsection*{Steady-State Vector}
+  \subsection*{Steady-State Vector}
 
-If $ A $ is a \textbf{stochastic matrix}, a \textbf{steady-state vector} for $ A $ is a probability vector $ p $ that satisfies $ Ap = p $. Thus, solve for $ p $ by solving the homogeneous system $ (A - I)p = 0 $; the components of a \textbf{steady-state vector} must sum to 1.
-\bigskip
+  If $ A $ is a \textbf{stochastic matrix}, a \textbf{steady-state
+  vector} for $ A $ is a probability vector $ p $ that satisfies $ Ap
+  = p $. Thus, solve for $ p $ by solving the homogeneous system $ (A
+  - I)p = 0 $; the components of a \textbf{steady-state vector} must sum to 1.
+  \bigskip
 
-\section*{Lecture 24}
+  \section*{Lecture 24}
 
-\subsection*{Orthogonal Set}
+  \subsection*{Orthogonal Set}
 
-A \textbf{set} of \textbf{vectors} $ \begin{bmatrix} u_1, \hdots, u_p \end{bmatrix} $ in $ \mathbb{R}^n $ is said to be \textbf{orthogonal} if each \textbf{pair} of \textbf{distinct} vectors are orthogonal.
-\bigskip
+  A \textbf{set} of \textbf{vectors} $
+  \begin{bmatrix} u_1, \hdots, u_p
+  \end{bmatrix} $ in $ \mathbb{R}^n $ is said to be
+  \textbf{orthogonal} if each \textbf{pair} of \textbf{distinct}
+  vectors are orthogonal.
+  \bigskip
 
-\textit{Note}: Two vectors are \textbf{orthogonal} if their dot product is equal to $ 0 $. Also note that two vectors that are \textbf{orthogonal} are also \textbf{linearly indepedent}.
+  \textit{Note}: Two vectors are \textbf{orthogonal} if their dot
+  product is equal to $ 0 $. Also note that two vectors that are
+  \textbf{orthogonal} are also \textbf{linearly indepedent}.
 
-\subsection*{Orthogonal Basis}
+  \subsection*{Orthogonal Basis}
 
-An \textbf{orthogonal basis} for a subspace $ W $ of $ \mathbb{R}^n $ is a \textbf{basis} for $ W $ that is also an \textbf{orthogonal set}.
+  An \textbf{orthogonal basis} for a subspace $ W $ of $ \mathbb{R}^n
+  $ is a \textbf{basis} for $ W $ that is also an \textbf{orthogonal set}.
 
-\subsection*{Theorem: Orthogonal Sets}
+  \subsection*{Theorem: Orthogonal Sets}
 
-If $ S = \begin{bmatrix}
+  If $ S =
+  \begin{bmatrix}
     u_1, \hdots, u_p
-\end{bmatrix} $ is an \textbf{orthogonal set} of nonzero vectors in $ \mathbb{R}^n $, then $ S $ is \textbf{linearly independent} and thus a basis for the \textbf{subspace} spanned by $ S $.
+  \end{bmatrix} $ is an \textbf{orthogonal set} of nonzero vectors in
+  $ \mathbb{R}^n $, then $ S $ is \textbf{linearly independent} and
+  thus a basis for the \textbf{subspace} spanned by $ S $.
 
-\bigskip
+  \bigskip
 
-\textit{Example 1.} Show that $ \begin{Bmatrix}
+  \textit{Example 1.} Show that $
+  \begin{Bmatrix}
     u_1, u_2
-\end{Bmatrix} $ is an \textbf{orthogonal basis} for $ \mathbb{R}^2 $.
-\[
-    u_1 = \begin{bmatrix}
-        5 \\
-        -7
+  \end{Bmatrix} $ is an \textbf{orthogonal basis} for $ \mathbb{R}^2 $.
+  \[
+    u_1 =
+    \begin{bmatrix}
+      5 \\
+      -7
     \end{bmatrix},
-    u_2 = \begin{bmatrix}
-        14 \\
-        10
+    u_2 =
+    \begin{bmatrix}
+      14 \\
+      10
     \end{bmatrix},
-    x = \begin{bmatrix}
-        6 \\
-        -1
+    x =
+    \begin{bmatrix}
+      6 \\
+      -1
     \end{bmatrix}
-\]
-\medskip
+  \]
+  \medskip
 
-Since the dot product of the pairs of distinct vectors ($ u_1 $ and $ u_2 $) is $ 0 $, the vectors form an \textbf{orthogonal set} by definition. By the \textbf{Theorem on Orthogonal Sets}, the vectors are also a basis for $ \mathbb{R}^2 $ because they are \textbf{linearly independent} vectors.
-\bigskip
+  Since the dot product of the pairs of distinct vectors ($ u_1 $ and
+  $ u_2 $) is $ 0 $, the vectors form an \textbf{orthogonal set} by
+  definition. By the \textbf{Theorem on Orthogonal Sets}, the vectors
+  are also a basis for $ \mathbb{R}^2 $ because they are
+  \textbf{linearly independent} vectors.
+  \bigskip
 
-To express $ x $ as a linear combination of the $ u $s, row reduce the augmented matrix:
+  To express $ x $ as a linear combination of the $ u $s, row reduce
+  the augmented matrix:
 
-\[\displaystyle
+  \[\displaystyle
     \begin{amatrix}{2}
-        5 & 14 & 6 \\
-        -7 & 10 & -1
+      5 & 14 & 6 \\
+      -7 & 10 & -1
     \end{amatrix}
     \sim
     \begin{amatrix}{2}
-        1 & 0 & \frac{1}{2} \\
-        0 & 1 & \frac{1}{4}
+      1 & 0 & \frac{1}{2} \\
+      0 & 1 & \frac{1}{4}
     \end{amatrix}
-\]
+  \]
 
-Thus,
+  Thus,
 
-\[\displaystyle
+  \[\displaystyle
     x = \frac{1}{2}u_1 + \frac{1}{4}u_2
-\]
+  \]
 
-\section*{Lecture 25}
+  \section*{Lecture 25}
 
-\subsection*{Orthonormal}
+  \subsection*{Orthonormal}
 
-The set $ S $ is \textbf{orthonormal} if it is an \textbf{orthogonal set} of unit vectors.
+  The set $ S $ is \textbf{orthonormal} if it is an
+  \textbf{orthogonal set} of unit vectors.
 
-\subsection*{Orthogonal Matrix}
+  \subsection*{Orthogonal Matrix}
 
-A matrix $ U $ is an \textbf{orthogonal matrix} if $ U $ is an $ n \times n $ square matrix, with \textbf{orthonormal columns}.
-\bigskip
+  A matrix $ U $ is an \textbf{orthogonal matrix} if $ U $ is an $ n
+  \times n $ square matrix, with \textbf{orthonormal columns}.
+  \bigskip
 
-\subsection*{Theorem: Inverse of Orthogonal Matrix}
+  \subsection*{Theorem: Inverse of Orthogonal Matrix}
 
-$ U $ is an \textbf{orthogonal matrix} \textit{if and only if} $ U $ is \textbf{invertible} and $ U^{-1} = U^T $.
-\bigskip
+  $ U $ is an \textbf{orthogonal matrix} \textit{if and only if} $ U
+  $ is \textbf{invertible} and $ U^{-1} = U^T $.
+  \bigskip
 
-\subsection*{Theorem: Tranpose of Orthogonal Matrix}
+  \subsection*{Theorem: Tranpose of Orthogonal Matrix}
 
-$ U $ is an \textbf{orthogonal matrix} \textit{if and only if} $ U^T $ is an \textbf{orthogonal matrix}.
-\bigskip
+  $ U $ is an \textbf{orthogonal matrix} \textit{if and only if} $
+  U^T $ is an \textbf{orthogonal matrix}.
+  \bigskip
 
-It follows that $ U $ has \textbf{orthonormal columns} and \textbf{orthonormal rows}.
+  It follows that $ U $ has \textbf{orthonormal columns} and
+  \textbf{orthonormal rows}.
 
-\section*{Lecture 26}
+  \section*{Lecture 26}
 
-\subsection*{Best Approximation Theorem}
+  \subsection*{Best Approximation Theorem}
 
-\textit{Reminder:} Let $ W $ be a subspace of $ \mathbb{R}^n $, then each $ y $ in $ \mathbb{R}^n $ can be written uniquely in the form $ \hat{y} + z $ where $ \hat{y} $ is called the \textbf{orthogonal projection} of $ y $ onto $ W $.
-\bigskip
+  \textit{Reminder:} Let $ W $ be a subspace of $ \mathbb{R}^n $,
+  then each $ y $ in $ \mathbb{R}^n $ can be written uniquely in the
+  form $ \hat{y} + z $ where $ \hat{y} $ is called the
+  \textbf{orthogonal projection} of $ y $ onto $ W $.
+  \bigskip
 
-The \textbf{Best Approximation Theorem} states that $ \hat{y} $ is also the closest point in $ W $ to $ y $, in the sense that $ \| y - \hat{y} \| < \| y - v \| $ for all $ v $ in $ W $ distinct from $ \hat{y} $.
+  The \textbf{Best Approximation Theorem} states that $ \hat{y} $ is
+  also the closest point in $ W $ to $ y $, in the sense that $ \| y
+  - \hat{y} \| < \| y - v \| $ for all $ v $ in $ W $ distinct from $ \hat{y} $.
 
-\subsection*{Gram-Schmidt Method}
+  \subsection*{Gram-Schmidt Method}
 
-The \textbf{Gram-Schmidt} method is used to transform a set of linearly independent vectors into an \textbf{orthonormal basis}.
+  The \textbf{Gram-Schmidt} method is used to transform a set of
+  linearly independent vectors into an \textbf{orthonormal basis}.
 
-\begin{enumerate}
+  \begin{enumerate}
     \item \textbf{Set} the first vector.
-        \[
-            v_1 = v_1
-        \]
+      \[
+        v_1 = v_1
+      \]
     \item \textbf{Orthogonalize} the second vector.
-        \[
-            v_2 = u_2 - \textrm{proj}_{v_1}(u_2)
-        \]
-    \item \textbf{Orthogonalize} all subsequent vectors. For each new vector, subtract its projections onto \textit{all} previously found orthogonal vectors.
-    \item \textbf{Normalize} all vectors by dividing each vector by its magnitude.
-\end{enumerate}
+      \[
+        v_2 = u_2 - \textrm{proj}_{v_1}(u_2)
+      \]
+    \item \textbf{Orthogonalize} all subsequent vectors. For each new
+      vector, subtract its projections onto \textit{all} previously
+      found orthogonal vectors.
+    \item \textbf{Normalize} all vectors by dividing each vector by
+      its magnitude.
+  \end{enumerate}
 
-\end{document}
+  \end{document}
