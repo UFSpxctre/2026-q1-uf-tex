@@ -1869,13 +1869,56 @@ To determine whether $ v $ is an \textbf{eigenvector} of $ A $:
 
   \section*{Lecture 22}
 
-  \subsection*{Steady-State Vector}
+  \subsection*{Markov Chain}
+
+  A \textbf{Markov chain} is a mathematical model describing a
+  sequence of possible states in which the probability of each state
+  depends only on the state attained in the previous state.
+
+  \subsection*{Probability Vector}
+
+  A \textbf{probability vector} is a vector with nonnegative entries
+  that add up to $ 1 $.
+
+  \subsection*{Stochastic Matrix}
+
+  A \textbf{stochastic matrix} is a square matrix whose columns are
+  probability vectors.
+  \bigskip
+
+  A \textbf{stochastic matrix} is \textbf{regular} if $ A^k $contains
+  only strictly positive entries for some $ k $.
+
+  \subsection*{Steady-State Vector (Markov Chain)}
 
   If $ A $ is a \textbf{stochastic matrix}, a \textbf{steady-state
   vector} for $ A $ is a probability vector $ p $ that satisfies $ Ap
   = p $. Thus, solve for $ p $ by solving the homogeneous system $ (A
   - I)p = 0 $; the components of a \textbf{steady-state vector} must sum to 1.
   \bigskip
+
+  \subsection*{Theorem: Eigenvalue of Stochastic Matrix}
+
+  If $ A $ is an $ n \times n $ regular stochastic matrix and $ x_0 $
+  is any initial state vector in $ \mathbb{R}^n $ , then:
+
+  \begin{enumerate}
+    \item $ \lambda_1 = 1 $ is the \textbf{golden eigenvalue} of $ A $, and
+      all other eigenvalues $ | \lambda_i | < 1 $.
+      \begin{itemize}
+        \item The existence of this \textbf{eigenvalue} represents
+          the existence of a steady-state vector.
+        \item Proves existence of \textbf{steady-state vector} since
+          $ Ap = p $, since $ Ap = \lambda p $ where $ \lambda = 1 $.
+          Once the system reaches $ p $, the system will stop changing.
+      \item
+      \end{itemize}
+    \item There is a unique steady-state vector $ p $ such that $ Ap = p $.
+    \item The Markov chain $
+      \begin{Bmatrix}
+        x_k
+      \end{Bmatrix} \rightarrow p $ as $ k \rightarrow \infty $.
+  \end{enumerate}
 
   \section*{Lecture 24}
 
