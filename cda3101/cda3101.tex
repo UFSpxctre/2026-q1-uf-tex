@@ -1,6 +1,7 @@
 \documentclass[12pt, letterpaper]{article}
 
 \usepackage{spreamble}
+\usepackage[bottom=2cm, top=2cm, left=1.5cm, right=1.5cm]{geometry}
 \usepackage{graphicx}
 
 \title{CDA3101}
@@ -12,50 +13,58 @@
 
 \part*{Von Neumann Architecture}
 
-Instructions and data are stored in the same memory space. Single-memory, single-bus architecture.
+Instructions and data are stored in the same memory space.
+Single-memory, single-bus architecture.
 
 \subsection*{Von Neumann Bottleneck}
 
-Tasks are completed sequentially due to the single bus, and thus the speed of this single bus is a performance bottleneck.
+Tasks are completed sequentially due to the single bus, and thus the
+speed of this single bus is a performance bottleneck.
 
 \begin{itemize}
-    \item \textbf{CU (Control Unit)}: Manages how the processor works by sending control signals, controlling input/output operations, and fetching instructions for execution.
-    \item \textbf{ALU (Arithmetic Logic Unit)}: Performs arithmetic and logic calculations.
-    \item \textbf{Memory Unit}: Consists of the main memory (RAM) and the registers. Single-memory system that holds both data and instructions.
-    \item \textbf{Registers}: High-speed temporary storage on the CPU.
+  \item \textbf{CU (Control Unit)}: Manages how the processor works
+    by sending control signals, controlling input/output operations,
+    and fetching instructions for execution.
+  \item \textbf{ALU (Arithmetic Logic Unit)}: Performs arithmetic and
+    logic calculations.
+  \item \textbf{Memory Unit}: Consists of the main memory (RAM) and
+    the registers. Single-memory system that holds both data and instructions.
+  \item \textbf{Registers}: High-speed temporary storage on the CPU.
 \end{itemize}
 
 \part*{Measuring Performance}
 
 \section*{Orders of Magnitude}
 \begin{table}[h]
-    \begin{center}
-        \begin{tabular}{|p{2cm}|p{3cm}|}
-            \hline
-            \textbf{nano} & $ 10^{-9} $ \\
-            \hline
-            \textbf{micro} & $ 10^{-6} $ \\
-            \hline
-            \textbf{milli} & $ 10^{-3} $ \\
-            \hline
-            \textbf{kilo} & $ 10^3 $ \\
-            \hline
-            \textbf{mega} & $ 10^6 $ \\
-            \hline
-            \textbf{giga} & $ 10^9 $ \\
-            \hline
-            \textbf{tera} & $ 10^{12} $ \\
-            \hline
-        \end{tabular}
-    \end{center}
+  \begin{center}
+    \begin{tabular}{|p{2cm}|p{3cm}|}
+      \hline
+      \textbf{nano} & $ 10^{-9} $ \\
+      \hline
+      \textbf{micro} & $ 10^{-6} $ \\
+      \hline
+      \textbf{milli} & $ 10^{-3} $ \\
+      \hline
+      \textbf{kilo} & $ 10^3 $ \\
+      \hline
+      \textbf{mega} & $ 10^6 $ \\
+      \hline
+      \textbf{giga} & $ 10^9 $ \\
+      \hline
+      \textbf{tera} & $ 10^{12} $ \\
+      \hline
+    \end{tabular}
+  \end{center}
 \end{table}
 \FloatBarrier
 
 \section*{Units of Measure}
 \begin{itemize}
-    \item \textbf{Frequency}: \textit{Hertz}, or cycles per second. Used for \textbf{clock rate}.
-    \item \textbf{Period}: Seconds per cycle. Used for \textbf{clock cycle}.
-    \item \textbf{CPI}: Clocks per instruction. Highlights a CPU's \textbf{efficiency}.
+  \item \textbf{Frequency}: \textit{Hertz}, or cycles per second.
+    Used for \textbf{clock rate}.
+  \item \textbf{Period}: Seconds per cycle. Used for \textbf{clock cycle}.
+  \item \textbf{CPI}: Clocks per instruction. Highlights a CPU's
+    \textbf{efficiency}.
 \end{itemize}
 
 Use \textit{dimensional analysis} to get to the desired unit.
@@ -64,7 +73,8 @@ Use \textit{dimensional analysis} to get to the desired unit.
 
 $ \textrm{speedup} = \frac{t_{\textrm{old}}}{t_{\textrm{new}}} $
 
-Where $ t_{\textrm{old}} $ and $ t_{\textrm{new}} $ are the times the program took before and after the upgrade, \textit{in seconds}.
+Where $ t_{\textrm{old}} $ and $ t_{\textrm{new}} $ are the times the
+program took before and after the upgrade, \textit{in seconds}.
 
 \part*{discrete shit}
 
@@ -73,50 +83,81 @@ Where $ t_{\textrm{old}} $ and $ t_{\textrm{new}} $ are the times the program to
 \textbf{Two's complement} is the standard for representing signed integers.
 
 \begin{itemize}
-\item \textbf{Most significant bit (MSB)} used as a sign bit.
-\item For an $n$-bit word, the range of representable numbers is $ -2^{n-1} $ to $ 2^{n-1} - 1 $.
+  \item \textbf{Most significant bit (MSB)} used as a sign bit.
+  \item For an $n$-bit word, the range of representable numbers is $
+    -2^{n-1} $ to $ 2^{n-1} - 1 $.
 \end{itemize}
 
 \subsection*{Two's Complement Representation}
 
 \begin{enumerate}
-    \item Take the binary of the absolute value of the integer.
-    \item Flip the bits \textit{(one's complement)}.
-    \item Add \texttt{1}.
+  \item Take the binary of the absolute value of the integer.
+  \item Flip the bits \textit{(one's complement)}.
+  \item Add \texttt{1}.
 \end{enumerate}
 
 \part*{Assembly Structures}
 
 \begin{itemize}
-    \item Local variables stored on \textbf{stack} (either static or dynamic).
-    \item Instructions and programs are stored in \textbf{text}.
+  \item Local variables stored on \textbf{stack} (either static or dynamic).
+  \item Instructions and programs are stored in \textbf{text}.
 \end{itemize}
 
 \part*{Byte Order}
 
 \begin{itemize}
-    \item \textbf{Big-Endian (BE)}: Stores most significant byte first.
-    \item \textbf{Little-Endian (LE)}: Stores most significant byte last.
+  \item \textbf{Big-Endian (BE)}: Stores most significant byte first.
+  \item \textbf{Little-Endian (LE)}: Stores most significant byte last.
 \end{itemize}
+
+\textit{Example 1.}
+
+\begin{table}[!ht]
+  \begin{center}
+    \begin{tabular}{|l|l|}
+      \hline
+      0x100 & 0xAB \\ \hline
+      0x101 & 0xCD \\ \hline
+      0x102 & 0xEF \\ \hline
+      0x103 & 0x12 \\ \hline
+    \end{tabular}%
+  \end{center}
+\end{table}
+\FloatBarrier
+
+If the system is \textbf{Little-Endian}, what does \texttt{LW X6,
+0(X2)} load into \texttt{X6} if \texttt{X2 = 0x100}?
+
+\begin{itemize}
+  \item A. \texttt{0x12EFCDAB}
+  \item B. \texttt{0xABCDEF12}
+  \item C. \texttt{0xCDAB12EF}
+  \item D. \texttt{0x0000CDAB}
+\end{itemize}
+
+The correct answer is \textbf{B}. \texttt{LW} will load 4 bytes, and
+\textbf{Little-Endian} means  the \textbf{most significant byte} is
+loaded into the rightmost byte of \texttt{X6}.
 
 \part*{RISC-V Instructions}
 
 \begin{table}[h]
-\begin{center}
+  \begin{center}
     \begin{tabular}{|p{4cm}|p{6cm}|p{5cm}| }
-        \hline
-        \textbf{Mnemonic} & \textbf{Instruction} & \textbf{Description} \\
-        \hline
-        \texttt{add rd, rs1, rs2 } & Add & \texttt{rd <- rs1 + rs2}\\
-        \hline
-        \texttt{sub rd, rs1, rs2 } & Subtract & \texttt{rd <- rs1 - rs2}\\
-        \hline
-        \texttt{addi rd, rs1, imm12 } & Add (immediate r-value) & \texttt{rd <- rs1 + imm12}\\
-        \hline
-        \texttt{add rd, rs1, rs2 } & Add & \texttt{rd <- rs1 + rs2}\\
-        \hline
+      \hline
+      \textbf{Mnemonic} & \textbf{Instruction} & \textbf{Description} \\
+      \hline
+      \texttt{add rd, rs1, rs2 } & Add & \texttt{rd <- rs1 + rs2}\\
+      \hline
+      \texttt{sub rd, rs1, rs2 } & Subtract & \texttt{rd <- rs1 - rs2}\\
+      \hline
+      \texttt{addi rd, rs1, imm12 } & Add (immediate r-value) &
+      \texttt{rd <- rs1 + imm12}\\
+      \hline
+      \texttt{add rd, rs1, rs2 } & Add & \texttt{rd <- rs1 + rs2}\\
+      \hline
     \end{tabular}
-\end{center}
+  \end{center}
 \end{table}
 
 \FloatBarrier
@@ -128,71 +169,75 @@ Where $ t_{\textrm{old}} $ and $ t_{\textrm{new}} $ are the times the program to
 \section*{R-Format Instruction Structure}
 
 \begin{itemize}
-    \item \texttt{func7} (\texttt{7 bits})
-        \begin{itemize}
-            \item Basic operation of the instruction.
-        \end{itemize}
-    \item \texttt{rs2} (\texttt{5 bits})
-        \begin{itemize}
-            \item Second source register.
-        \end{itemize}
-    \item \texttt{rs1} (\texttt{5 bits})
-        \begin{itemize}
-            \item First source register.
-        \end{itemize}
-    \item \texttt{func3} (\texttt{3 bits})
-        \begin{itemize}
-            \item Basic operation of the instruction.
-        \end{itemize}
-    \item \texttt{rd} (\texttt{5 bits})
-        \begin{itemize}
-            \item Destination register.
-        \end{itemize}
-    \item \texttt{opcode} (\texttt{7 bits})
-        \begin{itemize}
-            \item Basic operation of the instruction.
-        \end{itemize}
+  \item \texttt{func7} (\texttt{7 bits})
+    \begin{itemize}
+      \item Basic operation of the instruction.
+    \end{itemize}
+  \item \texttt{rs2} (\texttt{5 bits})
+    \begin{itemize}
+      \item Second source register.
+    \end{itemize}
+  \item \texttt{rs1} (\texttt{5 bits})
+    \begin{itemize}
+      \item First source register.
+    \end{itemize}
+  \item \texttt{func3} (\texttt{3 bits})
+    \begin{itemize}
+      \item Basic operation of the instruction.
+    \end{itemize}
+  \item \texttt{rd} (\texttt{5 bits})
+    \begin{itemize}
+      \item Destination register.
+    \end{itemize}
+  \item \texttt{opcode} (\texttt{7 bits})
+    \begin{itemize}
+      \item Basic operation of the instruction.
+    \end{itemize}
 \end{itemize}
 
 \section*{I-Format Instruction Structure}
 
 \begin{itemize}
-    \item \texttt{imm} (\texttt{12 bits})
-        \begin{itemize}
-            \item Immediate value.
-        \end{itemize}
-    \item \texttt{rs1} (\texttt{5 bits})
-        \begin{itemize}
-            \item First source register.
-        \end{itemize}
-    \item \texttt{func3} (\texttt{3 bits})
-        \begin{itemize}
-            \item Basic operation of the instruction.
-        \end{itemize}
-    \item \texttt{rd} (\texttt{5 bits})
-        \begin{itemize}
-            \item Destination register.
-        \end{itemize}
-    \item \texttt{opcode} (\texttt{7 bits})
-        \begin{itemize}
-            \item Basic operation of the instruction.
-        \end{itemize}
+  \item \texttt{imm} (\texttt{12 bits})
+    \begin{itemize}
+      \item Immediate value.
+    \end{itemize}
+  \item \texttt{rs1} (\texttt{5 bits})
+    \begin{itemize}
+      \item First source register.
+    \end{itemize}
+  \item \texttt{func3} (\texttt{3 bits})
+    \begin{itemize}
+      \item Basic operation of the instruction.
+    \end{itemize}
+  \item \texttt{rd} (\texttt{5 bits})
+    \begin{itemize}
+      \item Destination register.
+    \end{itemize}
+  \item \texttt{opcode} (\texttt{7 bits})
+    \begin{itemize}
+      \item Basic operation of the instruction.
+    \end{itemize}
 \end{itemize}
 
 \section*{S-Format Instruction Structure}
 
-Same as \textit{R-Format Instruction Structure}, but \texttt{func7} is replaced with immediate-value address to some memory.
+Same as \textit{R-Format Instruction Structure}, but \texttt{func7}
+is replaced with immediate-value address to some memory.
 
 \part*{Building a Datapath}
 
 \section*{Digital Logic}
 
-Representation of signals and states of digital circuit with \textbf{binary}.
+Representation of signals and states of digital circuit with
+\textbf{binary}.
 
 \medskip
 {\centering
 
-$ z = f(x, y), $ where $ x, y, z \in \begin{Bmatrix} 0, 1 \end{Bmatrix} $
+  $ z = f(x, y), $ where $ x, y, z \in
+  \begin{Bmatrix} 0, 1
+  \end{Bmatrix} $
 
 }
 \medskip
@@ -200,12 +245,12 @@ $ z = f(x, y), $ where $ x, y, z \in \begin{Bmatrix} 0, 1 \end{Bmatrix} $
 \subsection*{Logic Gates}
 
 \begin{itemize}
-    \item \textbf{NOT Gate}: $ Z = X' $, $ Z = \overline{X} $
-    \item \textbf{AND Gate}: $ Z = X \times Y $
-    \item \textbf{OR Gate}: $ Z = X' + Y $
-    \item \textbf{NAND Gate} % TODO
-    \item \textbf{NOR Gate}
-    \item \textbf{XOR Gate}
+  \item \textbf{NOT Gate}: $ Z = X' $, $ Z = \overline{X} $
+  \item \textbf{AND Gate}: $ Z = X \times Y $
+  \item \textbf{OR Gate}: $ Z = X' + Y $
+  \item \textbf{NAND Gate} % TODO
+  \item \textbf{NOR Gate}
+  \item \textbf{XOR Gate}
 \end{itemize}
 
 \subsection*{Building a Circuit}
@@ -214,16 +259,19 @@ $ z = f(x, y), $ where $ x, y, z \in \begin{Bmatrix} 0, 1 \end{Bmatrix} $
 
 \subsection*{Comparator Circuit}
 
-\textbf{Comparator circuits} compare bits of binary numbers to see if they are equal.
+\textbf{Comparator circuits} compare bits of binary numbers to see if
+they are equal.
 
 \subsection*{Multiplexer Circuit}
 
-\textbf{Multiplexer circuits} select one data channel from many input channels.
+\textbf{Multiplexer circuits} select one data channel from many
+input channels.
 
 \begin{itemize}
-    \item Maps the selected channel to the output channel.
-    \item Control signals used to select channel.
-    \item Can represent $ 2^n $ channels, where $ n $ is the number of control bits.
+  \item Maps the selected channel to the output channel.
+  \item Control signals used to select channel.
+  \item Can represent $ 2^n $ channels, where $ n $ is the number of
+    control bits.
 \end{itemize}
 
 \subsection*{Decoder Circuit}
@@ -231,19 +279,20 @@ $ z = f(x, y), $ where $ x, y, z \in \begin{Bmatrix} 0, 1 \end{Bmatrix} $
 \textbf{Decoder circuits} have many possible outputs that can be activated.
 
 \begin{itemize}
-    \item \textbf{Encoder} chooses one of the outputs.
-    \item Control signals used to make the choice.
+  \item \textbf{Encoder} chooses one of the outputs.
+  \item Control signals used to make the choice.
 \end{itemize}
 
 \subsection*{Sum of Products}
 
-Any logic function can be described as \texttt{OR}-ing multiple \texttt{AND} results.
+Any logic function can be described as \texttt{OR}-ing multiple
+\texttt{AND} results.
 \medskip
 
 \medskip
 {\centering
 
-$ Z = (X \textrm{AND} Y) \textrm{OR} (X' \textrm{AND} Y') $
+  $ Z = (X \textrm{AND} Y) \textrm{OR} (X' \textrm{AND} Y') $
 
 }
 \medskip
@@ -252,12 +301,13 @@ $ Z = (X \textrm{AND} Y) \textrm{OR} (X' \textrm{AND} Y') $
 
 \subsection*{Product of Sums}
 
-Any logic function can be described as \texttt{AND}-ing multiple \textrm{OR} results.
+Any logic function can be described as \texttt{AND}-ing multiple
+\textrm{OR} results.
 
 \medskip
 {\centering
 
-$ Z = (X \textrm{OR} Y) \textrm{AND} (X' \textrm{OR} Y') $
+  $ Z = (X \textrm{OR} Y) \textrm{AND} (X' \textrm{OR} Y') $
 
 }
 \medskip
@@ -268,132 +318,174 @@ $ Z = (X \textrm{OR} Y) \textrm{AND} (X' \textrm{OR} Y') $
 
 \section*{Datapath Design}
 
-The \textbf{Instruction Set Architecture} determines many aspects of implementation, and these strategies affect \textbf{clock rate} and \textbf{CPI}.
+The \textbf{Instruction Set Architecture} determines many aspects of
+implementation, and these strategies affect \textbf{clock rate} and
+\textbf{CPI}.
 
 \section*{Logic Design}
 
 \begin{itemize}
-    \item \textbf{Combinational Elements}
-        \begin{itemize}
-            \item Combination of gates, ALU.
-            \item Outputs depend only on inputs.
-        \end{itemize}
-    \item \textbf{State Elements}
-        \begin{itemize}
-            \item Memory, storage.
-            \item Data read from register is state value at previous clock cycle.
-        \end{itemize}
-    \item \textbf{Datapath}
-        \begin{itemize}
-            \item Reads an instruction.
-            \item Executes instructions.
-            \item Writes registers.
-            \item \texttt{PC} stores address of current instruction.
-            \item \textbf{Instruction Memory} stores the instruction.
-        \end{itemize}
+  \item \textbf{Combinational Elements}
+    \begin{itemize}
+      \item Combination of gates, ALU.
+      \item Outputs depend only on inputs.
+    \end{itemize}
+  \item \textbf{State Elements}
+    \begin{itemize}
+      \item Memory, storage.
+      \item Data read from register is state value at previous clock cycle.
+    \end{itemize}
+  \item \textbf{Datapath}
+    \begin{itemize}
+      \item Reads an instruction.
+      \item Executes instructions.
+      \item Writes registers.
+      \item \texttt{PC} stores address of current instruction.
+      \item \textbf{Instruction Memory} stores the instruction.
+    \end{itemize}
 \end{itemize}
 
 \section*{Register File}
 
 \begin{itemize}
-    \item Register numbers are taken from the instruction and sent to the register file.
-    \item Data to be provided is sent through the \textbf{read ports}.
-    \item Signal with the register number to be written, and a \textbf{write port} through which the data will be sent.
-    \item \textbf{Read Data}: State of register in the previous clock cycle.
-    \item \textbf{Write Data}: Changed for the next clock cycle.
+  \item Register numbers are taken from the instruction and sent to
+    the register file.
+  \item Data to be provided is sent through the \textbf{read ports}.
+  \item Signal with the register number to be written, and a
+    \textbf{write port} through which the data will be sent.
+  \item \textbf{Read Data}: State of register in the previous clock cycle.
+  \item \textbf{Write Data}: Changed for the next clock cycle.
 \end{itemize}
 
 \section*{Control Signals}
 
-Decoded primarily from the \texttt{32-bit} instruction opcode (\texttt{funct3}) and function codes (\texttt{funct7}).
+Decoded primarily from the \texttt{32-bit} instruction opcode
+(\texttt{funct3}) and function codes (\texttt{funct7}).
 
 \begin{itemize}
-    \item \textbf{\texttt{Branch}} (\texttt{1-bit}): if the instruction is a branch, used to determine the next \texttt{PC} value.
-    \item \textbf{\texttt{Jump}} (\texttt{1-bit}): if the instruction is an unconditional jump.
-    \item \textbf{\texttt{RegWrite}} (\texttt{1-bit}): enables writing data back to the \textbf{register file}.
-    \item \textbf{\texttt{ALUSrc}} (\texttt{1-bit}): selects the source for the second \textbf{ALU} operand.
-    \item \textbf{\texttt{MemRead}} (\texttt{1-bit}): enables reading from memory.
-    \item \textbf{\texttt{MemWrite}} (\texttt{1-bit}): enables writing to memory.
-    \item \textbf{\texttt{ResultSrc}} (\texttt{2-bits}): selects the source for the register file write data.
-    \item \textbf{\texttt{ALUOp}} (\texttt{2-bits}): tell \textbf{ALU} what type of operation to perform (\textit{R-type}, \textit{Load/Store}, or \textit{branch}).
+  \item \textbf{\texttt{Branch}} (\texttt{1-bit}): if the instruction
+    is a branch, used to determine the next \texttt{PC} value.
+  \item \textbf{\texttt{Jump}} (\texttt{1-bit}): if the instruction
+    is an unconditional jump.
+  \item \textbf{\texttt{RegWrite}} (\texttt{1-bit}): enables writing
+    data back to the \textbf{register file}.
+  \item \textbf{\texttt{ALUSrc}} (\texttt{1-bit}): selects the source
+    for the second \textbf{ALU} operand.
+  \item \textbf{\texttt{MemRead}} (\texttt{1-bit}): enables
+    reading from memory.
+  \item \textbf{\texttt{MemWrite}} (\texttt{1-bit}): enables
+    writing to memory.
+  \item \textbf{\texttt{ResultSrc}} (\texttt{2-bits}): selects the
+    source for the register file write data.
+  \item \textbf{\texttt{ALUOp}} (\texttt{2-bits}): tell \textbf{ALU}
+    what type of operation to perform (\textit{R-type},
+    \textit{Load/Store}, or \textit{branch}).
 \end{itemize}
 
 \section*{Datapath Elements for R-Format}
 
 \begin{enumerate}
-    \item Instruction is read from \textbf{instruction memory}.
-    \item Instruction is split by Decoder-Logic into \texttt{opcode}, \texttt{rs1}, \texttt{rs2}, and \texttt{rd} fields.
-    \item Register contents for \texttt{rs1} and \texttt{rs2} are read from \textbf{Register File}.
-    \item \textbf{ALU} computes using \texttt{rs1} and \texttt{rs2} registers and produces result.
-    \item Result is written to \textbf{Register File} at \texttt{WriteData} port.
+  \item Instruction is read from \textbf{instruction memory}.
+  \item Instruction is split by Decoder-Logic into \texttt{opcode},
+    \texttt{rs1}, \texttt{rs2}, and \texttt{rd} fields.
+  \item Register contents for \texttt{rs1} and \texttt{rs2} are read
+    from \textbf{Register File}.
+  \item \textbf{ALU} computes using \texttt{rs1} and \texttt{rs2}
+    registers and produces result.
+  \item Result is written to \textbf{Register File} at
+    \texttt{WriteData} port.
 \end{enumerate}
 
 \section*{Datapath Elements for S-Format}
 
 \begin{enumerate}
-    \item Instruction is read from \textbf{instruction memory}.
-    \item Instruction is split by Decoder-Logic into \texttt{opcode}, \texttt{src} or \texttt{dst}, \texttt{offset}, and \texttt{base}.
-    \item \texttt{offset} sent to \textbf{Sign Extension}.
-    \item \textit{Load} output sent to \texttt{ReadData1}. \textit{Store} source is sent to \texttt{ReadData2}.
-    \item \textbf{ALU} computes memory address.
-    \item \textbf{ALU} output applied to data memory.
-    \item \textbf{LW Only:} \textbf{Data Memory} output written to \textbf{Register File}.
+  \item Instruction is read from \textbf{instruction memory}.
+  \item Instruction is split by Decoder-Logic into \texttt{opcode},
+    \texttt{src} or \texttt{dst}, \texttt{offset}, and \texttt{base}.
+  \item \texttt{offset} sent to \textbf{Sign Extension}.
+  \item \textit{Load} output sent to \texttt{ReadData1}.
+    \textit{Store} source is sent to \texttt{ReadData2}.
+  \item \textbf{ALU} computes memory address.
+  \item \textbf{ALU} output applied to data memory.
+  \item \textbf{LW Only:} \textbf{Data Memory} output written to
+    \textbf{Register File}.
 \end{enumerate}
 
 \section*{Datapath Elements for Branch}
 
 \begin{enumerate}
-    \item Instruction is read from \textbf{Instruction Memory}.
-    \item Instruction is split by Decoder-Logic into \texttt{opcode}, \texttt{rs1}, \texttt{rs2}, and \texttt{imm} fields.
-    \item Register contents read from \textbf{Register File} (output at \texttt{ReadData1} and \texttt{ReadData2}).
-    \item \textbf{ALU} adds \texttt{PC} to sign-extended \texttt{imm} to produce \texttt{BTA}.
-    \item \textbf{ALU} compares \texttt{rs1} and \texttt{rs2} registers and calculates zero output (valued 1 or 0).
+  \item Instruction is read from \textbf{Instruction Memory}.
+  \item Instruction is split by Decoder-Logic into \texttt{opcode},
+    \texttt{rs1}, \texttt{rs2}, and \texttt{imm} fields.
+  \item Register contents read from \textbf{Register File} (output at
+    \texttt{ReadData1} and \texttt{ReadData2}).
+  \item \textbf{ALU} adds \texttt{PC} to sign-extended \texttt{imm}
+    to produce \texttt{BTA}.
+  \item \textbf{ALU} compares \texttt{rs1} and \texttt{rs2} registers
+    and calculates zero output (valued 1 or 0).
 \end{enumerate}
 
 \part*{Pipelining}
 
-Separate resource for each stage in the datapath in order to reduce the time taken for multiple consecutive instructions.
+Separate resource for each stage in the datapath in order to reduce
+the time taken for multiple consecutive instructions.
 
 \begin{itemize}
-    \item For a pipeline, each \textbf{stage} is a \textbf{cycle}.
-    \item \textbf{Cycle Time}: Time of the longest stage.
-    \item Each instruction takes $ \textrm{stage} \times \textrm{cycle time} $ to execute.
+  \item For a pipeline, each \textbf{stage} is a \textbf{cycle}.
+  \item \textbf{Cycle Time}: Time of the longest stage.
+  \item Each instruction takes $ \textrm{stage} \times \textrm{cycle
+    time} $ to execute.
 \end{itemize}
 
-Pipelining enables \textbf{parallel execution} through overlapping execution of different instruction stages concurrently.
+Pipelining enables \textbf{parallel execution} through overlapping
+execution of different instruction stages concurrently.
 
 \section*{Classic Pipeline}
 
 \begin{enumerate}
-    \item \textbf{Instruction Fetch} (\texttt{IF})
-    \item \textbf{Instruction Decode / Register Read} (\texttt{ID})
-    \item \textbf{Execute / ALU Operation} (\texttt{EXE})
-    \item \textbf{Memory Access} (\texttt{MEM})
-    \item \textbf{Register Write} (\texttt{WB})
+  \item \textbf{Instruction Fetch} (\texttt{IF})
+  \item \textbf{Instruction Decode / Register Read} (\texttt{ID})
+  \item \textbf{Execute / ALU Operation} (\texttt{EXE})
+  \item \textbf{Memory Access} (\texttt{MEM})
+  \item \textbf{Register Write} (\texttt{WB})
 \end{enumerate}
 
-This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle time} shorter (duration of the longest stage), we can make each instruction take 5 cycles to execute and enable \textbf{parallel execution}.
+This pipeline breaks each instruction into 5 stages. By making the
+\textbf{cycle time} shorter (duration of the longest stage), we can
+make each instruction take 5 cycles to execute and enable
+\textbf{parallel execution}.
 
 \section*{Hazards}
 
 \textbf{Hazards} cause the instruction to not be able to execute.
 
 \begin{itemize}
-    \item \textbf{Structural Hazard}: Occurs in \textbf{pipelines} when two instructions at their respective stages require the same hardware.
-        \begin{itemize}
-            \item \textit{Example:} A \textbf{structural hazard} would occur if \textbf{fetch (\texttt{IF})} for instructions occur in the same cycle as a \textbf{memory access (\texttt{MEM})} for data in \textit{Von Neumann Architecture}.
-                \medskip
+  \item \textbf{Structural Hazard}: Occurs in \textbf{pipelines} when
+    two instructions at their respective stages require the same hardware.
+    \begin{itemize}
+      \item \textit{Example:} A \textbf{structural hazard} would
+        occur if \textbf{fetch (\texttt{IF})} for instructions occur
+        in the same cycle as a \textbf{memory access (\texttt{MEM})}
+        for data in \textit{Von Neumann Architecture}.
+        \medskip
 
-                This can be mitigated by using \textit{Harvard Architecture}, where instruction memory is separate from data memory.
+        This can be mitigated by using \textit{Harvard Architecture},
+        where instruction memory is separate from data memory.
 
-            \item \textit{Example:} A \textbf{structural hazard} would occur if \textbf{instruction decode} occurs in the same cycle as a \textbf{register write}.
-                \medskip
+      \item \textit{Example:} A \textbf{structural hazard} would
+        occur if \textbf{instruction decode} occurs in the same cycle
+        as a \textbf{register write}.
+        \medskip
 
-                This can be mitigated by using \textbf{split-cycle I/O}, where writes occur in the first half of the cycle and reads occur in the second half of the cycle.
-        \end{itemize}
-    \item \textbf{Data Hazard}: An instruction needs data from a register before it has been calculated. (data race)
-        \begin{itemize}
-            \item \textit{Example \textbf{(R-Type Data Hazard)}:} Consider the following code block executing in a pipeline:
+        This can be mitigated by using \textbf{split-cycle I/O},
+        where writes occur in the first half of the cycle and reads
+        occur in the second half of the cycle.
+    \end{itemize}
+  \item \textbf{Data Hazard}: An instruction needs data from a
+    register before it has been calculated. (data race)
+    \begin{itemize}
+      \item \textit{Example \textbf{(R-Type Data Hazard)}:} Consider
+        the following code block executing in a pipeline:
                 \begin{minted}[
                         linenos,
                         framesep=2mm,
@@ -408,38 +500,45 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
         SW X15, X15, (100)X2        // second operand depends on SUB
                 \end{minted}
 
-                In a pipeline diagram, we can see where these diagrams take place.
+        In a pipeline diagram, we can see where these diagrams take place.
 
-                \medskip
-                {\centering
+        \medskip
+        {\centering
 
-                    \includegraphics[width=0.8\textwidth]{./cda3101_hazard.png}
+          \includegraphics[width=0.8\textwidth]{./cda3101_hazard.png}
 
-                }
-                \medskip
+        }
+        \medskip
 
-                \textbf{Forwarding}: We can store the calculated \texttt{X2} after \textbf{execute} stage of the \texttt{SUB} instruction into the \texttt{EX/MEM} memory buffer. This value can be retrieved in the subsequent cycle and loaded into the ALU by the \texttt{AND} instruction.
+        \textbf{Forwarding}: We can store the calculated \texttt{X2}
+        after \textbf{execute} stage of the \texttt{SUB} instruction
+        into the \texttt{EX/MEM} memory buffer. This value can be
+        retrieved in the subsequent cycle and loaded into the ALU by
+        the \texttt{AND} instruction.
 
-                \medskip
-                {\centering
+        \medskip
+        {\centering
 
-                    \includegraphics[width=0.8\textwidth]{./cda3101_hazard_forward_01.png}
-                    
-                }
-                \medskip
+          \includegraphics[width=0.8\textwidth]{./cda3101_hazard_forward_01.png}
 
-                Same thing; we can \textbf{forward} \texttt{X2} from the \texttt{SUB} instruction by storing into the \texttt{MEM/WB} buffer and then retrieve that value in the \texttt{OR} instruction.
+        }
+        \medskip
 
-                \medskip
-                {\centering
+        Same thing; we can \textbf{forward} \texttt{X2} from the
+        \texttt{SUB} instruction by storing into the \texttt{MEM/WB}
+        buffer and then retrieve that value in the \texttt{OR} instruction.
 
-                    \includegraphics[width=0.8\textwidth]{./cda3101_hazard_forward_02.png}
+        \medskip
+        {\centering
 
-                }
-                \medskip
+          \includegraphics[width=0.8\textwidth]{./cda3101_hazard_forward_02.png}
 
-                \textbf{Forwarding} solves all \textbf{R-type data hazards}.
-            \item \textit{Example \textbf{(Load-Use Data Hazard)}}: Consider the following code block executing in a pipeline:
+        }
+        \medskip
+
+        \textbf{Forwarding} solves all \textbf{R-type data hazards}.
+      \item \textit{Example \textbf{(Load-Use Data Hazard)}}:
+        Consider the following code block executing in a pipeline:
 
                 \begin{minted}[
                         linenos,
@@ -455,25 +554,33 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
         SUB X1, X6, X7
                 \end{minted}
 
-                \texttt{X2} is uninitialized until \texttt{MEM}; the \textit{fourth} cycle. We can save \texttt{X2} into \texttt{MEM/WB} buffer to \textbf{forward} but we must \texttt{STALL} all other instructions until \textbf{execute} stage is past the \textit{fourth} cycle.
+        \texttt{X2} is uninitialized until \texttt{MEM}; the
+        \textit{fourth} cycle. We can save \texttt{X2} into
+        \texttt{MEM/WB} buffer to \textbf{forward} but we must
+        \texttt{STALL} all other instructions until \textbf{execute}
+        stage is past the \textit{fourth} cycle.
 
-                \medskip
-                {\centering
+        \medskip
+        {\centering
 
-                    \includegraphics[width=0.8\textwidth]{./cda3101_hazard_load_use.png}
+          \includegraphics[width=0.8\textwidth]{./cda3101_hazard_load_use.png}
 
-                }
-                \medskip
+        }
+        \medskip
 
-        \end{itemize}
-    \item \textbf{Control Hazard}: Instruction to fetch is unknown because the results of a branch decision is not known yet.
-        \begin{itemize}
-            \item For \texttt{BEQ} Instruction (\textbf{forward conditional branch}): \texttt{PC} is not incremented until \texttt{MEM}; the \textit{fourth} cycle. Without any changes to the design, there would be \textbf{three stall cycles}.
-                \begin{enumerate}
-                    \item Move \texttt{PC} adder to \texttt{ID}.
-                    \item Reduces to \textbf{one stall cycle}.
-                \end{enumerate}
-        \end{itemize}
+    \end{itemize}
+  \item \textbf{Control Hazard}: Instruction to fetch is unknown
+    because the results of a branch decision is not known yet.
+    \begin{itemize}
+      \item For \texttt{BEQ} Instruction (\textbf{forward conditional
+        branch}): \texttt{PC} is not incremented until \texttt{MEM};
+        the \textit{fourth} cycle. Without any changes to the design,
+        there would be \textbf{three stall cycles}.
+        \begin{enumerate}
+          \item Move \texttt{PC} adder to \texttt{ID}.
+          \item Reduces to \textbf{one stall cycle}.
+        \end{enumerate}
+    \end{itemize}
 \end{itemize}
 
 \section*{Branch Prediction}
@@ -481,41 +588,54 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
 \subsection*{Static Branch Prediction}
 
 \begin{itemize}
-    \item \textbf{Backward conditional branches always taken}: 
-    \item \textbf{Forward conditional branches}: do not take the branch and load the next instructions.
+  \item \textbf{Backward conditional branches always taken}:
+  \item \textbf{Forward conditional branches}: do not take the branch
+    and load the next instructions.
 
-        \medskip
-        {\centering
+    \medskip
+    {\centering
 
-        \includegraphics[width=0.8\textwidth]{./cda3101_branch_prediction_forward_conditional_branch.png}
+      \includegraphics[width=0.8\textwidth]{./cda3101_branch_prediction_forward_conditional_branch.png}
 
-        }
-        \medskip
+    }
+    \medskip
 
-        Also note the \texttt{Flush} (see \texttt{ID} in \texttt{Cycle 4}). This is a \texttt{STALL} to wait for \texttt{BEQ} to evaluate in \texttt{EXE} of \texttt{Cycle 4}.
-        \bigskip
+    Also note the \texttt{Flush} (see \texttt{ID} in \texttt{Cycle
+    4}). This is a \texttt{STALL} to wait for \texttt{BEQ} to
+    evaluate in \texttt{EXE} of \texttt{Cycle 4}.
+    \bigskip
 
-        When the \texttt{BEQ} instruction's \texttt{EXE} evaluates, note thet bolded \texttt{\textbf{Flush}} (see \texttt{EXE} in \texttt{Cycle 5}); we \textbf{forward} the result of \texttt{BEQ} to the \texttt{AND} instruction and determine that we need to flush the \texttt{AND} instruction since we \textbf{do} branch.
+    When the \texttt{BEQ} instruction's \texttt{EXE} evaluates, note
+    thet bolded \texttt{\textbf{Flush}} (see \texttt{EXE} in
+    \texttt{Cycle 5}); we \textbf{forward} the result of \texttt{BEQ}
+    to the \texttt{AND} instruction and determine that we need to
+    flush the \texttt{AND} instruction since we \textbf{do} branch.
 \end{itemize}
 
 \subsection*{Dynamic Branch Prediction}
 
 \begin{itemize}
-    \item Occurs while the program is running, determining whether the particular branch instruction should be taken or not.
-    \item \textbf{Branch History Table}: indexed by the address of the branch instruction.
-        \begin{itemize}
-            \item \textbf{Local Branch History}: Branch history stored for each instruction address.
-            \item \textbf{Global Branch History}: Universal history for all addresses.
-        \end{itemize}
-    \item \textbf{Branch Target Buffer}: catches the target address for particular branches.
-    \item Implemented at the hardware level.
-    \item \textbf{\texttt{2-bit} Predictor}: Remembers the history of the last $ 2^2 $ occurrences of the branch.
-        \begin{itemize}
-            \item \textbf{Increment} if branch was taken.
-            \item \textbf{Decrement} if branch was not taken.
-            \item \texttt{10}, \texttt{11}: will \textbf{predict taken}.
-            \item \texttt{01}, \texttt{00}: will \textbf{predict not taken}.
-        \end{itemize}
+  \item Occurs while the program is running, determining whether the
+    particular branch instruction should be taken or not.
+  \item \textbf{Branch History Table}: indexed by the address of the
+    branch instruction.
+    \begin{itemize}
+      \item \textbf{Local Branch History}: Branch history stored for
+        each instruction address.
+      \item \textbf{Global Branch History}: Universal history for
+        all addresses.
+    \end{itemize}
+  \item \textbf{Branch Target Buffer}: catches the target address for
+    particular branches.
+  \item Implemented at the hardware level.
+  \item \textbf{\texttt{2-bit} Predictor}: Remembers the history of
+    the last $ 2^2 $ occurrences of the branch.
+    \begin{itemize}
+      \item \textbf{Increment} if branch was taken.
+      \item \textbf{Decrement} if branch was not taken.
+      \item \texttt{10}, \texttt{11}: will \textbf{predict taken}.
+      \item \texttt{01}, \texttt{00}: will \textbf{predict not taken}.
+    \end{itemize}
 \end{itemize}
 
 \part*{Cache Memory}
@@ -525,8 +645,10 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
 \subsection*{Maximize Memory Performance}
 
 \begin{itemize}
-    \item \textbf{Maximize} data transfers in \textbf{fast memory} (registers <-> cache)
-    \item \textbf{Minimize} data transfers in \textbf{slow memory} (registers <-> main memory)
+  \item \textbf{Maximize} data transfers in \textbf{fast memory}
+    (registers <-> cache)
+  \item \textbf{Minimize} data transfers in \textbf{slow memory}
+    (registers <-> main memory)
 \end{itemize}
 
 \section*{Locality}
@@ -534,8 +656,10 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
 \textbf{Locality} can be exploited to improve performance.
 
 \begin{itemize}
-    \item \textbf{Spatial Locality}: Instructions tend to be accessed sequentially - they are near each other in memory.
-    \item \textbf{Temporal Locality}: Reuse of data or instructions previously accessed.
+  \item \textbf{Spatial Locality}: Instructions tend to be accessed
+    sequentially - they are near each other in memory.
+  \item \textbf{Temporal Locality}: Reuse of data or instructions
+    previously accessed.
 \end{itemize}
 
 \section*{Cache Memory}
@@ -545,8 +669,8 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
 \textbf{L1} or \textbf{primary cache} is on the same chip as the CPU.
 
 \begin{itemize}
-    \item \textbf{Fastest memory} outside of registers.
-    \item Limited in size.
+  \item \textbf{Fastest memory} outside of registers.
+  \item Limited in size.
 \end{itemize}
 
 \subsection*{Secondary Cache}
@@ -554,42 +678,48 @@ This pipeline breaks each instruction into 5 stages. By making the \textbf{cycle
 \textbf{L2} or \textbf{secondary cache} can be on the same chip or separate.
 
 \begin{itemize}
-    \item Larger than \textbf{L1}.
-    \item Slower access time than \textbf{L1}.
+  \item Larger than \textbf{L1}.
+  \item Slower access time than \textbf{L1}.
 \end{itemize}
 
 \subsection*{Harvard Cache}
 
-\textbf{Unified} or \textbf{integrated} caches contain both instructions and data.
+\textbf{Unified} or \textbf{integrated} caches contain both
+instructions and data.
 \bigskip
 
 \textbf{Harvard cache} is a split cache system.
 
 \begin{itemize}
-    \item \textbf{I-cache} for caching instructions.
-    \item \textbf{D-cache} for caching data.
-    \item Provides better \textbf{locality} at the cost of complexity.
-    \item Common setups include a \textit{split} \textbf{L1} and a \textit{unified} \textbf{L2}.
+  \item \textbf{I-cache} for caching instructions.
+  \item \textbf{D-cache} for caching data.
+  \item Provides better \textbf{locality} at the cost of complexity.
+  \item Common setups include a \textit{split} \textbf{L1} and a
+    \textit{unified} \textbf{L2}.
 \end{itemize}
 
 \section*{Cache Organization}
 
-Main memory is broken into \textbf{blocks}, whereas cache memory is broken into \textbf{cache lines}.
+Main memory is broken into \textbf{blocks}, whereas cache memory is
+broken into \textbf{cache lines}.
 
 \subsection*{Blocks}
 
 \begin{itemize}
-    \item \textbf{Block Number}: $\displaystyle \frac{\textrm{address}}{\textrm{block size}} $
-    \item \textbf{Offset Bits}: $ \log_2 \textrm{block size} $
+  \item \textbf{Block Number}: $\displaystyle
+    \frac{\textrm{address}}{\textrm{block size}} $
+  \item \textbf{Offset Bits}: $ \log_2 \textrm{block size} $
 \end{itemize}
 
 \subsection*{Cache Lines}
 
 \begin{itemize}
-    \item \textbf{Cache lines} are the same size as a \textbf{memory block}.
-    \item Mapping determines which line contains which block.
-    \item \textbf{Number of blocks}: $\displaystyle \frac{\textrm{main memory size}}{\textrm{block size}} $
-    \item \textbf{Number of lines}: $\displaystyle \frac{\textrm{cache size}}{\textrm{block size}} $
+  \item \textbf{Cache lines} are the same size as a \textbf{memory block}.
+  \item Mapping determines which line contains which block.
+  \item \textbf{Number of blocks}: $\displaystyle \frac{\textrm{main
+    memory size}}{\textrm{block size}} $
+  \item \textbf{Number of lines}: $\displaystyle \frac{\textrm{cache
+    size}}{\textrm{block size}} $
 \end{itemize}
 
 \subsection*{Associativity}
@@ -597,160 +727,187 @@ Main memory is broken into \textbf{blocks}, whereas cache memory is broken into 
 Cache is organized into some number of sets.
 
 \begin{itemize}
-    \item \textbf{Associativity}: Number of blocks per set.
-    \item \textbf{N-Way Associative}: \texttt{N} blocks per set.
+  \item \textbf{Associativity}: Number of blocks per set.
+  \item \textbf{N-Way Associative}: \texttt{N} blocks per set.
 \end{itemize}
 
 \subsubsection*{Fully Associative}
 
 \begin{itemize}
-    \item Any memory block can go into any empty cache line.
-    \item \textbf{Address}
-        \begin{itemize}
-            \item Based on dividing the address into two fields: an \textbf{tag field} and \textbf{offset field}.
-            \item \textbf{Offset field} width: $ \log_2 \textrm{line\_size} $
-            \item \textbf{Offset} is used to specify byte or word in the \textbf{cache line}.
-        \end{itemize}
-    \item \textbf{Cache Hit Detection}
-        \begin{itemize}
-            \item Check all \textbf{cache lines} in parallel.
-            \item If a stored tag matches the \textbf{tag field}, we detect a \textbf{cache hit}.
-        \end{itemize}
-    \item \textbf{Block Loading}
-        \begin{itemize}
-            \item Block is loaded into \textbf{vacant cache line} if miss occurs.
-            \item If no line is vacant, use a \textbf{replacement policy} to evict a line. The most common is \textbf{Least Recently Used (LRU)}.
-        \end{itemize}
-    \item Requires hardware to compare all lines in parallel.
+  \item Any memory block can go into any empty cache line.
+  \item \textbf{Address}
+    \begin{itemize}
+      \item Based on dividing the address into two fields: an
+        \textbf{tag field} and \textbf{offset field}.
+      \item \textbf{Offset field} width: $ \log_2 \textrm{line\_size} $
+      \item \textbf{Offset} is used to specify byte or word in the
+        \textbf{cache line}.
+    \end{itemize}
+  \item \textbf{Cache Hit Detection}
+    \begin{itemize}
+      \item Check all \textbf{cache lines} in parallel.
+      \item If a stored tag matches the \textbf{tag field}, we detect
+        a \textbf{cache hit}.
+    \end{itemize}
+  \item \textbf{Block Loading}
+    \begin{itemize}
+      \item Block is loaded into \textbf{vacant cache line} if miss occurs.
+      \item If no line is vacant, use a \textbf{replacement policy}
+        to evict a line. The most common is \textbf{Least
+        Recently Used (LRU)}.
+    \end{itemize}
+  \item Requires hardware to compare all lines in parallel.
 \end{itemize}
 
 \subsubsection*{Direct Mapped}
 
 \begin{itemize}
-    \item Each block has a direct mapping to a cache line.
-    \item \textbf{Mapping}
+  \item Each block has a direct mapping to a cache line.
+  \item \textbf{Mapping}
+    \begin{itemize}
+      \item Maps \textbf{block number} $ B $ to line $ N $.
+      \item $ L = B \: \textrm{mod} \: N $.
+      \item Multiple \textbf{blocks} may map to the same
+        \textbf{cache line}.
+    \end{itemize}
+  \item \textbf{Address}
+    \begin{itemize}
+      \item \textbf{Offset Field}: Specify byte or word in the
+        \textbf{cache line}.
         \begin{itemize}
-            \item Maps \textbf{block number} $ B $ to line $ N $.
-            \item $ L = B \: \textrm{mod} \: N $.
-            \item Multiple \textbf{blocks} may map to the same \textbf{cache line}.
+          \item $ \log_2 \textrm{line\_size} $
         \end{itemize}
-    \item \textbf{Address}
+      \item \textbf{Line Field}: Selects a unique line of cache.
         \begin{itemize}
-            \item \textbf{Offset Field}: Specify byte or word in the \textbf{cache line}.
-                \begin{itemize}
-                    \item $ \log_2 \textrm{line\_size} $
-                \end{itemize}
-            \item \textbf{Line Field}: Selects a unique line of cache.
-                \begin{itemize}
-                    \item $ \log_2 \textrm{lines} $
-                \end{itemize}
-            \item \textbf{Tag Field}: Used to identify currently loaded \textbf{block}.
-                \begin{itemize}
-                    \item $ \texttt{bits} - \textrm{LW} - \textrm{OW} $
-                \end{itemize}
+          \item $ \log_2 \textrm{lines} $
         \end{itemize}
-    \item \textbf{Cache Hit Detection}
+      \item \textbf{Tag Field}: Used to identify currently loaded
+        \textbf{block}.
         \begin{itemize}
-            \item Visit the \textbf{cache line} as specified by the \textbf{line field}.
-            \item If the stored tag matches the \textbf{tag field}, we detect a \textbf{cache hit}.
+          \item $ \texttt{bits} - \textrm{LW} - \textrm{OW} $
         \end{itemize}
-    \item \textbf{Block Loading}
-        \begin{itemize}
-            \item On \textbf{cache miss}, load the \textbf{cache line} with the \textbf{block}.
-            \item Prone to unused \textbf{vacant lines} if accessed \textbf{blocks} map to the same \textbf{line}.
-            \item If no line is vacant, use a \textbf{replacement policy} to evict a line.
-        \end{itemize}
+    \end{itemize}
+  \item \textbf{Cache Hit Detection}
+    \begin{itemize}
+      \item Visit the \textbf{cache line} as specified by the
+        \textbf{line field}.
+      \item If the stored tag matches the \textbf{tag field}, we
+        detect a \textbf{cache hit}.
+    \end{itemize}
+  \item \textbf{Block Loading}
+    \begin{itemize}
+      \item On \textbf{cache miss}, load the \textbf{cache line} with
+        the \textbf{block}.
+      \item Prone to unused \textbf{vacant lines} if accessed
+        \textbf{blocks} map to the same \textbf{line}.
+      \item If no line is vacant, use a \textbf{replacement policy}
+        to evict a line.
+    \end{itemize}
 \end{itemize}
 
 \subsection*{Set Associative}
 
 \begin{itemize}
-    \item Divides \textbf{cache lines} into several \textbf{sets}.
-    \item \textbf{Address}
+  \item Divides \textbf{cache lines} into several \textbf{sets}.
+  \item \textbf{Address}
+    \begin{itemize}
+      \item \textbf{Tag Field}:  Used to identify the \textbf{line}
+        within the \textbf{set} that contains the \textbf{block}.
         \begin{itemize}
-            \item \textbf{Tag Field}:  Used to identify the \textbf{line} within the \textbf{set} that contains the \textbf{block}.
-                \begin{itemize}
-                    \item $ \texttt{bits} - \texttt{SW} - \texttt{OW} $
-                \end{itemize}
-            \item \textbf{Set Field}: Selects the \textbf{set} of blocks.
-                \begin{itemize}
-                    \item $ \log_2 (sets) $
-                \end{itemize}
-            \item \textbf{Offset Field}: Specify byte or word in the \textbf{cache line}.
-                \begin{itemize}
-                    \item $ \log_2 (block\_size) $
-                \end{itemize}
+          \item $ \texttt{bits} - \texttt{SW} - \texttt{OW} $
         \end{itemize}
-    \item \textbf{Cache Hit Detection}
+      \item \textbf{Set Field}: Selects the \textbf{set} of blocks.
         \begin{itemize}
-            \item Visit the \textbf{set} as specified by the \textbf{set field}.
-            \item Check all \textbf{cache lines} in the \textbf{set} in parallel.
-            \item If a stored tag matches the \textbf{tag field}, we detect a \textbf{cache hit}.
+          \item $ \log_2 (sets) $
         \end{itemize}
-    \item \textbf{Block Loading}
+      \item \textbf{Offset Field}: Specify byte or word in the
+        \textbf{cache line}.
         \begin{itemize}
-            \item \textbf{Block} can be loaded in any \textbf{vacant cache line} in specified \textbf{set}.
+          \item $ \log_2 (block\_size) $
         \end{itemize}
+    \end{itemize}
+  \item \textbf{Cache Hit Detection}
+    \begin{itemize}
+      \item Visit the \textbf{set} as specified by the \textbf{set field}.
+      \item Check all \textbf{cache lines} in the \textbf{set} in parallel.
+      \item If a stored tag matches the \textbf{tag field}, we detect
+        a \textbf{cache hit}.
+    \end{itemize}
+  \item \textbf{Block Loading}
+    \begin{itemize}
+      \item \textbf{Block} can be loaded in any \textbf{vacant cache
+        line} in specified \textbf{set}.
+    \end{itemize}
 \end{itemize}
 
 \begin{itemize}
-    \item 
+  \item
 \end{itemize}
 
 \section*{Cache Read}
 
 \begin{itemize}
-    \item \textbf{Cache Hit}: Data is found at a given memory level.
-        \begin{itemize}
-            \item \textbf{Hit Rate}: Percent of references found at a given memory level.
-            \item \textbf{Hit Ratio}: $ \displaystyle \frac{\textrm{hits}}{\textrm{total\_refs}} $
-        \end{itemize}
-    \item \textbf{Cache Miss}: Data is not found.
-        \begin{itemize}
-            \item \textbf{Miss Rate}: $ 100 - \textrm{hit\_rate} $
-            \item \textbf{Miss Ratio}: $ 1 - \textrm{hit\_ratio} $
-            \item \textbf{Miss Penalty}: Time required to process a miss.
-        \end{itemize}
+  \item \textbf{Cache Hit}: Data is found at a given memory level.
+    \begin{itemize}
+      \item \textbf{Hit Rate}: Percent of references found at a given
+        memory level.
+      \item \textbf{Hit Ratio}: $ \displaystyle
+        \frac{\textrm{hits}}{\textrm{total\_refs}} $
+    \end{itemize}
+  \item \textbf{Cache Miss}: Data is not found.
+    \begin{itemize}
+      \item \textbf{Miss Rate}: $ 100 - \textrm{hit\_rate} $
+      \item \textbf{Miss Ratio}: $ 1 - \textrm{hit\_ratio} $
+      \item \textbf{Miss Penalty}: Time required to process a miss.
+    \end{itemize}
 \end{itemize}
 
 \subsection*{Sources of Cache Misses}
 
 \begin{itemize}
-    \item \textbf{Compulsory Misses}: Initially empty cache.
-    \item \textbf{Capacity}: Limited size of cache.
-    \item \textbf{Conflict}: Different blocks mapping to the same cache line.
+  \item \textbf{Compulsory Misses}: Initially empty cache.
+  \item \textbf{Capacity}: Limited size of cache.
+  \item \textbf{Conflict}: Different blocks mapping to the same cache line.
 \end{itemize}
 
 \subsection*{Lookaside Cache}
 
 \begin{itemize}
-    \item Accesses to cache and to main memory occur in parallel.
-    \item Main memory access is cancelled if \textbf{cache hit} occurs.
-    \item Lowers average memory access time at the cost of increase CPU to memory traffic.
+  \item Accesses to cache and to main memory occur in parallel.
+  \item Main memory access is cancelled if \textbf{cache hit} occurs.
+  \item Lowers average memory access time at the cost of increase CPU
+    to memory traffic.
 \end{itemize}
 
 \subsection*{Look Through Cache}
 
 \begin{itemize}
-    \item \textbf{Primary cache} checked first. \textbf{Secondary cache} checked if \textbf{cache miss} on \textbf{L1}.
-    \item Only accesses main memory if \textbf{cache miss} on all cache memory.
-    \item Avoids unneeded CPU-to-memory traffic, but increases average memory access time.
+  \item \textbf{Primary cache} checked first. \textbf{Secondary
+    cache} checked if \textbf{cache miss} on \textbf{L1}.
+  \item Only accesses main memory if \textbf{cache miss} on all
+    cache memory.
+  \item Avoids unneeded CPU-to-memory traffic, but increases average
+    memory access time.
 \end{itemize}
 
 \section*{Cache Writing}
 
 \begin{itemize}
-    \item \textbf{Write Through}: Memory updated in parallel with every write. \textcolor{red}{Defeats the purpose of having a cache.}
-    \item \textbf{Write Back}: Updates only the cache copy of the item.
-        \begin{itemize}
-            \item Main memory is updated when the item is removed from the cache.
-            \item Must record whether cache line was written (dirty).
-            \item May cause issues with concurrent access (shared memory multiprocessors).
-        \end{itemize}
+  \item \textbf{Write Through}: Memory updated in parallel with every
+    write. \textcolor{red}{Defeats the purpose of having a cache.}
+  \item \textbf{Write Back}: Updates only the cache copy of the item.
+    \begin{itemize}
+      \item Main memory is updated when the item is removed from the cache.
+      \item Must record whether cache line was written (dirty).
+      \item May cause issues with concurrent access (shared memory
+        multiprocessors).
+    \end{itemize}
 \end{itemize}
 
 \section*{Multicore Cache}
 
-Modern processors are multi-core; each core maintains its own private cache memory at the highest level and shares a single cache with all cores at lower levels.
+Modern processors are multi-core; each core maintains its own private
+cache memory at the highest level and shares a single cache with all
+cores at lower levels.
 
 \end{document}
