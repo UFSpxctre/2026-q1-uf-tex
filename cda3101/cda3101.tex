@@ -910,4 +910,87 @@ Modern processors are multi-core; each core maintains its own private
 cache memory at the highest level and shares a single cache with all
 cores at lower levels.
 
+\part*{Virtual Memory}
+
+While \textbf{cache} makes main memory appear faster, \textbf{virtual
+memory} makes main memory appear larger.
+
+\begin{itemize}
+  \item Each process interacts with memory in terms of its own
+    virtual address space.
+  \item The OS uses virtual memory implementation to protect
+    processes from accessing another process' memory space.
+  \item Currently used portion of the program is in memory.
+  \item Remaining parts stay on disk until needed.
+\end{itemize}
+
+\subsection*{Memory Paging}
+
+\begin{itemize}
+  \item Logical address spaces are partitioned into \textbf{pages}.
+  \item Physical memory is partitioned into \textbf{frames}.
+  \item Pages are allocated to a process or program - do not need to
+    be stored contiguously.
+  \item Secondary storage is also often organized into pages to
+    support virtual memory management.
+\end{itemize}
+
+\subsection*{Virtual Addresses}
+
+\begin{itemize}
+  \item \textbf{Page Number}: Indexes into the \textbf{page table} to
+    select an entry containing a \textbf{frame number}.
+  \item \textbf{Offset}: Concatenated with \textbf{frame number} for
+    the \textbf{physical address}.
+\end{itemize}
+
+\subsubsection*{Page Table}
+
+\begin{itemize}
+  \item Maps virtual addresses to frames.
+  \item Stored in \textbf{kernel-owned} main memory.
+  \item One \textbf{page table} for each active process.
+  \item \textbf{Valid Bit}: Indicates whether the page is in memory,
+    and the entry indicates which frame contains the page.
+    \begin{itemize}
+      \item \texttt{0}: \textbf{Page fault}.
+      \item \texttt{1}: \textbf{Frame number} is read.
+    \end{itemize}
+\end{itemize}
+
+Use of the \textbf{page table} causes \textbf{2} accesses to main
+memory: one to the \textbf{page table} to get the frame, and then
+accessing the translated physical address itself.
+
+\subsection*{Translation Look-aside Buffer (TLB)}
+
+Virtual address translations can be sped up with a \textbf{cache}.
+Avoid an access to main memory (\textbf{page table}) by storing
+frequently accessed \textbf{page numbers} in a cache.
+
+\begin{itemize}
+  \item \textbf{TLB} entries are checked in parallel for the page.
+    \begin{itemize}
+      \item \textbf{TLB Hit}: Frame number provided immediately.
+      \item \textbf{TLB Miss}: Must wait for \textbf{page table} access.
+    \end{itemize}
+  \item \textbf{TLB} usually designed with a \textbf{fully
+    associative cache} with \textbf{LRU replacement policy}.
+  \item Hit ratio is high due to spatial locality.
+\end{itemize}
+
+\subsection*{Virtual Memory Translation Process}
+
+\begin{enumerate}
+  \item Extract \textbf{page number} and \textbf{offset} from the
+    virtual address.
+  \item If \textbf{TLB hit}, combine \textbf{frame number} from
+    \textbf{TLB} with \textbf{offset} to yield physical address.
+  \item Else, use \textbf{page number} to check \textbf{page table}
+    for the \textbf{frame number}. Load this \textbf{page number}
+    into the \textbf{TLB}.
+  \item Else, generate a \textbf{page fault} and load the page from disk.
+  \item Restart the accesss once page is in memory.
+\end{enumerate}
+
 \end{document}
