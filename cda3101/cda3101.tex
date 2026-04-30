@@ -110,6 +110,20 @@ program took before and after the upgrade, \textit{in seconds}.
   \item \textbf{Little-Endian (LE)}: Stores most significant byte last.
 \end{itemize}
 
+If loading from a smaller block to a larger register, the bytes will always be right-aligned. Excess bytes will be padded based on the first byte:
+
+\begin{table}[!ht]
+  \begin{center}
+    \begin{tabular}{|l|l|}
+      \hline
+        \texttt{0} - \texttt{7} & Pad with \texttt{0} \\ \hline
+        \texttt{8} - \texttt{F} & Pad with \texttt{F} \\ \hline
+    \end{tabular}%
+  \end{center}
+\end{table}
+\FloatBarrier
+
+
 \textit{Example 1.}
 
 \begin{table}[!ht]
@@ -135,7 +149,7 @@ If the system is \textbf{Little-Endian}, what does \texttt{LW X6,
   \item D. \texttt{0x0000CDAB}
 \end{itemize}
 
-The correct answer is \textbf{B}. \texttt{LW} will load 4 bytes, and
+The correct answer is \textbf{A}. \texttt{LW} will load 4 bytes, and
 \textbf{Little-Endian} means  the \textbf{most significant byte} is
 loaded into the rightmost byte of \texttt{X6}.
 
