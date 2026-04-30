@@ -775,16 +775,16 @@ Cache is organized into some number of sets.
       \item \textbf{Offset Field}: Specify byte or word in the
         \textbf{cache line}.
         \begin{itemize}
-          \item $ \log_2 \textrm{line\_size} $
+          \item $ \log_2 (\textrm{line\_size}) $ bits
         \end{itemize}
       \item \textbf{Line Field}: Selects a unique line of cache.
         \begin{itemize}
-          \item $ \log_2 \textrm{lines} $
+          \item $ \log_2(\textrm{lines}) $ bits
         \end{itemize}
       \item \textbf{Tag Field}: Used to identify currently loaded
         \textbf{block}.
         \begin{itemize}
-          \item $ \texttt{bits} - \textrm{LW} - \textrm{OW} $
+          \item $ \texttt{bits} - \textrm{LW} - \textrm{OW} $ bits
         \end{itemize}
     \end{itemize}
   \item \textbf{Cache Hit Detection}
@@ -814,16 +814,16 @@ Cache is organized into some number of sets.
       \item \textbf{Tag Field}:  Used to identify the \textbf{line}
         within the \textbf{set} that contains the \textbf{block}.
         \begin{itemize}
-          \item $ \texttt{bits} - \texttt{SW} - \texttt{OW} $
+          \item $ \texttt{bits} - \texttt{SW} - \texttt{OW} $ bits
         \end{itemize}
       \item \textbf{Set Field}: Selects the \textbf{set} of blocks.
         \begin{itemize}
-          \item $ \log_2 (sets) $
+          \item $ \log_2 (sets) $ bits
         \end{itemize}
       \item \textbf{Offset Field}: Specify byte or word in the
         \textbf{cache line}.
         \begin{itemize}
-          \item $ \log_2 (block\_size) $
+          \item $ \log_2 (block\_size) $ bits
         \end{itemize}
     \end{itemize}
   \item \textbf{Cache Hit Detection}
@@ -938,10 +938,16 @@ memory} makes main memory appear larger.
 \subsection*{Virtual Addresses}
 
 \begin{itemize}
-  \item \textbf{Page Number}: Indexes into the \textbf{page table} to
+  \item \textbf{Page Field}: Indexes into the \textbf{page table} to
     select an entry containing a \textbf{frame number}.
-  \item \textbf{Offset}: Concatenated with \textbf{frame number} for
+    \begin{itemize}
+      \item $ \log_2(pages) $ bits
+    \end{itemize}
+  \item \textbf{Offset Field}: Concatenated with \textbf{frame number} for
     the \textbf{physical address}.
+    \begin{itemize}
+      \item $ \log_2(page\_size) $ bits
+    \end{itemize}
 \end{itemize}
 
 \subsubsection*{Page Table}
